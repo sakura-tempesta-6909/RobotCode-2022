@@ -16,7 +16,7 @@ public abstract class Mode {
      * @param driver
      * @param operator
      */
-    abstract public void changeMode(State state);
+    abstract public void changeMode(final State state);
 
     /**
      * Stateを変化させる
@@ -24,5 +24,5 @@ public abstract class Mode {
      * @param driver
      * @param operator
      */
-    abstract public void changeState(State state);
+    abstract public void changeState(final State state);
 }
