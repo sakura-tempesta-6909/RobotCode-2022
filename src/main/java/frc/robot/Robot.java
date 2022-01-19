@@ -3,6 +3,7 @@ package frc.robot;
 import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.autonomous.Autonomous;
 import frc.robot.component.Component;
 import frc.robot.component.Drive;
 import frc.robot.subClass.ExternalSensors;
@@ -15,6 +16,8 @@ public class Robot extends TimedRobot {
   ExternalSensors externalSensors;
 
   State state;
+
+  Autonomous autonomous;
 
   @Override
   public void robotInit() {
@@ -29,6 +32,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    autonomous = new Autonomous();
     for (Component component : components) {
       component.autonomousInit();
     }
@@ -39,6 +43,12 @@ public class Robot extends TimedRobot {
     externalSensors.readExternalSensors(state);
     for (Component component : components) {
       component.readSensors(state);
+    }
+
+    autonomous.changeState(state);
+
+    for (Component component : components) {
+      component.applyState(state);
     }
   }
 
