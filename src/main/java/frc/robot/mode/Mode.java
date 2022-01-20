@@ -13,16 +13,12 @@ public abstract class Mode {
     /**
      * Modeを変化させる。
      * @param state
-     * @param driver
-     * @param operator
      */
     abstract public void changeMode(final State state);
 
     /**
      * Stateを変化させる
      * @param state
-     * @param driver
-     * @param operator
      */
     abstract public void changeState(final State state);
 }

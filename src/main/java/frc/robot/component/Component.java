@@ -28,6 +28,12 @@ public interface Component {
     void testInit();
 
     /**
+     * センサーの値を読む。
+     * @param state
+     */
+    void readSensors(final State state);
+
+    /**
      * stateを適用する
      * @param state
      */
