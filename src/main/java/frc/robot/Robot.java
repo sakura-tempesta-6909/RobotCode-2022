@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.component.Component;
 import frc.robot.component.Drive;
 import frc.robot.subClass.ExternalSensors;
-import frc.robot.subClass.State;
 
 public class Robot extends TimedRobot {
 

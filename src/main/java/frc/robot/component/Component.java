@@ -1,6 +1,6 @@
 package frc.robot.component;
 
-import frc.robot.subClass.State;
+import frc.robot.State;
 
 public interface Component {
     /**

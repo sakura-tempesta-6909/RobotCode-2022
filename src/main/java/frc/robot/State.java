@@ -1,7 +1,8 @@
-package frc.robot.subClass;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.*;
+import frc.robot.subClass.Const;
 
 public class State {
     public Modes modes;

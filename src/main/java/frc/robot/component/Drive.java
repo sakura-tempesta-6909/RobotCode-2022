@@ -2,7 +2,7 @@ package frc.robot.component;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import frc.robot.subClass.State;
+import frc.robot.State;
 
 public class Drive extends DifferentialDrive implements Component{
     public Drive() {

@@ -1,7 +1,7 @@
 package frc.robot.mode;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subClass.State;
+import frc.robot.State;
 
 public abstract class Mode {
     XboxController driveController, operateController;
