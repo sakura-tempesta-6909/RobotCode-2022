@@ -54,9 +54,15 @@ Practiceモードは特殊で、SetUpタブにて設定したPractice Timingに�
 また、ロボット操作時にいくつのモードが生じることが予想される。  
 例えば、ドライブモード(移動やCARGO回収)、発射モード、クライムモードなどが挙げられる。  
 それらに対してもクラスを作り、[`mode`](./src/main/java/frc/robot/mode/)下に配置した。  
-`component`同様、各モードは[`Mode`](./src/main/java/frc/robot/mode/Mode.java)クラスを継承することとした。
+`component`同様、各モードは[`Mode`](./src/main/java/frc/robot/mode/Mode.java)クラスを継承することとxした。
 
-また、SAKURA Tempestaでは`State`というものを導入することで実装の分離を実現している。
+また、SAKURA Tempestaでは[`State`](./src/main/java/frc/robot/State.java)クラスを導入することで実装の分離を実現している。  
+
+他にも、定数用のクラスとしての[`Const`](src/main/java/frc/robot/subClass/Const.java)、外部センサーとしての[`ExternalSnesors`](src/main/java/frc/robot/subClass/ExternalSensors.java)、便利関数としての[`Util.java`](src/main/java/frc/robot/subClass/Util.java)などが`src/main/java/frc/roboot/subClass`下に配置されている。
+
+## プログラムの流れ
+まず、コントローラやセンサの値に応じて`State`を変化させ、
+その後に`State`に応じて各`component`を動作させる、という方式をとっている。
 
 # トラブルシューティング
 トラブルには様々な種類がある。
