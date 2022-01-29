@@ -17,6 +17,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    components = new ArrayList<>();
     components.add(new Drive());
 
     externalSensors = new ExternalSensors();
@@ -43,6 +44,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    state.modes = State.Modes.k_drive;
+
     for (Component component : components) {
       component.teleopInit();
     }
