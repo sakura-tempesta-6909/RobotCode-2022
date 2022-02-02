@@ -6,13 +6,13 @@ import frc.robot.State;
 public class DriveMode extends Mode {
     
     @Override
-    public void changeMode(final State state) {
+    public void changeMode() {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void changeState(final State state) {
+    public void changeState() {
         // TODO Auto-generated method stub
         
     }

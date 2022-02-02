@@ -1,7 +1,6 @@
 package frc.robot.mode;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.State;
 
 public abstract class Mode {
     XboxController driveController, operateController;
@@ -12,13 +11,11 @@ public abstract class Mode {
 
     /**
      * Modeを変化させる。
-     * @param state
      */
-    abstract public void changeMode(final State state);
+    abstract public void changeMode();
 
     /**
      * Stateを変化させる
-     * @param state
      */
-    abstract public void changeState(final State state);
+    abstract public void changeState();
 }
