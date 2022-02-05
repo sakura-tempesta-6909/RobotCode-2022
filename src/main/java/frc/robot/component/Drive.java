@@ -28,13 +28,13 @@ public class Drive extends DifferentialDrive implements Component{
     public void testInit() {}
 
     @Override
-    public void readSensors(State state) {
+    public void readSensors() {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void applyState(final State state) {
+    public void applyState() {
         // TODO Auto-generated method stub
     }
 }

@@ -5,27 +5,35 @@ import frc.robot.mode.*;
 import frc.robot.subClass.Const;
 
 public class State {
-    public Modes modes;
+    public static Modes mode;
     
-    public State() {
+    public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
         for (Modes modes : Modes.values()) {
             modes.mode.addController(driveController, operateController);
         }
 
-        stateInit();
+        stateReset();
     }
 
-    public void stateInit() {
+    public static void stateReset() {
     }
 
     public enum Modes {
         k_drive(new DriveMode());
 
-        public final Mode mode;
+        private final Mode mode;
         Modes(Mode mode) {
            this.mode = mode;
+        }
+
+        public void changeMode() {
+            this.mode.changeMode();;
+        }
+
+        public void changeState() {
+            this.mode.changeState();
         }
     }
     

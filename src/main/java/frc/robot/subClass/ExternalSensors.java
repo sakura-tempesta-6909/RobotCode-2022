@@ -10,9 +10,8 @@ public class ExternalSensors {
 
     /**
      * 外部のセンサーの値を読む。
-     * @param state
      */
-    public void readExternalSensors(final State state) {
+    public void readExternalSensors() {
 
     }
 }

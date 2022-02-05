@@ -13,15 +13,14 @@ public class Robot extends TimedRobot {
 
   ExternalSensors externalSensors;
 
-  State state;
-
   @Override
   public void robotInit() {
     components = new ArrayList<>();
     components.add(new Drive());
 
     externalSensors = new ExternalSensors();
-    state = new State();
+
+    State.StateInit();
   }
 
   @Override
@@ -36,15 +35,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    externalSensors.readExternalSensors(state);
+    externalSensors.readExternalSensors();
     for (Component component : components) {
-      component.readSensors(state);
+      component.readSensors();
     }
   }
 
   @Override
   public void teleopInit() {
-    state.modes = State.Modes.k_drive;
+    State.mode = State.Modes.k_drive;
 
     for (Component component : components) {
       component.teleopInit();
@@ -53,19 +52,19 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    state.stateInit();
+    State.stateReset();
 
-    externalSensors.readExternalSensors(state);
+    externalSensors.readExternalSensors();
     for (Component component : components) {
-      component.readSensors(state);
+      component.readSensors();
     }
 
-    state.modes.mode.changeMode(state);
+    State.mode.changeMode();
 
-    state.modes.mode.changeState(state);
+    State.mode.changeState();
 
     for (Component component : components) {
-      component.applyState(state);
+      component.applyState();
     }
   }
 
@@ -78,9 +77,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    externalSensors.readExternalSensors(state);
+    externalSensors.readExternalSensors();
     for (Component component : components) {
-      component.readSensors(state);
+      component.readSensors();
     }
   }
 
@@ -93,9 +92,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
-    externalSensors.readExternalSensors(state);
+    externalSensors.readExternalSensors();
     for (Component component : components) {
-      component.readSensors(state);
+      component.readSensors();
     }
   }
 }
