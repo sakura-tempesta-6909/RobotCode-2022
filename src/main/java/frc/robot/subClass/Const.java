@@ -8,4 +8,8 @@ public class Const {
     //ControllerPort(コントローラーのポート)
     public static final int DriveControllerPort = 0;
     public static final int OperateControllerPort = 1;
+
+    public static void ConstInit() {
+        // PIDなどの設定
+    }
 }
