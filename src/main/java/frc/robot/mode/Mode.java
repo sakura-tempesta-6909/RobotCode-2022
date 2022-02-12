@@ -3,10 +3,10 @@ package frc.robot.mode;
 import edu.wpi.first.wpilibj.XboxController;
 
 public abstract class Mode {
-    XboxController driveController, operateController;
-    public void addController(XboxController driveController, XboxController operateController) {
-        this.driveController = driveController;
-        this.operateController = operateController;
+    static XboxController driveController, operateController;
+    public static void addController(XboxController driveController, XboxController operateController) {
+        Mode.driveController = driveController;
+        Mode.operateController = operateController;
     }
 
     /**

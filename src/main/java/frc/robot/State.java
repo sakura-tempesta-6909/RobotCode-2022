@@ -10,10 +10,8 @@ public class State {
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
-        for (Modes modes : Modes.values()) {
-            modes.mode.addController(driveController, operateController);
-        }
-
+        Mode.addController(driveController, operateController);
+        
         stateReset();
     }
 
