@@ -5,8 +5,14 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.State;
 
 public class Drive extends DifferentialDrive implements Component{
+
+    /**モードによりドライブのスピードを変える
+     * differential driveの設定
+     * センサー類の読み取り
+     */
+    
     public Drive() {
-        super(new Spark(0), new Spark(1));
+        super(new Spark(0), new Spark(1)); //エラー対処用に仮書きされているだけ、実際はTalon,Victorが使われる
     }
 
     @Override
