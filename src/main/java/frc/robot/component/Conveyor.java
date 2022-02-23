@@ -1,7 +1,24 @@
 package frc.robot.component;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import frc.robot.subClass.Const;
+
 public class Conveyor implements Component {
 
+  private VictorSPX intakeRoller;
+  private WPI_TalonSRX intakeBelt, LaunchMotor;
+
+  public Conveyor() {
+    intakeRoller = new VictorSPX(Const.IntakeRoller);
+    intakeBelt = new WPI_TalonSRX(Const.IntakeBeltMotor);
+    LaunchMotor = new WPI_TalonSRX(Const.LaunchMotor);
+
+    LaunchMotor.configAllSettings(Const.launchMotorConfig);
+
+
+  }
   /**  バックプレートのそうさ
  * シューターの速さ（距離に応じて）
  * インテークベルトのそうさ（センサー類を使って詰まらないようにする）

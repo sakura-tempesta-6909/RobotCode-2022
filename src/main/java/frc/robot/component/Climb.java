@@ -3,7 +3,6 @@ package frc.robot.component;
 public class Climb implements Component {
 
   /**クライム機構展開
-     * Pneumatic使うのでPneumatichubの設定が多分必用？
    * クライムが展開したことを確認する
    * ジャイロ？かセンサー使ってクランプの傾きを把握する(MagEncoder)
    * クランプの開閉

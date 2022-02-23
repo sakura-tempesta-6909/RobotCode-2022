@@ -2,17 +2,35 @@ package frc.robot.component;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import frc.robot.State;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-public class Drive extends DifferentialDrive implements Component{
+import frc.robot.State;
+import frc.robot.subClass.Const;
+
+public class Drive implements Component{
 
     /**モードによりドライブのスピードを変える
      * differential driveの設定
      * センサー類の読み取り
      */
-    
+    private WPI_TalonSRX driveRightFront, driveLeftFront;
+    private VictorSPX driveRightBack, driveLeftBack;
+    private DifferentialDrive Ddrive;
+
     public Drive() {
-        super(new Spark(0), new Spark(1)); //エラー対処用に仮書きされているだけ、実際はTalon,Victorが使われる
+        driveRightFront = new WPI_TalonSRX(Const.DriveRightFront);
+        driveLeftFront = new WPI_TalonSRX(Const.DriveLeftFront);
+        driveRightBack = new VictorSPX(Const.DriveRightBack);
+        driveLeftBack = new VictorSPX(Const.DriveLeftBack);
+
+        driveRightBack.follow(driveRightFront);
+        driveLeftBack.follow(driveLeftFront);
+
+        Ddrive = new DifferentialDrive(driveLeftFront, driveRightFront);
+
+        driveRightFront.configAllSettings(Const.dRConfig);
+        driveLeftFront.configAllSettings(Const.dLConfig);
     }
 
     @Override
