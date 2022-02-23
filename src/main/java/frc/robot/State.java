@@ -6,6 +6,8 @@ import frc.robot.subClass.Const;
 
 public class State {
     public static Modes mode;
+
+    public static double gyroValue; // クランプの傾き用
     
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
@@ -27,7 +29,7 @@ public class State {
 
     public enum Modes {
         k_drive(new DriveMode()),
-        k_shooter(new ShooterMode()),
+        k_shooter(new ConveyorMode()),
         k_climb(new ClimbMode());
 
         private final Mode mode;

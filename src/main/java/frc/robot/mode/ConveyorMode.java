@@ -1,6 +1,6 @@
 package frc.robot.mode;
 
-public class ShooterMode extends Mode{
+public class ConveyorMode extends Mode {
 
   @Override
   public void changeMode() {
