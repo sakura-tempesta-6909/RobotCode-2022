@@ -1,8 +1,8 @@
 package frc.robot.component;
 
-public class Shooter implements Component {
+public class Conveyor implements Component {
 
-/**  バックプレートのそうさ
+  /**  バックプレートのそうさ
  * シューターの速さ（距離に応じて）
  * インテークベルトのそうさ（センサー類を使って詰まらないようにする）
  * シューターモーターの上下（クライム中は上がっている等）
