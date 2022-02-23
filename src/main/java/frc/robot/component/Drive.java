@@ -10,7 +10,7 @@ import frc.robot.subClass.Const;
 
 public class Drive implements Component{
 
-    /**モードによりドライブのスピードを変える
+    /**モードごとにドライブのスピードを変える
      * differential driveの設定
      * センサー類の読み取り
      */
