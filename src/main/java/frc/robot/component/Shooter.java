@@ -1,14 +1,15 @@
 package frc.robot.component;
 
-public class Climb implements Component {
+public class Shooter implements Component {
 
-  /**クライム機構展開
-     * Pneumatic使うのでPneumatichubの設定が多分必用？
-   * クライムが展開したことを確認する
-   * ジャイロ？かセンサー使ってクランプの傾きを把握する(MagEncoder)
-   * クランプの開閉
-   * 
-   */
+/**  バックプレートのそうさ
+ * シューターの速さ（距離に応じて）
+ * インテークベルトのそうさ（センサー類を使って詰まらないようにする）
+ * シューターモーターの上下（クライム中は上がっている等）
+ * シューターモーターはモードによって動きが変わるはず
+ * ボールが詰まったときの対処
+ * 他にもあった方がよさそうな機能
+*/
 
   @Override
   public void autonomousInit() {

@@ -11,6 +11,7 @@ public class State {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
         Mode.addController(driveController, operateController);
+        mode = Modes.k_drive;
         
         stateReset();
     }
@@ -18,8 +19,16 @@ public class State {
     public static void stateReset() {
     }
 
+    public enum DriveSpeed {
+        s_SlowDrive,
+        s_MidDrive,
+        s_FastDrive
+    }
+
     public enum Modes {
-        k_drive(new DriveMode());
+        k_drive(new DriveMode()),
+        k_shooter(new ShooterMode()),
+        k_climb(new ClimbMode());
 
         private final Mode mode;
         Modes(Mode mode) {
@@ -27,7 +36,7 @@ public class State {
         }
 
         public void changeMode() {
-            this.mode.changeMode();;
+            this.mode.changeMode();
         }
 
         public void changeState() {
