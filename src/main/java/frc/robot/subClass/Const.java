@@ -23,7 +23,10 @@ public class Const {
     public static final int IntakeRoller = 0;
     public static final int LaunchMotor = 0;
 
-    //pneumatics, climb
+    //sensor, conveyor
+    public static final int BallSensor = 0; //これはあるか分からない
+
+    //pneumatics
     public static final int Compressor = 0;
     public static final int SolenoidRight = 0;
     public static final int SolenoidLeft = 0;

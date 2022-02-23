@@ -1,22 +1,28 @@
 package frc.robot.component;
 
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.subClass.Const;
 
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
   private WPI_TalonSRX intakeBelt, LaunchMotor;
+  private DigitalInput ballSensor;
 
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.IntakeRoller);
     intakeBelt = new WPI_TalonSRX(Const.IntakeBeltMotor);
     LaunchMotor = new WPI_TalonSRX(Const.LaunchMotor);
-
+    
     LaunchMotor.configAllSettings(Const.launchMotorConfig);
 
+    /**バックプレート操作用のモーターのセット */
+
+    ballSensor = new DigitalInput(Const.BallSensor);
 
   }
   /**  バックプレートのそうさ
