@@ -65,16 +65,16 @@ public class Drive implements Component{
     public void applyState() {
         switch(State.driveSpeed){
             case s_fastDrive:
-                arcadeDrive(State.driveXSpeed, State.driveZRotation);
+                arcadeDrive(Const.FastDrive * State.driveXSpeed, Const.FastDrive * State.driveZRotation);
                 break;
             case s_midDrive:
-                arcadeDrive(Const.MidDrive, Const.MidDrive);
+                arcadeDrive(Const.MidDrive * State.driveXSpeed, Const.MidDrive * State.driveZRotation);
                 break;
             case s_slowDrive:
-                arcadeDrive(Const.SlowDrive, Const.SlowDrive);
+                arcadeDrive(Const.SlowDrive * State.driveXSpeed, Const.SlowDrive * State.driveZRotation);
                 break;
             case s_stopDrive:
-                arcadeDrive(Const.StopDrive, Const.StopDrive);
+                arcadeDrive(Const.StopDrive * State.driveXSpeed, Const.StopDrive * State.driveZRotation);
         }
     }
 }
