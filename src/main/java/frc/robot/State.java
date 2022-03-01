@@ -6,9 +6,10 @@ import frc.robot.subClass.Const;
 
 public class State {
     public static Modes mode;
+    public static DriveSpeed driveSpeed;
 
     public static double gyroValue; // クランプの傾き用
-    
+    public static double driveXSpeed, driveZRotation;
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
@@ -19,12 +20,14 @@ public class State {
     }
 
     public static void stateReset() {
+        driveSpeed = DriveSpeed.s_stopDrive;
     }
 
     public enum DriveSpeed {
-        s_SlowDrive,
-        s_MidDrive,
-        s_FastDrive
+        s_slowDrive,
+        s_midDrive,
+        s_fastDrive,
+        s_stopDrive,
     }
 
     public enum Modes {

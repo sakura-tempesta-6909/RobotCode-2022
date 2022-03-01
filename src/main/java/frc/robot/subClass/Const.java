@@ -26,6 +26,12 @@ public class Const {
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
 
+    //DriveSpeed
+    public static final int FastDrive = 1;
+    public static final double MidDrive = 0.5;
+    public static final double SlowDrive = 0.25;
+    public static final int StopDrive = 0;
+
     //pneumatics
     public static final int CompressorPort = 0;
     public static final int SolenoidRightPort = 0;
