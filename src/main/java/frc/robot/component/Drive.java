@@ -16,24 +16,24 @@ public class Drive implements Component{
      */
     private WPI_TalonSRX driveRightFront, driveLeftFront;
     private VictorSPX driveRightBack, driveLeftBack;
-    private DifferentialDrive Ddrive;
+    private DifferentialDrive differntial;
 
     public Drive() {
-        driveRightFront = new WPI_TalonSRX(Const.DriveRightFront);
+        driveRightFront = new WPI_TalonSRX(Const.DriveRightFrontPort);
         driveLeftFront = new WPI_TalonSRX(Const.DriveLeftFront);
-        driveRightBack = new VictorSPX(Const.DriveRightBack);
-        driveLeftBack = new VictorSPX(Const.DriveLeftBack);
+        driveRightBack = new VictorSPX(Const.DriveRightBackPort);
+        driveLeftBack = new VictorSPX(Const.DriveLeftBackPort);
 
         driveRightBack.follow(driveRightFront);
         driveLeftBack.follow(driveLeftFront);
 
-        Ddrive = new DifferentialDrive(driveLeftFront, driveRightFront);
+        differntial = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.dRConfig);
-        driveLeftFront.configAllSettings(Const.dLConfig);
+        driveRightFront.configAllSettings(Const.DriveRightConfig);
+        driveLeftFront.configAllSettings(Const.DriveLeftConfig);
     }
     public void arcadeDrive(double xSpeed, double zRotation){
-        Ddrive.arcadeDrive(xSpeed, zRotation);
+        differntial.arcadeDrive(xSpeed, zRotation);
     }
     @Override
     public void autonomousInit() {

@@ -11,7 +11,6 @@ public class State {
     public static double gyroValue; // クランプの傾き用
 
     public static double driveXSpeed, driveZRotation;
-    
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
@@ -35,7 +34,7 @@ public class State {
 
     public enum Modes {
         k_drive(new DriveMode()),
-        k_shooter(new ConveyorMode()),
+        k_conveyor(new ConveyorMode()),
         k_climb(new ClimbMode());
 
         private final Mode mode;
