@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subClass.Const;
+import frc.robot.State;
 
 public class Climb implements Component {
 
@@ -19,13 +20,12 @@ public class Climb implements Component {
    Solenoid solenoidClamp;
 
    public Climb() {
-     compressor = new Compressor(Const.Compressor, PneumaticsModuleType.CTREPCM);
-     solenoidRight = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidRight);
-     solenoidLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidLeft);
-     solenoidClamp = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidClamp);
+     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
+     solenoidRight = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidRightPort);
+     solenoidLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidLeftPort);
+     solenoidClamp = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidClampPort);
 
    }
-
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -59,7 +59,6 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     // TODO Auto-generated method stub
-    
   }
   
 }

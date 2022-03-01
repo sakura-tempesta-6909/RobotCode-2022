@@ -12,17 +12,19 @@ public class Conveyor implements Component {
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, LaunchMotor;
   private DigitalInput ballSensor;
+  private TalonSRX conveyorExtend;
 
   public Conveyor() {
-    intakeRoller = new VictorSPX(Const.IntakeRoller);
-    intakeBelt = new TalonSRX(Const.IntakeBeltMotor);
-    LaunchMotor = new TalonSRX(Const.LaunchMotor);
+    intakeRoller = new VictorSPX(Const.IntakeRollerPort);
+    intakeBelt = new TalonSRX(Const.IntakeBeltMotorPort);
+    LaunchMotor = new TalonSRX(Const.LaunchMotorPort);
+    conveyorExtend =new TalonSRX(Const.ConveyorExtendPort);
     
     LaunchMotor.configAllSettings(Const.launchMotorConfig);
 
     /**バックプレート操作用のモーターのセット */
 
-    ballSensor = new DigitalInput(Const.BallSensor);
+    ballSensor = new DigitalInput(Const.BallSensorPort);
 
   }
   /**  バックプレートのそうさ
