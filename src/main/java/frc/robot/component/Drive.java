@@ -31,8 +31,12 @@ public class Drive implements Component{
 
         driveRightFront.configAllSettings(Const.dRConfig);
         driveLeftFront.configAllSettings(Const.dLConfig);
+        driveRightFront.setInverted(true);
+        driveRightBack.setInverted(true);
     }
-
+    public void arcadeDrive(double YSpeed, double XSpeed){
+        Ddrive.arcadeDrive(YSpeed, XSpeed);
+    }
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
@@ -59,6 +63,18 @@ public class Drive implements Component{
 
     @Override
     public void applyState() {
-        // TODO Auto-generated method stub
+        switch(State.driveSpeed){
+            case s_FastDrive:
+                arcadeDrive(Const.FastDrive, Const.FastDrive);
+                break;
+            case s_MidDrive:
+                arcadeDrive(Const.MidDrive, Const.MidDrive);
+                break;
+            case s_SlowDrive:
+                arcadeDrive(Const.SlowDrive, Const.SlowDrive);
+                break;
+            case s_StopDrive:
+                arcadeDrive(Const.StopDrive, Const.StopDrive);
+        }
     }
 }

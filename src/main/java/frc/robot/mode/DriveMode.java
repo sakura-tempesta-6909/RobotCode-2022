@@ -2,6 +2,7 @@ package frc.robot.mode;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.State;
+import frc.robot.State.DriveSpeed;;
 
 public class DriveMode extends Mode {
     
@@ -13,7 +14,9 @@ public class DriveMode extends Mode {
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
+        State.driveSpeed = DriveSpeed.s_FastDrive;
+        State.YSpeed = driveController.getLeftY();
+        State.XSpeed = driveController.getRightX();
         
     }
     
