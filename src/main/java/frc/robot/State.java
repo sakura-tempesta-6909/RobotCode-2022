@@ -10,7 +10,7 @@ public class State {
 
     public static double gyroValue; // クランプの傾き用
 
-    public static double YSpeed, XSpeed;
+    public static double driveXSpeed, driveZRotation;
     
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);

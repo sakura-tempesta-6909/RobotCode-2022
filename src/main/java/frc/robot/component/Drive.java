@@ -34,8 +34,8 @@ public class Drive implements Component{
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
     }
-    public void arcadeDrive(double YSpeed, double XSpeed){
-        Ddrive.arcadeDrive(YSpeed, XSpeed);
+    public void arcadeDrive(double xSpeed, double zRotation){
+        Ddrive.arcadeDrive(xSpeed, zRotation);
     }
     @Override
     public void autonomousInit() {
@@ -65,7 +65,7 @@ public class Drive implements Component{
     public void applyState() {
         switch(State.driveSpeed){
             case s_FastDrive:
-                arcadeDrive(Const.FastDrive, Const.FastDrive);
+                arcadeDrive(State.driveXSpeed, State.driveZRotation);
                 break;
             case s_MidDrive:
                 arcadeDrive(Const.MidDrive, Const.MidDrive);
