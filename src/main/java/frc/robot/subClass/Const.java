@@ -15,28 +15,29 @@ public class Const {
     //Motor, drive
     public static final int DriveRightFrontPort = 0;
     public static final int DriveRightBackPort = 1;
-    public static final int DriveLeftFront = 2;
+    public static final int DriveLeftFrontPort = 2;
     public static final int DriveLeftBackPort = 3;
 
     //Motor, Conveyor
     public static final int IntakeBeltMotorPort = 4;
     public static final int IntakeRollerPort = 5;
     public static final int LaunchMotorPort = 6;
+    public static final int ConveyorExtendPort = 7;
 
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
-
-    //DriveSpeed
-    public static final int FastDrive = 1;
-    public static final double MidDrive = 0.5;
-    public static final double SlowDrive = 0.25;
-    public static final int StopDrive = 0;
 
     //pneumatics
     public static final int CompressorPort = 0;
     public static final int SolenoidRightPort = 0;
     public static final int SolenoidLeftPort = 1;
     public static final int SolenoidClampPort = 2;
+
+    //DriveSpeed
+    public static final int FastDrive = 1;
+    public static final double MidDrive = 0.5;
+    public static final double SlowDrive = 0.25;
+    public static final int StopDrive = 0;
 
     public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();

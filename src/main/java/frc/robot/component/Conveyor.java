@@ -12,11 +12,13 @@ public class Conveyor implements Component {
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, LaunchMotor;
   private DigitalInput ballSensor;
+  private TalonSRX conveyorExtend;
 
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.IntakeRollerPort);
     intakeBelt = new TalonSRX(Const.IntakeBeltMotorPort);
     LaunchMotor = new TalonSRX(Const.LaunchMotorPort);
+    conveyorExtend =new TalonSRX(Const.ConveyorExtendPort);
     
     LaunchMotor.configAllSettings(Const.launchMotorConfig);
 
