@@ -13,32 +13,32 @@ public class Const {
     public static final int OperateControllerPort = 1;
 
     //Motor, drive
-    public static final int DriveRightFront = 0;
-    public static final int DriveRightBack = 0;
-    public static final int DriveLeftFront = 0;
-    public static final int DriveLeftBack = 0;
+    public static final int DriveRightFrontPort = 0;
+    public static final int DriveRightBackPort = 1;
+    public static final int DriveLeftFront = 2;
+    public static final int DriveLeftBackPort = 3;
 
     //Motor, Conveyor
-    public static final int IntakeBeltMotor = 0;
-    public static final int IntakeRoller = 0;
-    public static final int LaunchMotor = 0;
+    public static final int IntakeBeltMotorPort = 4;
+    public static final int IntakeRollerPort = 5;
+    public static final int LaunchMotorPort = 6;
 
     //sensor, conveyor
-    public static final int BallSensor = 0; //これはあるか分からない
+    public static final int BallSensorPort =0; //これはあるか分からない
 
     //pneumatics
-    public static final int Compressor = 0;
-    public static final int SolenoidRight = 0;
-    public static final int SolenoidLeft = 0;
-    public static final int SolenoidClamp = 0;
+    public static final int CompressorPort = 0;
+    public static final int SolenoidRightPort = 0;
+    public static final int SolenoidLeftPort = 1;
+    public static final int SolenoidClampPort = 2;
 
-    public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration launchMotorConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
-        dRConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        dLConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
         launchMotorConfig.slot0.kP = 0;
         launchMotorConfig.slot0.kI = 0;

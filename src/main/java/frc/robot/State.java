@@ -29,7 +29,7 @@ public class State {
 
     public enum Modes {
         k_drive(new DriveMode()),
-        k_shooter(new ConveyorMode()),
+        k_conveyor(new ConveyorMode()),
         k_climb(new ClimbMode());
 
         private final Mode mode;

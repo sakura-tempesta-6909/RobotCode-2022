@@ -19,18 +19,18 @@ public class Drive implements Component{
     private DifferentialDrive Ddrive;
 
     public Drive() {
-        driveRightFront = new WPI_TalonSRX(Const.DriveRightFront);
+        driveRightFront = new WPI_TalonSRX(Const.DriveRightFrontPort);
         driveLeftFront = new WPI_TalonSRX(Const.DriveLeftFront);
-        driveRightBack = new VictorSPX(Const.DriveRightBack);
-        driveLeftBack = new VictorSPX(Const.DriveLeftBack);
+        driveRightBack = new VictorSPX(Const.DriveRightBackPort);
+        driveLeftBack = new VictorSPX(Const.DriveLeftBackPort);
 
         driveRightBack.follow(driveRightFront);
         driveLeftBack.follow(driveLeftFront);
 
         Ddrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.dRConfig);
-        driveLeftFront.configAllSettings(Const.dLConfig);
+        driveRightFront.configAllSettings(Const.DriveRightConfig);
+        driveLeftFront.configAllSettings(Const.DriveLeftConfig);
     }
 
     @Override
