@@ -32,6 +32,12 @@ public class Const {
     public static final int SolenoidLeft = 0;
     public static final int SolenoidClamp = 0;
 
+    //DriveSpeed
+    public static final int FastDrive = 1;
+    public static final double MidDrive = 0.5;
+    public static final double SlowDrive = 0.25;
+    public static final int StopDrive = 0;
+
     public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration launchMotorConfig = new TalonSRXConfiguration();
