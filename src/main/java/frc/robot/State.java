@@ -22,14 +22,14 @@ public class State {
     }
 
     public static void stateReset() {
-        driveSpeed = DriveSpeed.s_StopDrive;
+        driveSpeed = DriveSpeed.s_stopDrive;
     }
 
     public enum DriveSpeed {
-        s_StopDrive,
-        s_SlowDrive,
-        s_MidDrive,
-        s_FastDrive,
+        s_stopDrive,
+        s_slowDrive,
+        s_midDrive,
+        s_fastDrive,
 
     }
 

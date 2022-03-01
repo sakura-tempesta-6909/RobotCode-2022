@@ -64,16 +64,16 @@ public class Drive implements Component{
     @Override
     public void applyState() {
         switch(State.driveSpeed){
-            case s_FastDrive:
+            case s_fastDrive:
                 arcadeDrive(State.driveXSpeed, State.driveZRotation);
                 break;
-            case s_MidDrive:
+            case s_midDrive:
                 arcadeDrive(Const.MidDrive, Const.MidDrive);
                 break;
-            case s_SlowDrive:
+            case s_slowDrive:
                 arcadeDrive(Const.SlowDrive, Const.SlowDrive);
                 break;
-            case s_StopDrive:
+            case s_stopDrive:
                 arcadeDrive(Const.StopDrive, Const.StopDrive);
         }
     }
