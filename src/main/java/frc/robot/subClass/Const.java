@@ -31,6 +31,19 @@ public class Const {
     public static final double MidDrive = 0.5;
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
+    //ConveyorSpeed
+    //ボールの発射
+    public static final double IntakeBeltShooting = 1;
+    public static final double ConveyorExtendShooting = 0.5;
+    //ボール
+    public static final double IntakeBeltFiringing = 1;
+    public static final double IntakeRollerFiring = 0.5;
+    public static final double ConveyorExtendFiring = 0.5;
+    //ボールの回収
+    public static final double IntakeBeltCollection = -1;
+    public static final double intakeRollerCollection = -0.5;
+    public static final double ConveyorExtendCollection = -0.5;
+
 
     //pneumatics
     public static final int CompressorPort = 0;

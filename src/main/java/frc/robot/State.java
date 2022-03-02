@@ -7,6 +7,7 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
     public static DriveSpeed driveSpeed;
+    public static ConveyorState conveyorState;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -31,7 +32,12 @@ public class State {
         s_fastDrive,
 
     }
-
+    public enum ConveyorState {
+        s_firingConveyor,
+        s_collectionConveyor,
+        s_shooting,
+        s_stopConveyor,
+    }
     public enum Modes {
         k_drive(new DriveMode()),
         k_conveyor(new ConveyorMode()),
