@@ -15,13 +15,14 @@ public class Const {
     //Motor, drive
     public static final int DriveRightFrontPort = 0;
     public static final int DriveRightBackPort = 1;
-    public static final int DriveLeftFront = 2;
+    public static final int DriveLeftFrontPort = 2;
     public static final int DriveLeftBackPort = 3;
 
     //Motor, Conveyor
     public static final int IntakeBeltMotorPort = 4;
     public static final int IntakeRollerPort = 5;
     public static final int LaunchMotorPort = 6;
+    public static final int ConveyorExtendPort = 7;
 
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
