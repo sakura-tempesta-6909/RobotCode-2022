@@ -27,31 +27,35 @@ public class Const {
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
 
+    //pneumatics
+    public static final int CompressorPort = 0;
+    public static final int SolenoidRightPort = 0;
+    public static final int SolenoidLeftPort = 1;
+    public static final int SolenoidClampPort = 2;
+  
     //DriveSpeed
     public static final int FastDrive = 1;
     public static final double MidDrive = 0.5;
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
     //ConveyorSpeed
-    //ボールの発射
-    public static final double IntakeBeltShooting = 1;
-    public static final double ConveyorExtendShooting = 0.5;
-    //ボール
-    public static final double IntakeBeltFiringing = 1;
-    public static final double IntakeRollerFiring = 0.5;
-    public static final double ConveyorExtendFiring = 0.5;
-    //ボールの回収
-    public static final double IntakeBeltCollection = -1;
-    public static final double intakeRollerCollection = -0.5;
-    public static final double ConveyorExtendCollection = -0.5;
+    //ボールの発射(Shoot)
+    public static final double IntakeBeltShoot = 1;
+    public static final double LaunchShoot = 0.5;
+    //ボールを出す(outtake)
+    public static final double IntakeBeltOuttake = 1;
+    public static final double IntakeRolleOuttake = 0.5;
+    public static final double LaunchOuttake = 0.5;
+    //ボールの回収(intake)
+    public static final double IntakeBeltIntake = -1;
+    public static final double IntakeRollerIntake = -0.5;
+    //動かさない(stop)
+    public static final double IntakeBeltStop = 0;
+    public static final double IntakeRollerStop = 0;
+    public static final double LaunchStop = 0;
 
 
-    //pneumatics
-    public static final int CompressorPort = 0;
-    public static final int SolenoidRightPort = 0;
-    public static final int SolenoidLeftPort = 1;
-    public static final int SolenoidClampPort = 2;
-
+  
     public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();

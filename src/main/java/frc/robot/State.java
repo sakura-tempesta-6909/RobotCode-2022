@@ -12,6 +12,7 @@ public class State {
     public static double gyroValue; // クランプの傾き用
 
     public static double driveXSpeed, driveZRotation;
+    public static double intakeBeltSpeed, intakeRollerSpeed, launchSpeed;
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
@@ -33,8 +34,8 @@ public class State {
 
     }
     public enum ConveyorState {
-        s_firingConveyor,
-        s_collectionConveyor,
+        s_outtakeConveyor,
+        s_intakeConveyor,
         s_shooting,
         s_stopConveyor,
     }

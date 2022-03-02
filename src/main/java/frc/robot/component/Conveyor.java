@@ -12,17 +12,17 @@ import frc.robot.State;
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
-  private TalonSRX intakeBelt, LaunchMotor;
+  private TalonSRX intakeBelt, launchMotor;
   private DigitalInput ballSensor;
   private TalonSRX conveyorExtend;
 
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.IntakeRollerPort);
     intakeBelt = new TalonSRX(Const.IntakeBeltMotorPort);
-    LaunchMotor = new TalonSRX(Const.LaunchMotorPort);
+    launchMotor = new TalonSRX(Const.LaunchMotorPort);
     conveyorExtend =new TalonSRX(Const.ConveyorExtendPort);
     
-    LaunchMotor.configAllSettings(Const.launchMotorConfig);
+    launchMotor.configAllSettings(Const.launchMotorConfig);
 
     /**バックプレート操作用のモーターのセット */
 
@@ -37,24 +37,8 @@ public class Conveyor implements Component {
  * ボールが詰まったときの対処
  * 他にもあった方がよさそうな機能
 */
-public void firing(){
-  intakeRoller.set(ControlMode.PercentOutput, Const.IntakeRollerFiring);
-  intakeBelt.set(ControlMode.PercentOutput, Const.IntakeBeltFiringing);
-  conveyorExtend.set(ControlMode.PercentOutput, Const.ConveyorExtendFiring);
-}  
-public void shootingConveyor(){
-  intakeBelt.set(ControlMode.PercentOutput, Const.IntakeBeltShooting);
-  conveyorExtend.set(ControlMode.PercentOutput, Const.ConveyorExtendShooting);
-}
-public void collection(){
-  intakeRoller.set(ControlMode.PercentOutput, Const.intakeRollerCollection);
-  intakeBelt.set(ControlMode.PercentOutput, Const.IntakeBeltCollection);
-  conveyorExtend.set(ControlMode.PercentOutput, Const.ConveyorExtendCollection);
-}
-public void stopConveyor(){
-  intakeRoller.set(ControlMode.PercentOutput, 0);
-  intakeBelt.set(ControlMode.PercentOutput, 0);
-  conveyorExtend.set(ControlMode.PercentOutput, 0);
+public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
+    conveyorControl(intakeRollerSpeed, intakeBeltSpeed, launchSpeed);
 }
   @Override
   public void autonomousInit() {
@@ -89,17 +73,17 @@ public void stopConveyor(){
   @Override
   public void applyState() {
     switch(State.conveyorState){
-      case s_firingConveyor:
-        firing();
+      case s_outtakeConveyor:
+        conveyorControl(Const.IntakeBeltOuttake * State.intakeBeltSpeed, Const.IntakeRolleOuttake, Const.LaunchOuttake);
         break;
-      case s_collectionConveyor:
-        collection();
+      case s_intakeConveyor:
+        conveyorControl(Const.IntakeRollerIntake * State.intakeRollerSpeed, Const.IntakeBeltIntake * State.intakeBeltSpeed, Const.LaunchStop);
         break;
       case s_shooting:
-        shootingConveyor();
+        conveyorControl(Const.IntakeRollerStop * State.intakeRollerSpeed, Const.IntakeBeltShoot * State.intakeBeltSpeed, Const.LaunchShoot * State.launchSpeed);
         break;
       case s_stopConveyor:
-          stopConveyor();
+          conveyorControl(Const.IntakeRollerStop * State.intakeRollerSpeed, Const.IntakeBeltStop * State.intakeBeltSpeed, Const.LaunchStop * State.launchSpeed);
           break;
 
     }
