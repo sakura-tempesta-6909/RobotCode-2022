@@ -1,5 +1,6 @@
 package frc.robot.component;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.SparkMaxAlternateEncoder;
@@ -27,14 +28,22 @@ public class Climb implements Component {
 
    
 
-   public Climb() {
-     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-     frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-     bsckSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-     clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
-     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+  public Climb() {
+    compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
+    frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    bsckSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
+    climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+  }
 
-   }
+  public void frontSpin(){
+    climbArm.set(Const.ClimbArmFrontSpin);
+  }   
+  public void backSpin(){
+    climbArm.set(Const.ClimbArmBackSpin);
+  }
+
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -67,7 +76,7 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
-    // TODO Auto-generated method stub
+   
   }
   
 }

@@ -13,6 +13,8 @@ public class State {
     public static ConveyorState conveyorState;
     public static boolean is_intakeExtendOpen;
 
+
+
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
