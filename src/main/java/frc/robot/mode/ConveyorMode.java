@@ -18,7 +18,7 @@ public class ConveyorMode extends Mode {
   @Override
   public void changeState() {
     if(driveController.getBButton()){
-      State.conveyorState = ConveyorState.s_shooting;
+      State.conveyorState = ConveyorState.s_shootingConveyor;
     } else {
       State.conveyorState = ConveyorState.s_stopConveyor;
     }

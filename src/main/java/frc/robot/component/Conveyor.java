@@ -74,16 +74,16 @@ public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, do
   public void applyState() {
     switch(State.conveyorState){
       case s_outtakeConveyor:
-        conveyorControl(Const.IntakeBeltOuttake * State.intakeBeltSpeed, Const.IntakeRolleOuttake, Const.LaunchOuttake);
+        conveyorControl(Const.IntakeBeltOuttake , Const.IntakeRolleOuttake, Const.LaunchOuttake);
         break;
       case s_intakeConveyor:
-        conveyorControl(Const.IntakeRollerIntake * State.intakeRollerSpeed, Const.IntakeBeltIntake * State.intakeBeltSpeed, Const.LaunchStop);
+        conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
         break;
-      case s_shooting:
-        conveyorControl(Const.IntakeRollerStop * State.intakeRollerSpeed, Const.IntakeBeltShoot * State.intakeBeltSpeed, Const.LaunchShoot * State.launchSpeed);
+      case s_shootingConveyor:
+        conveyorControl(Const.IntakeRollerStop , Const.IntakeBeltShoot, Const.LaunchShoot);
         break;
       case s_stopConveyor:
-          conveyorControl(Const.IntakeRollerStop * State.intakeRollerSpeed, Const.IntakeBeltStop * State.intakeBeltSpeed, Const.LaunchStop * State.launchSpeed);
+          conveyorControl(Const.IntakeRollerStop,Const.IntakeBeltStop,Const.LaunchStop);
           break;
 
     }
