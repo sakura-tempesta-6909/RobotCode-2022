@@ -50,6 +50,13 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
+  public void solenoidOpen(){
+
+  }
+
+  public void solenoidClose(){
+
+  }
 
   @Override
   public void autonomousInit() {
@@ -83,7 +90,16 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
-   
+    if(State.is_solenoidFrontOpen){
+      solenoidOpen();
+    } else {
+      solenoidClose();
+    }
+    if(State.is_solenoidBackOpen){
+      solenoidOpen();
+    } else {
+      solenoidClose();
+    }
   }
   
 }

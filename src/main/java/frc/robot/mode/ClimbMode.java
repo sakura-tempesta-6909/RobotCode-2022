@@ -18,15 +18,15 @@ public class ClimbMode extends Mode {
   @Override
   public void changeState() {
     if(driveController.getAButton()){
-      State.is_solenoidFront = false;
+      State.is_solenoidFrontOpen = false;
     } else {
-      State.is_solenoidFront = true;
+      State.is_solenoidFrontOpen = true;
     }
 
     if(driveController.getBButton()){
-      State.is_solenoidBack = false;
+      State.is_solenoidBackOpen = false;
     } else {
-      State.is_solenoidBack = true;
+      State.is_solenoidBackOpen = true;
     }
   }
   
