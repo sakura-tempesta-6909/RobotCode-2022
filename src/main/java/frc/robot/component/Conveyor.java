@@ -73,7 +73,7 @@ public class Conveyor implements Component {
   public void conveyorExtendClose(){
 
   }
-  
+
   public void backPlateMove(double angle){
 
   }
@@ -122,8 +122,13 @@ public class Conveyor implements Component {
         break;
       case s_stopConveyor:
         stopConveyor();
-        break;
-
+        break;  
+    }
+    
+    if(State.is_intakeExtendOpen){
+      conveyorExtendOpen();
+    } else {
+      conveyorExtendClose();
     }
   }
   
