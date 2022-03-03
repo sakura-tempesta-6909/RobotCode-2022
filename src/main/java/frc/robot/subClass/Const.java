@@ -23,6 +23,7 @@ public class Const {
     public static final int IntakeRollerPort = 5;
     public static final int LaunchMotorPort = 6;
     public static final int ConveyorExtendPort = 7;
+    public static final int BackPlatePort = 8;
 
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
@@ -32,26 +33,35 @@ public class Const {
     public static final int SolenoidRightPort = 0;
     public static final int SolenoidLeftPort = 1;
     public static final int SolenoidClampPort = 2;
-
+  
     //DriveSpeed
     public static final int FastDrive = 1;
     public static final double MidDrive = 0.5;
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
+    //ConveyorSpeed
+    //ボールの発射(Shoot)
+    public static final double IntakeBeltShoot = 1;
+    public static final double LaunchShoot = 0.5;
+    //ボールを出す(outtake)
+    public static final double IntakeBeltOuttake = 1;
+    public static final double IntakeRolleOuttake = 0.5;
+    public static final double LaunchOuttake = 0.5;
+    //ボールの回収(intake)
+    public static final double IntakeBeltIntake = 1;
+    public static final double IntakeRollerIntake = 0.5;
 
-    public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration launchMotorConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        launchMotorConfig.slot0.kP = 0;
-        launchMotorConfig.slot0.kI = 0;
-        launchMotorConfig.slot0.kD = 0;
-        launchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        LaunchMotorConfig.slot0.kP = 0;
+        LaunchMotorConfig.slot0.kI = 0;
+        LaunchMotorConfig.slot0.kD = 0;
+        LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
     }
 }

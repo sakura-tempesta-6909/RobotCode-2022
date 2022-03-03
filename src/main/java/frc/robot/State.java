@@ -6,11 +6,15 @@ import frc.robot.subClass.Const;
 
 public class State {
     public static Modes mode;
+
     public static DriveSpeed driveSpeed;
+    public static double driveXSpeed, driveZRotation;
+
+    public static ConveyorState conveyorState;
+    public static boolean is_intakeExtendOpen;
 
     public static double gyroValue; // クランプの傾き用
 
-    public static double driveXSpeed, driveZRotation;
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.DriveControllerPort);
         XboxController operateController = new XboxController(Const.OperateControllerPort);
@@ -22,6 +26,8 @@ public class State {
 
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
+        conveyorState = ConveyorState.s_stopConveyor;
+        is_intakeExtendOpen = false;
     }
 
     public enum DriveSpeed {
@@ -30,6 +36,12 @@ public class State {
         s_midDrive,
         s_fastDrive,
 
+    }
+    public enum ConveyorState {
+        s_outtakeConveyor,
+        s_intakeConveyor,
+        s_shootConveyor,
+        s_stopConveyor,
     }
 
     public enum Modes {
