@@ -14,13 +14,14 @@ public class Conveyor implements Component {
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, launchMotor;
   private DigitalInput ballSensor;
-  private TalonSRX conveyorExtend;
+  private TalonSRX conveyorExtend, backPlate;
 
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.IntakeRollerPort);
     intakeBelt = new TalonSRX(Const.IntakeBeltMotorPort);
     launchMotor = new TalonSRX(Const.LaunchMotorPort);
-    conveyorExtend =new TalonSRX(Const.ConveyorExtendPort);
+    conveyorExtend = new TalonSRX(Const.ConveyorExtendPort);
+    backPlate = new TalonSRX(Const.BackPlatePort);
     
     launchMotor.configAllSettings(Const.LaunchMotorConfig);
 
@@ -63,6 +64,18 @@ public class Conveyor implements Component {
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
     launchMotor.set(ControlMode.PercentOutput, launchSpeed);
+  }
+
+  public void conveyorExtendOpen(){
+
+  }
+  
+  public void conveyorExtendClose(){
+
+  }
+  
+  public void backPlateMove(double angle){
+
   }
 
   @Override

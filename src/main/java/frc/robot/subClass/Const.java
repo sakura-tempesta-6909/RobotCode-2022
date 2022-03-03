@@ -23,6 +23,7 @@ public class Const {
     public static final int IntakeRollerPort = 5;
     public static final int LaunchMotorPort = 6;
     public static final int ConveyorExtendPort = 7;
+    public static final int BackPlatePort = 8;
 
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
