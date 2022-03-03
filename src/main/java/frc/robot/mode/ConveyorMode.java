@@ -22,7 +22,6 @@ public class ConveyorMode extends Mode {
     } else {
       State.conveyorState = ConveyorState.s_stopConveyor;
     }
-    
   }
   
 }
