@@ -49,26 +49,18 @@ public class Const {
     //ボールの回収(intake)
     public static final double IntakeBeltIntake = 1;
     public static final double IntakeRollerIntake = 0.5;
-    //動かさない(stop)
-    public static final double IntakeBeltStop = 0;
-    public static final double IntakeRollerStop = 0;
-    public static final double LaunchStop = 0;
 
-
-  
-    public static final TalonSRXConfiguration dRConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration dLConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration launchMotorConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        launchMotorConfig.slot0.kP = 0;
-        launchMotorConfig.slot0.kI = 0;
-        launchMotorConfig.slot0.kD = 0;
-        launchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        LaunchMotorConfig.slot0.kP = 0;
+        LaunchMotorConfig.slot0.kI = 0;
+        LaunchMotorConfig.slot0.kD = 0;
+        LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
     }
 }

@@ -22,7 +22,7 @@ public class Conveyor implements Component {
     launchMotor = new TalonSRX(Const.LaunchMotorPort);
     conveyorExtend =new TalonSRX(Const.ConveyorExtendPort);
     
-    launchMotor.configAllSettings(Const.launchMotorConfig);
+    launchMotor.configAllSettings(Const.LaunchMotorConfig);
 
     /**バックプレート操作用のモーターのセット */
 
@@ -38,7 +38,7 @@ public class Conveyor implements Component {
    * 他にもあった方がよさそうな機能
   */
   public void intakeConveyor(){
-    conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
+    conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, 0);
   }
 
   public void outtakeConveyor(){
@@ -46,7 +46,7 @@ public class Conveyor implements Component {
   }
 
   public void shootConveyor(){
-    conveyorControl(Const.IntakeRollerStop, Const.IntakeBeltShoot, Const.LaunchShoot);
+    conveyorControl(0, Const.IntakeBeltShoot, Const.LaunchShoot);
   }
 
   public void stopConveyor(){
