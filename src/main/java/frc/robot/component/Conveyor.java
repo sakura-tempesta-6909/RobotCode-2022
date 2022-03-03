@@ -37,8 +37,24 @@ public class Conveyor implements Component {
  * ボールが詰まったときの対処
  * 他にもあった方がよさそうな機能
 */
-public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
-    conveyorControl(intakeRollerSpeed, intakeBeltSpeed, launchSpeed);
+public void intakeConveyor(double intakeRollerIntakeSpeed, double intakeBeltIntakeSpeed, double launchIntakeSpeed){
+    intakeRoller.set(ControlMode.PercentOutput, intakeRollerIntakeSpeed * Const.IntakeRollerIntake);
+    intakeBelt.set(ControlMode.PercentOutput, intakeBeltIntakeSpeed * Const.IntakeBeltIntake);
+}
+public void outtakeConveyor(double intakeRollerOuttakeSpeed, double intakeBeltOuttakeSpeed, double launchOuttakeSpeed){
+    intakeRoller.set(ControlMode.PercentOutput, intakeRollerOuttakeSpeed * Const.IntakeRolleOuttake);
+    intakeBelt.set(ControlMode.PercentOutput, intakeBeltOuttakeSpeed * Const.IntakeBeltOuttake);
+    launchMotor.set(ControlMode.PercentOutput, launchOuttakeSpeed * Const.LaunchOuttake);
+}
+public void shootConveyor(double intakeRollerShootSpeed, double intakeBeltShootSpeed, double launchShootSpeed){
+    intakeRoller.set(ControlMode.PercentOutput, intakeRollerShootSpeed * Const.IntakeBeltShoot);
+    intakeBelt.set(ControlMode.PercentOutput, intakeRollerShootSpeed * Const.IntakeBeltShoot);
+    launchMotor.set(ControlMode.PercentOutput, launchShootSpeed * Const.LaunchShoot);
+}
+public void stopConveyor(double intakeRollerStop, double intakeBeltStop, double launchStop){
+    intakeRoller.set(ControlMode.PercentOutput, intakeRollerStop * Const.IntakeRollerStop);
+    intakeBelt.set(ControlMode.PercentOutput, intakeRollerStop * Const.IntakeBeltStop);
+    launchMotor.set(ControlMode.PercentOutput, launchStop * Const.LaunchStop);
 }
   @Override
   public void autonomousInit() {
@@ -74,16 +90,16 @@ public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, do
   public void applyState() {
     switch(State.conveyorState){
       case s_outtakeConveyor:
-        conveyorControl(Const.IntakeBeltOuttake , Const.IntakeRolleOuttake, Const.LaunchOuttake);
+        outtakeConveyor(Const.IntakeBeltOuttake , Const.IntakeRolleOuttake, Const.LaunchOuttake);
         break;
       case s_intakeConveyor:
-        conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
+        intakeConveyor(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
         break;
-      case s_shootingConveyor:
-        conveyorControl(Const.IntakeRollerStop , Const.IntakeBeltShoot, Const.LaunchShoot);
+      case s_shootConveyor:
+        shootConveyor(Const.IntakeRollerStop , Const.IntakeBeltShoot, Const.LaunchShoot);
         break;
       case s_stopConveyor:
-          conveyorControl(Const.IntakeRollerStop,Const.IntakeBeltStop,Const.LaunchStop);
+          stopConveyor(Const.IntakeRollerStop,Const.IntakeBeltStop,Const.LaunchStop);
           break;
 
     }

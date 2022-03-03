@@ -35,7 +35,7 @@ public class State {
     public enum ConveyorState {
         s_outtakeConveyor,
         s_intakeConveyor,
-        s_shootingConveyor,
+        s_shootConveyor,
         s_stopConveyor,
     }
     public enum Modes {
