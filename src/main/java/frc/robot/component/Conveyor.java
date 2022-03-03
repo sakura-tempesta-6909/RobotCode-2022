@@ -37,24 +37,22 @@ public class Conveyor implements Component {
  * ボールが詰まったときの対処
  * 他にもあった方がよさそうな機能
 */
-public void intakeConveyor(double intakeRollerIntakeSpeed, double intakeBeltIntakeSpeed, double launchIntakeSpeed){
-    intakeRoller.set(ControlMode.PercentOutput, intakeRollerIntakeSpeed * Const.IntakeRollerIntake);
-    intakeBelt.set(ControlMode.PercentOutput, intakeBeltIntakeSpeed * Const.IntakeBeltIntake);
+public void intakeConveyor(){
+    conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
 }
-public void outtakeConveyor(double intakeRollerOuttakeSpeed, double intakeBeltOuttakeSpeed, double launchOuttakeSpeed){
-    intakeRoller.set(ControlMode.PercentOutput, intakeRollerOuttakeSpeed * Const.IntakeRolleOuttake);
-    intakeBelt.set(ControlMode.PercentOutput, intakeBeltOuttakeSpeed * Const.IntakeBeltOuttake);
-    launchMotor.set(ControlMode.PercentOutput, launchOuttakeSpeed * Const.LaunchOuttake);
+public void outtakeConveyor(){
+   conveyorControl(Const.IntakeRolleOuttake, Const.IntakeBeltOuttake, Const.LaunchOuttake);
 }
-public void shootConveyor(double intakeRollerShootSpeed, double intakeBeltShootSpeed, double launchShootSpeed){
-    intakeRoller.set(ControlMode.PercentOutput, intakeRollerShootSpeed * Const.IntakeBeltShoot);
-    intakeBelt.set(ControlMode.PercentOutput, intakeRollerShootSpeed * Const.IntakeBeltShoot);
-    launchMotor.set(ControlMode.PercentOutput, launchShootSpeed * Const.LaunchShoot);
+public void shootConveyor(){
+    conveyorControl(Const.IntakeRollerStop, Const.IntakeBeltShoot, Const.LaunchShoot);
 }
-public void stopConveyor(double intakeRollerStop, double intakeBeltStop, double launchStop){
-    intakeRoller.set(ControlMode.PercentOutput, intakeRollerStop * Const.IntakeRollerStop);
-    intakeBelt.set(ControlMode.PercentOutput, intakeRollerStop * Const.IntakeBeltStop);
-    launchMotor.set(ControlMode.PercentOutput, launchStop * Const.LaunchStop);
+public void stopConveyor(){
+    conveyorControl(0, 0, 0);
+}
+public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
+  intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
+  intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
+  launchMotor.set(ControlMode.PercentOutput, launchSpeed);
 }
   @Override
   public void autonomousInit() {
@@ -90,17 +88,17 @@ public void stopConveyor(double intakeRollerStop, double intakeBeltStop, double 
   public void applyState() {
     switch(State.conveyorState){
       case s_outtakeConveyor:
-        outtakeConveyor(Const.IntakeBeltOuttake , Const.IntakeRolleOuttake, Const.LaunchOuttake);
+        outtakeConveyor();
         break;
       case s_intakeConveyor:
-        intakeConveyor(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
+        intakeConveyor();
         break;
       case s_shootConveyor:
-        shootConveyor(Const.IntakeRollerStop , Const.IntakeBeltShoot, Const.LaunchShoot);
+        shootConveyor();
         break;
       case s_stopConveyor:
-          stopConveyor(Const.IntakeRollerStop,Const.IntakeBeltStop,Const.LaunchStop);
-          break;
+        stopConveyor();
+        break;
 
     }
   }
