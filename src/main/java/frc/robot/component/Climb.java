@@ -1,5 +1,10 @@
 package frc.robot.component;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.SparkMaxAlternateEncoder;
+
+import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -15,15 +20,19 @@ public class Climb implements Component {
    * 
    */
 
-   Compressor compressor; 
-   Solenoid solenoidRight, solenoidLeft;
-   Solenoid solenoidClamp;
+  private Compressor compressor; 
+  private Solenoid frontSolenoid, bsckSolenoid;
+  private Solenoid clampSolenoid;
+  private CANSparkMax climbArm;
+
+   
 
    public Climb() {
      compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-     solenoidRight = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidRightPort);
-     solenoidLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidLeftPort);
-     solenoidClamp = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SolenoidClampPort);
+     frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+     bsckSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+     clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
+     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
 
    }
   @Override

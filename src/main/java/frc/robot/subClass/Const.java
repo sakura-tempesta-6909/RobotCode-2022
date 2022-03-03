@@ -30,9 +30,12 @@ public class Const {
 
     //pneumatics
     public static final int CompressorPort = 0;
-    public static final int SolenoidRightPort = 0;
-    public static final int SolenoidLeftPort = 1;
-    public static final int SolenoidClampPort = 2;
+    public static final int FrontSolenoidPort = 0;
+    public static final int BackSolenoidPort = 1;
+    public static final int ClampSolenoidPort = 2;
+
+    //sparkMax
+    public static final int ClimbArmPort = 0;
   
     //DriveSpeed
     public static final int FastDrive = 1;
