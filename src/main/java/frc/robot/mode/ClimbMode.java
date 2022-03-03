@@ -1,17 +1,33 @@
 package frc.robot.mode;
 
+import frc.robot.State;
+import frc.robot.mode.Mode;
+import frc.robot.State.ConveyorState;
+import frc.robot.State.Modes;
+
 public class ClimbMode extends Mode {
 
   @Override
   public void changeMode() {
-    // TODO Auto-generated method stub
-    
-  }
+    if(driveController.getBackButton()){
+      State.mode = Modes.k_drive;
+    }
+}    
+  
 
   @Override
   public void changeState() {
-    // TODO Auto-generated method stub
-    
+    if(driveController.getAButton()){
+      State.is_solenoidFront = false;
+    } else {
+      State.is_solenoidFront = true;
+    }
+
+    if(driveController.getBButton()){
+      State.is_solenoidBack = false;
+    } else {
+      State.is_solenoidBack = true;
+    }
   }
   
 }

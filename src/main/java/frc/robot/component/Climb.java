@@ -37,10 +37,17 @@ public class Climb implements Component {
   }
 
   public void frontSpin(){
-    climbArm.set(Const.ClimbArmFrontSpin);
+    climbControl(Const.ClimbArmFrontSpin);
   }   
   public void backSpin(){
-    climbArm.set(Const.ClimbArmBackSpin);
+    climbControl(-Const.ClimbArmBackSpin);
+  }
+  /**
+   * 
+   * @param climbSpinSpeed 時計回りを正
+   */
+  public void climbControl(double climbSpinSpeed){
+    climbArm.set(climbSpinSpeed);
   }
 
 

@@ -13,7 +13,8 @@ public class State {
     public static ConveyorState conveyorState;
     public static boolean is_intakeExtendOpen;
 
-
+    public static boolean is_solenoidFront;
+    public static boolean is_solenoidBack;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -30,6 +31,8 @@ public class State {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         is_intakeExtendOpen = false;
+        is_solenoidFront = false;
+        is_solenoidBack = false;
     }
 
     public enum DriveSpeed {

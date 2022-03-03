@@ -56,7 +56,7 @@ public class Const {
 
     //Climb
     public static final double ClimbArmFrontSpin = 0.5;
-    public static final double ClimbArmBackSpin = -0.5;
+    public static final double ClimbArmBackSpin = 0.5;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();

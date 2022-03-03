@@ -3,7 +3,7 @@ package frc.robot.mode;
 import frc.robot.State;
 import frc.robot.mode.Mode;
 import frc.robot.State.ConveyorState;
-import frc.robot.State.Modes;;
+import frc.robot.State.Modes;
 
 public class ConveyorMode extends Mode {
 
