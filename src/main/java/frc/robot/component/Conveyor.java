@@ -30,30 +30,41 @@ public class Conveyor implements Component {
 
   }
   /**  バックプレートのそうさ
- * シューターの速さ（距離に応じて）
- * インテークベルトのそうさ（センサー類を使って詰まらないようにする）
- * シューターモーターの上下（クライム中は上がっている等）
- * シューターモーターはモードによって動きが変わるはず
- * ボールが詰まったときの対処
- * 他にもあった方がよさそうな機能
-*/
-public void intakeConveyor(){
+   * シューターの速さ（距離に応じて）
+   * インテークベルトのそうさ（センサー類を使って詰まらないようにする）
+   * シューターモーターの上下（クライム中は上がっている等）
+   * シューターモーターはモードによって動きが変わるはず
+   * ボールが詰まったときの対処
+   * 他にもあった方がよさそうな機能
+  */
+  public void intakeConveyor(){
     conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, Const.LaunchStop);
-}
-public void outtakeConveyor(){
-   conveyorControl(Const.IntakeRolleOuttake, Const.IntakeBeltOuttake, Const.LaunchOuttake);
-}
-public void shootConveyor(){
+  }
+
+  public void outtakeConveyor(){
+    conveyorControl(Const.IntakeRolleOuttake, Const.IntakeBeltOuttake, Const.LaunchOuttake);
+  }
+
+  public void shootConveyor(){
     conveyorControl(Const.IntakeRollerStop, Const.IntakeBeltShoot, Const.LaunchShoot);
-}
-public void stopConveyor(){
+  }
+
+  public void stopConveyor(){
     conveyorControl(0, 0, 0);
-}
-public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
-  intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
-  intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-  launchMotor.set(ControlMode.PercentOutput, launchSpeed);
-}
+  }
+
+  /**
+   * 
+   * @param intakeRollerSpeed intakeを正
+   * @param intakeBeltSpeed intakeを正
+   * @param launchSpeed intakeを正
+   */
+  public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
+    intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
+    intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
+    launchMotor.set(ControlMode.PercentOutput, launchSpeed);
+  }
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
