@@ -19,9 +19,8 @@ public class ConveyorMode extends Mode {
   public void changeState() {
     if(driveController.getBButton()){
       State.conveyorState = ConveyorState.s_shootConveyor;
-    } else {
-      State.conveyorState = ConveyorState.s_stopConveyor;
-    }
+    } 
+    State.is_intakeExtendOpen = false;
   }
   
 }

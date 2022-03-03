@@ -21,13 +21,11 @@ public class DriveMode extends Mode {
         State.driveSpeed = DriveSpeed.s_fastDrive;
         State.driveXSpeed = driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
-        
+
         if(driveController.getLeftBumper()){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
         } else if(driveController.getRightBumper()){
             State.conveyorState = ConveyorState.s_intakeConveyor;
-        } else {
-            State.conveyorState = ConveyorState.s_stopConveyor;
         }
 
         if(driveController.getAButton()){
