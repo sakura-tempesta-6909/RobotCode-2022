@@ -22,7 +22,7 @@ public class Climb implements Component {
    */
 
   private Compressor compressor; 
-  private Solenoid frontSolenoid, bsckSolenoid;
+  private Solenoid frontSolenoid, backSolenoid;
   private Solenoid clampSolenoid;
   private CANSparkMax climbArm;
 
@@ -31,7 +31,7 @@ public class Climb implements Component {
   public Climb() {
     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
     frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-    bsckSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    backSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
     clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
@@ -50,12 +50,31 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
-  public void solenoidOpen(){
-
+  /**
+   * @param frontSolenoid 縮んでいる状態を正
+   */
+  public void frontSolenoidOpen(){
+    solenoidControl(true);
   }
 
-  public void solenoidClose(){
+  public void frontSolenoidClose(){
+    solenoidControl(false);
+  }
 
+  /**
+   * @param backSoenoid 縮んでいる状態を正
+   */
+  public void backSolenoidOpen(){
+    solenoidControl(true);
+  }
+
+  public void backSolenoidClose(){
+    solenoidControl(false);
+  }
+
+  public void solenoidControl(boolean solenoidControl){
+    frontSolenoid.set(solenoidControl);
+    backSolenoid.set(solenoidControl);
   }
 
   @Override
@@ -91,14 +110,14 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     if(State.is_solenoidFrontOpen){
-      solenoidOpen();
+      frontSolenoidOpen();
     } else {
-      solenoidClose();
+      frontSolenoidClose();
     }
     if(State.is_solenoidBackOpen){
-      solenoidOpen();
+      backSolenoidOpen();
     } else {
-      solenoidClose();
+      backSolenoidClose();
     }
   }
   
