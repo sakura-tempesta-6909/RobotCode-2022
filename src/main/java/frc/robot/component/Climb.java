@@ -80,6 +80,17 @@ public class Climb implements Component {
     backSolenoid.set(backSoenoidControl);
   }
 
+  /**
+   *  @param clampSolenoid 縮んでいる状態を正
+   */
+  public void clampSolenoidOpen(){
+    clampSolenoidControl(true);
+  }
+
+  public void clampSolenoidControl(boolean clampSolenoidControl){
+    clampSolenoid.set(clampSolenoidControl);
+  }
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -122,6 +133,10 @@ public class Climb implements Component {
     } else {
       backSolenoidClose();
     }
+    
+    if(State.is_clampSolenoid){
+      clampSolenoidOpen();
+    } 
   }
   
 }

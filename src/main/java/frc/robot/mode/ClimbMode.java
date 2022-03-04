@@ -28,6 +28,9 @@ public class ClimbMode extends Mode {
     } else {
       State.is_solenoidBackOpen = true;
     }
+    if(driveController.getYButton()){
+      State.is_clampSolenoid = false;
+    } 
   }
   
 }
