@@ -50,9 +50,7 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
-  /**
-   * @param frontSolenoid 縮んでいる状態を正
-   */
+ 
   public void frontSolenoidOpen(){
     frontSolenoidControl(true);;
   }
@@ -61,13 +59,14 @@ public class Climb implements Component {
     frontSolenoidControl(false);
   }
 
+   /**
+   * @param frontSolenoid 縮んでいる状態をtrue
+   */
   public void frontSolenoidControl(boolean frontSolenoidControl){
     frontSolenoid.set(frontSolenoidControl);
   }
 
-  /**
-   * @param backSoenoid 縮んでいる状態を正
-   */
+ 
   public void backSolenoidOpen(){
     backSolenoidControl(true);
   }
@@ -76,17 +75,21 @@ public class Climb implements Component {
     backSolenoidControl(false);;
   }
 
+   /**
+   * @param backSoenoid 縮んでいる状態をtrue
+   */
   public void backSolenoidControl(boolean backSoenoidControl){
     backSolenoid.set(backSoenoidControl);
   }
 
-  /**
-   *  @param clampSolenoid 縮んでいる状態を正
-   */
+  
   public void clampSolenoidOpen(){
-    clampSolenoidControl(true);
+    clampSolenoidControl(false);
   }
 
+  /**
+   *  @param clampSolenoid 縮んでいる状態をtrue
+   */
   public void clampSolenoidControl(boolean clampSolenoidControl){
     clampSolenoid.set(clampSolenoidControl);
   }
