@@ -53,28 +53,23 @@ public class Climb implements Component {
   /**
    * @param frontSolenoid 縮んでいる状態を正
    */
-  public void frontSolenoidOpen(){
-    solenoidControl(true);
+  public void frontSolenoidOpen(boolean frontSolenoidOpen){
+    frontSolenoid.set(frontSolenoidOpen);
   }
 
-  public void frontSolenoidClose(){
-    solenoidControl(false);
+  public void frontSolenoidClose(boolean frontSolenoidClose){
+    frontSolenoid.set(frontSolenoidClose);
   }
 
   /**
    * @param backSoenoid 縮んでいる状態を正
    */
-  public void backSolenoidOpen(){
-    solenoidControl(true);
+  public void backSolenoidOpen(boolean backSolenoidOpen){
+    backSolenoid.set(backSolenoidOpen);
   }
 
-  public void backSolenoidClose(){
-    solenoidControl(false);
-  }
-
-  public void solenoidControl(boolean solenoidControl){
-    frontSolenoid.set(solenoidControl);
-    backSolenoid.set(solenoidControl);
+  public void backSolenoidClose(boolean backSolenoidClose){
+    backSolenoid.set(backSolenoidClose);
   }
 
   @Override
@@ -110,14 +105,14 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     if(State.is_solenoidFrontOpen){
-      frontSolenoidOpen();
+      frontSolenoidOpen(true);
     } else {
-      frontSolenoidClose();
+      frontSolenoidClose(false);
     }
     if(State.is_solenoidBackOpen){
-      backSolenoidOpen();
+      backSolenoidOpen(true);
     } else {
-      backSolenoidClose();
+      backSolenoidClose(false);
     }
   }
   
