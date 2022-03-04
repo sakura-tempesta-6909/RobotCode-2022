@@ -13,6 +13,9 @@ public class DriveMode extends Mode {
         if(driveController.getBackButton()){
             State.mode = Modes.k_conveyor;
         }
+        if(driveController.getStartButton()){
+            State.mode = Modes.k_climb;
+        }
         
     }
 

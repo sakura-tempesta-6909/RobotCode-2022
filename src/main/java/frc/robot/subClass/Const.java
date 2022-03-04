@@ -30,9 +30,12 @@ public class Const {
 
     //pneumatics
     public static final int CompressorPort = 0;
-    public static final int SolenoidRightPort = 0;
-    public static final int SolenoidLeftPort = 1;
-    public static final int SolenoidClampPort = 2;
+    public static final int FrontSolenoidPort = 0;
+    public static final int BackSolenoidPort = 1;
+    public static final int ClampSolenoidPort = 2;
+
+    //sparkMax
+    public static final int ClimbArmPort = 0;
   
     //DriveSpeed
     public static final int FastDrive = 1;
@@ -50,6 +53,10 @@ public class Const {
     //ボールの回収(intake)
     public static final double IntakeBeltIntake = 1;
     public static final double IntakeRollerIntake = 0.5;
+
+    //Climb
+    public static final double ClimbArmFrontSpin = 0.5;
+    public static final double ClimbArmBackSpin = 0.5;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
