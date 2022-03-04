@@ -52,11 +52,11 @@ public class Climb implements Component {
 
  
   public void frontSolenoidOpen(){
-    frontSolenoidControl(true);;
+    frontSolenoidControl(false);;
   }
 
   public void frontSolenoidClose(){
-    frontSolenoidControl(false);
+    frontSolenoidControl(true);
   }
 
    /**
@@ -68,11 +68,11 @@ public class Climb implements Component {
 
  
   public void backSolenoidOpen(){
-    backSolenoidControl(true);
+    backSolenoidControl(false);
   }
 
   public void backSolenoidClose(){
-    backSolenoidControl(false);;
+    backSolenoidControl(true);;
   }
 
    /**
