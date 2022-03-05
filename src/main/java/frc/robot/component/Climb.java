@@ -40,7 +40,7 @@ public class Climb implements Component {
     climbControl(Const.ClimbArmFrontSpin);
   }   
   public void backSpin(){
-    climbControl(Const.ClimbArmBackSpin);
+    climbControl(-Const.ClimbArmBackSpin);
   }
   /**
    * 
@@ -137,7 +137,7 @@ public class Climb implements Component {
       secondSolenoidClose();
     }
     
-    if(State.is_climbSolenoid){
+    if(State.is_climbSolenoidOpen){
       climbSolenoidOpen();
     } 
   }

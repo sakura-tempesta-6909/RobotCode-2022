@@ -41,13 +41,13 @@ public class Conveyor implements Component {
   public void intakeConveyor(){
     conveyorControl(Const.RollerIntake, Const.BeltIntake, Const.Neutral);
   }
-
+ 
   public void outtakeConveyor(){
-    conveyorControl(-Const.RollerOuttake, Const.BeltOuttake, -Const.LaunchShoot);
+    conveyorControl(-Const.RollerOuttake, -Const.BeltOuttake, -Const.ShooterOuttake);
   }
 
   public void shootConveyor(){
-    conveyorControl(Const.Neutral, Const.BeltIntake, Const.LaunchShoot);
+    conveyorControl(Const.Neutral, Const.BeltIntake, Const.ShooterShoot);
   }
 
   public void stopConveyor(){
@@ -60,10 +60,10 @@ public class Conveyor implements Component {
    * @param intakeBeltSpeed intakeを正
    * @param launchSpeed intakeを正
    */
-  public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
+  public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    launchMotor.set(ControlMode.PercentOutput, launchSpeed);
+    launchMotor.set(ControlMode.PercentOutput, shooterSpeed);
   }
 
   public void conveyorExtendOpen(){

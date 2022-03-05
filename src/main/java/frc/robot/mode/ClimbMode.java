@@ -31,7 +31,7 @@ public class ClimbMode extends Mode {
       State.is_solenoidBackOpen = true;
     }
     if(driveController.getRightBumper() && driveController.getLeftBumper()){     
-      State.is_climbSolenoid = false;
+      State.is_climbSolenoidOpen = false;
     } 
   }
   
