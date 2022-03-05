@@ -50,29 +50,12 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
- 
-  public void firstSolenoidOpen(){
-    firstSolenoidControl(false);;
-  }
-
-  public void firstSolenoidClose(){
-    firstSolenoidControl(true);
-  }
-
-   /**
+  /**
    * @param firstSolenoid 縮んでいる状態をtrue
    */
-  public void firstSolenoidControl(boolean firstSolenoidControl){
-    firstSolenoid.set(firstSolenoidControl);
-  }
-
  
-  public void secondSolenoidOpen(){
-    secondSolenoidControl(false);
-  }
-
-  public void secondSolenoidClose(){
-    secondSolenoidControl(true);;
+  public void firstSolenoidControl(boolean firstSolenoidOpen){
+    firstSolenoid.set(firstSolenoidOpen);
   }
 
    /**
@@ -82,10 +65,6 @@ public class Climb implements Component {
     secondSolenoid.set(secondSolenoidControl);
   }
 
-  
-  public void climbSolenoidOpen(){
-    climbSolenoidControl(false);
-  }
 
   /**
    *  @param climbSolenoid 縮んでいる状態をtrue
@@ -127,18 +106,18 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     if(State.is_solenoidFrontOpen){
-      firstSolenoidOpen();
+      firstSolenoidControl(false);
     } else {
-      firstSolenoidClose();
+      firstSolenoidControl(true);
     }
     if(State.is_solenoidBackOpen){
-      secondSolenoidOpen();
+      secondSolenoidControl(false);
     } else {
-      secondSolenoidClose();
+      secondSolenoidControl(true);
     }
     
     if(State.is_climbSolenoidOpen){
-      climbSolenoidOpen();
+      climbSolenoidControl(true);
     } 
   }
   
