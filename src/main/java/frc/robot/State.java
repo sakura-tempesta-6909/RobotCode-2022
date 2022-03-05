@@ -34,7 +34,7 @@ public class State {
         is_intakeExtendOpen = false;
         is_solenoidFrontOpen = true;
         is_solenoidBackOpen = true;
-        is_climbSolenoidOpen = true;
+        is_climbSolenoidOpen = false;
     }
 
     public enum DriveSpeed {
