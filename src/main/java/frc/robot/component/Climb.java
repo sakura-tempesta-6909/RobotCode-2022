@@ -22,17 +22,17 @@ public class Climb implements Component {
    */
 
   private Compressor compressor; 
-  private Solenoid frontSolenoid, backSolenoid;
-  private Solenoid clampSolenoid;
+  private Solenoid firstSolenoid, secondSolenoid;
+  private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
 
    
 
   public Climb() {
     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-    frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-    backSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-    clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
+    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
 
@@ -51,47 +51,47 @@ public class Climb implements Component {
   }
 
  
-  public void frontSolenoidOpen(){
-    frontSolenoidControl(false);;
+  public void firstSolenoidOpen(){
+    firstSolenoidControl(false);;
   }
 
-  public void frontSolenoidClose(){
-    frontSolenoidControl(true);
+  public void firstSolenoidClose(){
+    firstSolenoidControl(true);
   }
 
    /**
-   * @param frontSolenoid 縮んでいる状態をtrue
+   * @param firstSolenoid 縮んでいる状態をtrue
    */
-  public void frontSolenoidControl(boolean frontSolenoidControl){
-    frontSolenoid.set(frontSolenoidControl);
+  public void firstSolenoidControl(boolean firstSolenoidControl){
+    firstSolenoid.set(firstSolenoidControl);
   }
 
  
-  public void backSolenoidOpen(){
-    backSolenoidControl(false);
+  public void secondSolenoidOpen(){
+    secondSolenoidControl(false);
   }
 
-  public void backSolenoidClose(){
-    backSolenoidControl(true);;
+  public void secondSolenoidClose(){
+    secondSolenoidControl(true);;
   }
 
    /**
-   * @param backSoenoid 縮んでいる状態をtrue
+   * @param secondSoenoid 縮んでいる状態をtrue
    */
-  public void backSolenoidControl(boolean backSolenoidControl){
-    backSolenoid.set(backSolenoidControl);
+  public void secondSolenoidControl(boolean secondSolenoidControl){
+    secondSolenoid.set(secondSolenoidControl);
   }
 
   
-  public void clampSolenoidOpen(){
-    clampSolenoidControl(false);
+  public void climbSolenoidOpen(){
+    climbSolenoidControl(false);
   }
 
   /**
-   *  @param clampSolenoid 縮んでいる状態をtrue
+   *  @param climbSolenoid 縮んでいる状態をtrue
    */
-  public void clampSolenoidControl(boolean clampSolenoidControl){
-    clampSolenoid.set(clampSolenoidControl);
+  public void climbSolenoidControl(boolean climbSolenoidControl){
+    climbSolenoid.set(climbSolenoidControl);
   }
 
   @Override
@@ -127,18 +127,18 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     if(State.is_solenoidFrontOpen){
-      frontSolenoidOpen();
+      firstSolenoidOpen();
     } else {
-      frontSolenoidClose();
+      firstSolenoidClose();
     }
     if(State.is_solenoidBackOpen){
-      backSolenoidOpen();
+      secondSolenoidOpen();
     } else {
-      backSolenoidClose();
+      secondSolenoidClose();
     }
     
-    if(State.is_clampSolenoid){
-      clampSolenoidOpen();
+    if(State.is_climbSolenoid){
+      climbSolenoidOpen();
     } 
   }
   

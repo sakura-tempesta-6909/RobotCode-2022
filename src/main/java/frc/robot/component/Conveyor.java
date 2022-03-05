@@ -43,7 +43,7 @@ public class Conveyor implements Component {
   }
 
   public void outtakeConveyor(){
-    conveyorControl(-Const.IntakeRolleOuttake, -Const.IntakeBeltOuttake, -Const.LaunchOuttake);
+    conveyorControl(-Const.IntakeRollerOuttake, -Const.IntakeBeltOuttake, -Const.LaunchShoot);
   }
 
   public void shootConveyor(){

@@ -49,8 +49,8 @@ public class Const {
     public static final double LaunchShoot = 0.5;
     //ボールを出す(outtake)
     public static final double IntakeBeltOuttake = 1;
-    public static final double IntakeRolleOuttake = 0.5;
-    public static final double LaunchOuttake = 0.5;
+    public static final double IntakeRollerOuttake = 0.5;
+
     //ボールの回収(intake)
     public static final double IntakeBeltIntake = 1;
     public static final double IntakeRollerIntake = 0.5;
