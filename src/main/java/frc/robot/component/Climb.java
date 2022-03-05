@@ -86,10 +86,7 @@ public class Climb implements Component {
   public void climbSolenoidExtend(){
     climbSolenoidControl(false);
   }
-  public void climbSolenoidShrink(){
-    climbSolenoidControl(true);
-  }
-  
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -134,9 +131,8 @@ public class Climb implements Component {
     }
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
-    } else {
-      climbSolenoidShrink();
-    }
+    } 
+    
   }
   
 }
