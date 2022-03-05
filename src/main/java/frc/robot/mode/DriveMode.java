@@ -12,7 +12,7 @@ public class DriveMode extends Mode {
   public void changeMode() {
   if(driveController.getBackButton()){
     State.mode = Modes.k_conveyor;
-  } else if(driveController.getStartButton()){
+  } else if(driveController.getStartButton() && driveController.getBackButton()){
     State.mode = Modes.k_climb;
   }
   
