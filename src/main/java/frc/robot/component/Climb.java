@@ -51,28 +51,45 @@ public class Climb implements Component {
   }
 
   /**
-   * @param firstSolenoid 縮んでいる状態をtrue
+   * @param firstSolenoid 縮んでいる状態がfalse
    */
- 
   public void firstSolenoidControl(boolean firstSolenoidOpen){
-    firstSolenoid.set(firstSolenoidOpen);
+    firstSolenoid.set(firstSolenoidOpen);       
+  }
+  
+  public void firstSolenoidOpen(){
+    firstSolenoidControl(true);
+  }
+  public void firstSolenoidClose(){
+    firstSolenoidControl(false);
   }
 
    /**
-   * @param secondSoenoid 縮んでいる状態をtrue
+   * @param secondSoenoid 縮んでいる状態がtrue
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
   }
-
+  public void secondSolenoidOpen(){
+    secondSolenoidControl(true);
+  }
+  public void secondSolenoidClose(){
+    secondSolenoidControl(false);
+  }   
 
   /**
-   *  @param climbSolenoid 縮んでいる状態をtrue
+   *  @param climbSolenoid 縮んでいる状態がtrue
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
   }
-
+  public void climbSolenoidExtend(){
+    climbSolenoidControl(false);
+  }
+  public void climbSolenoidShrink(){
+    climbSolenoidControl(true);
+  }
+  
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -106,19 +123,20 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     if(State.is_solenoidFrontOpen){
-      firstSolenoidControl(false);
+      firstSolenoidOpen();
     } else {
-      firstSolenoidControl(true);
+      firstSolenoidClose();
     }
     if(State.is_solenoidBackOpen){
-      secondSolenoidControl(false);
+      secondSolenoidClose();
     } else {
-      secondSolenoidControl(true);
+      secondSolenoidOpen();
     }
-    
     if(State.is_climbSolenoidOpen){
-      climbSolenoidControl(true);
-    } 
+      climbSolenoidExtend();
+    } else {
+      climbSolenoidShrink();
+    }
   }
   
 }
