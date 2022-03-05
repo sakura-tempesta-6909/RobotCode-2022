@@ -67,7 +67,7 @@ public class Conveyor implements Component {
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
     launchMotor.set(ControlMode.PercentOutput, launchSpeed);
   }
-
+  
   public void conveyorExtendOpen(){
 
   }
