@@ -40,7 +40,7 @@ public class Climb implements Component {
     climbControl(Const.ClimbArmFrontSpin);
   }   
   public void backSpin(){
-    climbControl(-Const.ClimbArmBackSpin);
+    climbControl(Const.ClimbArmBackSpin);
   }
   /**
    * 

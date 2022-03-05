@@ -45,19 +45,19 @@ public class Const {
     public static final int StopDrive = 0;
     //ConveyorSpeed
     //ボールの発射(Shoot)
-    public static final double IntakeBeltShoot = 1;
+    public static final double BeltShoot = 1;
     public static final double LaunchShoot = 0.5;
     //ボールを出す(outtake)
-    public static final double IntakeBeltOuttake = 1;
-    public static final double IntakeRollerOuttake = 0.5;
+    public static final double BeltOuttake = -1;
+    public static final double RollerOuttake = 0.5;
 
     //ボールの回収(intake)
-    public static final double IntakeBeltIntake = 1;
-    public static final double IntakeRollerIntake = 0.5;
+    public static final double BeltIntake = 1;
+    public static final double RollerIntake = 0.5;
 
     //Climb
     public static final double ClimbArmFrontSpin = 0.5;
-    public static final double ClimbArmBackSpin = 0.5;
+    public static final double ClimbArmBackSpin = -0.5;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();

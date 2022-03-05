@@ -39,19 +39,19 @@ public class Conveyor implements Component {
    * 他にもあった方がよさそうな機能
   */
   public void intakeConveyor(){
-    conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, 0);
+    conveyorControl(Const.RollerIntake, Const.BeltIntake, Const.Neutral);
   }
 
   public void outtakeConveyor(){
-    conveyorControl(-Const.IntakeRollerOuttake, -Const.IntakeBeltOuttake, -Const.LaunchShoot);
+    conveyorControl(-Const.RollerOuttake, Const.BeltOuttake, -Const.LaunchShoot);
   }
 
   public void shootConveyor(){
-    conveyorControl(0, Const.IntakeBeltShoot, Const.LaunchShoot);
+    conveyorControl(Const.Neutral, Const.BeltIntake, Const.LaunchShoot);
   }
 
   public void stopConveyor(){
-    conveyorControl(0, 0, 0);
+    conveyorControl(Const.Neutral, Const.Neutral, Const.Neutral);
   }
 
   /**
