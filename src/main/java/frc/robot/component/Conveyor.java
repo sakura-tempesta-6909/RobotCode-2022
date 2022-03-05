@@ -1,6 +1,8 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -9,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subClass.Const;
 import frc.robot.State;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class Conveyor implements Component {
 
@@ -31,6 +34,7 @@ public class Conveyor implements Component {
     /**バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
+    intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector , LimitSwitchNormal.NormallyOpen);
 
   }
   /**  バックプレートのそうさ
@@ -41,10 +45,6 @@ public class Conveyor implements Component {
    * ボールが詰まったときの対処
    * 他にもあった方がよさそうな機能
   */
-
-  public void intakeExtendControl(){
-    intakeExtend.overrideLimitSwitchesEnable(true);
-  }
 
   public void intakeConveyor(){
     conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, 0);
@@ -74,12 +74,16 @@ public class Conveyor implements Component {
     launchMotor.set(ControlMode.PercentOutput, launchSpeed);
   }
 
-  public void conveyorExtendOpen(){
+  public void intakeExtendControl(double intakeExtendControl){
+    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
+  }
 
+  public void intakeExtendOpen(){
+    intakeExtendControl(Const.IntakeExtendOpen);
   }
   
-  public void conveyorExtendClose(){
-
+  public void intakeExtendClose(){
+    intakeExtendControl(-Const.IntakeExtendOpen);
   }
 
   public void backPlateMove(double angle){
@@ -134,9 +138,9 @@ public class Conveyor implements Component {
     }
     
     if(State.is_intakeExtendOpen){
-      conveyorExtendOpen();
+      intakeExtendOpen();
     } else {
-      conveyorExtendClose();
+      intakeExtendClose();
     }
   }
   
