@@ -86,9 +86,6 @@ public class Climb implements Component {
   public void climbSolenoidExtend(){
     climbSolenoidControl(true);
   }
-  public void climbSolenoidShrink(){
-    climbSolenoidControl(false);
-  }
   
   @Override
   public void autonomousInit() {
@@ -128,15 +125,13 @@ public class Climb implements Component {
       firstSolenoidClose();
     }
     if(State.is_solenoidBackOpen){
-      secondSolenoidClose();
-    } else {
       secondSolenoidOpen();
+    } else {
+      secondSolenoidClose();
     }
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
-    } else {
-      climbSolenoidShrink();
-    }
+    } 
   }
   
 }
