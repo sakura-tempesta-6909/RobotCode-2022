@@ -29,6 +29,8 @@ public class Conveyor implements Component {
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
 
+    intakeRoller.setInverted(true);
+
   }
   /**  バックプレートのそうさ
    * シューターの速さ（距離に応じて）
