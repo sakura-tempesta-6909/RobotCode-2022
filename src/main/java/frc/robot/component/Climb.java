@@ -1,11 +1,11 @@
 package frc.robot.component;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.revrobotics.SparkMaxAlternateEncoder;
+// import com.revrobotics.SparkMaxAlternateEncoder;
 
-import edu.wpi.first.hal.CTREPCMJNI;
+// import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -78,8 +78,8 @@ public class Climb implements Component {
    /**
    * @param backSoenoid 縮んでいる状態をtrue
    */
-  public void backSolenoidControl(boolean backSoenoidControl){
-    backSolenoid.set(backSoenoidControl);
+  public void backSolenoidControl(boolean backSolenoidControl){
+    backSolenoid.set(backSolenoidControl);
   }
 
   

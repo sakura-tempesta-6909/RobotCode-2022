@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 public class Const {
     //Deadband
     public static final double Deadband = 0.2;
+    public static final double Neutral = 0;
 
     //PORTS
     //ControllerPort(コントローラーのポート)
