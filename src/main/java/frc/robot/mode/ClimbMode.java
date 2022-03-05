@@ -13,24 +13,22 @@ public class ClimbMode extends Mode {
       State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton()){
       State.mode = Modes.k_drive;
-    } else if(driveController.getStartButton()){
-      State.mode = Modes.k_conveyor;
-    }
+    } 
 }    
   
 
   @Override
   public void changeState() {
     if(driveController.getAButton()){
-      State.is_solenoidFrontOpen = true;
+      State.is_firstSolenoidOpen = true;
     } else {
-      State.is_solenoidFrontOpen = false;
+      State.is_firstSolenoidOpen = false;
     }
 
     if(driveController.getBButton()){
-      State.is_solenoidBackOpen = true;
+      State.is_secondSolenoidOpen = true;
     } else {
-      State.is_solenoidBackOpen = false;
+      State.is_secondSolenoidOpen = false;
     }
     if(driveController.getRightBumper() && driveController.getLeftBumper()){     
       State.is_climbSolenoidOpen = true;

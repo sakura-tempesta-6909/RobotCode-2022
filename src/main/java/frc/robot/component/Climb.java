@@ -119,12 +119,12 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
-    if(State.is_solenoidFrontOpen){
+    if(State.is_firstSolenoidOpen){
       firstSolenoidOpen();
     } else {
       firstSolenoidClose();
     }
-    if(State.is_solenoidBackOpen){
+    if(State.is_secondSolenoidOpen){
       secondSolenoidOpen();
     } else {
       secondSolenoidClose();
