@@ -43,9 +43,7 @@ public class Conveyor implements Component {
   */
 
   public void intakeExtendControl(){
-    while (limitSwitch.get()){
-      Timer.delay(10);
-    }
+    intakeExtend.overrideLimitSwitchesEnable(true);
   }
 
   public void intakeConveyor(){
