@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 
@@ -13,7 +14,7 @@ public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, launchMotor;
-  private DigitalInput ballSensor;
+  private DigitalInput ballSensor, limitSwitch;
   private TalonSRX intakeExtend, backPlate;
 
   public Conveyor() {
@@ -22,6 +23,8 @@ public class Conveyor implements Component {
     launchMotor = new TalonSRX(Const.LaunchMotorPort);
     intakeExtend = new TalonSRX(Const.ConveyorExtendPort);
     backPlate = new TalonSRX(Const.BackPlatePort);
+    limitSwitch = new DigitalInput(Const.LimitSwitchPort);
+
     
     launchMotor.configAllSettings(Const.LaunchMotorConfig);
 
@@ -38,6 +41,13 @@ public class Conveyor implements Component {
    * ボールが詰まったときの対処
    * 他にもあった方がよさそうな機能
   */
+
+  public void intakeExtendControl(){
+    while (limitSwitch.get()){
+      Timer.delay(10);
+    }
+  }
+
   public void intakeConveyor(){
     conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, 0);
   }
