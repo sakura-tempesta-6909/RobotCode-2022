@@ -16,6 +16,7 @@ public class State {
     public static boolean is_solenoidFrontOpen;
     public static boolean is_solenoidBackOpen;
     public static boolean is_clampSolenoid;
+    public static boolean is_compressorSwitch;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -35,6 +36,7 @@ public class State {
         is_solenoidFrontOpen = true;
         is_solenoidBackOpen = true;
         is_clampSolenoid = true;
+        is_compressorSwitch = true;
     }
 
     public enum DriveSpeed {

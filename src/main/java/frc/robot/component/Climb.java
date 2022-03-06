@@ -9,6 +9,7 @@ import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 
@@ -94,6 +95,22 @@ public class Climb implements Component {
     clampSolenoid.set(clampSolenoidControl);
   }
 
+  public void compressorOpen(){
+    compressorControl(false);
+  }
+
+  public void compressorClose(){
+    compressorControl(true);
+  }
+
+  /**
+   * 
+   * @param compressorControl 動いていない状態を正
+   */
+  public void compressorControl(boolean compressorControl){
+    compressor.disable();
+  }
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -140,6 +157,12 @@ public class Climb implements Component {
     if(State.is_clampSolenoid){
       clampSolenoidOpen();
     } 
+
+    if(State.is_compressorSwitch){
+      compressorOpen();
+    } else {
+      compressorClose();
+    }
   }
   
 }

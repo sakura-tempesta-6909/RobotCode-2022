@@ -35,6 +35,12 @@ public class DriveMode extends Mode {
         } else {
             State.is_intakeExtendOpen = true;
         }
+
+        if(driveController.getXButton() && driveController.getYButton()){
+          State.is_compressorSwitch = false;
+        } else {
+          State.is_compressorSwitch = true;
+        }
     }
     
 }
