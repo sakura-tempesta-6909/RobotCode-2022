@@ -51,7 +51,7 @@ public class Climb implements Component {
   }
 
   /**
-   * @param firstSolenoid falseで伸びている
+   * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
     firstSolenoid.set(firstSolenoidOpen);       
@@ -65,7 +65,7 @@ public class Climb implements Component {
   }
 
    /**
-   * @param secondSoenoid falseで伸びている
+   * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
