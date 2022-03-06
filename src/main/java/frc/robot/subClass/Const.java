@@ -31,8 +31,8 @@ public class Const {
 
     //pneumatics
     public static final int CompressorPort = 0;
-    public static final int FrontSolenoidPort = 0;
-    public static final int BackSolenoidPort = 1;
+    public static final int FirstSolenoidPort = 0;
+    public static final int SecondSolenoidPort = 1;
     public static final int ClimbSolenoidPort = 2;
 
     //sparkMax
