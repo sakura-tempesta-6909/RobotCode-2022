@@ -96,20 +96,13 @@ public class Climb implements Component {
   }
 
   public void compressorOpen(){
-    compressorControl(false);
+    compressor.disable();
   }
 
   public void compressorClose(){
-    compressorControl(true);
+    compressor.enabled();
   }
 
-  /**
-   * 
-   * @param compressorControl 動いていない状態を正
-   */
-  public void compressorControl(boolean compressorControl){
-    compressor.disable();
-  }
 
   @Override
   public void autonomousInit() {
