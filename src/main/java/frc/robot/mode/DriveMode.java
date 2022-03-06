@@ -11,30 +11,34 @@ public class DriveMode extends Mode {
   @Override
   public void changeMode() {
     if(driveController.getBackButton()){
-        State.mode = Modes.k_conveyor;
+      State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
-        State.mode = Modes.k_climb;
+      State.mode = Modes.k_climb;
     }
   
   }
 
-    @Override
-    public void changeState() {
-        State.driveSpeed = DriveSpeed.s_fastDrive;
-        State.driveXSpeed = driveController.getLeftY();
-        State.driveZRotation = driveController.getRightX();
+  @Override
+  public void changeState() {
 
-        if(driveController.getLeftBumper()){
-            State.conveyorState = ConveyorState.s_outtakeConveyor;
-        } else if(driveController.getRightBumper()){
-            State.conveyorState = ConveyorState.s_intakeConveyor;
-        }
+    State.driveSpeed = DriveSpeed.s_fastDrive;
+    State.driveXSpeed = driveController.getLeftY();
+    State.driveZRotation = driveController.getRightX();
 
-        if(driveController.getAButton()){
-            State.is_intakeExtendOpen = false;
-        } else {
-            State.is_intakeExtendOpen = true;
-        }
+    if(driveController.getLeftBumper()){
+      State.conveyorState = ConveyorState.s_outtakeConveyor;
+    } else if(driveController.getRightBumper()){
+      State.conveyorState = ConveyorState.s_intakeConveyor;
     }
-    
+      
+    if(driveController.getAButton()){
+      State.is_intakeExtendOpen = false;
+    } else {
+      State.is_intakeExtendOpen = true;
+    }
+
+  }
+      
 }
+  
+  
