@@ -32,8 +32,8 @@ public class State {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         is_intakeExtendOpen = false;
-        is_firstSolenoidOpen = true;
-        is_secondSolenoidOpen = true;
+        is_firstSolenoidOpen = false;
+        is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
     }
 
