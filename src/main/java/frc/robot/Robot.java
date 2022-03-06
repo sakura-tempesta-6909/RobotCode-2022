@@ -1,6 +1,7 @@
 package frc.robot;
 
 import java.util.ArrayList;
+import frc.robot.subClass.Util;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.component.Component;
@@ -71,6 +72,7 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.applyState();
     }
+   Util.AllsendConsole();
   }
 
   @Override
