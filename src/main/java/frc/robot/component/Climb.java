@@ -30,8 +30,8 @@ public class Climb implements Component {
 
   public Climb() {
     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
+    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
+    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
@@ -78,7 +78,7 @@ public class Climb implements Component {
   }   
 
   /**
-   *  @param climbSolenoid trueで伸びている
+   *  @param climbSolenoidOwn trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
