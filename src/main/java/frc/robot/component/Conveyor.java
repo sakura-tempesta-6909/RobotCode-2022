@@ -73,6 +73,10 @@ public class Conveyor implements Component {
     launchMotor.set(ControlMode.PercentOutput, launchSpeed);
   }
 
+  /**
+   * 
+   * @param intakeExtendControl 展開するときを正
+   */
   public void intakeExtendControl(double intakeExtendControl){
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
