@@ -35,6 +35,11 @@ public class DriveMode extends Mode {
         } else {
             State.is_intakeExtendOpen = true;
         }
+        if(driveController.getBButton()){
+            State.is_intakeExtendClose = false;
+        } else {
+            State.is_intakeExtendClose = true;
+        }
     }
     
 }

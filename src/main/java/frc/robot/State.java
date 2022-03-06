@@ -12,6 +12,7 @@ public class State {
 
     public static ConveyorState conveyorState;
     public static boolean is_intakeExtendOpen;
+    public static boolean is_intakeExtendClose;
 
     public static boolean is_solenoidFrontOpen;
     public static boolean is_solenoidBackOpen;
@@ -31,7 +32,8 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        is_intakeExtendOpen = false;
+        is_intakeExtendOpen = true;
+        is_intakeExtendClose =true;
         is_solenoidFrontOpen = true;
         is_solenoidBackOpen = true;
         is_clampSolenoid = true;

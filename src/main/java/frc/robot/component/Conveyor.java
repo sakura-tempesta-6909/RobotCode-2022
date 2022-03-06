@@ -36,6 +36,7 @@ public class Conveyor implements Component {
     //intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
 
     intakeRoller.setInverted(true);
+  
 
   }
   /**  バックプレートのそうさ
@@ -89,6 +90,9 @@ public class Conveyor implements Component {
   
   public void intakeExtendClose(){
     intakeExtendControl(-Const.IntakeExtendOpen);
+  }
+  public void intakeExtendNeutral(){
+    intakeExtendControl(0);
   }
 
   public void backPlateMove(double angle){
@@ -145,7 +149,13 @@ public class Conveyor implements Component {
     if(State.is_intakeExtendOpen){
       intakeExtendOpen();
     } else {
+      intakeExtendNeutral();
+    } 
+
+    if(State.is_intakeExtendClose){
       intakeExtendClose();
+    } else {
+      intakeExtendNeutral();
     }
   }
   
