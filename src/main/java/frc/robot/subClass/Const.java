@@ -65,6 +65,7 @@ public class Const {
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration IntakeExtendConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;

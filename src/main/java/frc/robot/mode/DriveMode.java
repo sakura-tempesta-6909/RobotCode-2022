@@ -16,7 +16,6 @@ public class DriveMode extends Mode {
         if(driveController.getStartButton()){
             State.mode = Modes.k_climb;
         }
-        
     }
 
     @Override
