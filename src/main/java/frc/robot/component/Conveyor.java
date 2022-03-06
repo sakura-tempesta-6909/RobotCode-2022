@@ -26,15 +26,14 @@ public class Conveyor implements Component {
     launchMotor = new TalonSRX(Const.LaunchMotorPort);
     intakeExtend = new TalonSRX(Const.ConveyorExtendPort);
     backPlate = new TalonSRX(Const.BackPlatePort);
-    limitSwitch = new DigitalInput(Const.LimitSwitchPort);
 
-    
     launchMotor.configAllSettings(Const.LaunchMotorConfig);
 
     /**バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
     intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
+    intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
 
   }
   /**  バックプレートのそうさ
