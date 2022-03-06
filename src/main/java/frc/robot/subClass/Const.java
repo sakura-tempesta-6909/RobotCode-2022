@@ -24,6 +24,7 @@ public class Const {
     public static final int LaunchMotorPort = 6;
     public static final int ConveyorExtendPort = 7;
     public static final int BackPlatePort = 8;
+    public static final int LimitSwitchPort = 9;
 
     //sensor, conveyor
     public static final int BallSensorPort =0; //これはあるか分からない
@@ -53,6 +54,9 @@ public class Const {
     //ボールの回収(intake)
     public static final double IntakeBeltIntake = 1;
     public static final double IntakeRollerIntake = 0.5;
+
+    //intakeExtend
+    public static final double IntakeExtendOpen = 0.2;
 
     //Climb
     public static final double ClimbArmFrontSpin = 0.5;
