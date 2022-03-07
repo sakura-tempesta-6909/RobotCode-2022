@@ -32,7 +32,7 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        intakeExtendState = IntakeExtendState.s_intakeExtendStop;
+        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
@@ -55,7 +55,8 @@ public class State {
     public enum IntakeExtendState {
         s_intakeExtendOpen,
         s_intakeExtendClose,
-        s_intakeExtendStop,
+        s_intakeExtendNeutral,
+    
     }
 
     public enum Modes {
