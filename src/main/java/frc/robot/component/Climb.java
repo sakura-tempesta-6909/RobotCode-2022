@@ -1,11 +1,11 @@
 package frc.robot.component;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-import com.revrobotics.SparkMaxAlternateEncoder;
+// import com.revrobotics.SparkMaxAlternateEncoder;
 
-import edu.wpi.first.hal.CTREPCMJNI;
+// import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -23,17 +23,17 @@ public class Climb implements Component {
    */
 
   private Compressor compressor; 
-  private Solenoid frontSolenoid, backSolenoid;
-  private Solenoid clampSolenoid;
+  private Solenoid firstSolenoid, secondSolenoid;
+  private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
 
    
 
   public Climb() {
     compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-    frontSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.FrontSolenoidPort);
-    backSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.BackSolenoidPort);
-    clampSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClampSolenoidPort);
+    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.FirstSolenoidPort);
+    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
+    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
 
@@ -51,48 +51,38 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
- 
-  public void frontSolenoidOpen(){
-    frontSolenoidControl(false);;
-  }
-
-  public void frontSolenoidClose(){
-    frontSolenoidControl(true);
-  }
-
-   /**
-   * @param frontSolenoid 縮んでいる状態をtrue
+  /**
+   * @param firstSolenoid falseで閉じている
    */
-  public void frontSolenoidControl(boolean frontSolenoidControl){
-    frontSolenoid.set(frontSolenoidControl);
+  public void firstSolenoidControl(boolean firstSolenoidOpen){
+    firstSolenoid.set(firstSolenoidOpen);       
   }
-
- 
-  public void backSolenoidOpen(){
-    backSolenoidControl(false);
-  }
-
-  public void backSolenoidClose(){
-    backSolenoidControl(true);;
-  }
-
-   /**
-   * @param backSoenoid 縮んでいる状態をtrue
-   */
-  public void backSolenoidControl(boolean backSoenoidControl){
-    backSolenoid.set(backSoenoidControl);
-  }
-
   
-  public void clampSolenoidOpen(){
-    clampSolenoidControl(false);
+  public void firstSolenoidOpen(){
+    firstSolenoidControl(true);
   }
+  public void firstSolenoidClose(){
+    firstSolenoidControl(false);
+  }
+
+   /**
+   * @param secondSoenoid falseで閉じている
+   */
+  public void secondSolenoidControl(boolean secondSolenoidControl){
+    secondSolenoid.set(secondSolenoidControl);
+  }
+  public void secondSolenoidOpen(){
+    secondSolenoidControl(true);
+  }
+  public void secondSolenoidClose(){
+    secondSolenoidControl(false);
+  }   
 
   /**
-   *  @param clampSolenoid 縮んでいる状態をtrue
+   *  @param climbSolenoidOwn trueで伸びている
    */
-  public void clampSolenoidControl(boolean clampSolenoidControl){
-    clampSolenoid.set(clampSolenoidControl);
+  public void climbSolenoidControl(boolean climbSolenoidControl){
+    climbSolenoid.set(climbSolenoidControl);
   }
 
   public void compressorOpen(){
@@ -104,6 +94,10 @@ public class Climb implements Component {
   }
 
 
+  public void climbSolenoidExtend(){
+    climbSolenoidControl(true);
+  }
+  
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -136,19 +130,18 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
-    if(State.is_solenoidFrontOpen){
-      frontSolenoidOpen();
+    if(State.is_firstSolenoidOpen){
+      firstSolenoidOpen();
     } else {
-      frontSolenoidClose();
+      firstSolenoidClose();
     }
-    if(State.is_solenoidBackOpen){
-      backSolenoidOpen();
+    if(State.is_secondSolenoidOpen){
+      secondSolenoidOpen();
     } else {
-      backSolenoidClose();
+      secondSolenoidClose();
     }
-    
-    if(State.is_clampSolenoid){
-      clampSolenoidOpen();
+    if(State.is_climbSolenoidOpen){
+      climbSolenoidExtend();
     } 
 
     if(State.is_compressorSwitch){
