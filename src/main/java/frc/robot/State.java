@@ -34,7 +34,7 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        is_compressorSwitch = true;
+        is_compressorMove = true;
         intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;

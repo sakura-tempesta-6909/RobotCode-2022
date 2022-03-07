@@ -144,7 +144,7 @@ public class Climb implements Component {
       climbSolenoidExtend();
     } 
 
-    if(State.is_compressorSwitch){
+    if(State.is_compressorMove){
       compressorOpen();
     } else {
       compressorClose();
