@@ -38,11 +38,7 @@ public class DriveMode extends Mode {
 		} else {
 			State.intakeExtendState = IntakeExtendState.s_intakeExtendStop; 
 		}
-
-
-    
-    
-
+  
   }
       
 }

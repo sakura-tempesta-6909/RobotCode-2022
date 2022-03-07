@@ -94,7 +94,7 @@ public class Conveyor implements Component {
     intakeExtendControl(-Const.IntakeExtendOpen);
   }
   public void intakeExtendStop(){
-    intakeExtendControl(0);
+    intakeExtendControl(Const.Neutral);
   }
 
   public void backPlateMove(double angle){
