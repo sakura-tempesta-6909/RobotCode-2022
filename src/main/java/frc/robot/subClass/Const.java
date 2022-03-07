@@ -76,5 +76,6 @@ public class Const {
         LaunchMotorConfig.slot0.kI = 0;
         LaunchMotorConfig.slot0.kD = 0;
         LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+
     }
 }
