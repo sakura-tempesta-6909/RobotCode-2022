@@ -25,7 +25,7 @@ public class DriveMode extends Mode {
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-		if(!driveController.getLeftStickButton() && driveController.getRightStickButton()){
+		if(driveController.getLeftStickButton() && driveController.getRightStickButton()){
 			State.is_compressorEnabled = false;
 		} else {
 			State.is_compressorEnabled = true;
