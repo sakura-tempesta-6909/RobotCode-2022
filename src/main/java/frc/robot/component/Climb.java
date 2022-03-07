@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 
@@ -83,6 +84,17 @@ public class Climb implements Component {
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
   }
+
+  public void compressorDisable(){
+    compressor.disable();
+  }
+
+  public void compressorEnable(){
+    compressor.enableDigital();
+    boolean enabled = compressor.enabled();
+  }
+
+
   public void climbSolenoidExtend(){
     climbSolenoidControl(true);
   }
@@ -132,6 +144,12 @@ public class Climb implements Component {
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
     } 
+
+    if(State.is_compressorEnabled){
+      compressorEnable();
+    } else {
+      compressorDisable();
+    }
   }
   
 }

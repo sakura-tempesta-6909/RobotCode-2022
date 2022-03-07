@@ -10,7 +10,9 @@ public class State {
     public static DriveSpeed driveSpeed;
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;
+    public static ConveyorState conveyorState;;
+    
+    public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
 
@@ -25,6 +27,7 @@ public class State {
         XboxController operateController = new XboxController(Const.OperateControllerPort);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
+        is_compressorEnabled = true;
         
         stateReset();
     }
