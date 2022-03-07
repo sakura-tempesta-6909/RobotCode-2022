@@ -93,7 +93,7 @@ public class Conveyor implements Component {
   public void intakeExtendClose(){
     intakeExtendControl(-Const.IntakeExtendOpen);
   }
-  public void intakeExtendNeutral(){
+  public void intakeExtendStop(){
     intakeExtendControl(0);
   }
 
@@ -147,17 +147,17 @@ public class Conveyor implements Component {
         stopConveyor();
         break;  
     }
-    
-    if(State.is_intakeExtendOpen){
-      intakeExtendOpen();
-    } else {
-      intakeExtendNeutral();
-    } 
 
-    if(State.is_intakeExtendClose){
-      intakeExtendClose();
-    } else {
-      intakeExtendNeutral();
+    switch(State.intakeExtendState){
+      case s_intakeExtendOpen:
+        intakeExtendOpen();
+        break;
+      case s_intakeExtendClose:
+        intakeExtendClose();
+        break;
+      case s_intakeExtendStop:
+        intakeExtendStop();
+        break;  
     }
   }
   

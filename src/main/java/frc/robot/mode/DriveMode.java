@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.State;
 import frc.robot.State.DriveSpeed;
 import frc.robot.State.ConveyorState;
-import frc.robot.State.Modes;;
+import frc.robot.State.IntakeExtendState;
+import frc.robot.State.Modes;
 
 public class DriveMode extends Mode {
   
@@ -25,20 +26,21 @@ public class DriveMode extends Mode {
         State.driveZRotation = driveController.getRightX();
 
         if(driveController.getLeftBumper()){
-            State.conveyorState = ConveyorState.s_outtakeConveyor;
+          State.conveyorState = ConveyorState.s_outtakeConveyor;
         } else if(driveController.getRightBumper()){
-            State.conveyorState = ConveyorState.s_intakeConveyor;
+          State.conveyorState = ConveyorState.s_intakeConveyor;
         }
 
         if(driveController.getAButton()){
-            State.is_intakeExtendOpen = false;
+          State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
         } else {
-            State.is_intakeExtendOpen = true;
+          State.intakeExtendState = IntakeExtendState.s_intakeExtendStop; 
         }
+
         if(driveController.getBButton()){
-            State.is_intakeExtendClose = false;
+          State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
         } else {
-            State.is_intakeExtendClose = true;
+          State.intakeExtendState = IntakeExtendState.s_intakeExtendStop; 
         }
     }
     
