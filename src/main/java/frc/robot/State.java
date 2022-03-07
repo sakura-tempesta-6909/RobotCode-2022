@@ -27,6 +27,7 @@ public class State {
         XboxController operateController = new XboxController(Const.OperateControllerPort);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
+        is_compressorEnabled = true;
         
         stateReset();
     }

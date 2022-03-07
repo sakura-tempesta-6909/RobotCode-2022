@@ -146,9 +146,9 @@ public class Climb implements Component {
     } 
 
     if(State.is_compressorEnabled){
-      compressorDisable();
-    } else {
       compressorEnable();
+    } else {
+      compressorDisable();
     }
   }
   
