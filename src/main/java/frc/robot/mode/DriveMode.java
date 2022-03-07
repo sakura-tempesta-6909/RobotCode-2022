@@ -27,7 +27,7 @@ public class DriveMode extends Mode {
 
 		if(driveController.getXButton() && driveController.getYButton()){
 			State.is_compressorSwitch = false;
-		} else {
+		} else if(driveController.getAButton() && driveController.getBButton()){
 			State.is_compressorSwitch = true;
 		}
 

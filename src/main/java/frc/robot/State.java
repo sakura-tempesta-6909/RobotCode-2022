@@ -12,7 +12,7 @@ public class State {
 
     public static ConveyorState conveyorState;;
     
-    public static boolean is_compressorSwitch;
+    public static boolean is_compressorMove;
 
     public static IntakeExtendState intakeExtendState;
 
