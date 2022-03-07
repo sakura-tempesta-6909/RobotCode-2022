@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 public class Const {
     //Deadband
     public static final double Deadband = 0.2;
+    public static final double Neutral = 0;
 
     //PORTS
     //ControllerPort(コントローラーのポート)
@@ -31,9 +32,9 @@ public class Const {
 
     //pneumatics
     public static final int CompressorPort = 0;
-    public static final int FrontSolenoidPort = 0;
-    public static final int BackSolenoidPort = 1;
-    public static final int ClampSolenoidPort = 2;
+    public static final int FirstSolenoidPort = 0;
+    public static final int SecondSolenoidPort = 1;
+    public static final int ClimbSolenoidPort = 2;
 
     //sparkMax
     public static final int ClimbArmPort = 0;
@@ -45,15 +46,16 @@ public class Const {
     public static final int StopDrive = 0;
     //ConveyorSpeed
     //ボールの発射(Shoot)
-    public static final double IntakeBeltShoot = 1;
-    public static final double LaunchShoot = 0.5;
+    public static final double BeltShoot = 1;
+    public static final double ShooterShoot = 0.5;
     //ボールを出す(outtake)
-    public static final double IntakeBeltOuttake = 1;
-    public static final double IntakeRolleOuttake = 0.5;
-    public static final double LaunchOuttake = 0.5;
+    public static final double BeltOuttake = 1;
+    public static final double RollerOuttake = 0.5;
+    public static final double ShooterOuttake = 0.3;
+
     //ボールの回収(intake)
-    public static final double IntakeBeltIntake = 1;
-    public static final double IntakeRollerIntake = 0.5;
+    public static final double BeltIntake = 1;
+    public static final double RollerIntake = 0.5;
 
     //intakeExtend
     public static final double IntakeExtendOpen = 0.2;

@@ -14,9 +14,9 @@ public class State {
 
     public static IntakeExtendState intakeExtendState;
 
-    public static boolean is_solenoidFrontOpen;
-    public static boolean is_solenoidBackOpen;
-    public static boolean is_clampSolenoid;
+    public static boolean is_firstSolenoidOpen;
+    public static boolean is_secondSolenoidOpen;
+    public static boolean is_climbSolenoidOpen;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -33,9 +33,9 @@ public class State {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         intakeExtendState = IntakeExtendState.s_intakeExtendStop;
-        is_solenoidFrontOpen = true;
-        is_solenoidBackOpen = true;
-        is_clampSolenoid = true;
+        is_firstSolenoidOpen = false;
+        is_secondSolenoidOpen = false;
+        is_climbSolenoidOpen = false;
     }
 
     public enum DriveSpeed {

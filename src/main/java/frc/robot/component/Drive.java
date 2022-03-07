@@ -74,7 +74,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.SlowDrive * State.driveXSpeed, Const.SlowDrive * State.driveZRotation);
                 break;
             case s_stopDrive:
-                arcadeDrive(Const.StopDrive * State.driveXSpeed, Const.StopDrive * State.driveZRotation);
+                arcadeDrive(Const.Neutral * State.driveXSpeed, Const.Neutral * State.driveZRotation);
         }
     }
 }
