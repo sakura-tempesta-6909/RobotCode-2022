@@ -11,7 +11,8 @@ public class State {
     public static double driveXSpeed, driveZRotation;
 
     public static ConveyorState conveyorState;
-    public static boolean is_intakeExtendOpen;
+
+    public static IntakeExtendState intakeExtendState;
 
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
@@ -31,7 +32,7 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        is_intakeExtendOpen = false;
+        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
@@ -49,6 +50,13 @@ public class State {
         s_intakeConveyor,
         s_shootConveyor,
         s_stopConveyor,
+    }
+
+    public enum IntakeExtendState {
+        s_intakeExtendOpen,
+        s_intakeExtendClose,
+        s_intakeExtendNeutral,
+    
     }
 
     public enum Modes {
