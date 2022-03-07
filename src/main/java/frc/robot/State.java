@@ -12,7 +12,7 @@ public class State {
 
     public static ConveyorState conveyorState;;
     
-    public static boolean is_compressorMove;
+    public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
 
@@ -34,7 +34,7 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        is_compressorMove = false;
+        is_compressorEnabled = true;
         intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;

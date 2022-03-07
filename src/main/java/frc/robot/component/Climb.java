@@ -85,11 +85,11 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
-  public void compressorOpen(){
+  public void compressorDisable(){
     compressor.disable();
   }
 
-  public void compressorClose(){
+  public void compressorEnable(){
     compressor.enableDigital();
     boolean enabled = compressor.enabled();
   }
@@ -145,10 +145,10 @@ public class Climb implements Component {
       climbSolenoidExtend();
     } 
 
-    if(State.is_compressorMove){
-      compressorOpen();
+    if(State.is_compressorEnabled){
+      compressorEnable();
     } else {
-      compressorClose();
+      compressorDisable();
     }
   }
   
