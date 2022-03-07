@@ -33,12 +33,8 @@ public class DriveMode extends Mode {
 
         if(driveController.getAButton()){
           State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
-        } else {
-          State.intakeExtendState = IntakeExtendState.s_intakeExtendStop; 
-        }
-
-        if(driveController.getBButton()){
-          State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
+        } else if(driveController.getBButton()){
+          State.intakeExtendState = IntakeExtendState.s_intakeExtendClose; 
         } else {
           State.intakeExtendState = IntakeExtendState.s_intakeExtendStop; 
         }
