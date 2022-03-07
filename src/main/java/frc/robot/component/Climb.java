@@ -100,7 +100,7 @@ public class Climb implements Component {
   }
 
   public void compressorClose(){
-    compressor.enabled();
+    compressor.enableDigital();
   }
 
 
