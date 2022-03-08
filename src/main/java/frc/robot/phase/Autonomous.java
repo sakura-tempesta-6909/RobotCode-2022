@@ -1,5 +1,7 @@
 package frc.robot.phase;
 
+import frc.robot.State;
+
 public class Autonomous {
     private static PhaseTransition phaseTransition;
 
@@ -11,21 +13,35 @@ public class Autonomous {
         phaseTransition.registerPhase(
             new PhaseTransition.Phase(
                 () -> {
+                    State.is_compressorEnabled = false;
                     return;
                 },
                 (double time) -> {
-                    return time > 3;
+                    return time > 1;
                 },
-                "3 second wait"
+                "compressor stop"
             ),
             new PhaseTransition.Phase(
                 () -> {
+                    State.is_compressorEnabled = true;
+                    State.conveyorState = State.ConveyorState.s_intakeConveyor;
                     return;
                 },
                 (double time) -> {
-                    return time > 4;
+                    return time > 1;
                 },
-                "4 second wait"
+                "intake"
+            ),
+            new PhaseTransition.Phase(
+                () -> {
+                    State.is_compressorEnabled = false;
+                    State.conveyorState = State.ConveyorState.s_shootConveyor;
+                    return;
+                },
+                (double time) -> {
+                    return time > 2;
+                },
+                "shoot"
             )
         );
     }
