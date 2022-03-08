@@ -42,12 +42,17 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
+    State.stateReset();
     externalSensors.readExternalSensors();
     for (Component component : components) {
       component.readSensors();
     }
-    
+
     Autonomous.run();
+
+    for (Component component : components) {
+      component.applyState();
+    }
   }
 
   @Override
