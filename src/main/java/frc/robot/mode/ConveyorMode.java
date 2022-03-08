@@ -9,9 +9,9 @@ public class ConveyorMode extends Mode {
 
   @Override
   public void changeMode() {
-    if(driveController.getRightTriggerAxis() == 1){
+    if(driveController.getRightTriggerAxis() == 0.8){
       State.mode = Modes.k_drive;
-    } else if(driveController.getStartButton() && driveController.getBackButton()){
+    } else if(driveController.getStartButton() && driveController.getBackButton() && driveController.getPOV() == 270){
       State.mode = Modes.k_climb;
     }
     
