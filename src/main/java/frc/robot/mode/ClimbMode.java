@@ -2,6 +2,8 @@ package frc.robot.mode;
 
 import frc.robot.State;
 import frc.robot.mode.Mode;
+import frc.robot.subClass.Const;
+import frc.robot.State.ClimbArmState;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
 import frc.robot.State.DriveSpeed;
@@ -40,6 +42,13 @@ public class ClimbMode extends Mode {
     } else {
       State.is_climbSolenoidOpen = false;
     }
+
+    if(driveController.getRightTriggerAxis() == Const.TriggerValue){
+      State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
+    } else if(driveController.getLeftTriggerAxis() == Const.TriggerValue){
+      State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
+    } else {
+      State.climbArmState = ClimbArmState.s_climbArmNeutral;
+    }
   }
-  
 }

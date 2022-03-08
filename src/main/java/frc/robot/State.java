@@ -65,8 +65,10 @@ public class State {
     }
 
     public enum ClimbArmState {
-        s_climbArmFrontSpin,
-        s_climbArmBackSpin,
+        s_fastClimbArmFrontSpin,
+        s_fastClimbArmBackSpin,
+        s_midClimbArmFrontSpin,
+        s_midClimbArmBackSpin,
         s_climbArmNeutral,
     }
 

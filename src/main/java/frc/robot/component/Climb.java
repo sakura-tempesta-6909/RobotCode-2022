@@ -35,18 +35,6 @@ public class Climb implements Component {
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
-
-  public void climbArmFrontSpin(){
-    climbControl(Const.ClimbArmFrontSpin);
-  }   
-  
-  public void climbArmBackSpin(){
-    climbControl(-Const.ClimbArmBackSpin);
-  }
-
-  public void climbArmNeutral(){
-    climbControl(Const.Neutral);
-  }
   
   /**
    * 
@@ -140,14 +128,19 @@ public class Climb implements Component {
   @Override
   public void applyState() {
     switch(State.climbArmState){
-      case s_climbArmFrontSpin:
-        climbArmFrontSpin();
+      case s_fastClimbArmFrontSpin:
+        climbControl(Const.FastClimbArmSpin);
         break;
-      case s_climbArmBackSpin:
-        climbArmBackSpin();
+      case s_fastClimbArmBackSpin:
+        climbControl(-Const.FastClimbArmSpin);
         break;
+      case s_midClimbArmFrontSpin:
+        climbControl(Const.MidClimbArmSpin);
+        break;
+      case s_midClimbArmBackSpin:
+        climbControl(-Const.MidClimbArmSpin);
       case s_climbArmNeutral:
-        climbArmNeutral();
+        climbControl(Const.Neutral);
         break;
     }
 
