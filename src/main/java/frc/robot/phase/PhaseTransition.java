@@ -2,7 +2,7 @@ package frc.robot.phase;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.function.BooleanSupplier;
+import java.util.function.DoublePredicate;
 
 public class PhaseTransition {
 	private ArrayList<Phase> phaseList = new ArrayList<>();
@@ -18,13 +18,13 @@ public class PhaseTransition {
 		phaseList.add(phase);
 	}
 
-	public void run() {
+	public void run(double time) {
 		if(is_finished) {
 			System.out.println("All phases is finished.");
 			return;
 		}
 
-		if(currentPhase.condition.getAsBoolean()) {
+		if(currentPhase.condition.test(time)) {
 			System.out.println(currentPhase.toString() + " has been finished.");
 
 			if(phaseIterator.hasNext()) {
@@ -41,7 +41,7 @@ public class PhaseTransition {
 
 	public static class Phase {
 		Runnable action;
-		BooleanSupplier condition;
+		DoublePredicate condition;
 
 		private int phaseID;
 		private String phaseName;
@@ -51,11 +51,11 @@ public class PhaseTransition {
 			phaseCounter = 0;
 		}
 
-		public Phase(Runnable action, BooleanSupplier condition) {
+		public Phase(Runnable action, DoublePredicate condition) {
 			this(action, condition, "");
 		}
 
-		public Phase(Runnable action, BooleanSupplier condition, String phaseName) {
+		public Phase(Runnable action, DoublePredicate condition, String phaseName) {
 			this.action = action;
 			this.condition = condition;
 			this.phaseID = phaseCounter++;
