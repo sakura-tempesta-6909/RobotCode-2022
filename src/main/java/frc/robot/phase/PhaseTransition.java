@@ -17,7 +17,7 @@ public class PhaseTransition {
 	}
 
 	private Phase currentPhase;
-	private Iterator<Phase> phaseIterator = phaseList.iterator();
+	private Iterator<Phase> phaseIterator;
 	private boolean is_finished = false;
 
 	public void registerPhase(Phase... phases) {
@@ -31,6 +31,8 @@ public class PhaseTransition {
 		for (Phase phase : phases) {
 			phaseList.add(phase);
 		}
+		
+		phaseIterator = phaseList.iterator();
 	}
 
 	public void run() {
