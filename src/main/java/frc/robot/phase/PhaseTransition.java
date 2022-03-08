@@ -69,7 +69,7 @@ public class PhaseTransition {
 		}
 
 		public Phase(Runnable action, DoublePredicate condition) {
-			this(action, condition, "");
+			this(action, condition, "anonymous phase");
 		}
 
 		public Phase(Runnable action, DoublePredicate condition, String phaseName) {
