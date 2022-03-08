@@ -40,6 +40,8 @@ public class PhaseTransition {
 		}
 
 		if(currentPhase.condition.test(timer.get())) {
+			timer.reset();
+			timer.start();
 			System.out.println(currentPhase.toString() + " has been finished.");
 
 			if(phaseIterator.hasNext()) {
