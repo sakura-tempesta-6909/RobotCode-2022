@@ -4,27 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.DoublePredicate;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class PhaseTransition {
 	private ArrayList<Phase> phaseList = new ArrayList<>();
+
+	private Timer timer = new Timer();
+
+	PhaseTransition() {
+		timer.reset();
+		timer.start();
+	}
 
 	private Phase currentPhase;
 	private Iterator<Phase> phaseIterator = phaseList.iterator();
 	private boolean is_finished = false;
 
-	public void registerPhase(Phase phase) {
-		if(phaseList.size() == 0) {
-			currentPhase = phase;
+	public void registerPhase(Phase... phases) {
+		if(phases.length == 0) {
+			return;
 		}
-		phaseList.add(phase);
+
+		if(phaseList.size() == 0) {
+			currentPhase = phases[0];
+		}
+		for (Phase phase : phases) {
+			phaseList.add(phase);
+		}
 	}
 
-	public void run(double time) {
+	public void run() {
 		if(is_finished) {
 			System.out.println("All phases is finished.");
 			return;
 		}
 
-		if(currentPhase.condition.test(time)) {
+		if(currentPhase.condition.test(timer.get())) {
 			System.out.println(currentPhase.toString() + " has been finished.");
 
 			if(phaseIterator.hasNext()) {
