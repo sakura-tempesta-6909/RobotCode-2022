@@ -30,7 +30,7 @@ public class Autonomous {
                 (double time) -> {
                     return time > 2;
                 },
-                "wait 2 sec"
+                "wait for 2 sec"
             ),
             new PhaseTransition.Phase(
                 () -> {
