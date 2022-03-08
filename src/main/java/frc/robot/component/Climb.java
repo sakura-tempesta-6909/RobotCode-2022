@@ -9,7 +9,6 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 
@@ -37,12 +36,18 @@ public class Climb implements Component {
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
 
-  public void frontSpin(){
+  public void climbArmFrontSpin(){
     climbControl(Const.ClimbArmFrontSpin);
   }   
-  public void backSpin(){
+  
+  public void climbArmBackSpin(){
     climbControl(-Const.ClimbArmBackSpin);
   }
+
+  public void climbArmNeutral(){
+    climbControl(Const.Neutral);
+  }
+  
   /**
    * 
    * @param climbSpinSpeed 時計回りを正
@@ -61,6 +66,7 @@ public class Climb implements Component {
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
+
   public void firstSolenoidClose(){
     firstSolenoidControl(false);
   }
@@ -71,9 +77,11 @@ public class Climb implements Component {
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
   }
+
   public void secondSolenoidOpen(){
     secondSolenoidControl(true);
   }
+
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
   }   
@@ -131,16 +139,30 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
+    switch(State.climbArmState){
+      case s_climbArmFrontSpin:
+        climbArmFrontSpin();
+        break;
+      case s_climbArmBackSpin:
+        climbArmBackSpin();
+        break;
+      case s_climbArmNeutral:
+        climbArmNeutral();
+        break;
+    }
+
     if(State.is_firstSolenoidOpen){
       firstSolenoidOpen();
     } else {
       firstSolenoidClose();
     }
+
     if(State.is_secondSolenoidOpen){
       secondSolenoidOpen();
     } else {
       secondSolenoidClose();
     }
+
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
     } 
