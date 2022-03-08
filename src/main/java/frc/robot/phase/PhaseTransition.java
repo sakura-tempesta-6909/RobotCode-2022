@@ -25,14 +25,12 @@ public class PhaseTransition {
 			return;
 		}
 
-		if(phaseList.size() == 0) {
-			currentPhase = phases[0];
-		}
 		for (Phase phase : phases) {
 			phaseList.add(phase);
 		}
 		
 		phaseIterator = phaseList.iterator();
+		currentPhase = phaseIterator.next();
 	}
 
 	public void run() {

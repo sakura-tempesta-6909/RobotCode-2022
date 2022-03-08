@@ -14,18 +14,18 @@ public class Autonomous {
                     return;
                 },
                 (double time) -> {
-                    return time > 5;
+                    return time > 3;
                 },
-                "5 second wait"
+                "3 second wait"
             ),
             new PhaseTransition.Phase(
                 () -> {
                     return;
                 },
                 (double time) -> {
-                    return time > 7;
+                    return time > 4;
                 },
-                "10 second wait"
+                "4 second wait"
             )
         );
     }
