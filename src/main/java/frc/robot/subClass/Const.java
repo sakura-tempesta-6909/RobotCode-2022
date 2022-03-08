@@ -66,7 +66,7 @@ public class Const {
 
     //Trigger
     public static final double LargeTriggerValue = 0.7;
-    public static final double LittleTriggerValue = 0.4;
+    public static final double LittleTriggerValue = 0.35;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
