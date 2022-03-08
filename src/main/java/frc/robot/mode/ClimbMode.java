@@ -47,6 +47,10 @@ public class ClimbMode extends Mode {
       State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
     } else if(driveController.getLeftTriggerAxis() == Const.TriggerValue){
       State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
+    } else if(driveController.getRightTriggerAxis() == Const.TriggerValue && driveController.getRightBumper()){
+      State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;
+    } else if(driveController.getLeftTriggerAxis() == Const.TriggerValue && driveController.getLeftBumper()){
+      State.climbArmState = ClimbArmState.s_midClimbArmBackSpin;
     } else {
       State.climbArmState = ClimbArmState.s_climbArmNeutral;
     }
