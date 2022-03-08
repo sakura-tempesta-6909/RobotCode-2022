@@ -3,50 +3,50 @@ package frc.robot.phase;
 import frc.robot.State;
 
 public class Autonomous {
-    private static PhaseTransition phaseTransition;
+	private static PhaseTransition phaseTransition;
 
-    public static void autonomousInit() {
-        phaseTransition = new PhaseTransition();
-        PhaseTransition.Phase.PhaseInit();
+	public static void autonomousInit() {
+		phaseTransition = new PhaseTransition();
+		PhaseTransition.Phase.PhaseInit();
 
-        // Phaseの登録
-        phaseTransition.registerPhase(
-            new PhaseTransition.Phase(
-                () -> {
-                    State.is_compressorEnabled = true;
-                    State.conveyorState = State.ConveyorState.s_intakeConveyor;
-                    return;
-                },
-                (double time) -> {
-                    return time > 0.5;
-                },
-                "intake"
-            ),
-            new PhaseTransition.Phase(
-                () -> {
-                    State.is_compressorEnabled = false;
-                    return;
-                },
-                (double time) -> {
-                    return time > 2;
-                },
-                "wait for 2 sec"
-            ),
-            new PhaseTransition.Phase(
-                () -> {
-                    State.is_compressorEnabled = false;
-                    State.conveyorState = State.ConveyorState.s_shootConveyor;
-                    return;
-                },
-                (double time) -> {
-                    return time > 2;
-                },
-                "shoot"
-            )
-        );
-    }
+		// Phaseの登録
+		phaseTransition.registerPhase(
+			new PhaseTransition.Phase(
+				() -> {
+					State.is_compressorEnabled = true;
+					State.conveyorState = State.ConveyorState.s_intakeConveyor;
+					return;
+				},
+				(double time) -> {
+					return time > 0.5;
+				},
+				"intake"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.is_compressorEnabled = false;
+					return;
+				},
+				(double time) -> {
+					return time > 2;
+				},
+				"wait for 2 sec"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.is_compressorEnabled = false;
+					State.conveyorState = State.ConveyorState.s_shootConveyor;
+					return;
+				},
+				(double time) -> {
+					return time > 2;
+				},
+				"shoot"
+			)
+		);
+	}
 
-    public static void run() {
-        phaseTransition.run();
-    }
+	public static void run() {
+		phaseTransition.run();
+	}
 }
