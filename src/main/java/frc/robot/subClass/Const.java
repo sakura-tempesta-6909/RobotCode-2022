@@ -65,7 +65,8 @@ public class Const {
     public static final double MidClimbArmSpin = 0.25;
 
     //Trigger
-    public static final double TriggerValue = 0.7;
+    public static final double LargeTriggerValue = 0.7;
+    public static final double LittleTriggerValue = 0.4;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
