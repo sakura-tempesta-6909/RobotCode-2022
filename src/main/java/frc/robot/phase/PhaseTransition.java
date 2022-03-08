@@ -80,7 +80,7 @@ public class PhaseTransition {
 		}
 
 		public String toString() {
-			return "phase " + this.phaseID + " (" + phaseName + ")";
+			return "phase" + this.phaseID + " (" + phaseName + ")";
 		}
 	}
 }

@@ -13,24 +13,24 @@ public class Autonomous {
         phaseTransition.registerPhase(
             new PhaseTransition.Phase(
                 () -> {
-                    State.is_compressorEnabled = false;
-                    return;
-                },
-                (double time) -> {
-                    return time > 1;
-                },
-                "compressor stop"
-            ),
-            new PhaseTransition.Phase(
-                () -> {
                     State.is_compressorEnabled = true;
                     State.conveyorState = State.ConveyorState.s_intakeConveyor;
                     return;
                 },
                 (double time) -> {
-                    return time > 1;
+                    return time > 0.5;
                 },
                 "intake"
+            ),
+            new PhaseTransition.Phase(
+                () -> {
+                    State.is_compressorEnabled = false;
+                    return;
+                },
+                (double time) -> {
+                    return time > 2;
+                },
+                "wait 2 sec"
             ),
             new PhaseTransition.Phase(
                 () -> {
