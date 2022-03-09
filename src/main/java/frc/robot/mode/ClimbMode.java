@@ -27,16 +27,16 @@ public class ClimbMode extends Mode {
     State.driveZRotation = driveController.getRightX();
 
     State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;
-    State.littleTriggerValue = driveController.getRightTriggerAxis();
+    State.climbArmFrontSpeed = driveController.getRightTriggerAxis();
     
     State.climbArmState = ClimbArmState.s_midClimbArmBackSpin;
-    State.littleTriggerValue = driveController.getLeftTriggerAxis();
+    State.climbArmBackSpeed = driveController.getLeftTriggerAxis();
 
     State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
-    State.largeTriggerValue = driveController.getRightTriggerAxis(); driveController.getAButton();
+    State.climbArmFrontSpeed = driveController.getRightTriggerAxis(); driveController.getAButton();
 
     State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
-    State.largeTriggerValue = driveController.getLeftTriggerAxis(); driveController.getAButton();
+    State.climbArmBackSpeed = driveController.getLeftTriggerAxis(); driveController.getAButton();
     
     if(driveController.getAButton()){
       State.is_firstSolenoidOpen = true;

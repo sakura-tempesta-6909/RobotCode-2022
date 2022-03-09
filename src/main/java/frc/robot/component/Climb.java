@@ -129,16 +129,16 @@ public class Climb implements Component {
   public void applyState() {
     switch(State.climbArmState){
       case s_fastClimbArmFrontSpin:
-        climbControl(State.largeTriggerValue * Const.FastClimbArmSpin);
+        climbControl(State.climbArmFrontSpeed * Const.FastClimbArmSpin);
         break;
       case s_fastClimbArmBackSpin:
-        climbControl(State.largeTriggerValue * -Const.FastClimbArmSpin);
+        climbControl(State.climbArmFrontSpeed * -Const.FastClimbArmSpin);
         break;
       case s_midClimbArmFrontSpin:
-        climbControl(State.littleTriggerValue * Const.MidClimbArmSpin);
+        climbControl(State.climbArmBackSpeed * Const.MidClimbArmSpin);
         break;
       case s_midClimbArmBackSpin:
-        climbControl(State.littleTriggerValue * -Const.MidClimbArmSpin);
+        climbControl(State.climbArmBackSpeed * -Const.MidClimbArmSpin);
       case s_climbArmNeutral:
         climbControl(Const.Neutral);
         break;
