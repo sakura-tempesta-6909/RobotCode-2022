@@ -12,7 +12,7 @@ public class DriveMode extends Mode {
   
   @Override
   public void changeMode() {
-    if(driveController.getLeftTriggerAxis() == Const.TriggerValue){
+    if(driveController.getLeftTriggerAxis() > Const.TriggerValue){
       State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
