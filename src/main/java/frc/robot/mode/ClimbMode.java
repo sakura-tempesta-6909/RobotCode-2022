@@ -43,9 +43,9 @@ public class ClimbMode extends Mode {
       State.is_climbSolenoidOpen = false;
     }
 
-    if(driveController.getRightTriggerAxis() > Const.LargeTriggerValue){
+    if(driveController.getRightTriggerAxis() > Const.LargeTriggerValue && driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
-    } else if(driveController.getLeftTriggerAxis() > Const.LargeTriggerValue){
+    } else if(driveController.getLeftTriggerAxis() > Const.LargeTriggerValue && driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
     } else if(driveController.getRightTriggerAxis() > Const.LittleTriggerValue){
       State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;

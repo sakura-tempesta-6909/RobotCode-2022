@@ -17,6 +17,7 @@ public class State {
     public static IntakeExtendState intakeExtendState;
 
     public static ClimbArmState climbArmState;
+    public static double largeTriggerValue, littleTriggerValue;
 
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
