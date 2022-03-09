@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 public class Const {
     //Deadband
     public static final double Deadband = 0.2;
+    public static final double Neutral = 0;
 
     //PORTS
     //ControllerPort(コントローラーのポート)
@@ -31,9 +32,9 @@ public class Const {
 
     //pneumatics
     public static final int CompressorPort = 0;
-    public static final int FrontSolenoidPort = 0;
-    public static final int BackSolenoidPort = 1;
-    public static final int ClampSolenoidPort = 2;
+    public static final int FirstSolenoidPort = 0;
+    public static final int SecondSolenoidPort = 1;
+    public static final int ClimbSolenoidPort = 2;
 
     //sparkMax
     public static final int ClimbArmPort = 0;
@@ -45,15 +46,16 @@ public class Const {
     public static final int StopDrive = 0;
     //ConveyorSpeed
     //ボールの発射(Shoot)
-    public static final double IntakeBeltShoot = 1;
-    public static final double LaunchShoot = 0.5;
+    public static final double BeltShoot = 1;
+    public static final double ShooterShoot = 0.5;
     //ボールを出す(outtake)
-    public static final double IntakeBeltOuttake = 1;
-    public static final double IntakeRolleOuttake = 0.5;
-    public static final double LaunchOuttake = 0.5;
+    public static final double BeltOuttake = 1;
+    public static final double RollerOuttake = 0.5;
+    public static final double ShooterOuttake = 0.3;
+
     //ボールの回収(intake)
-    public static final double IntakeBeltIntake = 1;
-    public static final double IntakeRollerIntake = 0.5;
+    public static final double BeltIntake = 1;
+    public static final double RollerIntake = 0.5;
 
     //intakeExtend
     public static final double IntakeExtendOpen = 0.2;
@@ -61,6 +63,14 @@ public class Const {
     //Climb
     public static final double ClimbArmFrontSpin = 0.5;
     public static final double ClimbArmBackSpin = 0.5;
+
+    //Trigger
+    public static final double TriggerValue = 0.7;
+
+    //POV
+    public static final double POV90Degrees = 90;
+    public static final double POV180Degrees = 180;
+    public static final double POV270Degrees = 270;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
@@ -75,5 +85,6 @@ public class Const {
         LaunchMotorConfig.slot0.kI = 0;
         LaunchMotorConfig.slot0.kD = 0;
         LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+
     }
 }

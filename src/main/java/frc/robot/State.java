@@ -10,12 +10,15 @@ public class State {
     public static DriveSpeed driveSpeed;
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;
-    public static boolean is_intakeExtendOpen;
+    public static ConveyorState conveyorState;;
+    
+    public static boolean is_compressorEnabled;
 
-    public static boolean is_solenoidFrontOpen;
-    public static boolean is_solenoidBackOpen;
-    public static boolean is_clampSolenoid;
+    public static IntakeExtendState intakeExtendState;
+
+    public static boolean is_firstSolenoidOpen;
+    public static boolean is_secondSolenoidOpen;
+    public static boolean is_climbSolenoidOpen;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -24,6 +27,7 @@ public class State {
         XboxController operateController = new XboxController(Const.OperateControllerPort);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
+        is_compressorEnabled = true;
         
         stateReset();
     }
@@ -31,10 +35,10 @@ public class State {
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        is_intakeExtendOpen = false;
-        is_solenoidFrontOpen = true;
-        is_solenoidBackOpen = true;
-        is_clampSolenoid = true;
+        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
+        is_firstSolenoidOpen = false;
+        is_secondSolenoidOpen = false;
+        is_climbSolenoidOpen = false;
     }
 
     public enum DriveSpeed {
@@ -49,6 +53,13 @@ public class State {
         s_intakeConveyor,
         s_shootConveyor,
         s_stopConveyor,
+    }
+
+    public enum IntakeExtendState {
+        s_intakeExtendOpen,
+        s_intakeExtendClose,
+        s_intakeExtendNeutral,
+    
     }
 
     public enum Modes {

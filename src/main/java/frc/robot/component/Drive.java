@@ -31,6 +31,8 @@ public class Drive implements Component{
 
         driveRightFront.configAllSettings(Const.DriveRightConfig);
         driveLeftFront.configAllSettings(Const.DriveLeftConfig);
+        driveRightFront.setInverted(true);
+        driveRightBack.setInverted(true);
     }
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
@@ -72,7 +74,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.SlowDrive * State.driveXSpeed, Const.SlowDrive * State.driveZRotation);
                 break;
             case s_stopDrive:
-                arcadeDrive(Const.StopDrive * State.driveXSpeed, Const.StopDrive * State.driveZRotation);
+                arcadeDrive(Const.Neutral * State.driveXSpeed, Const.Neutral * State.driveZRotation);
         }
     }
 }

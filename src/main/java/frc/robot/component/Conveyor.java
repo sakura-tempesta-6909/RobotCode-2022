@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -34,6 +35,12 @@ public class Conveyor implements Component {
     ballSensor = new DigitalInput(Const.BallSensorPort);
     intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
     intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    //intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
+    //intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
+
+    intakeRoller.setInverted(true);
+
+  
 
   }
   /**  バックプレートのそうさ
@@ -46,19 +53,19 @@ public class Conveyor implements Component {
   */
 
   public void intakeConveyor(){
-    conveyorControl(Const.IntakeRollerIntake, Const.IntakeBeltIntake, 0);
+    conveyorControl(Const.RollerIntake, Const.BeltIntake, Const.Neutral);
   }
-
+ 
   public void outtakeConveyor(){
-    conveyorControl(-Const.IntakeRolleOuttake, -Const.IntakeBeltOuttake, -Const.LaunchOuttake);
+    conveyorControl(-Const.RollerOuttake, -Const.BeltOuttake, -Const.ShooterOuttake);
   }
 
   public void shootConveyor(){
-    conveyorControl(0, Const.IntakeBeltShoot, Const.LaunchShoot);
+    conveyorControl(Const.Neutral, Const.BeltIntake, Const.ShooterShoot);
   }
 
   public void stopConveyor(){
-    conveyorControl(0, 0, 0);
+    conveyorControl(Const.Neutral, Const.Neutral, Const.Neutral);
   }
 
   /**
@@ -67,10 +74,10 @@ public class Conveyor implements Component {
    * @param intakeBeltSpeed intakeを正
    * @param launchSpeed intakeを正
    */
-  public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double launchSpeed){
+  public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    launchMotor.set(ControlMode.PercentOutput, launchSpeed);
+    launchMotor.set(ControlMode.PercentOutput, shooterSpeed);
   }
 
   /**
@@ -87,6 +94,9 @@ public class Conveyor implements Component {
   
   public void intakeExtendClose(){
     intakeExtendControl(-Const.IntakeExtendOpen);
+  }
+  public void intakeExtendNeutral(){
+    intakeExtendControl(Const.Neutral);
   }
 
   public void backPlateMove(double angle){
@@ -139,11 +149,17 @@ public class Conveyor implements Component {
         stopConveyor();
         break;  
     }
-    
-    if(State.is_intakeExtendOpen){
-      intakeExtendOpen();
-    } else {
-      intakeExtendClose();
+
+    switch(State.intakeExtendState){
+      case s_intakeExtendOpen:
+        intakeExtendOpen();
+        break;
+      case s_intakeExtendClose:
+        intakeExtendClose();
+        break;
+      case s_intakeExtendNeutral:
+        intakeExtendNeutral();
+        break;  
     }
   }
   
