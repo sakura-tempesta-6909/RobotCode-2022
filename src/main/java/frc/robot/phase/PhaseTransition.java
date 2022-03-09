@@ -1,6 +1,7 @@
 package frc.robot.phase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.function.DoublePredicate;
 
@@ -25,10 +26,8 @@ public class PhaseTransition {
 			return;
 		}
 
-		for (Phase phase : phases) {
-			phaseList.add(phase);
-		}
-		
+		Collections.addAll(phaseList, phases);
+
 		phaseIterator = phaseList.iterator();
 		currentPhase = phaseIterator.next();
 	}
@@ -60,8 +59,8 @@ public class PhaseTransition {
 		Runnable action;
 		DoublePredicate condition;
 
-		private int phaseID;
-		private String phaseName;
+		private final int phaseID;
+		private final String phaseName;
 
 		private static int phaseCounter = 0;
 		public static void PhaseInit() {
