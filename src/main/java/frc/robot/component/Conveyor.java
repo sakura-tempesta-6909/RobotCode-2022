@@ -32,8 +32,8 @@ public class Conveyor implements Component {
     /**バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
-    //intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
-    //intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyOpen);
+    intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
   }
   /**  バックプレートのそうさ
