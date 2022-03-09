@@ -25,6 +25,18 @@ public class ClimbMode extends Mode {
     State.driveSpeed = DriveSpeed.s_midDrive;
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
+
+    State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;
+    State.littleTriggerValue = driveController.getRightTriggerAxis();
+    
+    State.climbArmState = ClimbArmState.s_midClimbArmBackSpin;
+    State.littleTriggerValue = driveController.getLeftTriggerAxis();
+
+    State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
+    State.largeTriggerValue = driveController.getRightTriggerAxis(); driveController.getAButton();
+
+    State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
+    State.largeTriggerValue = driveController.getLeftTriggerAxis(); driveController.getAButton();
     
     if(driveController.getAButton()){
       State.is_firstSolenoidOpen = true;
@@ -41,18 +53,6 @@ public class ClimbMode extends Mode {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
-    }
-
-    if(driveController.getRightTriggerAxis() > Const.LargeTriggerValue && driveController.getAButton()){
-      State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
-    } else if(driveController.getLeftTriggerAxis() > Const.LargeTriggerValue && driveController.getAButton()){
-      State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
-    } else if(driveController.getRightTriggerAxis() > Const.LittleTriggerValue){
-      State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;
-    } else if(driveController.getLeftTriggerAxis() > Const.LittleTriggerValue){
-      State.climbArmState = ClimbArmState.s_midClimbArmBackSpin;
-    } else {
-      State.climbArmState = ClimbArmState.s_climbArmNeutral;
     }
   }
 }
