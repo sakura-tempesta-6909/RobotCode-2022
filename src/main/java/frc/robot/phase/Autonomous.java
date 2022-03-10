@@ -12,10 +12,11 @@ public class Autonomous {
 		/**
 		 * autonomousの流れ
 		 * 1.conveyorModeにする
-		 * 2.ボールを打つ＆＆調整
-		 * 3.driveModeに切り替え
-		 * 4.ボールの近くまで移動
-		 * 5.ボールの回収
+		 * 2.位置を調整
+		 * 3.ボールを打つ
+		 * 4.driveModeに切り替え
+		 * 5.ボールの近くまで移動
+		 * 6.ボールの回収
 		 * これを繰り返す
 		 */
 
