@@ -9,6 +9,16 @@ public class Autonomous {
 		phaseTransition = new PhaseTransition();
 		PhaseTransition.Phase.PhaseInit();
 
+		/**
+		 * autonomousの流れ
+		 * 1.conveyorModeにする
+		 * 2.ボールを打つ＆＆調整
+		 * 3.driveModeに切り替え
+		 * 4.ボールの近くまで移動
+		 * 5.ボールの回収
+		 * これを繰り返す
+		 */
+
 		// Phaseの登録
 		phaseTransition.registerPhase(
 			new PhaseTransition.Phase(
