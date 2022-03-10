@@ -37,7 +37,7 @@ public class Conveyor implements Component {
     intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
     intakeRoller.setInverted(true);
-    intakeExtend.setInverted(true);
+    intakeExtend.setInverted(false);
   
 
   }
