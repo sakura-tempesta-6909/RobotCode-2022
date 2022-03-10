@@ -65,6 +65,14 @@ public class Const {
     public static final double MidClimbArmSpin = 0.5;
 
 
+    //Trigger
+    public static final double TriggerValue = 0.7;
+
+    //POV
+    public static final double POV90Degrees = 90;
+    public static final double POV180Degrees = 180;
+    public static final double POV270Degrees = 270;
+
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();

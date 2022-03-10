@@ -12,9 +12,9 @@ public class ClimbMode extends Mode {
 
   @Override
   public void changeMode() {
-    if(driveController.getBackButton()){
+    if(driveController.getPOV() == Const.POV90Degrees){
       State.mode = Modes.k_conveyor;
-    } else if(driveController.getStartButton()){
+    } else if(driveController.getPOV() == Const.POV270Degrees){
       State.mode = Modes.k_drive;
     } 
 }    
