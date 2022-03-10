@@ -17,7 +17,7 @@ public class State {
     public static IntakeExtendState intakeExtendState;
 
     public static ClimbArmState climbArmState;
-    public static double climbArmFrontSpeed, climbArmBackSpeed;
+    public static double climbArmSpeed;
 
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
@@ -67,10 +67,8 @@ public class State {
     }
 
     public enum ClimbArmState {
-        s_fastClimbArmFrontSpin,
-        s_fastClimbArmBackSpin,
-        s_midClimbArmFrontSpin,
-        s_midClimbArmBackSpin,
+        s_fastClimbArmSpin,
+        s_midClimbArmSpin,
         s_climbArmNeutral,
     }
 

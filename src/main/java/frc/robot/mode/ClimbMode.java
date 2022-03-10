@@ -26,30 +26,27 @@ public class ClimbMode extends Mode {
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    State.climbArmState = ClimbArmState.s_midClimbArmFrontSpin;
-    State.climbArmFrontSpeed = driveController.getRightTriggerAxis();
-    
-    State.climbArmState = ClimbArmState.s_midClimbArmBackSpin;
-    State.climbArmBackSpeed = driveController.getLeftTriggerAxis();
-
-    State.climbArmState = ClimbArmState.s_fastClimbArmFrontSpin;
-    State.climbArmFrontSpeed = driveController.getRightTriggerAxis(); driveController.getAButton();
-
-    State.climbArmState = ClimbArmState.s_fastClimbArmBackSpin;
-    State.climbArmBackSpeed = driveController.getLeftTriggerAxis(); driveController.getAButton();
+    State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
     
     if(driveController.getAButton()){
+      State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
+    } else {
+      State.climbArmState = ClimbArmState.s_midClimbArmSpin;
+    }
+
+
+    if(driveController.getRightBumper()){
       State.is_firstSolenoidOpen = true;
     } else {
       State.is_firstSolenoidOpen = false;
     }
 
-    if(driveController.getBButton()){
+    if(driveController.getLeftBumper()){
       State.is_secondSolenoidOpen = true;
     } else {
       State.is_secondSolenoidOpen = false;
     }
-    if(driveController.getRightBumper() && driveController.getLeftBumper()){     
+    if(driveController.getRightStickButton() && driveController.getLeftStickButton()){  
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
