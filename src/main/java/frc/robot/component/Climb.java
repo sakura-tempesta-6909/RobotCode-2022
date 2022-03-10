@@ -22,6 +22,11 @@ public class Climb implements Component {
    * 
    */
 
+  /**
+   * 
+   */
+ 
+
   private Compressor compressor; 
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;

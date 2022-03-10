@@ -9,6 +9,14 @@ public class Autonomous {
 		phaseTransition = new PhaseTransition();
 		PhaseTransition.Phase.PhaseInit();
 
+		/**
+		 * climbの流れ
+		 * 1.climbSolenoidでロボットをあげる
+		 * 2.climbArmを回す
+		 * 3.firstSolenoidをとsecondSelonoidを交互に動かす
+		 * 4.2と３を繰り返す
+		 */
+
 		// Phaseの登録
 		phaseTransition.registerPhase(
 			new PhaseTransition.Phase(
