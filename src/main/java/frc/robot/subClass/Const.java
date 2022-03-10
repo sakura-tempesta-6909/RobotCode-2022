@@ -37,7 +37,7 @@ public class Const {
     public static final int ClimbSolenoidPort = 2;
 
     //sparkMax
-    public static final int ClimbArmPort = 0;
+    public static final int ClimbArmPort = 1;
   
     //DriveSpeed
     public static final int FastDrive = 1;
@@ -61,8 +61,9 @@ public class Const {
     public static final double IntakeExtendOpen = 0.2;
 
     //Climb
-    public static final double ClimbArmFrontSpin = 0.5;
-    public static final double ClimbArmBackSpin = 0.5;
+    public static final double FastClimbArmSpin = 1;
+    public static final double MidClimbArmSpin = 0.5;
+
 
     //Trigger
     public static final double TriggerValue = 0.7;

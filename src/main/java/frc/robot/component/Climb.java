@@ -9,7 +9,6 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 
@@ -36,13 +35,7 @@ public class Climb implements Component {
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
-
-  public void frontSpin(){
-    climbControl(Const.ClimbArmFrontSpin);
-  }   
-  public void backSpin(){
-    climbControl(-Const.ClimbArmBackSpin);
-  }
+  
   /**
    * 
    * @param climbSpinSpeed 時計回りを正
@@ -61,6 +54,7 @@ public class Climb implements Component {
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
+
   public void firstSolenoidClose(){
     firstSolenoidControl(false);
   }
@@ -71,9 +65,11 @@ public class Climb implements Component {
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
   }
+
   public void secondSolenoidOpen(){
     secondSolenoidControl(true);
   }
+
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
   }   
@@ -131,16 +127,30 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
+    switch(State.climbArmState){
+      case s_fastClimbArmSpin:
+        climbControl(State.climbArmSpeed * Const.FastClimbArmSpin);
+        break;
+      case s_midClimbArmSpin:
+        climbControl(State.climbArmSpeed * Const.MidClimbArmSpin);
+        break;
+      case s_climbArmNeutral:
+        climbControl(Const.Neutral);
+        break;
+    }
+
     if(State.is_firstSolenoidOpen){
       firstSolenoidOpen();
     } else {
       firstSolenoidClose();
     }
+
     if(State.is_secondSolenoidOpen){
       secondSolenoidOpen();
     } else {
       secondSolenoidClose();
     }
+
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
     } 

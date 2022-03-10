@@ -16,6 +16,9 @@ public class State {
 
     public static IntakeExtendState intakeExtendState;
 
+    public static ClimbArmState climbArmState;
+    public static double climbArmSpeed;
+
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
@@ -36,6 +39,7 @@ public class State {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
+        climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
@@ -60,6 +64,12 @@ public class State {
         s_intakeExtendClose,
         s_intakeExtendNeutral,
     
+    }
+
+    public enum ClimbArmState {
+        s_fastClimbArmSpin,
+        s_midClimbArmSpin,
+        s_climbArmNeutral,
     }
 
     public enum Modes {
