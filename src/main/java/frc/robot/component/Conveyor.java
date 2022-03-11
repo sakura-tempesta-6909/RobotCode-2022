@@ -90,7 +90,7 @@ public class Conveyor implements Component {
     intakeExtendControl(Const.IntakeExtendOpen);
   }
 
-  public void intakeExtendClsoe(){
+  public void intakeExtendClose(){
     intakeExtendControl(-Const.IntakeExtendOpen);
   }
 
@@ -158,7 +158,7 @@ public class Conveyor implements Component {
         intakeExtendOpen();
         break;
       case s_intakeExtendClose:
-        intakeExtendClsoe();
+        intakeExtendClose();
         break;
       case s_intakeExtendNeutral:
         intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
