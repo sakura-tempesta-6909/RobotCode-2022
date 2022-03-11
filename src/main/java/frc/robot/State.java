@@ -61,8 +61,7 @@ public class State {
     }
 
     public enum IntakeExtendState {
-        s_intakeExtendOpen,
-        s_intakeExtendClose,
+        s_manual,
         s_intakeExtendNeutral,
     
     }
