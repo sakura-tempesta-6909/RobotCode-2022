@@ -58,7 +58,7 @@ public class Const {
     public static final double RollerIntake = 0.5;
 
     //intakeExtend
-    public static final double IntakeExtendOpen = 0.2;
+    public static final double IntakeExtendOpen = 0.4;
 
     //Climb
     public static final double FastClimbArmSpin = 1;
