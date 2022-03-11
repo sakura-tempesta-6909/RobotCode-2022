@@ -15,6 +15,7 @@ public class State {
     public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
+    public static double intakeExtendSpeed;
 
     public static ClimbArmState climbArmState;
     public static double climbArmSpeed;
