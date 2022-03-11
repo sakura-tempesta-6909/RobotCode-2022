@@ -10,14 +10,13 @@ public class Autonomous {
 		PhaseTransition.Phase.PhaseInit();
 
 		/**
-		 * autonomousの流れ
+		 * autonomousの流れ(autonomousの時間は15秒)
 		 * 1.conveyorModeにする
 		 * 2.位置を調整
 		 * 3.ボールを打つ
-		 * 4.driveModeに切り替え
-		 * 5.ボールの近くまで移動
-		 * 6.ボールの回収
-		 * これを繰り返す
+		 * 4.driveModeにする
+		 * 5.driveBaseを動かす
+		 * 6.conveyorを動かす
 		 */
 
 		// Phaseの登録
