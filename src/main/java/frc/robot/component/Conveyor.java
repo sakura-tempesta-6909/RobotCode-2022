@@ -86,6 +86,18 @@ public class Conveyor implements Component {
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
+  public void intakeExtendOpen(){
+    intakeExtendControl(Const.IntakeExtendOpen);
+  }
+
+  public void intakeExtendClsoe(){
+    intakeExtendControl(-Const.IntakeExtendOpen);
+  }
+
+  public void intakeExtendNeutral(){
+    intakeExtendControl(Const.Neutral);
+  }
+
 
   public void backPlateMove(double angle){
 
