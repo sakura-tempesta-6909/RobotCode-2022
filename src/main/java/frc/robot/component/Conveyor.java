@@ -154,6 +154,12 @@ public class Conveyor implements Component {
       case s_manual:
         intakeExtendControl(State.intakeExtendSpeed * Const.IntakeExtendOpen);
         break;
+      case s_intakeExtendOpen:
+        intakeExtendOpen();
+        break;
+      case s_intakeExtendClose:
+        intakeExtendClsoe();
+        break;
       case s_intakeExtendNeutral:
         intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
         break;  
