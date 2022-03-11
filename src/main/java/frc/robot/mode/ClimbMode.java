@@ -46,7 +46,7 @@ public class ClimbMode extends Mode {
     } else {
       State.is_secondSolenoidOpen = false;
     }
-    if(driveController.getRightStickButton() && driveController.getLeftStickButton()){  
+    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == Const.POV180Degrees){  
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
