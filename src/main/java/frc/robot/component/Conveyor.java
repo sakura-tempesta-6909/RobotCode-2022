@@ -86,16 +86,6 @@ public class Conveyor implements Component {
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
-  public void intakeExtendOpen(){
-    intakeExtendControl(Const.IntakeExtendOpen);
-  }
-  
-  public void intakeExtendClose(){
-    intakeExtendControl(-Const.IntakeExtendOpen);
-  }
-  public void intakeExtendNeutral(){
-    intakeExtendControl(Const.Neutral);
-  }
 
   public void backPlateMove(double angle){
 
@@ -150,13 +140,13 @@ public class Conveyor implements Component {
 
     switch(State.intakeExtendState){
       case s_intakeExtendOpen:
-        intakeExtendOpen();
+        intakeExtendControl(State.intakeExtendSpeed * Const.IntakeExtendOpen);
         break;
       case s_intakeExtendClose:
-        intakeExtendClose();
+        intakeExtendControl(State.intakeExtendSpeed * -Const.IntakeExtendOpen);
         break;
       case s_intakeExtendNeutral:
-        intakeExtendNeutral();
+        intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
         break;  
     }
   }
