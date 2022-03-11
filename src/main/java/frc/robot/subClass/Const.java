@@ -68,6 +68,9 @@ public class Const {
     //Trigger
     public static final double TriggerValue = 0.7;
 
+    //Stick
+    public static final double RightXValue = 0.5;
+
     //POV
     public static final double POV90Degrees = 90;
     public static final double POV180Degrees = 180;

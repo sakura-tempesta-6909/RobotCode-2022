@@ -26,9 +26,9 @@ public class DriveMode extends Mode {
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
      
-    if(driveController.getRightX() > 0.5 && driveController.getAButton()){
+    if(driveController.getRightX() > Const.RightXValue && driveController.getAButton()){
       State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
-    } else if(driveController.getRightX() > -0.5 && driveController.getAButton()){
+    } else if(driveController.getRightX() > -Const.RightXValue && driveController.getAButton()){
       State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
     } else {
       State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
