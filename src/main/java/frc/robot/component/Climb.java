@@ -38,7 +38,7 @@ public class Climb implements Component {
   
   /**
    * 
-   * @param climbSpinSpeed 時計回りを正
+   * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
     climbArm.set(climbSpinSpeed);
@@ -81,20 +81,18 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
+  public void climbSolenoidExtend(){
+    climbSolenoidControl(true);
+  }
+
   public void compressorDisable(){
     compressor.disable();
   }
 
   public void compressorEnable(){
     compressor.enableDigital();
-    boolean enabled = compressor.enabled();
   }
 
-
-  public void climbSolenoidExtend(){
-    climbSolenoidControl(true);
-  }
-  
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
