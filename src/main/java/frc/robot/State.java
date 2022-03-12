@@ -43,6 +43,7 @@ public class State {
         conveyorState = ConveyorState.s_stopConveyor;
         intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         climbArmState = ClimbArmState.s_climbArmNeutral;
+        backPlateState = BackPlateState.s_backPlateNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;

@@ -1,5 +1,6 @@
 package frc.robot.component;
 
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
