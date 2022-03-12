@@ -60,6 +60,9 @@ public class Const {
     //intakeExtend
     public static final double IntakeExtendOpen = 0.2;
 
+    //backPlate
+    public static final double BackPlateOpen = 0.5;
+
     //Climb
     public static final double FastClimbArmSpin = 1;
     public static final double MidClimbArmSpin = 0.5;
