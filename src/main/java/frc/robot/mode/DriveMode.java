@@ -45,8 +45,7 @@ public class DriveMode extends Mode {
           State.conveyorState = ConveyorState.s_rollerOuttake;
         } else if(driveController.getPOV() == 225){
           State.conveyorState = ConveyorState.s_shooterOuttake;
-        }
-        if(driveController.getPOV() == 315){
+        } else if(driveController.getPOV() == 315){
           State.conveyorState = ConveyorState.s_beltIntake;
         } else if(driveController.getPOV() == 0){
           State.conveyorState = ConveyorState.s_rollerIntake;
