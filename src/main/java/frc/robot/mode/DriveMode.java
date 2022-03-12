@@ -25,15 +25,13 @@ public class DriveMode extends Mode {
     State.driveSpeed = DriveSpeed.s_fastDrive;
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
-
-    State.intakeExtendSpeed = driveController.getLeftY(); 
      
     if(driveController.getAButton()){
       State.intakeExtendState = IntakeExtendState.s_manual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
-    } else {
-      State.driveSpeed = DriveSpeed.s_fastDrive;
     }
+
+    State.intakeExtendSpeed = driveController.getLeftY(); 
 
 		if(driveController.getPOV() == Const.POV90Degrees && driveController.getRightStickButton() && driveController.getLeftStickButton()){
 			State.is_compressorEnabled = false;
