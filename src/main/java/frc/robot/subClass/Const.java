@@ -47,11 +47,11 @@ public class Const {
     //ConveyorSpeed
     //ボールの発射(Shoot)
     public static final double BeltShoot = 1;
-    public static final double ShooterShoot = 0.5;
+    public static final double ShooterShoot = 1;
     //ボールを出す(outtake)
     public static final double BeltOuttake = 1;
     public static final double RollerOuttake = 0.5;
-    public static final double ShooterOuttake = 0.3;
+    public static final double ShooterOuttake = 0.5;
 
     //ボールの回収(intake)
     public static final double BeltIntake = 1;

@@ -36,19 +36,27 @@ public class DriveMode extends Mode {
 			State.conveyorState = ConveyorState.s_outtakeConveyor;
 		} else if(driveController.getRightBumper()){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
-		} else if(driveController.getLeftBumper() && driveController.getAButton()){
-      State.conveyorState = ConveyorState.s_beltOuttake;
-    } else if(driveController.getLeftBumper() && driveController.getBButton()){
-      State.conveyorState = ConveyorState.s_rollerOuttake;
-    } else if(driveController.getLeftBumper() && driveController.getYButton()){
-      State.conveyorState = ConveyorState.s_shooterOuttake;
-    } else if(driveController.getRightBumper() && driveController.getAButton()){
-      State.conveyorState = ConveyorState.s_beltIntake;
-    } else if(driveController.getRightBumper() && driveController.getBButton()){
-      State.conveyorState = ConveyorState.s_rollerIntake;
-    } else {
-      State.conveyorState = ConveyorState.s_stopConveyor;
+		} else {
+      if(driveController.getLeftBumper()){
+        if(driveController.getAButton()){
+          State.conveyorState = ConveyorState.s_beltOuttake;
+        } else if(driveController.getBButton()){
+          State.conveyorState = ConveyorState.s_rollerOuttake;
+        } else if(driveController.getYButton()){
+          State.conveyorState = ConveyorState.s_shooterOuttake;
+        }
+      if(driveController.getRightBumper()){
+        if(driveController.getAButton()){
+          State.conveyorState = ConveyorState.s_beltIntake;
+        } else if(driveController.getBButton()){
+          State.conveyorState = ConveyorState.s_rollerIntake;
+        }
+        }
+      } else {
+        State.conveyorState = ConveyorState.s_stopConveyor;
+      }
     }
+    
 
 		if(driveController.getAButton()){
 			State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;

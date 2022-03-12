@@ -28,7 +28,7 @@ public class ConveyorMode extends Mode {
     if(driveController.getBButton()){
       State.conveyorState = ConveyorState.s_shootConveyor;
     } else if(driveController.getBButton() && driveController.getAButton()){
-      
+      State.conveyorState = ConveyorState.s_shooterShoot;
     }
   }
   
