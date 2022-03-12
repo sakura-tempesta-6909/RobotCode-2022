@@ -37,16 +37,16 @@ public class DriveMode extends Mode {
 		} else if(driveController.getRightBumper()){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
 		} else {
-        if(driveController.getPOV() == Const.POV90Degrees){
+        if(driveController.getPOV() == 45){
           State.conveyorState = ConveyorState.s_beltOuttake;
-        } else if(driveController.getPOV() == Const.POV180Degrees){
+        } else if(driveController.getPOV() == 135){
           State.conveyorState = ConveyorState.s_rollerOuttake;
-        } else if(driveController.getPOV() ==Const.POV270Degrees){
+        } else if(driveController.getPOV() == 225){
           State.conveyorState = ConveyorState.s_shooterOuttake;
         }
-        if(driveController.getPOV() == Const.POV90Degrees){
+        if(driveController.getPOV() == 45){
           State.conveyorState = ConveyorState.s_beltIntake;
-        } else if(driveController.getPOV() == Const.POV180Degrees){
+        } else if(driveController.getPOV() == 135){
           State.conveyorState = ConveyorState.s_rollerIntake;
         } else {
           State.conveyorState = ConveyorState.s_stopConveyor;
