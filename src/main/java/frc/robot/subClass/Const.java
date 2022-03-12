@@ -44,6 +44,7 @@ public class Const {
     public static final double MidDrive = 0.5;
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
+
     //ConveyorSpeed
     //ボールの発射(Shoot)
     public static final double BeltShoot = 1;

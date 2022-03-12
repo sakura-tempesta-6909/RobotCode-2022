@@ -4,9 +4,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -57,8 +60,10 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-        // TODO Auto-generated method stub
-        
+       Util.sendConsole("DriveRightFront", driveRightFront.getSelectedSensorVelocity());
+       Util.sendConsole("DriveRightBack", driveRightBack.getSelectedSensorVelocity());
+       Util.sendConsole("DriveLeftFront", driveLeftFront.getSelectedSensorVelocity());
+       Util.sendConsole("DriveLeftBack", driveLeftBack.getSelectedSensorVelocity());
     }
 
     @Override
