@@ -25,6 +25,14 @@ public class DriveMode extends Mode {
     State.driveSpeed = DriveSpeed.s_fastDrive;
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
+     
+    if(driveController.getAButton()){
+      State.intakeExtendSpeed = driveController.getLeftY(); 
+      State.intakeExtendState = IntakeExtendState.s_manual;
+      State.driveSpeed = DriveSpeed.s_stopDrive;
+    }
+
+    
 
 		if(driveController.getPOV() == Const.POV90Degrees && driveController.getRightStickButton() && driveController.getLeftStickButton()){
 			State.is_compressorEnabled = false;
@@ -36,14 +44,6 @@ public class DriveMode extends Mode {
 			State.conveyorState = ConveyorState.s_outtakeConveyor;
 		} else if(driveController.getRightBumper()){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
-		}
-
-		if(driveController.getAButton()){
-			State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
-		} else if(driveController.getBButton()){
-			State.intakeExtendState = IntakeExtendState.s_intakeExtendClose; 
-		} else {
-			State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral; 
 		}
   
   }
