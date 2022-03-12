@@ -65,6 +65,29 @@ public class Conveyor implements Component {
   public void stopConveyor(){
     conveyorControl(Const.Neutral, Const.Neutral, Const.Neutral);
   }
+  public void beltIntake(){
+    conveyorControl(Const.Neutral, Const.BeltIntake, Const.Neutral);
+  }
+
+  public void beltOuttake(){
+    conveyorControl(Const.Neutral, -Const.BeltOuttake, Const.Neutral);
+  }
+
+  public void rollerIntake(){
+    conveyorControl(Const.RollerIntake, Const.Neutral, Const.Neutral);
+  }
+
+  public void rollerOuttake(){
+    conveyorControl(-Const.RollerOuttake, Const.Neutral, Const.Neutral);
+  }
+
+  public void shooterOuttake(){
+    conveyorControl(Const.Neutral, Const.Neutral, Const.ShooterOuttake);
+  }
+
+  public void shooterShoot(){
+    conveyorControl(Const.Neutral, Const.Neutral, Const.ShooterShoot);
+  }
 
   /**
    * 
@@ -146,6 +169,25 @@ public class Conveyor implements Component {
       case s_stopConveyor:
         stopConveyor();
         break;  
+
+      case s_beltIntake:
+        beltIntake();
+        break;
+      case s_beltOuttake:
+        beltOuttake();
+        break;
+      case s_rollerIntake:
+        rollerIntake();
+        break;
+      case s_rollerOuttake:
+        rollerOuttake();
+        break;
+      case s_shooterOuttake:
+        shooterOuttake();
+        break;
+      case s_shooterShoot:
+        shooterShoot();
+        break;
     }
 
     switch(State.intakeExtendState){

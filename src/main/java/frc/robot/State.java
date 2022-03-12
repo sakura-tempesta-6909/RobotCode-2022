@@ -57,6 +57,13 @@ public class State {
         s_intakeConveyor,
         s_shootConveyor,
         s_stopConveyor,
+
+        s_beltIntake,
+        s_beltOuttake,
+        s_rollerIntake,
+        s_rollerOuttake,
+        s_shooterOuttake,
+        s_shooterShoot,
     }
 
     public enum IntakeExtendState {
