@@ -7,6 +7,7 @@ import frc.robot.State.ConveyorState;
 import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class DriveMode extends Mode {
   
@@ -37,6 +38,7 @@ public class DriveMode extends Mode {
 		} else if(driveController.getRightBumper()){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
 		} else {
+      Util.sendConsole("POV Value", driveController.getPOV());
         if(driveController.getPOV() == 45){
           State.conveyorState = ConveyorState.s_beltOuttake;
         } else if(driveController.getPOV() == 135){

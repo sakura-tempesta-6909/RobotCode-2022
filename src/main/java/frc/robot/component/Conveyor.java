@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subClass.Const;
 import frc.robot.State;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 
 public class Conveyor implements Component {
 
@@ -88,6 +91,7 @@ public class Conveyor implements Component {
   public void shooterShoot(){
     conveyorControl(Const.Neutral, Const.Neutral, Const.ShooterShoot);
   }
+
 
   /**
    * 
