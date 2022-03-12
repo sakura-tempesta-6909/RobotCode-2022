@@ -27,10 +27,6 @@ public class ConveyorMode extends Mode {
 
     if(driveController.getBButton()){
       State.conveyorState = ConveyorState.s_shootConveyor;
-    } else {
-      if(driveController.getPOV() == 90){
-        State.conveyorState = ConveyorState.s_shooterShoot;
-      }
     }
   }
   
