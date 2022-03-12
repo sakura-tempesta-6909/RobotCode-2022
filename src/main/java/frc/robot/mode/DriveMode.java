@@ -27,9 +27,9 @@ public class DriveMode extends Mode {
     State.driveZRotation = driveController.getRightX();
      
     if(driveController.getAButton()){
+      State.intakeExtendSpeed = driveController.getLeftY(); 
       State.intakeExtendState = IntakeExtendState.s_manual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
-      State.intakeExtendSpeed = driveController.getLeftY(); 
     }
 
     
