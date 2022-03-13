@@ -63,8 +63,8 @@ public class State {
         s_beltOuttake,
         s_rollerIntake,
         s_rollerOuttake,
-        s_shooterOuttake,
         s_shooterShoot,
+        s_shooterOuttake,
     }
 
     public enum IntakeExtendState {

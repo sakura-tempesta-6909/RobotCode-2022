@@ -84,14 +84,13 @@ public class Conveyor implements Component {
     conveyorControl(-Const.RollerOuttake, Const.Neutral, Const.Neutral);
   }
 
-  public void shooterOuttake(){
-    conveyorControl(Const.Neutral, Const.Neutral, -Const.ShooterOuttake);
-  }
-
   public void shooterShoot(){
     conveyorControl(Const.Neutral, Const.Neutral, Const.ShooterShoot);
   }
 
+  public void shooterOuttake(){
+    conveyorControl(Const.Neutral, Const.Neutral, -Const.ShooterOuttake);
+  }
 
   /**
    * 
