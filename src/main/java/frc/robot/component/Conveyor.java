@@ -19,7 +19,7 @@ public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, launchMotor;
-  private DigitalInput ballSensor, limitSwitch;
+  private DigitalInput ballSensor;
   private TalonSRX intakeExtend, backPlate;
   
 
@@ -35,9 +35,6 @@ public class Conveyor implements Component {
     /**バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
-    intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-    intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(false);
   
