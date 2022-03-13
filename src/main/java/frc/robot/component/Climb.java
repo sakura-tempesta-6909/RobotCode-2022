@@ -93,6 +93,19 @@ public class Climb implements Component {
     compressor.enableDigital();
   }
 
+  public void climb(){
+    /**
+     * 
+     * activate climbSolenoid 
+     * 
+     * turn clamp into right angle(firstSolenoid が真上にくるようにする)
+     * 
+     * close firstSolenoid
+     * 
+     * turn clamp until secondClamp hits bar
+     * 
+     */
+  }
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
