@@ -33,7 +33,7 @@ public class Util {
         sendConsole( "Mode", State.mode.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
         sendConsole("is_firstSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
+        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);

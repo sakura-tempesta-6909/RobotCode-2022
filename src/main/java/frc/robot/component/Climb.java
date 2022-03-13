@@ -1,12 +1,16 @@
 package frc.robot.component;
 
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 // import com.revrobotics.SparkMaxAlternateEncoder;
 
+import edu.wpi.first.hal.DIOJNI;
+import edu.wpi.first.util.sendable.Sendable;
 // import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subClass.Const;
@@ -25,6 +29,8 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
+  private DigitalInput hallSensor;
+  
 
    
 
@@ -34,6 +40,8 @@ public class Climb implements Component {
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+    hallSensor = new DigitalInput(Const.hallsensorPort);
+    
   }
   
   /**
@@ -119,6 +127,11 @@ public class Climb implements Component {
 
   @Override
   public void readSensors() {
+    
+    if(hallSensor.get()){
+      State.inclinationValue = 0;
+    }
+
     // TODO Auto-generated method stub
     
   }

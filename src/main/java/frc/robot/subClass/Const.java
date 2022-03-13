@@ -36,6 +36,9 @@ public class Const {
     public static final int SecondSolenoidPort = 1;
     public static final int ClimbSolenoidPort = 2;
 
+    //dio port
+    public static final int hallsensorPort = 0;
+
     //sparkMax
     public static final int ClimbArmPort = 1;
   
