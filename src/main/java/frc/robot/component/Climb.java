@@ -46,8 +46,7 @@ public class Climb implements Component {
   }
 
   public static double spinToAngle(double spin){
-    double angleToSpin = Const.Round / Const.GearRatio;
-    return spin / angleToSpin;
+    return spin / Const.AngleToSpin;
   }
 
   public double angleToSpin(double angle){

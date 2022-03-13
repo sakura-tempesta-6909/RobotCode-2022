@@ -84,7 +84,7 @@ public class Const {
     //climbArmAngle
     public static final double Round = 360;
     public static final double GearRatio = 202.5;
-    public static final double AngleToSpin = 1.78;
+    public static final double AngleToSpin = Round / GearRatio;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
