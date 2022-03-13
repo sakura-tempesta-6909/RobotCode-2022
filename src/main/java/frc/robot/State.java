@@ -23,6 +23,8 @@ public class State {
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
 
+    public static double driveRightFrontVelocity, driveRightBackVelocity, driveLeftFrontVelocity, driveLeftBackVelocity;
+
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
