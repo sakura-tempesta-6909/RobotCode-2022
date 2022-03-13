@@ -58,7 +58,7 @@ public class Const {
     public static final double RollerIntake = 0.5;
 
     //intakeExtend
-    public static final double IntakeExtendOpen = 0.2;
+    public static final double IntakeExtendOpen = 0.4;
 
     //backPlate
     public static final double BackPlateOpen = 0.5;
@@ -70,6 +70,9 @@ public class Const {
 
     //Trigger
     public static final double TriggerValue = 0.7;
+
+    //Stick
+    public static final double RightXValue = 0.5;
 
     //POV
     public static final double POV90Degrees = 90;
