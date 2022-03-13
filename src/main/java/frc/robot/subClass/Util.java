@@ -1,5 +1,7 @@
 package frc.robot.subClass;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 import frc.robot.State.IntakeExtendState;
@@ -35,6 +37,7 @@ public class Util {
         sendConsole("DriveSpeed", State.driveSpeed.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
+        sendConsole("intakeExtendState", State.intakeExtendState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
         sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
@@ -43,7 +46,7 @@ public class Util {
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
-
+     
      
     
     }
