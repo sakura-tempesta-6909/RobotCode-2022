@@ -96,7 +96,7 @@ public class Conveyor implements Component {
     // } else {
     //   intakeExtend.set(ControlMode.Velocity, Const.Neutral);
     // }
-    intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
   public void intakeExtendOpen(){
