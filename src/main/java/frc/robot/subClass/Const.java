@@ -1,6 +1,7 @@
 package frc.robot.subClass;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.SlotConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 public class Const {
@@ -60,6 +61,9 @@ public class Const {
     //intakeExtend
     public static final double IntakeExtendOpen = 0.4;
 
+    public static final int ExtendPIDslot = 0;
+    public static final int UpPIDslot = 1;
+
     //Climb
     public static final double FastClimbArmSpin = 1;
     public static final double MidClimbArmSpin = 0.5;
@@ -79,6 +83,7 @@ public class Const {
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();
+    public static final TalonSRXConfiguration intakeExtendConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
@@ -88,6 +93,18 @@ public class Const {
         LaunchMotorConfig.slot0.kI = 0;
         LaunchMotorConfig.slot0.kD = 0;
         LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        
+        //intakeExtendを上げるとき１、展開するとき（下げるとき）０
+        intakeExtendConfig.slot0.kP = 0;
+        intakeExtendConfig.slot0.kI = 0;
+        intakeExtendConfig.slot0.kD = 0;
+        
+        intakeExtendConfig.slot1.kP = 0;
+        intakeExtendConfig.slot1.kI = 0;
+        intakeExtendConfig.slot1.kD = 0;
+        intakeExtendConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
+
+        
 
     }
 }
