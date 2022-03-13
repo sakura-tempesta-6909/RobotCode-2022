@@ -1,6 +1,7 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
@@ -18,8 +19,9 @@ public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, launchMotor;
-  private DigitalInput ballSensor, limitSwitch;
+  private DigitalInput ballSensor;
   private TalonSRX intakeExtend, backPlate;
+  
 
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.IntakeRollerPort);
@@ -27,15 +29,12 @@ public class Conveyor implements Component {
     launchMotor = new TalonSRX(Const.LaunchMotorPort);
     intakeExtend = new TalonSRX(Const.ConveyorExtendPort);
     backPlate = new TalonSRX(Const.BackPlatePort);
-
+    intakeExtend.configAllSettings(Const.intakeExtendConfig);
     launchMotor.configAllSettings(Const.LaunchMotorConfig);
 
     /**バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.BallSensorPort);
-    intakeExtend.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-    intakeExtend.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(false);
   
@@ -83,19 +82,31 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときを正
    */
   public void intakeExtendControl(double intakeExtendControl){
-    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
+    if (intakeExtendControl > 0) {
+      intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
+      intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+    
+
+    } else if(intakeExtendControl < 0){
+      intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
+      intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+    } else {
+      intakeExtend.set(ControlMode.Velocity, Const.Neutral);
+    }
   }
 
   public void intakeExtendOpen(){
     intakeExtendControl(Const.IntakeExtendOpen);
   }
-  
+
   public void intakeExtendClose(){
     intakeExtendControl(-Const.IntakeExtendOpen);
   }
+
   public void intakeExtendNeutral(){
     intakeExtendControl(Const.Neutral);
   }
+
 
   public void backPlateMove(double angle){
 
@@ -149,6 +160,9 @@ public class Conveyor implements Component {
     }
 
     switch(State.intakeExtendState){
+      case s_manual:
+        intakeExtendControl(State.intakeExtendSpeed * Const.IntakeExtendOpen);
+        break;
       case s_intakeExtendOpen:
         intakeExtendOpen();
         break;
@@ -156,7 +170,7 @@ public class Conveyor implements Component {
         intakeExtendClose();
         break;
       case s_intakeExtendNeutral:
-        intakeExtendNeutral();
+        intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
         break;  
     }
   }

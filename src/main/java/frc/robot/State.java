@@ -15,6 +15,7 @@ public class State {
     public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
+    public static double intakeExtendSpeed;
 
     public static ClimbArmState climbArmState;
     public static double climbArmSpeed;
@@ -22,6 +23,7 @@ public class State {
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
+    
 
     public static double driveRightFrontPosition, driveLeftFrontPosition;
 
@@ -45,6 +47,7 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+        
     }
 
     public enum DriveSpeed {
@@ -62,6 +65,7 @@ public class State {
     }
 
     public enum IntakeExtendState {
+        s_manual,
         s_intakeExtendOpen,
         s_intakeExtendClose,
         s_intakeExtendNeutral,
