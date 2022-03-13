@@ -2,6 +2,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.State.IntakeExtendState;
 
 public class Util {
 
@@ -28,6 +29,8 @@ public class Util {
         System.out.println(key + ":" +which);
         SmartDashboard.putBoolean(key, which);
     }
+
+    
 
     public static void AllsendConsole(){
         sendConsole( "Mode", State.mode.toString());
