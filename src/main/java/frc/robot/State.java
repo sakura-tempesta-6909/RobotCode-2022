@@ -19,10 +19,12 @@ public class State {
 
     public static ClimbArmState climbArmState;
     public static double climbArmSpeed;
+    public static double climbArmAngle;
 
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
+    
 
     public static double gyroValue; // クランプの傾き用
 
@@ -44,6 +46,7 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+        
     }
 
     public enum DriveSpeed {

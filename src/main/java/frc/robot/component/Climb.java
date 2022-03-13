@@ -46,7 +46,8 @@ public class Climb implements Component {
   }
 
   public static double spinToAngle(double spin){
-    return spin / 1.78;
+    double angleToSpin = 360 / 202.5;
+    return spin / angleToSpin;
   }
 
   public double angleToSpin(double angle){
@@ -140,7 +141,7 @@ public class Climb implements Component {
 
   @Override
   public void readSensors() {
-    // TODO Auto-generated method stub
+    State.climbArmAngle = getClimbArmAngle();
     
   }
 
