@@ -27,9 +27,9 @@ public class ConveyorMode extends Mode {
     State.driveZRotation = driveController.getRightX();
 
     if(driveController.getAButton()){
+      State.backPlateSpeed = driveController.getLeftY();
       State.backPlateState = BackPlateState.s_backPlateManual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
-      State.backPlateSpeed = driveController.getLeftY();
     }
 
     if(driveController.getBButton()){
