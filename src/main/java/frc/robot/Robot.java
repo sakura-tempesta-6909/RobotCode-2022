@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.applyState();
     }
-   Util.AllsendConsole();
+   Util.allsendConsole();
   }
 
   @Override
