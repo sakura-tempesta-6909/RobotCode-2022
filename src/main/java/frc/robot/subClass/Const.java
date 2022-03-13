@@ -80,13 +80,11 @@ public class Const {
     public static final double POV90Degrees = 90;
     public static final double POV180Degrees = 180;
     public static final double POV270Degrees = 270;
-
+    
     //climbArmAngle
-    public static final double MinimumAngle = 0;
-    public static final double MinimumPoint = 0;
-    public static final double MaxPoint = 0;
-    public static final double MaxAngle = 0;
-
+    public static final double Round = 360;
+    public static final double GearRatio = 202.5;
+    public static final double AngleToSpin = 1.78;
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
