@@ -93,6 +93,8 @@ public class Conveyor implements Component {
     } else if(intakeExtendControl < 0){
       intakeExtend.selectProfileSlot(1, 0);
       intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+    } else {
+      intakeExtend.set(ControlMode.Velocity, Const.Neutral);
     }
   }
 
