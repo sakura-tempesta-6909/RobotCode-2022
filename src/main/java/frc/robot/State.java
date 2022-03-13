@@ -79,8 +79,6 @@ public class State {
     }
 
     public enum BackPlateState {
-        s_backPlateOpen,
-        s_backPlateClose,
         s_backPlateManual,
         s_backPlateNeutral,
     }

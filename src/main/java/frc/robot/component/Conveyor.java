@@ -98,14 +98,6 @@ public class Conveyor implements Component {
     intakeExtendControl(Const.Neutral);
   }
 
-  public void backPlateOpen(){
-    backPlateControl(Const.BackPlateOpen);
-  }
-
-  public void backPlateClose(){
-    backPlateControl(-Const.BackPlateOpen);
-  }
-
   public void backPlateNeutral(){
     backPlateControl(Const.Neutral);
   }
@@ -187,12 +179,6 @@ public class Conveyor implements Component {
     switch(State.backPlateState){
       case s_backPlateManual:
         backPlateControl(State.backPlateSpeed * Const.BackPlateOpen);
-        break;
-      case s_backPlateOpen:
-        backPlateOpen();
-        break;
-      case s_backPlateClose:
-        backPlateClose();
         break;
       case s_backPlateNeutral:
         backPlateNeutral();
