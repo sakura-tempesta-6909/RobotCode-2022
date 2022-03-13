@@ -2,6 +2,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.State.IntakeExtendState;
 
 public class Util {
 
@@ -29,11 +30,17 @@ public class Util {
         SmartDashboard.putBoolean(key, which);
     }
 
+    public static void sendConsole(String key, IntakeExtendState intakeEstate){
+        System.out.println(key + ":" + intakeEstate);
+        SmartDashboard.putString(key, intakeEstate.name());
+        
+    }
+
     public static void AllsendConsole(){
         sendConsole( "Mode", State.mode.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
         sendConsole("is_firstSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
+        sendConsole("intakeExtendOpen", State.intakeExtendState);
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);

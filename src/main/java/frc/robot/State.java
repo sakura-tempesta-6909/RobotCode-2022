@@ -23,7 +23,7 @@ public class State {
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
-    public static boolean is_intakeExtendOpen;
+    
 
     public static double gyroValue; // クランプの傾き用
 
@@ -45,7 +45,7 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
-        is_intakeExtendOpen = false;
+        
     }
 
     public enum DriveSpeed {

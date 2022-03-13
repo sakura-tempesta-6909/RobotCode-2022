@@ -59,7 +59,7 @@ public class Const {
     public static final double RollerIntake = 0.5;
 
     //intakeExtend
-    public static final double IntakeExtendOpen = 0.4;
+    public static final double IntakeExtendOpen = 0.2;
 
     public static final int ExtendPIDslot = 0;
     public static final int UpPIDslot = 1;
