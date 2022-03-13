@@ -27,7 +27,7 @@ public class DriveMode extends Mode {
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
      
-    if(driveController.getAButton()){
+    if(driveController.getYButton()){
       State.intakeExtendSpeed = driveController.getLeftY(); 
       State.intakeExtendState = IntakeExtendState.s_manual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
@@ -48,17 +48,17 @@ public class DriveMode extends Mode {
 		} else {
       Util.sendConsole("POV Value", driveController.getPOV());
         if(driveController.getPOV() == 45){
-          State.conveyorState = ConveyorState.s_rollerOuttake;
-        } else if(driveController.getPOV() == 90){
-          State.conveyorState = ConveyorState.s_beltOuttake;
-        } else if(driveController.getPOV() == 135){
           State.conveyorState = ConveyorState.s_shooterOuttake;
+        } else if(driveController.getPOV() == 90){
+          State.conveyorState = ConveyorState.s_rollerOuttake;
+        } else if(driveController.getPOV() == 135){
+          State.conveyorState = ConveyorState.s_beltOuttake;
         } else if(driveController.getPOV() == 225){
-          State.conveyorState = ConveyorState.s_rollerIntake;
+          State.conveyorState = ConveyorState.s_shooterShoot;
         } else if(driveController.getPOV() == 270){
           State.conveyorState = ConveyorState.s_beltIntake;
         } else if(driveController.getPOV() == 315){
-          State.conveyorState = ConveyorState.s_shooterShoot;
+          State.conveyorState = ConveyorState.s_rollerIntake;
         } else {
           State.conveyorState = ConveyorState.s_stopConveyor;
         }
