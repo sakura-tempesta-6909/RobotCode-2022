@@ -60,10 +60,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-      State.driveRightFrontVelocity = driveRightFront.getSelectedSensorVelocity();
-      State.driveRightBackVelocity = driveRightBack.getSelectedSensorVelocity();
-      State.driveLeftFrontVelocity = driveLeftFront.getSelectedSensorVelocity();
-      State.driveLeftBackVelocity = driveLeftBack.getSelectedSensorVelocity();
+      State.driveRightFrontPosition = driveRightFront.getSelectedSensorPosition();
+      State.driveLeftFrontPosition = driveLeftFront.getSelectedSensorPosition();
     }
 
     @Override
