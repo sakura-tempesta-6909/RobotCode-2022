@@ -1,6 +1,8 @@
 package frc.robot.subClass;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.SlotConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
@@ -103,6 +105,15 @@ public class Const {
         intakeExtendConfig.slot1.kI = 0;
         intakeExtendConfig.slot1.kD = 0;
         intakeExtendConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
+        
+        //LimitSwitch
+        intakeExtendConfig.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        intakeExtendConfig.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+
+        intakeExtendConfig.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        intakeExtendConfig.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        
+
 
         
 
