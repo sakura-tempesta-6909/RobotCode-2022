@@ -2,6 +2,7 @@ package frc.robot.subClass;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import com.revrobotics.CANSparkMax;
 
 public class Const {
     //Deadband
@@ -75,6 +76,13 @@ public class Const {
     public static final double POV90Degrees = 90;
     public static final double POV180Degrees = 180;
     public static final double POV270Degrees = 270;
+
+    //climbArmAngle
+    public static final double MinimumAngle = 0;
+    public static final double MinimumPoint = 0;
+    public static final double MaxPoint = 0;
+    public static final double MaxAngle = 0;
+
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();

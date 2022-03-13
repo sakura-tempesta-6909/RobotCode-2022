@@ -3,7 +3,9 @@ package frc.robot.component;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.RelativeEncoder;
 // import com.revrobotics.SparkMaxAlternateEncoder;
+import com.revrobotics.SparkMaxAlternateEncoder;
 
 // import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
@@ -11,6 +13,8 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subClass.Const;
 import frc.robot.State;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
+import com.ctre.phoenix.motorcontrol.can.BaseTalon;
 
 public class Climb implements Component {
 
@@ -25,6 +29,7 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
+  private static RelativeEncoder climbArmEncoder;
 
    
 
@@ -34,6 +39,22 @@ public class Climb implements Component {
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+    climbArmEncoder = climbArm.getEncoder();
+
+  
+   
+  }
+
+  public static double spinToAngle(double spin){
+    return spin / 1.78;
+  }
+
+  public double angleToSpin(double angle){
+    return 1.78 * angle;
+  }
+
+  public static double getClimbArmAngle(){
+    return spinToAngle(climbArmEncoder.getPosition());
   }
   
   /**

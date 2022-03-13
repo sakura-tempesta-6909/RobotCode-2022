@@ -2,6 +2,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.component.Climb;
 
 public class Util {
 
@@ -36,6 +37,7 @@ public class Util {
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
+        sendConsole("climbArmAngle", Climb.getClimbArmAngle());
     
     }
 }
