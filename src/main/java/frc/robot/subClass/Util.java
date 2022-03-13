@@ -45,6 +45,7 @@ public class Util {
         sendConsole("driveLeftPosition", State.driveLeftFrontPosition);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
+        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
 
      
     
