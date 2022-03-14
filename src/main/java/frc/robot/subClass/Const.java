@@ -50,7 +50,7 @@ public class Const {
     //ConveyorSpeed
     //ボールの発射(Shoot)
     public static final double BeltShoot = 0.3;
-    public static final double ShooterShoot = 0.5;
+    public static final double ShooterShoot = 1.0;
     //ボールを出す(outtake)
     public static final double BeltOuttake = 0.3;
     public static final double RollerOuttake = 0.5;
