@@ -79,7 +79,7 @@ public class Conveyor implements Component {
 
   /**
    * 
-   * @param intakeExtendControl 展開するときを正
+   * @param intakeExtendControl 展開するときを負
    */
   public void intakeExtendControl(double intakeExtendControl){
     // if (intakeExtendControl > 0) {
@@ -97,11 +97,11 @@ public class Conveyor implements Component {
   }
 
   public void intakeExtendOpen(){
-    intakeExtendControl(Const.IntakeExtendOpen);
+    intakeExtendControl(-Const.IntakeExtendOpen);
   }
 
   public void intakeExtendClose(){
-    intakeExtendControl(-Const.IntakeExtendOpen);
+    intakeExtendControl(Const.IntakeExtendOpen);
   }
 
   public void intakeExtendNeutral(){
