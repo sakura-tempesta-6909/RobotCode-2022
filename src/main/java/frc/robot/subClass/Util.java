@@ -1,7 +1,10 @@
 package frc.robot.subClass;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.State.IntakeExtendState;
 
 public class Util {
 
@@ -29,13 +32,22 @@ public class Util {
         SmartDashboard.putBoolean(key, which);
     }
 
-    public static void AllsendConsole(){
+    public static void allsendConsole(){
         sendConsole( "Mode", State.mode.toString());
+        sendConsole("DriveSpeed", State.driveSpeed.toString());
+        sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
-        sendConsole("is_firstSolenoidOpen", State.is_firstSolenoidOpen);
+        sendConsole("intakeExtendState", State.intakeExtendState.toString());
+        sendConsole("driveXSpeed", State.driveXSpeed);
+        sendConsole("driveZRotation", State.driveZRotation);
+        sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
+        sendConsole("climbArmSpeed", State.climbArmSpeed);
+        sendConsole("compressorEnable", State.is_compressorEnabled);
+     
+     
     
     }
 }
