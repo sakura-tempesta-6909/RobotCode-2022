@@ -132,7 +132,7 @@ public class Conveyor implements Component {
   }
 
   public void intakeExtendNeutral(){
-    intakeExtendControl(Const.Neutral);
+    intakeExtend.setNeutralMode(NeutralMode.Brake);
   }
 
 
@@ -217,7 +217,7 @@ public class Conveyor implements Component {
         intakeExtendClose();
         break;
       case s_intakeExtendNeutral:
-        intakeExtend.setNeutralMode(NeutralMode.Brake);
+        intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
         break;  
     }
   }
