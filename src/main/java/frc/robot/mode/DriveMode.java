@@ -7,6 +7,7 @@ import frc.robot.State.ConveyorState;
 import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class DriveMode extends Mode {
   
@@ -26,7 +27,7 @@ public class DriveMode extends Mode {
     State.driveXSpeed = driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
      
-    if(driveController.getAButton()){
+    if(driveController.getYButton()){
       State.intakeExtendSpeed = driveController.getLeftY(); 
       State.intakeExtendState = IntakeExtendState.s_manual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
@@ -44,6 +45,35 @@ public class DriveMode extends Mode {
 			State.conveyorState = ConveyorState.s_outtakeConveyor;
 		} else if(driveController.getRightBumper()){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
+		} else {
+      Util.sendConsole("POV Value", driveController.getPOV());
+        if(driveController.getPOV() == 45){
+          State.conveyorState = ConveyorState.s_shooterOuttake;
+        } else if(driveController.getPOV() == 90){
+          State.conveyorState = ConveyorState.s_rollerOuttake;
+        } else if(driveController.getPOV() == 135){
+          State.conveyorState = ConveyorState.s_beltOuttake;
+        } else if(driveController.getPOV() == 225){
+          State.conveyorState = ConveyorState.s_shooterShoot;
+        } else if(driveController.getPOV() == 270){
+          State.conveyorState = ConveyorState.s_beltIntake;
+        } else if(driveController.getPOV() == 315){
+          State.conveyorState = ConveyorState.s_rollerIntake;
+        } else {
+          State.conveyorState = ConveyorState.s_stopConveyor;
+        }
+      }
+      
+      
+  
+    
+
+		if(driveController.getAButton()){
+			State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
+		} else if(driveController.getBButton()){
+			State.intakeExtendState = IntakeExtendState.s_intakeExtendClose; 
+		} else {
+			State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral; 
 		}
   
   }
