@@ -43,7 +43,7 @@ public class Const {
     public static final int ClimbArmPort = 1;
   
     //DriveSpeed
-    public static final int FastDrive = 1;
+    public static final double FastDrive = 0.8;
     public static final double MidDrive = 0.5;
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
