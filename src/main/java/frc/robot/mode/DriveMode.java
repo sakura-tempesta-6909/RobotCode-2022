@@ -13,7 +13,7 @@ public class DriveMode extends Mode {
   
   @Override
   public void changeMode() {
-    if(driveController.getLeftTriggerAxis() > Const.TriggerValue){
+    if(driveController.getLeftBumper()){
       State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
@@ -41,9 +41,9 @@ public class DriveMode extends Mode {
 			State.is_compressorEnabled = true;
 		}
 
-		if(driveController.getLeftBumper()){
+		if(driveController.getRightTriggerAxis() > Const.TriggerValue){
 			State.conveyorState = ConveyorState.s_outtakeConveyor;
-		} else if(driveController.getRightBumper()){
+		} else if(driveController.getLeftTriggerAxis() > Const.TriggerValue){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
 		} else {
       Util.sendConsole("POV Value", driveController.getPOV());
