@@ -53,42 +53,42 @@ public class Conveyor implements Component {
   */
 
   public void intakeConveyor(){
-    conveyorControl(Const.RollerIntake, Const.BeltIntake, Const.Neutral);
+    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
   }
  
   public void outtakeConveyor(){
-    conveyorControl(-Const.RollerOuttake, -Const.BeltOuttake, -Const.ShooterOuttake);
+    conveyorControl(-Const.Speeds.RollerOuttake, -Const.Speeds.BeltOuttake, -Const.Speeds.ShooterOuttake);
   }
 
   public void shootConveyor(){
-    conveyorControl(Const.Neutral, Const.BeltIntake, Const.ShooterShoot);
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
   }
 
   public void stopConveyor(){
-    conveyorControl(Const.Neutral, Const.Neutral, Const.Neutral);
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
   public void beltIntake(){
-    conveyorControl(Const.Neutral, Const.BeltIntake, Const.Neutral);
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
   }
 
   public void beltOuttake(){
-    conveyorControl(Const.Neutral, -Const.BeltOuttake, Const.Neutral);
+    conveyorControl(Const.Speeds.Neutral, -Const.Speeds.BeltOuttake, Const.Speeds.Neutral);
   }
 
   public void rollerIntake(){
-    conveyorControl(Const.RollerIntake, Const.Neutral, Const.Neutral);
+    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
   public void rollerOuttake(){
-    conveyorControl(-Const.RollerOuttake, Const.Neutral, Const.Neutral);
+    conveyorControl(-Const.Speeds.RollerOuttake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
   public void shooterShoot(){
-    conveyorControl(Const.Neutral, Const.Neutral, Const.ShooterShoot);
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
   }
 
   public void shooterOuttake(){
-    conveyorControl(Const.Neutral, Const.Neutral, -Const.ShooterOuttake);
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
 
   /**
@@ -123,15 +123,15 @@ public class Conveyor implements Component {
   }
 
   public void intakeExtendOpen(){
-    intakeExtendControl(Const.IntakeExtendOpen);
+    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
   }
 
   public void intakeExtendClose(){
-    intakeExtendControl(-Const.IntakeExtendOpen);
+    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
   }
 
   public void intakeExtendNeutral(){
-    intakeExtendControl(Const.Neutral);
+    intakeExtendControl(Const.Speeds.Neutral);
   }
 
 
@@ -207,7 +207,7 @@ public class Conveyor implements Component {
 
     switch(State.intakeExtendState){
       case s_manual:
-        intakeExtendControl(State.intakeExtendSpeed * Const.IntakeExtendOpen);
+        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.IntakeExtendOpen);
         break;
       case s_intakeExtendOpen:
         intakeExtendOpen();
@@ -216,7 +216,7 @@ public class Conveyor implements Component {
         intakeExtendClose();
         break;
       case s_intakeExtendNeutral:
-        intakeExtendControl(State.intakeExtendSpeed * Const.Neutral);
+        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.Neutral);
         break;  
     }
   }

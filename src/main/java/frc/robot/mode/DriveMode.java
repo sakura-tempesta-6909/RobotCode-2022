@@ -13,7 +13,7 @@ public class DriveMode extends Mode {
   
   @Override
   public void changeMode() {
-    if(driveController.getLeftTriggerAxis() > Const.TriggerValue){
+    if(driveController.getLeftTriggerAxis() > Const.Xbox.TriggerValue){
       State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
@@ -35,9 +35,9 @@ public class DriveMode extends Mode {
 
     
 
-		if(driveController.getPOV() == Const.POV90Degrees && driveController.getRightStickButton() && driveController.getLeftStickButton()){
+		if(driveController.getPOV() == Const.Xbox.POV90Degrees && driveController.getRightStickButton() && driveController.getLeftStickButton()){
 			State.is_compressorEnabled = false;
-		} else if(driveController.getPOV() == Const.POV180Degrees){
+		} else if(driveController.getPOV() == Const.Xbox.POV180Degrees){
 			State.is_compressorEnabled = true;
 		}
 

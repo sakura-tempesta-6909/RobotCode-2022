@@ -7,9 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.SlotConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 public class Const {
-    //Deadband
-    public static final double Deadband = 0.2;
-    public static final double Neutral = 0;
+   
 
     public static final class Ports{
         //PORTS
@@ -44,7 +42,10 @@ public class Const {
     public static final int ClimbArm = 1;
     }
     
-  
+    public static final class Speeds{
+
+    public static final double Neutral = 0;
+
     //DriveSpeed
     public static final double FastDrive = 0.8;
     public static final double MidDrive = 0.5;
@@ -63,17 +64,23 @@ public class Const {
     public static final double BeltIntake = 0.3;
     public static final double RollerIntake = 0.5;
 
-    //intakeExtend
-    public static final double IntakeExtendOpen = 0.2;
+     //intakeExtend
+     public static final double IntakeExtendOpen = 0.2;
+
+     //Climb
+    public static final double FastClimbArmSpin = 1;
+    public static final double MidClimbArmSpin = 0.5;
+
+    }
+   
 
     public static final int ExtendPIDslot = 0;
     public static final int UpPIDslot = 1;
 
-    //Climb
-    public static final double FastClimbArmSpin = 1;
-    public static final double MidClimbArmSpin = 0.5;
 
-
+    public static final class Xbox{
+    //Deadband
+    public static final double Deadband = 0.2;
     //Trigger
     public static final double TriggerValue = 0.7;
 
@@ -84,6 +91,8 @@ public class Const {
     public static final double POV90Degrees = 90;
     public static final double POV180Degrees = 180;
     public static final double POV270Degrees = 270;
+    }
+    
 
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
