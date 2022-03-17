@@ -72,18 +72,18 @@ public class Const {
     }
 
     public static final class Point{
-        //DrivePoint
-        public static final double DriveMotorRound = 4096;
-        //DriveBaseに使われているモーターのギア比
+        // DrivePoint
+        public static final double EncoderPointsPerRevolution = 4096;
+        // DriveBaseに使われているモーターのギア比
         public static final double DriveGearRatio = 10.71; 
-        //DriveBaseのタイヤの直径
-        public static final double DriveWheelDiameter = 15.24; 
-        //タイヤの円周を求める
-        public static final double DriveWheelCircumference = DriveWheelDiameter * Math.PI;
-        //PositionのPointをセンチに変換する
-        public static final double PointToCentimeter = DriveMotorRound * DriveGearRatio; 
-        //1cm進むとどのくらいPointが増えるか
-        public static final double DrivePointIn1cm = PointToCentimeter / DriveWheelCircumference; 
+        // DriveBaseのタイヤの直径 単位はセンチ
+        public static final double DriveLengthPerWheelRevolution = 15.24; 
+        // タイヤの円周を求める
+        public static final double DrivePointsPerDriveLength = DriveLengthPerWheelRevolution * Math.PI;
+        // タイヤ一回転あたりのポイント
+        public static final double DrivePointsPerWheelRevolution = EncoderPointsPerRevolution * DriveGearRatio; 
+        // 1cm進むとどのくらいPointが増えるか
+        public static final double DrivePointIn1cm = DrivePointsPerWheelRevolution / DrivePointsPerDriveLength; 
         }
 
     public static final class Xbox{
