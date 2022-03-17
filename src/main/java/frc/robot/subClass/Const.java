@@ -74,16 +74,12 @@ public class Const {
     public static final class Point{
         // DrivePoint
         public static final double EncoderPointsPerRevolution = 4096;
-        // DriveBaseに使われているモーターのギア比
-        public static final double DriveGearRatio = 10.71; 
         // DriveBaseのタイヤの直径 単位はセンチ
         public static final double DriveWheelDiameter = 15.24; 
         // タイヤの円周を求める
         public static final double DriveLengthPerWheelRevolution = DriveWheelDiameter * Math.PI;
-        // タイヤ一回転あたりのポイント
-        public static final double DrivePointsPerWheelRevolution = EncoderPointsPerRevolution * DriveGearRatio; 
         // 1cm進むとどのくらいPointが増えるか
-        public static final double DrivePointsPerDriveLength = DrivePointsPerWheelRevolution / DriveLengthPerWheelRevolution; 
+        public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution; 
         }
 
     public static final class Xbox{
