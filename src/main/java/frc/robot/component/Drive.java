@@ -41,9 +41,13 @@ public class Drive implements Component{
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
-
+    
+    /**
+     * 
+     * @param drivePoint PositionのPointをセンチに変換する
+     */
     public double drivePoint(double point){
-        double TireCircumference = Const.Point.DriveTireDiameter * Math.PI;
+        double TireCircumference = Const.Point.DriveTireCircumference;
         double drivePointIn1cm = Const.Point.PointToCentimeter / TireCircumference;
         return point / Const.Point.DrivePointIn1cm;
     }
