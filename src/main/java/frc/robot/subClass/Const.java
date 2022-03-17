@@ -87,7 +87,7 @@ public class Const {
         public static final double POV270Degrees = 270;
     }
 
-    public static final class Config{
+    public static final class Configs{
         public static final int ExtendPIDslot = 0;
         public static final int UpPIDslot = 1;
 
@@ -99,29 +99,29 @@ public class Const {
 
     public static void ConstInit() {
 
-        Config.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        Config.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        Config.LaunchMotor.slot0.kP = 0;
-        Config.LaunchMotor.slot0.kI = 0;
-        Config.LaunchMotor.slot0.kD = 0;
-        Config.LaunchMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Configs.LaunchMotor.slot0.kP = 0;
+        Configs.LaunchMotor.slot0.kI = 0;
+        Configs.LaunchMotor.slot0.kD = 0;
+        Configs.LaunchMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        Config.intakeExtend.slot0.kP = 0;
-        Config.intakeExtend.slot0.kI = 0;
-        Config.intakeExtend.slot0.kD = 0;
+        Configs.intakeExtend.slot0.kP = 0;
+        Configs.intakeExtend.slot0.kI = 0;
+        Configs.intakeExtend.slot0.kD = 0;
         
-        Config.intakeExtend.slot1.kP = 0;
-        Config.intakeExtend.slot1.kI = 0;
-        Config.intakeExtend.slot1.kD = 0;
-        Config.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
+        Configs.intakeExtend.slot1.kP = 0;
+        Configs.intakeExtend.slot1.kI = 0;
+        Configs.intakeExtend.slot1.kD = 0;
+        Configs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
         
         //LimitSwitch
-        Config.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        Config.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        Configs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        Configs.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
 
-        Config.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        Config.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        Configs.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        Configs.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
     }
 }
