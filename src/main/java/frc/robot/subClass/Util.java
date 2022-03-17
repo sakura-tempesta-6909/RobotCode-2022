@@ -41,8 +41,6 @@ public class Util {
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
-        sendConsole("driveRightPosition", State.driveRightFrontPosition);
-        sendConsole("driveLeftPosition", State.driveLeftFrontPosition);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
         sendConsole("intakeExtendOpen", State.intakeExtendState.toString());

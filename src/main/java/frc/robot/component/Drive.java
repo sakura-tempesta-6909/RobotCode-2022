@@ -75,8 +75,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-      State.driveRightFrontPosition = driveRightFront.getSelectedSensorPosition();
-      State.driveLeftFrontPosition = driveLeftFront.getSelectedSensorPosition();
+      State.driveRightFrontPosition = getDriveRightCM();
+      State.driveLeftFrontPosition = getDriveLeftCM();
     }
 
     @Override
