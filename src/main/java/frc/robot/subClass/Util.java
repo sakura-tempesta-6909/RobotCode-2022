@@ -1,5 +1,7 @@
 package frc.robot.subClass;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 import frc.robot.State.IntakeExtendState;
@@ -8,11 +10,11 @@ public class Util {
 
     //不感帯処理
     public static double deadbandProcessing(double value) {
-        return Math.abs(value) > Const.Deadband ? value : 0;
+        return Math.abs(value) > Const.Xbox.Deadband ? value : 0;
     }
 
     public static boolean deadbandCheck(double value) {
-        return Math.abs(value) > Const.Deadband;
+        return Math.abs(value) > Const.Xbox.Deadband;
     }
 
 
@@ -35,6 +37,7 @@ public class Util {
         sendConsole("DriveSpeed", State.driveSpeed.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
+        sendConsole("intakeExtendState", State.intakeExtendState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
         sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);

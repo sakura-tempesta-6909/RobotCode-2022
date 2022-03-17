@@ -30,8 +30,8 @@ public class State {
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
-        XboxController driveController = new XboxController(Const.DriveControllerPort);
-        XboxController operateController = new XboxController(Const.OperateControllerPort);
+        XboxController driveController = new XboxController(Const.Ports.DriveController);
+        XboxController operateController = new XboxController(Const.Ports.OperateController);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
@@ -62,6 +62,13 @@ public class State {
         s_intakeConveyor,
         s_shootConveyor,
         s_stopConveyor,
+
+        s_beltIntake,
+        s_beltOuttake,
+        s_rollerIntake,
+        s_rollerOuttake,
+        s_shooterShoot,
+        s_shooterOuttake,
     }
 
     public enum IntakeExtendState {
