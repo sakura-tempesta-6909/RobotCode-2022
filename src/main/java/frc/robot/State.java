@@ -55,6 +55,7 @@ public class State {
         s_slowDrive,
         s_midDrive,
         s_fastDrive,
+        s_pidDrive,
 
     }
     public enum ConveyorState {

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 
@@ -60,6 +61,12 @@ public class Drive implements Component{
         return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
     }
 
+    public void DrivePosition(int leftposition,int rightposition){
+        driveRightFront.selectProfileSlot(0, 0);
+        driveLeftFront.selectProfileSlot(0, 0);
+        driveLeftFront.set(ControlMode.Position, leftposition);
+        driveRightFront.set(ControlMode.Position, rightposition);
+    }
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
@@ -96,6 +103,8 @@ public class Drive implements Component{
             case s_slowDrive:
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
+            case s_pidDrive:
+                DrivePosition(100000,100000);
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
