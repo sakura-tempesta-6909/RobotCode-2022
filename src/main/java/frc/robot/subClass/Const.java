@@ -10,6 +10,7 @@ public class Const {
    
 
     public static final class Ports{
+
         //PORTS
         //ControllerPort(コントローラーのポート)
         public static final int DriveController = 0;
@@ -51,10 +52,12 @@ public class Const {
         public static final double MidDrive = 0.5;
         public static final double SlowDrive = 0.25;
         public static final double StopDrive = 0;
+
         //ConveyorSpeed
         //ボールの発射(Shoot)
         public static final double BeltShoot = 0.3;
         public static final double ShooterShoot = 1.0;
+
         //ボールを出す(outtake)
         public static final double BeltOuttake = 0.3;
         public static final double RollerOuttake = 0.5;
@@ -75,8 +78,10 @@ public class Const {
    
 
     public static final class Xbox{
+
         //Deadband
         public static final double Deadband = 0.2;
+
         //Trigger
         public static final double TriggerValue = 0.7;
 
@@ -98,6 +103,7 @@ public class Const {
     public static final TalonSRXConfiguration intakeExtendConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
+        
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
