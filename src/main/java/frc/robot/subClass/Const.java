@@ -48,6 +48,13 @@ public class Const {
     public static final double SlowDrive = 0.25;
     public static final int StopDrive = 0;
 
+    //DrivePoint
+    public static final double DriveMotorRound = 4096;
+    public static final double DriveGearRatio = 10.71;
+    public static final double DriveTireDiameter = 15.24;
+    public static final double PointToCentimeter = DriveMotorRound * DriveGearRatio;
+    public static final double DrivePointIn1cm = 917.7;
+
     //ConveyorSpeed
     //ボールの発射(Shoot)
     public static final double BeltShoot = 1;
