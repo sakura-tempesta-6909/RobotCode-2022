@@ -87,41 +87,41 @@ public class Const {
         public static final double POV270Degrees = 270;
     }
 
-    public static final class Slot{
+    public static final class Config{
         public static final int ExtendPIDslot = 0;
         public static final int UpPIDslot = 1;
-    }
 
-    public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration LaunchMotorConfig = new TalonSRXConfiguration();
-    public static final TalonSRXConfiguration intakeExtendConfig = new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration LaunchMotor = new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
+    }
 
     public static void ConstInit() {
 
-        DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Config.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Config.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        LaunchMotorConfig.slot0.kP = 0;
-        LaunchMotorConfig.slot0.kI = 0;
-        LaunchMotorConfig.slot0.kD = 0;
-        LaunchMotorConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Config.LaunchMotor.slot0.kP = 0;
+        Config.LaunchMotor.slot0.kI = 0;
+        Config.LaunchMotor.slot0.kD = 0;
+        Config.LaunchMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        intakeExtendConfig.slot0.kP = 0;
-        intakeExtendConfig.slot0.kI = 0;
-        intakeExtendConfig.slot0.kD = 0;
+        Config.intakeExtend.slot0.kP = 0;
+        Config.intakeExtend.slot0.kI = 0;
+        Config.intakeExtend.slot0.kD = 0;
         
-        intakeExtendConfig.slot1.kP = 0;
-        intakeExtendConfig.slot1.kI = 0;
-        intakeExtendConfig.slot1.kD = 0;
-        intakeExtendConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
+        Config.intakeExtend.slot1.kP = 0;
+        Config.intakeExtend.slot1.kI = 0;
+        Config.intakeExtend.slot1.kD = 0;
+        Config.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
         
         //LimitSwitch
-        intakeExtendConfig.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        intakeExtendConfig.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        Config.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        Config.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
 
-        intakeExtendConfig.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        intakeExtendConfig.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        Config.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        Config.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
     }
 }

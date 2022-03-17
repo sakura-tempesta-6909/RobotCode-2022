@@ -32,8 +32,8 @@ public class Conveyor implements Component {
     launchMotor = new TalonSRX(Const.Ports.LaunchMotor);
     intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
     backPlate = new TalonSRX(Const.Ports.BackPlate);
-    intakeExtend.configAllSettings(Const.intakeExtendConfig);
-    launchMotor.configAllSettings(Const.LaunchMotorConfig);
+    intakeExtend.configAllSettings(Const.Config.intakeExtend);
+    launchMotor.configAllSettings(Const.Config.LaunchMotor);
 
     /**バックプレート操作用のモーターのセット */
 

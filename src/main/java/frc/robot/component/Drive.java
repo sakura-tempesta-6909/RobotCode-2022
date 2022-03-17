@@ -29,8 +29,8 @@ public class Drive implements Component{
 
         differntialDrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.DriveRightConfig);
-        driveLeftFront.configAllSettings(Const.DriveLeftConfig);
+        driveRightFront.configAllSettings(Const.Config.DriveRight);
+        driveLeftFront.configAllSettings(Const.Config.DriveLeft);
         driveLeftFront.setInverted(true);
         driveLeftBack.setInverted(true);
 
