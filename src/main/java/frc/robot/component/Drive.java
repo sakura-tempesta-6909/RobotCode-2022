@@ -36,6 +36,8 @@ public class Drive implements Component{
         driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
+        driveRightFront.setSensorPhase(true);
+        driveLeftFront.setSensorPhase(true);
         
     }
     public void arcadeDrive(double xSpeed, double zRotation){
