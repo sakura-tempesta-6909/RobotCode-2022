@@ -47,7 +47,7 @@ public class Drive implements Component{
      * @param drivePoint PositionのPointをセンチに変換する
      */
     public double drivePointToCm(double point){
-        return point / Const.Point.DrivePointIn1cm;
+        return point / Const.Point.DrivePointsPerDriveLength;
     }
 
     public double getDriveRightCM(){
