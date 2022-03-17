@@ -21,6 +21,10 @@ public class Drive implements Component{
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
 
+
+    /**
+     * Motorの初期化、Motor・センサーの反転 
+     */
     public Drive() {
         driveRightFront = new WPI_TalonSRX(Const.Ports.DriveRightFront);
         driveLeftFront = new WPI_TalonSRX(Const.Ports.DriveLeftFront);
@@ -40,22 +44,35 @@ public class Drive implements Component{
         driveLeftFront.setSensorPhase(true);
         
     }
+
+    /**
+     * driveを動かすメソッド    
+     * @param xSpeed driveの縦方向の値
+     * @param zRotation　driveの横方向の値
+     */
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
-     * 
-     * @param drivePoint PositionのPointをセンチに変換する
+     * PositionのPointをセンチに変換する
+     * @return drivePointをセンチにして戻す
      */
     public double drivePointToCm(double drivePoint){
         return drivePoint / Const.Point.DrivePointsPerDriveLength;
     }
 
+    /**
+     * 
+     * @return　センチとして値を取得する
+     */
     public double getDriveRightCM(){
         return drivePointToCm(driveRightFront.getSelectedSensorPosition());
     }
 
+    /** 
+     * @return センチとして値を取得する
+     */
     public double getDriveLeftCM(){
         return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
     }

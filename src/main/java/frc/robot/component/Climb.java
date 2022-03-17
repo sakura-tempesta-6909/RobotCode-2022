@@ -27,7 +27,9 @@ public class Climb implements Component {
   private CANSparkMax climbArm;
 
    
-
+  /**
+   * Motorの初期化、Motor・センサーの反転
+   */
   public Climb() {
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
@@ -37,7 +39,7 @@ public class Climb implements Component {
   }
   
   /**
-   * 
+   * Climbを動かすメソッド
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -45,6 +47,7 @@ public class Climb implements Component {
   }
 
   /**
+   *  firstSolenoidを動かすメソッド
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
@@ -60,6 +63,7 @@ public class Climb implements Component {
   }
 
    /**
+    * secondSolnoidを動かすメソッド
    * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
@@ -75,7 +79,8 @@ public class Climb implements Component {
   }   
 
   /**
-   *  @param climbSolenoidOwn trueで伸びている
+   * climbSolenoidを動かすメソッド
+   *  @param climbSolenoid trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
@@ -85,10 +90,16 @@ public class Climb implements Component {
     climbSolenoidControl(true);
   }
 
+  /**
+   * compressorをdisableにするメソッド
+   */
   public void compressorDisable(){
     compressor.disable();
   }
 
+  /**
+   * compressorをenableにするメソッド
+   */
   public void compressorEnable(){
     compressor.enableDigital();
   }
