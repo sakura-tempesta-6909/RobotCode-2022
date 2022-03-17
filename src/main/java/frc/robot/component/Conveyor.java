@@ -41,6 +41,7 @@ public class Conveyor implements Component {
     ballSensor = new DigitalInput(Const.BallSensorPort);
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(false);
+    intakeExtend.setNeutralMode(NeutralMode.Brake);
   
 
   }
@@ -132,7 +133,7 @@ public class Conveyor implements Component {
   }
 
   public void intakeExtendNeutral(){
-    intakeExtend.setNeutralMode(NeutralMode.Brake);
+    intakeExtendControl(Const.Neutral);
   }
 
 
