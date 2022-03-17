@@ -4,9 +4,12 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -33,11 +36,30 @@ public class Drive implements Component{
         driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
-
+        driveRightFront.setSensorPhase(true);
+        driveLeftFront.setSensorPhase(true);
+        
     }
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
+
+    /**
+     * 
+     * @param drivePoint PositionのPointをセンチに変換する
+     */
+    public double drivePointToCm(double drivePoint){
+        return drivePoint / Const.Point.DrivePointsPerDriveLength;
+    }
+
+    public double getDriveRightCM(){
+        return drivePointToCm(driveRightFront.getSelectedSensorPosition());
+    }
+
+    public double getDriveLeftCM(){
+        return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
+    }
+
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
@@ -58,8 +80,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-        // TODO Auto-generated method stub
-        
+      State.driveRightFrontPositionCentimeter = getDriveRightCM();
+      State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
     }
 
     @Override

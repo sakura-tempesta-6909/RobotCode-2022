@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 public class Const {
    public static final class Ports{
-        //PORTS
+        //PORTS                                          
         //ControllerPort(コントローラーのポート)
         public static final int DriveController = 0;
         public static final int OperateController = 1;
@@ -70,6 +70,17 @@ public class Const {
         public static final double FastClimbArmSpin = 1;
         public static final double MidClimbArmSpin = 0.5;
     }
+
+    public static final class Point{
+        // DrivePoint
+        public static final double EncoderPointsPerRevolution = 4096;
+        // DriveBaseのタイヤの直径 単位はセンチ
+        public static final double DriveWheelDiameter = 15.24; 
+        // タイヤの円周を求める
+        public static final double DriveLengthPerWheelRevolution = DriveWheelDiameter * Math.PI;
+        // 1cm進むとどのくらいPointが増えるか
+        public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution; 
+        }
 
     public static final class Xbox{
         //Deadband

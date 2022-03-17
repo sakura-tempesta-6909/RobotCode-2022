@@ -46,7 +46,9 @@ public class Util {
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
-     
+        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
+        sendConsole("driveRightCM", State.driveRightFrontPositionCentimeter);
+        sendConsole("driveLeftCM", State.driveLeftFrontPositionCentimeter);
      
     
     }
