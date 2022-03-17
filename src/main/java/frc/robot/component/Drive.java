@@ -43,9 +43,9 @@ public class Drive implements Component{
     }
 
     public double drivePoint(double point){
-        double TireCircumference = Const.DriveTireDiameter * Math.PI;
-        double drivePointIn1cm = Const.PointToCentimeter / TireCircumference;
-        return point / Const.DrivePointIn1cm;
+        double TireCircumference = Const.Point.DriveTireDiameter * Math.PI;
+        double drivePointIn1cm = Const.Point.PointToCentimeter / TireCircumference;
+        return point / Const.Point.DrivePointIn1cm;
     }
 
     public double getDriveRightCM(){
