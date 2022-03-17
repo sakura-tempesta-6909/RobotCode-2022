@@ -30,9 +30,9 @@ public class Drive implements Component{
         differntialDrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
         driveRightFront.configAllSettings(Const.Configs.DriveRight);
-        driveRightFront.configAllSettings(Const.Configs.DriveLeft);
+        driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
         driveRightFront.setInverted(true);
-        driveLeftBack.setInverted(true);
+        driveRightBack.setInverted(true);
 
     }
     public void arcadeDrive(double xSpeed, double zRotation){
