@@ -64,8 +64,8 @@ public class Drive implements Component{
     public void DrivePosition(int leftposition,int rightposition){
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
-        driveLeftFront.set(ControlMode.Position, leftposition);
         driveRightFront.set(ControlMode.Position, rightposition);
+        driveLeftFront.set(ControlMode.Position, leftposition);
     }
     @Override
     public void autonomousInit() {
@@ -104,7 +104,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                DrivePosition(100000,100000);
+                DrivePosition(10000,10000);
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
