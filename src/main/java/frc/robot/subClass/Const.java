@@ -83,7 +83,7 @@ public class Const {
         //PositionのPointをセンチに変換する
         public static final double PointToCentimeter = DriveMotorRound * DriveGearRatio; 
         //1cm進むとどのくらいPointが増えるか
-        public static final double DrivePointIn1cm = 917.7; 
+        public static final double DrivePointIn1cm = PointToCentimeter / DriveWheelCircumference; 
         }
 
     public static final class Xbox{

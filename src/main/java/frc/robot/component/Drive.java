@@ -46,18 +46,16 @@ public class Drive implements Component{
      * 
      * @param drivePoint PositionのPointをセンチに変換する
      */
-    public double drivePoint(double point){
-        double TireCircumference = Const.Point.DriveWheelCircumference;
-        double drivePointIn1cm = Const.Point.PointToCentimeter / TireCircumference;
+    public double drivePointToCm(double point){
         return point / Const.Point.DrivePointIn1cm;
     }
 
     public double getDriveRightCM(){
-        return drivePoint(driveRightFront.getSelectedSensorPosition());
+        return drivePointToCm(driveRightFront.getSelectedSensorPosition());
     }
 
     public double getDriveLeftCM(){
-        return drivePoint(driveLeftFront.getSelectedSensorPosition());
+        return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
     }
 
     @Override
