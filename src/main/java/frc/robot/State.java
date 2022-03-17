@@ -28,8 +28,8 @@ public class State {
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
-        XboxController driveController = new XboxController(Const.DriveControllerPort);
-        XboxController operateController = new XboxController(Const.OperateControllerPort);
+        XboxController driveController = new XboxController(Const.Ports.DriveController);
+        XboxController operateController = new XboxController(Const.Ports.OperateController);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;

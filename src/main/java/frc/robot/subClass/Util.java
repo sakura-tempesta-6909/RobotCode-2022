@@ -10,11 +10,11 @@ public class Util {
 
     //不感帯処理
     public static double deadbandProcessing(double value) {
-        return Math.abs(value) > Const.Deadband ? value : 0;
+        return Math.abs(value) > Const.Xbox.Deadband ? value : 0;
     }
 
     public static boolean deadbandCheck(double value) {
-        return Math.abs(value) > Const.Deadband;
+        return Math.abs(value) > Const.Xbox.Deadband;
     }
 
 

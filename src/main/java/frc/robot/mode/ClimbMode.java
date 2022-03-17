@@ -12,9 +12,9 @@ public class ClimbMode extends Mode {
 
   @Override
   public void changeMode() {
-    if(driveController.getPOV() == Const.POV90Degrees){
+    if(driveController.getPOV() == 90){
       State.mode = Modes.k_conveyor;
-    } else if(driveController.getPOV() == Const.POV270Degrees){
+    } else if(driveController.getPOV() == 270){
       State.mode = Modes.k_drive;
     } 
 }    
@@ -46,7 +46,7 @@ public class ClimbMode extends Mode {
     } else {
       State.is_secondSolenoidOpen = false;
     }
-    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == Const.POV180Degrees){  
+    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180){  
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
