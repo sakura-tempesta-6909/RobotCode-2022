@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
@@ -40,6 +41,7 @@ public class Conveyor implements Component {
     ballSensor = new DigitalInput(Const.BallSensorPort);
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(false);
+    intakeExtend.setNeutralMode(NeutralMode.Brake);
   
 
   }
