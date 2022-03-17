@@ -35,9 +35,9 @@ public class DriveMode extends Mode {
 
     
 
-		if(driveController.getPOV() == Const.Xbox.POV90Degrees && driveController.getRightStickButton() && driveController.getLeftStickButton()){
+		if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
 			State.is_compressorEnabled = false;
-		} else if(driveController.getPOV() == Const.Xbox.POV180Degrees){
+		} else if(driveController.getPOV() == 180){
 			State.is_compressorEnabled = true;
 		}
 

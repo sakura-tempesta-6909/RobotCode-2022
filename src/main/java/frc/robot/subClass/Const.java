@@ -74,17 +74,7 @@ public class Const {
     public static final class Xbox{
         //Deadband
         public static final double Deadband = 0.2;
-
-        //Trigger
         public static final double TriggerValue = 0.7;
-
-        //Stick
-        public static final double RightXValue = 0.5;
-
-        //POV
-        public static final double POV90Degrees = 90;
-        public static final double POV180Degrees = 180;
-        public static final double POV270Degrees = 270;
     }
 
     public static final class Configs{
