@@ -41,6 +41,7 @@ public class Const {
 
         //sparkMax
         public static final int ClimbArm = 1;
+
     }
     
     public static final class Speeds{
@@ -92,10 +93,15 @@ public class Const {
         public static final double POV90Degrees = 90;
         public static final double POV180Degrees = 180;
         public static final double POV270Degrees = 270;
+
     }
     
-    public static final int ExtendPIDslot = 0;
-    public static final int UpPIDslot = 1;
+    public static final class Slot{
+
+        public static final int ExtendPIDslot = 0;
+        public static final int UpPIDslot = 1;
+    }
+    
     
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
@@ -103,7 +109,7 @@ public class Const {
     public static final TalonSRXConfiguration intakeExtendConfig = new TalonSRXConfiguration();
 
     public static void ConstInit() {
-        
+
         DriveRightConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         DriveLeftConfig.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
@@ -128,10 +134,6 @@ public class Const {
 
         intakeExtendConfig.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
         intakeExtendConfig.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
-        
-
-
-        
-
+    
     }
 }
