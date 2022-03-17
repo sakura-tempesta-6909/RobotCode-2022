@@ -7,10 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.SlotConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 public class Const {
-   
-
-    public static final class Ports{
-
+   public static final class Ports{
         //PORTS
         //ControllerPort(コントローラーのポート)
         public static final int DriveController = 0;
@@ -43,9 +40,8 @@ public class Const {
         public static final int ClimbArm = 1;
 
     }
-    
-    public static final class Speeds{
 
+    public static final class Speeds{
         public static final double Neutral = 0;
 
         //DriveSpeed
@@ -76,10 +72,8 @@ public class Const {
         public static final double MidClimbArmSpin = 0.5;
 
     }
-   
 
     public static final class Xbox{
-
         //Deadband
         public static final double Deadband = 0.2;
 
@@ -95,13 +89,11 @@ public class Const {
         public static final double POV270Degrees = 270;
 
     }
-    
-    public static final class Slot{
 
+    public static final class Slot{
         public static final int ExtendPIDslot = 0;
         public static final int UpPIDslot = 1;
     }
-    
     
     public static final TalonSRXConfiguration DriveRightConfig = new TalonSRXConfiguration();
     public static final TalonSRXConfiguration DriveLeftConfig = new TalonSRXConfiguration();
