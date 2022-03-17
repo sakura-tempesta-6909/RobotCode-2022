@@ -24,7 +24,7 @@ public class DriveMode extends Mode {
   @Override
   public void changeState() {
     State.driveSpeed = DriveSpeed.s_fastDrive;
-    State.driveXSpeed = driveController.getLeftY();
+    State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
      
     if(driveController.getYButton()){
