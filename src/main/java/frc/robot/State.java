@@ -25,7 +25,7 @@ public class State {
     public static boolean is_climbSolenoidOpen;
     
 
-    public static double driveRightFrontPosition, driveLeftFrontPosition;
+    public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;
 
     public static double gyroValue; // クランプの傾き用
 
