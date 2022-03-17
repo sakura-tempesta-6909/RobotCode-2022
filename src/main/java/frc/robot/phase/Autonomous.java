@@ -16,6 +16,7 @@ public class Autonomous {
 					State.is_compressorEnabled = true;
 					State.conveyorState = State.ConveyorState.s_intakeConveyor;
 					return;
+					/**drivebase position(イニシャルの位置から枠の外にでる) */
 				},
 				(double time) -> {
 					return time > 0.5;
