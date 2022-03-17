@@ -29,11 +29,11 @@ public class Climb implements Component {
    
 
   public Climb() {
-    compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.FirstSolenoidPort);
-    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
-    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
-    climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+    compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
+    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
+    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
+    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
+    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
   
   /**

@@ -11,36 +11,39 @@ public class Const {
     public static final double Deadband = 0.2;
     public static final double Neutral = 0;
 
-    //PORTS
+    public static final class Ports{
+        //PORTS
     //ControllerPort(コントローラーのポート)
-    public static final int DriveControllerPort = 0;
-    public static final int OperateControllerPort = 1;
+    public static final int DriveController = 0;
+    public static final int OperateController = 1;
 
     //Motor, drive
-    public static final int DriveRightFrontPort = 0;
-    public static final int DriveRightBackPort = 1;
-    public static final int DriveLeftFrontPort = 2;
-    public static final int DriveLeftBackPort = 3;
+    public static final int DriveRightFront = 0;
+    public static final int DriveRightBack= 1;
+    public static final int DriveLeftFront = 2;
+    public static final int DriveLeftBack = 3;
 
     //Motor, Conveyor
-    public static final int IntakeBeltMotorPort = 4;
-    public static final int IntakeRollerPort = 5;
-    public static final int LaunchMotorPort = 6;
-    public static final int ConveyorExtendPort = 7;
-    public static final int BackPlatePort = 8;
-    public static final int LimitSwitchPort = 9;
+    public static final int IntakeBeltMotor = 4;
+    public static final int IntakeRoller = 5;
+    public static final int LaunchMotor = 6;
+    public static final int ConveyorExtend = 7;
+    public static final int BackPlate = 8;
+    public static final int LimitSwitch = 9;
 
     //sensor, conveyor
-    public static final int BallSensorPort =0; //これはあるか分からない
+    public static final int BallSensor =0; //これはあるか分からない
 
     //pneumatics
-    public static final int CompressorPort = 0;
-    public static final int FirstSolenoidPort = 0;
-    public static final int SecondSolenoidPort = 1;
-    public static final int ClimbSolenoidPort = 2;
+    public static final int Compressor = 0;
+    public static final int FirstSolenoid = 0;
+    public static final int SecondSolenoid = 1;
+    public static final int ClimbSolenoid = 2;
 
     //sparkMax
-    public static final int ClimbArmPort = 1;
+    public static final int ClimbArm = 1;
+    }
+    
   
     //DriveSpeed
     public static final double FastDrive = 0.8;
