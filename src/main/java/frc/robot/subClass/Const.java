@@ -86,7 +86,7 @@ public class Const {
         //Deadband
         public static final double Deadband = 0.2;
         public static final double TriggerValue = 0.5;
-        public static final int currentLimit = 60;
+        public static final int ArmCurrentLimit = 60;
     }
 
     public static final class Configs{
