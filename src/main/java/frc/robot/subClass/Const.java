@@ -40,7 +40,7 @@ public class Const {
 
     //sparkMax
     public static final int ClimbArmPort = 1;
-    public static final int ClimbArmEncoderPort = 2;
+    public static final int ClimbArmEncoderCount = 2;
   
     //DriveSpeed
     public static final int FastDrive = 1;

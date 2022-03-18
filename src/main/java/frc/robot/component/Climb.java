@@ -1,11 +1,13 @@
 package frc.robot.component;
 
+import com.revrobotics.AlternateEncoderType;
 // import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
 // import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
+import com.revrobotics.SparkMaxAlternateEncoder.Type;
 
 // import edu.wpi.first.hal.CTREPCMJNI;
 import edu.wpi.first.wpilibj.Compressor;
@@ -39,7 +41,8 @@ public class Climb implements Component {
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
-    climbArmEncoder = climbArm.getAlternateEncoder(Const.ClimbArmEncoderPort);
+    //climbArmEncoder = climbArm.getEncoder();
+    climbArmEncoder = climbArm.getAlternateEncoder(Const.ClimbArmEncoderCount);
 
   
    
