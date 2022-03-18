@@ -7,7 +7,8 @@ public abstract class Mode {
     public static void addController(XboxController driveController, XboxController operateController) {
         Mode.driveController = driveController;
         Mode.operateController = operateController;
-    }
+
+    }    
 
     /**
      * Modeを変化させる。

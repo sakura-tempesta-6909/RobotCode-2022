@@ -97,6 +97,7 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.readSensors();
     }
+    Util.allsendConsole();
   }
 
   @Override
