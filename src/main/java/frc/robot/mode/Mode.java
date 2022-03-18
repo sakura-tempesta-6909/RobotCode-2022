@@ -8,7 +8,7 @@ public abstract class Mode {
         Mode.driveController = driveController;
         Mode.operateController = operateController;
 
-    }    
+    }
 
     /**
      * Modeを変化させる。

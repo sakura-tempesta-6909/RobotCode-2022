@@ -34,14 +34,14 @@ public class Drive implements Component{
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
-        
+
     }
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
-     * 
+     *
      * @param drivePoint PositionのPointをセンチに変換する
      */
     public double drivePointToCm(double drivePoint){
@@ -59,13 +59,13 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void teleopInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -76,8 +76,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-      State.driveRightFrontPositionCentimeter = getDriveRightCM();
-      State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
+        State.driveRightFrontPositionCentimeter = getDriveRightCM();
+        State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
     }
 
     @Override

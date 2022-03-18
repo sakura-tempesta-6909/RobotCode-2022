@@ -13,9 +13,9 @@ public class ClimbMode extends Mode {
       State.mode = Modes.k_conveyor;
     } else if(driveController.getPOV() == 270){
       State.mode = Modes.k_drive;
-    } 
-}    
-  
+    }
+  }
+
 
   @Override
   public void changeState() {
@@ -24,7 +24,7 @@ public class ClimbMode extends Mode {
     State.driveZRotation = driveController.getRightX();
 
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
-    
+
     if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
@@ -32,21 +32,15 @@ public class ClimbMode extends Mode {
     }
 
 
-    if(driveController.getRightBumper()){
-      State.is_firstSolenoidOpen = true;
-    } else {
-      State.is_firstSolenoidOpen = false;
-    }
+    State.is_firstSolenoidOpen = driveController.getRightBumper();
 
-    if(driveController.getLeftBumper()){
-      State.is_secondSolenoidOpen = true;
-    } else {
-      State.is_secondSolenoidOpen = false;
-    }
-    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180){  
+    State.is_secondSolenoidOpen = driveController.getLeftBumper();
+
+    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180){
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
     }
+
   }
 }

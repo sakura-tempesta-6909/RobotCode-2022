@@ -15,7 +15,7 @@ public class ConveyorMode extends Mode {
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
     }
-    
+
   }
 
   @Override
@@ -28,5 +28,5 @@ public class ConveyorMode extends Mode {
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
   }
-  
+
 }

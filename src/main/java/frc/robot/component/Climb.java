@@ -18,15 +18,15 @@ public class Climb implements Component {
    * クライムが展開したことを確認する
    * ジャイロ？かセンサー使ってクランプの傾きを把握する(MagEncoder)
    * クランプの開閉
-   * 
+   *
    */
 
-  private Compressor compressor; 
+  private Compressor compressor;
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
 
-   
+
 
   public Climb() {
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
@@ -36,9 +36,9 @@ public class Climb implements Component {
     //climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
     climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
   }
-  
+
   /**
-   * 
+   *
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -49,9 +49,9 @@ public class Climb implements Component {
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
-    firstSolenoid.set(firstSolenoidOpen);       
+    firstSolenoid.set(firstSolenoidOpen);
   }
-  
+
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
@@ -60,7 +60,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
    * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
@@ -73,7 +73,7 @@ public class Climb implements Component {
 
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
-  }   
+  }
 
   /**
    *  @param climbSolenoidOwn trueで伸びている
@@ -97,31 +97,31 @@ public class Climb implements Component {
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void teleopInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void disabledInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void testInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void readSensors() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
@@ -152,7 +152,7 @@ public class Climb implements Component {
 
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
-    } 
+    }
 
     if(State.is_compressorEnabled){
       compressorEnable();
@@ -160,5 +160,5 @@ public class Climb implements Component {
       compressorDisable();
     }
   }
-  
+
 }
