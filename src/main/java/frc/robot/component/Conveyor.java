@@ -40,9 +40,8 @@ public class Conveyor implements Component {
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
-    intakeExtend.setInverted(false);
-    intakeExtend.setNeutralMode(NeutralMode.Brake);
-  
+    intakeExtend.setInverted(true);
+
 
   }
   /**  バックプレートのそうさ
@@ -107,29 +106,28 @@ public class Conveyor implements Component {
 
   /**
    * 
-   * @param intakeExtendControl 展開するときを正
+   * @param intakeExtendControl 展開するときを負
    */
   public void intakeExtendControl(double intakeExtendControl){
-    // if (intakeExtendControl > 0) {
-    //   intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
-    //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    
 
-    // } else if(intakeExtendControl < 0){
-    //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
-    //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    // } else {
-    //   intakeExtend.set(ControlMode.Velocity, Const.Neutral);
-    // }
+  // if (intakeExtendControl > 0) {
+  //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
+  //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+  //   } else if(intakeExtendControl < 0){
+  //     intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
+  //     intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+  //   } else {
+  //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
+  //   }
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
   public void intakeExtendOpen(){
-    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
   }
 
   public void intakeExtendClose(){
-    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
   }
 
   public void intakeExtendNeutral(){
