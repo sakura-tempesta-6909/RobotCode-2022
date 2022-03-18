@@ -57,8 +57,9 @@ public class Drive implements Component{
     }
 
     /**
-     * PositionのPointをセンチに変換する、引数はPositionの値
-     * @return PositionのdrivePointをセンチにする式
+     * PositionのPointをセンチに変換する、
+     * @param drivePoint Positionの値
+     * @return PositionのdrivePointをセンチにする 返り値はcm
      */
     public double drivePointToCm(double drivePoint){
         return drivePoint / Const.Point.DrivePointsPerDriveLength;
@@ -66,14 +67,14 @@ public class Drive implements Component{
 
     /**
      * 
-     * @return　右のPositionをセンチとして値を取得する
+     * @return　右がどれだけ進んだか(単位：センチ)
      */
     public double getDriveRightCM(){
         return drivePointToCm(driveRightFront.getSelectedSensorPosition());
     }
 
     /** 
-     * @return 左のPositionをセンチとして値を取得する
+     * @return 左がどれだけ進んだか(単位：センチ)
      */
     public double getDriveLeftCM(){
         return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
