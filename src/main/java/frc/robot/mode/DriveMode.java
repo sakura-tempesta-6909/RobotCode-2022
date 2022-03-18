@@ -27,7 +27,7 @@ public class DriveMode extends Mode {
     State.driveZRotation = driveController.getRightX();
 
     if(driveController.getYButton()){
-      State.driveSpeed = DriveSpeed.s_slowDrive;
+      State.driveSpeed = DriveSpeed.s_midDrive;
     }else{
       State.driveSpeed = DriveSpeed.s_fastDrive;
     }
