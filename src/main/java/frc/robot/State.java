@@ -62,7 +62,7 @@ public class State {
     }
 
     /**
-     * 
+     * Driveの状態
      */
     public enum DriveSpeed {
         s_stopDrive,
@@ -71,6 +71,10 @@ public class State {
         s_fastDrive,
 
     }
+
+    /**
+     * Conveyorの状態
+     */
     public enum ConveyorState {
         s_outtakeConveyor,
         s_intakeConveyor,
@@ -85,6 +89,9 @@ public class State {
         s_shooterOuttake,
     }
 
+    /**
+     * IntakeExtendの状態
+     */
     public enum IntakeExtendState {
         s_manual,
         s_intakeExtendOpen,
@@ -93,6 +100,9 @@ public class State {
     
     }
 
+    /**
+     * ClimbArmの状態
+     */
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
