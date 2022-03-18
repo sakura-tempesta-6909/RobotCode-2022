@@ -100,12 +100,12 @@ public class Const {
 
     public static void ConstInit() {
 
-        Configs.DriveRight.slot0.kP = 0;
+        Configs.DriveRight.slot0.kP = 0.1;
         Configs.DriveRight.slot0.kI = 0;
         Configs.DriveRight.slot0.kD = 0;
         Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
-        Configs.DriveLeft.slot0.kP = 0;
+        Configs.DriveLeft.slot0.kP = 0.15;
         Configs.DriveLeft.slot0.kI = 0;
         Configs.DriveLeft.slot0.kD = 0;
         Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;

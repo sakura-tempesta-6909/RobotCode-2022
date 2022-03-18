@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
@@ -62,6 +63,8 @@ public class Drive implements Component{
     }
 
     public void DrivePosition(int leftposition,int rightposition){
+        driveRightFront.setNeutralMode(NeutralMode.Brake);
+        driveLeftFront.setNeutralMode(NeutralMode.Brake);
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
         driveRightFront.set(ControlMode.Position, rightposition);
