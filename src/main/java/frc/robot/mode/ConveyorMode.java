@@ -25,7 +25,7 @@ public class ConveyorMode extends Mode {
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    if(driveController.getRightTriggerAxis() > Const.Xbox.TriggerValue){
+    if(driveController.getRightTriggerAxis() > Const.Util.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
   }

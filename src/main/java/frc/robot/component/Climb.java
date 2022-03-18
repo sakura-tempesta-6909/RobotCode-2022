@@ -35,7 +35,7 @@ public class Climb implements Component {
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
     //climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
     climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-    climbArm.setSmartCurrentLimit(60);
+    climbArm.setSmartCurrentLimit(Const.Util.currentLimit);
   }
   
   /**
