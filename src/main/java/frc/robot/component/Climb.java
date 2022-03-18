@@ -39,7 +39,7 @@ public class Climb implements Component {
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
     climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
-    climbArmEncoder = climbArm.getEncoder();
+    climbArmEncoder = climbArm.getAlternateEncoder(Const.ClimbArmEncoderPort);
 
   
    
