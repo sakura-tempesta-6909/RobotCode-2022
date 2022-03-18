@@ -54,10 +54,16 @@ public class Climb implements Component {
     firstSolenoid.set(firstSolenoidOpen);       
   }
   
+  /**
+   * firstSolenoidをopenする
+   */
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
 
+  /**
+   * firstSolenoidをcloseする
+   */
   public void firstSolenoidClose(){
     firstSolenoidControl(false);
   }
@@ -70,10 +76,16 @@ public class Climb implements Component {
     secondSolenoid.set(secondSolenoidControl);
   }
 
+  /**
+   * secondSolenoidをopenする
+   */
   public void secondSolenoidOpen(){
     secondSolenoidControl(true);
   }
 
+  /**
+   * secondSolenoidをcloseする
+   */
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
   }   
