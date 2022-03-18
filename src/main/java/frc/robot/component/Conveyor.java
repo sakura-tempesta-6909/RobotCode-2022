@@ -113,7 +113,7 @@ public class Conveyor implements Component {
   }
 
   /**
-   * shooterだけshootに回す
+   * shooterだけintakeに回す
    */
   public void shooterShoot(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);

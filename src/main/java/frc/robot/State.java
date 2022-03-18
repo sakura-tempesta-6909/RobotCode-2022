@@ -7,24 +7,35 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
 
+    //DriveSpeedをフィールドとする
     public static DriveSpeed driveSpeed;
+    //xSpeedとzRotationのスピード
     public static double driveXSpeed, driveZRotation;
 
+    //ConveyorStateをフィールとする
     public static ConveyorState conveyorState;;
     
+    //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
+    //intakeExtendをフィールドとする
     public static IntakeExtendState intakeExtendState;
+    //intakeExtendのスピード
     public static double intakeExtendSpeed;
 
+    //ClimbArmStateをフィールドとする
     public static ClimbArmState climbArmState;
+    //climbArmのスピード
     public static double climbArmSpeed;
 
+    //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
+    //secondSolenoidがopenしているか
     public static boolean is_secondSolenoidOpen;
+    //climbSolenoidがopenしてるか
     public static boolean is_climbSolenoidOpen;
     
-
+    //driveRightとdriveLeftがどれだけ進んでいるか
     public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;
 
     public static double gyroValue; // クランプの傾き用
@@ -50,6 +61,9 @@ public class State {
         
     }
 
+    /**
+     * 
+     */
     public enum DriveSpeed {
         s_stopDrive,
         s_slowDrive,

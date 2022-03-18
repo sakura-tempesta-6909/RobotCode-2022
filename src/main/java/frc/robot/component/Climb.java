@@ -39,7 +39,7 @@ public class Climb implements Component {
   }
   
   /**
-   * Climbを動かす
+   * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){

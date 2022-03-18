@@ -47,16 +47,18 @@ public class Drive implements Component{
 
     /**
      * driveを動かす 
+     * @param xSpeed 前を正
+     * @param zRotation 右を正
      * @param xSpeed driveの縦方向の値
-     * @param zRotation　driveの横方向の値
+     * @param zRotation　driveの回転方向の値
      */
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
-     * PositionのPointをセンチに変換する
-     * @return drivePointをセンチにして戻す
+     * PositionのPointをセンチに変換する、引数はPositionの値
+     * @return PositionのdrivePointをセンチにする式
      */
     public double drivePointToCm(double drivePoint){
         return drivePoint / Const.Point.DrivePointsPerDriveLength;
@@ -64,14 +66,14 @@ public class Drive implements Component{
 
     /**
      * 
-     * @return　センチとして値を取得する
+     * @return　右のPositionをセンチとして値を取得する
      */
     public double getDriveRightCM(){
         return drivePointToCm(driveRightFront.getSelectedSensorPosition());
     }
 
     /** 
-     * @return センチとして値を取得する
+     * @return 左のPositionをセンチとして値を取得する
      */
     public double getDriveLeftCM(){
         return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
