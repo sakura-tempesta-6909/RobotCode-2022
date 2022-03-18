@@ -26,7 +26,9 @@ public class Conveyor implements Component {
   private DigitalInput ballSensor;
   private TalonSRX intakeExtend, backPlate;
   
-
+  /**
+   * モーターの初期化、モーター・センサーの反転
+   */
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
@@ -54,47 +56,78 @@ public class Conveyor implements Component {
    * 他にもあった方がよさそうな機能
   */
 
+  /**
+   * CARGOを回収する
+   */
   public void intakeConveyor(){
     conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
   }
- 
+  
+  /**
+   * CARGOを出す
+   */
   public void outtakeConveyor(){
     conveyorControl(-Const.Speeds.RollerOuttake, -Const.Speeds.BeltOuttake, -Const.Speeds.ShooterOuttake);
   }
 
+  /**
+   * CARGOを発射する
+   */
   public void shootConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
   }
 
+  /**
+   * conveyorを何も動かさない
+   */
   public void stopConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
+
+  /**
+   * beltだけintakeに回す
+   */
   public void beltIntake(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
   }
 
+  /**
+   * beltだけouttakeに回す
+   */
   public void beltOuttake(){
     conveyorControl(Const.Speeds.Neutral, -Const.Speeds.BeltOuttake, Const.Speeds.Neutral);
   }
 
+  /**
+   * rollerだけintakeに回す
+   */
   public void rollerIntake(){
     conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
+  /**
+   * rollerだけouttakeに回す
+   */
   public void rollerOuttake(){
     conveyorControl(-Const.Speeds.RollerOuttake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
+  /**
+   * shooterだけshootに回す
+   */
   public void shooterShoot(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
   }
 
+  /**
+   * shooterだけouttakeに回す
+   */
   public void shooterOuttake(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
 
   /**
-   * 
+   * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
    * @param intakeBeltSpeed intakeを正
    * @param launchSpeed intakeを正
@@ -106,7 +139,7 @@ public class Conveyor implements Component {
   }
 
   /**
-   * 
+   * intakeExtendを動かす
    * @param intakeExtendControl 展開するときを正
    */
   public void intakeExtendControl(double intakeExtendControl){
@@ -124,14 +157,23 @@ public class Conveyor implements Component {
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
+  /**
+   * intakeExtendをopenする
+   */
   public void intakeExtendOpen(){
     intakeExtendControl(Const.Speeds.IntakeExtendOpen);
   }
 
+  /**
+   * intakeExtendをcloseする
+   */
   public void intakeExtendClose(){
     intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
   }
 
+  /**
+   * intakeExtendを動かさない
+   */
   public void intakeExtendNeutral(){
     intakeExtendControl(Const.Speeds.Neutral);
   }

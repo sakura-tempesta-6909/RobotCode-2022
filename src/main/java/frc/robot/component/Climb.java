@@ -39,7 +39,7 @@ public class Climb implements Component {
   }
   
   /**
-   * Climbを動かすメソッド
+   * Climbを動かす
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -47,7 +47,7 @@ public class Climb implements Component {
   }
 
   /**
-   *  firstSolenoidを動かすメソッド
+   *  firstSolenoidを動かす
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
@@ -63,7 +63,7 @@ public class Climb implements Component {
   }
 
    /**
-    * secondSolnoidを動かすメソッド
+    * secondSolnoidを動かす
    * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
@@ -79,7 +79,7 @@ public class Climb implements Component {
   }   
 
   /**
-   * climbSolenoidを動かすメソッド
+   * climbSolenoidを動かす
    *  @param climbSolenoid trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
@@ -91,14 +91,14 @@ public class Climb implements Component {
   }
 
   /**
-   * compressorをdisableにするメソッド
+   * compressorをdisableにする
    */
   public void compressorDisable(){
     compressor.disable();
   }
 
   /**
-   * compressorをenableにするメソッド
+   * compressorをenableにする
    */
   public void compressorEnable(){
     compressor.enableDigital();
