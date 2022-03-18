@@ -40,7 +40,8 @@ public class Drive implements Component{
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
-        
+        driveRightFront.setNeutralMode(NeutralMode.Brake);
+        driveLeftFront.setNeutralMode(NeutralMode.Brake);
     }
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
@@ -63,8 +64,6 @@ public class Drive implements Component{
     }
 
     public void DrivePosition(int leftposition,int rightposition){
-        driveRightFront.setNeutralMode(NeutralMode.Brake);
-        driveLeftFront.setNeutralMode(NeutralMode.Brake);
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
         driveRightFront.set(ControlMode.Position, rightposition);
