@@ -83,19 +83,16 @@ public class Conveyor implements Component {
    */
   public void intakeExtendControl(double intakeExtendControl){
 
-  //   if (intakeExtendControl > 0) {
-  //     intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
-  //     intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    
-
+  // if (intakeExtendControl > 0) {
+  //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
+  //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
   //   } else if(intakeExtendControl < 0){
   //     intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
   //     intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
   //   } else {
   //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
   //   }
-
-  //   intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
+    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
   public void intakeExtendOpen(){
