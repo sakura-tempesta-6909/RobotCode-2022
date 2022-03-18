@@ -7,7 +7,7 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
 
-    //DriveSpeedの変数を作る
+    //Driveのスピード
     public static DriveSpeed driveSpeed;
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
@@ -18,12 +18,12 @@ public class State {
     //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
-    //intakeExtendの変数を作る
+    //intakeExtendのState
     public static IntakeExtendState intakeExtendState;
-    //intakeExtendのスピード(単位：Velocity)
+    //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
 
-    //ClimbArmStateの変数を作る
+    //ClimbArmのState
     public static ClimbArmState climbArmState;
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
