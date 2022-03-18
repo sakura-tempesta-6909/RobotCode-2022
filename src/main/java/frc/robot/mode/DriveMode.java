@@ -13,7 +13,7 @@ public class DriveMode extends Mode {
   
   @Override
   public void changeMode() {
-    if(driveController.getLeftTriggerAxis() > Const.Xbox.TriggerValue){
+    if(driveController.getLeftBumper()){
       State.mode = Modes.k_conveyor;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
@@ -26,13 +26,13 @@ public class DriveMode extends Mode {
     State.driveXSpeed =  -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    if(driveController.getXButton()){
-      State.driveSpeed = DriveSpeed.s_slowDrive;
+    if(driveController.getYButton()){
+      State.driveSpeed = DriveSpeed.s_midDrive;
     }else{
       State.driveSpeed = DriveSpeed.s_fastDrive;
     }
      
-    if(driveController.getYButton()){
+    if(driveController.getXButton()){
       State.intakeExtendSpeed = driveController.getLeftY(); 
       State.intakeExtendState = IntakeExtendState.s_manual;
       State.driveSpeed = DriveSpeed.s_stopDrive;
@@ -44,9 +44,9 @@ public class DriveMode extends Mode {
 			State.is_compressorEnabled = true;
 		}
 
-		if(driveController.getLeftBumper()){
+		if(driveController.getLeftTriggerAxis() > Const.Xbox.TriggerValue){
 			State.conveyorState = ConveyorState.s_outtakeConveyor;
-		} else if(driveController.getRightBumper()){
+		} else if(driveController.getRightTriggerAxis() > Const.Xbox.TriggerValue){
 			State.conveyorState = ConveyorState.s_intakeConveyor;
 		} else {
       Util.sendConsole("POV Value", driveController.getPOV());

@@ -85,7 +85,7 @@ public class Const {
     public static final class Xbox{
         //Deadband
         public static final double Deadband = 0.2;
-        public static final double TriggerValue = 0.7;
+        public static final double TriggerValue = 0.5;
     }
 
     public static final class Configs{
