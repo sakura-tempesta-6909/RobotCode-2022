@@ -10,7 +10,7 @@ public class State {
     public static DriveSpeed driveSpeed;
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;;
+    public static ConveyorState conveyorState;
 
     public static boolean is_compressorEnabled;
 
