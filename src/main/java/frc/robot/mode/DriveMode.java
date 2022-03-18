@@ -1,6 +1,5 @@
 package frc.robot.mode;
 
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.State;
 import frc.robot.State.DriveSpeed;
 import frc.robot.State.ConveyorState;

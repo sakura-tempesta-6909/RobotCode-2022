@@ -1,15 +1,11 @@
 package frc.robot.component;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
-import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
