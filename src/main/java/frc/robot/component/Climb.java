@@ -24,6 +24,7 @@ public class Climb implements Component {
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
   private static RelativeEncoder climbArmEncoder;
+  public static boolean is_climbArmMotorNEO;
 
 
 
@@ -33,8 +34,18 @@ public class Climb implements Component {
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
     climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+    climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
     //climbArmEncoder = climbArm.getEncoder();
     climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+
+    is_climbArmMotorNEO = false;
+    if(is_climbArmMotorNEO == true){
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+      climbArmEncoder = climbArm.getEncoder();
+    } else {
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+    }
     
   }
 
@@ -107,15 +118,6 @@ public class Climb implements Component {
     compressor.enableDigital();
   }
 
-  public void climbArmMotorNEO(){
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
-  }
-
-  public void climbArmMotorCIM(){
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-  }
-
-
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -180,12 +182,6 @@ public class Climb implements Component {
       compressorEnable();
     } else {
       compressorDisable();
-    }
-
-    if(State.is_climbArmMotorNEO){
-      climbArmMotorNEO();
-    } else {
-      climbArmMotorCIM();
     }
   }
 }

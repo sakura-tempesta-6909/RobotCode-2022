@@ -5,6 +5,7 @@ import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
 import frc.robot.State.DriveSpeed;
+import frc.robot.component.Climb;
 
 public class ConveyorMode extends Mode {
 
@@ -28,9 +29,9 @@ public class ConveyorMode extends Mode {
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
     if(driveController.getLeftBumper() && driveController.getRightBumper()){
-      State.is_climbArmMotorNEO = true;
+      Climb.is_climbArmMotorNEO = true;
     } else {
-      State.is_climbArmMotorNEO = false;
+      Climb.is_climbArmMotorNEO = false;
     }
   }
 

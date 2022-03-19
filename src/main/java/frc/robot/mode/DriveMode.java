@@ -5,6 +5,7 @@ import frc.robot.State.DriveSpeed;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
+import frc.robot.component.Climb;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
 
@@ -72,11 +73,6 @@ public class DriveMode extends Mode {
             State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
         } else {
             State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
-        }
-        if(driveController.getLeftBumper() && driveController.getRightBumper()){
-            State.is_climbArmMotorNEO = true;
-        } else {
-        State.is_climbArmMotorNEO = false;
         }
     }
 
