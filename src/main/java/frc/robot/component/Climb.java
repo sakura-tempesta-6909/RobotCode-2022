@@ -39,7 +39,7 @@ public class Climb implements Component {
     climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
 
     is_climbArmMotorNEO = false;
-    if(is_climbArmMotorNEO == true){
+    if(is_climbArmMotorNEO){
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
       climbArmEncoder = climbArm.getEncoder();
     } else {
