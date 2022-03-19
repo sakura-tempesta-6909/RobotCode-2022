@@ -5,7 +5,6 @@ import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
 import frc.robot.State.DriveSpeed;
-import frc.robot.component.Climb;
 
 public class ConveyorMode extends Mode {
 
