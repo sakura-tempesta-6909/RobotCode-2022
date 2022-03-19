@@ -7,26 +7,36 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
 
+    //Driveのスピード
     public static DriveSpeed driveSpeed;
+    //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;
-
+    //ConveyorStateの変数を作る
+    public static ConveyorState conveyorState;;
+    
+    //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
+    //intakeExtendのState
     public static IntakeExtendState intakeExtendState;
+    //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
 
+    //ClimbArmのState
     public static ClimbArmState climbArmState;
+    //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
 
+    //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
+    //secondSolenoidがopenしているか
     public static boolean is_secondSolenoidOpen;
+    //climbSolenoidがopenしてるか
     public static boolean is_climbSolenoidOpen;
    
-
-
+    //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
     public static double gyroValue; // クランプの傾き用
@@ -52,6 +62,9 @@ public class State {
 
     }
 
+    /**
+     * Driveの状態
+     */
     public enum DriveSpeed {
         s_stopDrive,
         s_slowDrive,
@@ -59,6 +72,10 @@ public class State {
         s_fastDrive,
 
     }
+
+    /**
+     * Conveyorの状態
+     */
     public enum ConveyorState {
         s_outtakeConveyor,
         s_intakeConveyor,
@@ -73,6 +90,9 @@ public class State {
         s_shooterOuttake,
     }
 
+    /**
+     * IntakeExtendの状態
+     */
     public enum IntakeExtendState {
         s_manual,
         s_intakeExtendOpen,
@@ -81,6 +101,9 @@ public class State {
 
     }
 
+    /**
+     * ClimbArmの状態
+     */
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,

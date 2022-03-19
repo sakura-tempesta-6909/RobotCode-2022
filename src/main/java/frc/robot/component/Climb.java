@@ -27,7 +27,10 @@ public class Climb implements Component {
   public static boolean is_climbArmMotorNEO;
 
 
-
+   
+  /**
+   * Motorの初期化、Motor・センサーの反転
+   */
   public Climb() {
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
@@ -57,7 +60,7 @@ public class Climb implements Component {
   }
 
   /**
-   *
+   * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -67,37 +70,52 @@ public class Climb implements Component {
   
 
   /**
+   *  firstSolenoidを動かす
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
     firstSolenoid.set(firstSolenoidOpen);
   }
-
+  
+  /**
+   * firstSolenoidをopenする
+   */
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
 
+  /**
+   * firstSolenoidをcloseする
+   */
   public void firstSolenoidClose(){
     firstSolenoidControl(false);
   }
 
-  /**
+   /**
+    * secondSolnoidを動かす
    * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
   }
 
+  /**
+   * secondSolenoidをopenする
+   */
   public void secondSolenoidOpen(){
     secondSolenoidControl(true);
   }
 
+  /**
+   * secondSolenoidをcloseする
+   */
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
   }
 
   /**
-   *  @param climbSolenoidOwn trueで伸びている
+   * climbSolenoidを動かす
+   *  @param climbSolenoid trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
@@ -107,10 +125,16 @@ public class Climb implements Component {
     climbSolenoidControl(true);
   }
 
+  /**
+   * compressorをdisableにする
+   */
   public void compressorDisable(){
     compressor.disable();
   }
 
+  /**
+   * compressorをenableにする
+   */
   public void compressorEnable(){
     compressor.enableDigital();
   }

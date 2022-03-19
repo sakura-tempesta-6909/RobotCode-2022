@@ -45,30 +45,41 @@ public class Const {
         public static final double Neutral = 0;
 
         //DriveSpeed
+        //fastDriveの時のスピード
         public static final double FastDrive = 0.8;
+        //midDriveの時のスピード
         public static final double MidDrive = 0.5;
+        //slowDriveの時のスピード
         public static final double SlowDrive = 0.25;
-        public static final double StopDrive = 0;
 
         //ConveyorSpeed
         //ボールの発射(Shoot)
+        //CARGOを発射するときのbeltのスピード
         public static final double BeltShoot = 0.3;
+        //CARGOを発射するときのshooterのスピード
         public static final double ShooterShoot = 1.0;
 
         //ボールを出す(outtake)
+        //outtakeするときのbeltのスピード
         public static final double BeltOuttake = 0.3;
+        //outtakeするときのrollerのスピード
         public static final double RollerOuttake = 0.5;
+        //outtakeするときのshooterのスピード
         public static final double ShooterOuttake = 0.5;
 
         //ボールの回収(intake)
+        //intakeするときのbeltのスピード
         public static final double BeltIntake = 0.3;
+        //intakeするときのbeltのスピード
         public static final double RollerIntake = 0.5;
 
         //intakeExtend
         public static final double IntakeExtendOpen = 0.2;
 
         //Climb
+        //fastClimbArmのスピード
         public static final double FastClimbArmSpin = 1;
+        //midClimbArmのスピード
         public static final double MidClimbArmSpin = 0.5;
     }
 
