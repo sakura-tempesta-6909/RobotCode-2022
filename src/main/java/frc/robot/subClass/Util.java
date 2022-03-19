@@ -1,10 +1,8 @@
 package frc.robot.subClass;
 
-import javax.sql.rowset.serial.SerialBlob;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
-import frc.robot.State.IntakeExtendState;
 
 public class Util {
 

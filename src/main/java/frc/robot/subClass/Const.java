@@ -3,7 +3,6 @@ package frc.robot.subClass;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
-import com.ctre.phoenix.motorcontrol.can.SlotConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 public class Const {
@@ -28,7 +27,7 @@ public class Const {
         public static final int LimitSwitch = 9;
 
         //sensor, conveyor
-        public static final int BallSensor =0; //これはあるか分からない
+        public static final int BallSensor = 0; //これはあるか分からない
 
         //pneumatics
         public static final int Compressor = 0;

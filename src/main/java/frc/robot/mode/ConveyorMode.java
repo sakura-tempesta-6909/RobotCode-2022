@@ -1,7 +1,6 @@
 package frc.robot.mode;
 
 import frc.robot.State;
-import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
@@ -16,7 +15,7 @@ public class ConveyorMode extends Mode {
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
     }
-    
+
   }
 
   @Override
@@ -29,5 +28,5 @@ public class ConveyorMode extends Mode {
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
   }
-  
+
 }
