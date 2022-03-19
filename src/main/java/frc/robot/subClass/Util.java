@@ -1,10 +1,8 @@
 package frc.robot.subClass;
 
-import javax.sql.rowset.serial.SerialBlob;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
-import frc.robot.State.IntakeExtendState;
 
 public class Util {
 
@@ -49,6 +47,7 @@ public class Util {
         sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
         sendConsole("driveRightCM", State.driveRightFrontPositionCentimeter);
         sendConsole("driveLeftCM", State.driveLeftFrontPositionCentimeter);
+        sendConsole("climbArmAngle", State.climbArmAngle);
      
     
     }

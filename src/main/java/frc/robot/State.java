@@ -27,6 +27,7 @@ public class State {
     public static ClimbArmState climbArmState;
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
+    public static double climbArmAngle;
 
     //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
@@ -46,7 +47,7 @@ public class State {
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
-        
+
         stateReset();
     }
 
@@ -58,7 +59,7 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
-        
+
     }
 
     /**
@@ -97,7 +98,7 @@ public class State {
         s_intakeExtendOpen,
         s_intakeExtendClose,
         s_intakeExtendNeutral,
-    
+
     }
 
     /**
@@ -116,7 +117,7 @@ public class State {
 
         private final Mode mode;
         Modes(Mode mode) {
-           this.mode = mode;
+            this.mode = mode;
         }
 
         public void changeMode() {
@@ -127,5 +128,5 @@ public class State {
             this.mode.changeState();
         }
     }
-    
+
 }

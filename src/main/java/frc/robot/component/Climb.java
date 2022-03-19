@@ -1,11 +1,9 @@
 package frc.robot.component;
 
-// import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
-// import com.revrobotics.SparkMaxAlternateEncoder;
-
-// import edu.wpi.first.hal.CTREPCMJNI;
+import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -18,13 +16,16 @@ public class Climb implements Component {
    * クライムが展開したことを確認する
    * ジャイロ？かセンサー使ってクランプの傾きを把握する(MagEncoder)
    * クランプの開閉
-   * 
+   *
    */
 
-  private Compressor compressor; 
+  private Compressor compressor;
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
+  private static RelativeEncoder climbArmEncoder;
+  public static boolean is_climbArmMotorNEO;
+
 
    
   /**
@@ -35,9 +36,29 @@ public class Climb implements Component {
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+    is_climbArmMotorNEO = false;
+    if(is_climbArmMotorNEO){
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+      climbArmEncoder = climbArm.getEncoder();
+    } else {
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+    }
+    
   }
-  
+
+  public static double spinToAngle(double spin){
+    return spin / Const.Point.DegreesPerRevolution;
+  }
+
+  public double angleToSpin(double angle){
+    return Const.Point.DegreesPerRevolution * angle;
+  }
+
+  public static double getClimbArmAngle(){
+    return spinToAngle(climbArmEncoder.getPosition());
+  }
+
   /**
    * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
@@ -51,7 +72,7 @@ public class Climb implements Component {
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
-    firstSolenoid.set(firstSolenoidOpen);       
+    firstSolenoid.set(firstSolenoidOpen);
   }
   
   /**
@@ -88,7 +109,7 @@ public class Climb implements Component {
    */
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
-  }   
+  }
 
   /**
    * climbSolenoidを動かす
@@ -119,30 +140,30 @@ public class Climb implements Component {
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void teleopInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void disabledInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void testInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void readSensors() {
-    // TODO Auto-generated method stub
+    State.climbArmAngle = getClimbArmAngle();
     
   }
 
@@ -174,7 +195,7 @@ public class Climb implements Component {
 
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
-    } 
+    }
 
     if(State.is_compressorEnabled){
       compressorEnable();
@@ -182,5 +203,4 @@ public class Climb implements Component {
       compressorDisable();
     }
   }
-  
 }

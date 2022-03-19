@@ -1,21 +1,12 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subClass.Const;
 import frc.robot.State;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
@@ -38,13 +29,12 @@ public class Conveyor implements Component {
     intakeExtend.configAllSettings(Const.Configs.intakeExtend);
     launchMotor.configAllSettings(Const.Configs.LaunchMotor);
 
-    /**バックプレート操作用のモーターのセット */
+    /* バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
-    intakeExtend.setInverted(false);
-    intakeExtend.setNeutralMode(NeutralMode.Brake);
-  
+    intakeExtend.setInverted(true);
+
 
   }
   /**  バックプレートのそうさ
@@ -54,7 +44,7 @@ public class Conveyor implements Component {
    * シューターモーターはモードによって動きが変わるはず
    * ボールが詰まったときの対処
    * 他にもあった方がよさそうな機能
-  */
+   */
 
   /**
    * CARGOを回収する
@@ -143,17 +133,16 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときを正
    */
   public void intakeExtendControl(double intakeExtendControl){
-    // if (intakeExtendControl > 0) {
-    //   intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
-    //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    
 
-    // } else if(intakeExtendControl < 0){
+    // if (intakeExtendControl > 0) {
     //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
     //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    // } else {
-    //   intakeExtend.set(ControlMode.Velocity, Const.Neutral);
-    // }
+    //   } else if(intakeExtendControl < 0){
+    //     intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
+    //     intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
+    //   } else {
+    //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
+    //   }
     intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
   }
 
@@ -161,14 +150,14 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
   }
 
   /**
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
   }
 
   /**
@@ -186,31 +175,31 @@ public class Conveyor implements Component {
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void teleopInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void disabledInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void testInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void readSensors() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
@@ -227,7 +216,7 @@ public class Conveyor implements Component {
         break;
       case s_stopConveyor:
         stopConveyor();
-        break;  
+        break;
 
       case s_beltIntake:
         beltIntake();
@@ -261,8 +250,8 @@ public class Conveyor implements Component {
         break;
       case s_intakeExtendNeutral:
         intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.Neutral);
-        break;  
+        break;
     }
   }
-  
+
 }

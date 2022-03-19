@@ -1,15 +1,11 @@
 package frc.robot.component;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
-import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -42,7 +38,7 @@ public class Drive implements Component{
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
-        
+
     }
 
     /**
@@ -57,9 +53,14 @@ public class Drive implements Component{
     }
 
     /**
+<<<<<<< HEAD
      * PositionのPointをcmに変換する、
      * @param drivePoint Positionの値
      * @return PositionのdrivePointをcmにする 返り値はcm
+=======
+     *
+     * @param drivePoint PositionのPointをセンチに変換する
+>>>>>>> main
      */
     public double drivePointToCm(double drivePoint){
         return drivePoint / Const.Point.DrivePointsPerDriveLength;
@@ -83,13 +84,13 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void teleopInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -100,8 +101,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-      State.driveRightFrontPositionCentimeter = getDriveRightCM();
-      State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
+        State.driveRightFrontPositionCentimeter = getDriveRightCM();
+        State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
     }
 
     @Override
