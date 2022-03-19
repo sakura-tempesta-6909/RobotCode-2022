@@ -16,7 +16,15 @@ public class Autonomous {
 					State.is_compressorEnabled = true;
 					State.conveyorState = State.ConveyorState.s_intakeConveyor;
 					return;
-					/**drivebase position(イニシャルの位置から枠の外にでる) */
+					/**phase 1
+					 * 	drivebase position(イニシャルの位置から枠の外にでる)
+					 * phase2
+					 * 	drivebase を止める
+					 * 	launchmotor.set(ゲーム前にロボットに入れたボールを入れる)
+					 * phase 3
+					 * 	？？？
+					 * 	
+					 */
 				},
 				(double time) -> {
 					return time > 0.5;
