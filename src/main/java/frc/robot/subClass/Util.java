@@ -45,8 +45,8 @@ public class Util {
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
         sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
-        sendConsole("driveRightCM", State.driveRightFrontPositionMeter);
-        sendConsole("driveLeftCM", State.driveLeftFrontPositionMeter);
+        sendConsole("driveRightM", State.driveRightFrontPositionMeter);
+        sendConsole("driveLeftM", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
      
     

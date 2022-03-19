@@ -73,9 +73,9 @@ public class Const {
     public static final class Point{
         // DrivePoint
         public static final double EncoderPointsPerRevolution = 4096;
-        // DriveBaseのタイヤの直径の100分の1 単位はセンチ
+        // DriveBaseのタイヤの直径の100倍 単位はセンチ
         public static final double DriveWheelDiameter = 0.1524; 
-        // タイヤの円周の100分の1を求める
+        // タイヤの円周の100倍を求める
         public static final double DriveLengthPerWheelRevolution = DriveWheelDiameter * Math.PI;
         // 1m進むとどのくらいPointが増えるか
         public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution; 
