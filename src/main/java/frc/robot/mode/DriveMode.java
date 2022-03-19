@@ -73,7 +73,11 @@ public class DriveMode extends Mode {
         } else {
             State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         }
-
+        if(driveController.getLeftBumper() && driveController.getRightBumper()){
+            State.is_climbArmMotorNEO = true;
+        } else {
+        State.is_climbArmMotorNEO = false;
+        }
     }
 
 }

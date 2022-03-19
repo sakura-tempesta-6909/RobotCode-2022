@@ -40,7 +40,12 @@ public class ClimbMode extends Mode {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
-    }
 
+    }
+  if(driveController.getLeftBumper() && driveController.getRightBumper()){
+    State.is_climbArmMotorNEO = true;
+  } else {
+    State.is_climbArmMotorNEO = false;
+  }
   }
 }

@@ -27,6 +27,11 @@ public class ConveyorMode extends Mode {
     if(driveController.getRightTriggerAxis() > Const.Xbox.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
+    if(driveController.getLeftBumper() && driveController.getRightBumper()){
+      State.is_climbArmMotorNEO = true;
+    } else {
+      State.is_climbArmMotorNEO = false;
+    }
   }
 
 }

@@ -24,6 +24,7 @@ public class State {
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
+    public static boolean is_climbArmMotorNEO;
 
 
     public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;

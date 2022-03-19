@@ -107,6 +107,15 @@ public class Climb implements Component {
     compressor.enableDigital();
   }
 
+  public void climbArmMotorNEO(){
+    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+  }
+
+  public void climbArmMotorCIM(){
+    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+  }
+
+
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
@@ -172,6 +181,11 @@ public class Climb implements Component {
     } else {
       compressorDisable();
     }
-  }
 
+    if(State.is_climbArmMotorNEO){
+      climbArmMotorNEO();
+    } else {
+      climbArmMotorCIM();
+    }
+  }
 }
