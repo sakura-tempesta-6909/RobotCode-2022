@@ -43,8 +43,6 @@ public class Drive implements Component{
 
     /**
      * driveを動かす 
-     * @param xSpeed 前を正
-     * @param zRotation 右を正
      * @param xSpeed driveの縦方向の値
      * @param zRotation　driveの回転方向の値
      */

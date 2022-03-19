@@ -36,7 +36,7 @@ public class State {
     //climbSolenoidがopenしてるか
     public static boolean is_climbSolenoidOpen;
    
-    //driveRightとdriveLeftがどれだけ進んでいるか(単位：M)
+    //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
     public static double gyroValue; // クランプの傾き用
