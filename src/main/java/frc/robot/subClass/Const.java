@@ -90,6 +90,12 @@ public class Const {
         public static final double AngleToSpin = Round / GearRatio;
         }
 
+    public static final class Counts{
+
+        // ClimbArmEncoderの１秒あたりのカウント数
+        public static final int ClimbArmEncoderCount = 165000;
+    }
+
     public static final class Xbox{
         //Deadband
         public static final double Deadband = 0.2;

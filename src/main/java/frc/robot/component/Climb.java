@@ -40,9 +40,9 @@ public class Climb implements Component {
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
     //climbArmEncoder = climbArm.getEncoder();
-    climbArmEncoder = climbArm.getAlternateEncoder(Const.ClimbArmEncoderCount);
+    climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
 
   
    
@@ -143,13 +143,8 @@ public class Climb implements Component {
 
   @Override
   public void readSensors() {
-<<<<<<< HEAD
     State.climbArmAngle = getClimbArmAngle();
     
-=======
-    // TODO Auto-generated method stub
-
->>>>>>> main
   }
 
   @Override
