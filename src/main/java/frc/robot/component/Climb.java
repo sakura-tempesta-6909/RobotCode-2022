@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subClass.Const;
+
 import frc.robot.State;
 
 public class Climb implements Component {
@@ -32,7 +33,7 @@ public class Climb implements Component {
 
   public Climb() {
 
-    hallSensor = new DigitalInput(Const.hallsensorPort);
+    hallSensor = new DigitalInput(Const.Ports.hallsensorPort);
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
@@ -70,7 +71,7 @@ public class Climb implements Component {
 
   public void resetAngle(){
     if(gethallSensor()){
-      State.inclinationValue = 0;
+      hallSensor = new DigitalInput(Const.Ports.hallsensorPort);
     } else{
       return;
     }

@@ -37,27 +37,15 @@ public class Const {
 
         //sparkMax
         public static final int ClimbArm = 1;
+
+        //dio port
+        public static final int hallsensorPort = 0;
     }
 
-    //dio port
-    public static final int hallsensorPort = 0;
-
-    //sparkMax
-    public static final int ClimbArmPort = 1;
-  
-    //DriveSpeed
-    public static final int FastDrive = 1;
-    public static final double MidDrive = 0.5;
-    public static final double SlowDrive = 0.25;
-    public static final int StopDrive = 0;
-    //ConveyorSpeed
-    //ボールの発射(Shoot)
-    public static final double BeltShoot = 1;
-    public static final double ShooterShoot = 0.5;
-    //ボールを出す(outtake)
-    public static final double BeltOuttake = 1;
-    public static final double RollerOuttake = 0.5;
-    public static final double ShooterOuttake = 0.3;
+    
+    
+         
+        
     public static final class Speeds{
         public static final double Neutral = 0;
 
