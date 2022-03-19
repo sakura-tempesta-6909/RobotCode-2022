@@ -19,6 +19,7 @@ public class State {
 
     public static ClimbArmState climbArmState;
     public static double climbArmSpeed;
+    public static double climbArmAngle;
 
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
