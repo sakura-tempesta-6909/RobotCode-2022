@@ -42,18 +42,18 @@ public class Drive implements Component{
 
     /**
      *
-     * @param drivePoint PositionのPointをセンチに変換する
+     * @param drivePoint PositionのPointをメートルに変換する
      */
-    public double drivePointToM(double drivePoint){
+    public double drivePointToMeter(double drivePoint){
         return drivePoint / Const.Point.DrivePointsPerDriveLength;
     }
 
-    public double getDriveRightM(){
-        return drivePointToM(driveRightFront.getSelectedSensorPosition());
+    public double getDriveRightMeter(){
+        return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
-    public double getDriveLeftM(){
-        return drivePointToM(driveLeftFront.getSelectedSensorPosition());
+    public double getDriveLeftMeter(){
+        return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
     @Override
@@ -76,8 +76,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-        State.driveRightFrontPositionMeter = getDriveRightM();
-        State.driveLeftFrontPositionMeter = getDriveLeftM();
+        State.driveRightFrontPositionMeter = getDriveRightMeter();
+        State.driveLeftFrontPositionMeter = getDriveLeftMeter();
     }
 
     @Override
