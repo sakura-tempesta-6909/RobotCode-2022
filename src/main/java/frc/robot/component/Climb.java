@@ -24,6 +24,7 @@ public class Climb implements Component {
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
   private static RelativeEncoder climbArmEncoder;
+  public static boolean is_climbArmMotorNEO;
 
 
 
@@ -32,9 +33,14 @@ public class Climb implements Component {
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-    //climbArmEncoder = climbArm.getEncoder();
-    climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+    is_climbArmMotorNEO = false;
+    if(is_climbArmMotorNEO){
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+      climbArmEncoder = climbArm.getEncoder();
+    } else {
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+    }
     
   }
 
@@ -173,5 +179,4 @@ public class Climb implements Component {
       compressorDisable();
     }
   }
-
 }
