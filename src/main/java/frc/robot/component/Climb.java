@@ -71,7 +71,7 @@ public class Climb implements Component {
 
   public void resetAngle(){
     if(gethallSensor()){
-      hallSensor = new DigitalInput(Const.Ports.hallsensorPort);
+      climbArmEncoder.setPosition(0);
     } else{
       return;
     }
