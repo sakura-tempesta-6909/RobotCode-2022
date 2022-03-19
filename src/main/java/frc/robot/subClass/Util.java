@@ -47,6 +47,7 @@ public class Util {
         sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
         sendConsole("driveRightCM", State.driveRightFrontPositionCentimeter);
         sendConsole("driveLeftCM", State.driveLeftFrontPositionCentimeter);
+        sendConsole("climbArmAngle", State.climbArmAngle);
      
     
     }

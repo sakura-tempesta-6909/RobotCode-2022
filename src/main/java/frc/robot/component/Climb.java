@@ -1,7 +1,9 @@
 package frc.robot.component;
 
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -21,6 +23,8 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
+  private static RelativeEncoder climbArmEncoder;
+  public static boolean is_climbArmMotorNEO;
 
 
 
@@ -29,9 +33,27 @@ public class Climb implements Component {
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    //climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
-    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-    climbArm.setSmartCurrentLimit(Const.Util.ClimbArmCurrentLimit);
+    is_climbArmMotorNEO = false;
+    if(is_climbArmMotorNEO){
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
+      climbArmEncoder = climbArm.getEncoder();
+    } else {
+      climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+    }
+    
+  }
+
+  public static double spinToAngle(double spin){
+    return spin / Const.Point.DegreesPerRevolution;
+  }
+
+  public double angleToSpin(double angle){
+    return Const.Point.DegreesPerRevolution * angle;
+  }
+
+  public static double getClimbArmAngle(){
+    return spinToAngle(climbArmEncoder.getPosition());
   }
 
   /**
@@ -119,8 +141,8 @@ public class Climb implements Component {
 
   @Override
   public void readSensors() {
-    // TODO Auto-generated method stub
-
+    State.climbArmAngle = getClimbArmAngle();
+    
   }
 
   @Override
@@ -159,5 +181,4 @@ public class Climb implements Component {
       compressorDisable();
     }
   }
-
 }
