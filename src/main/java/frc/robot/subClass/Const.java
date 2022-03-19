@@ -95,10 +95,11 @@ public class Const {
         public static final int ClimbArmEncoderCount = 5;
     }
 
-    public static final class Xbox{
+    public static final class Util{
         //Deadband
         public static final double Deadband = 0.2;
         public static final double TriggerValue = 0.5;
+        public static final int ClimbArmCurrentLimit = 60;
     }
 
     public static final class Configs{
