@@ -67,6 +67,8 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
+  
+
   /**
    *  firstSolenoidを動かす
    * @param firstSolenoid falseで閉じている

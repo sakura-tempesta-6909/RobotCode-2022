@@ -8,11 +8,11 @@ public class Util {
 
     //不感帯処理
     public static double deadbandProcessing(double value) {
-        return Math.abs(value) > Const.Xbox.Deadband ? value : 0;
+        return Math.abs(value) > Const.Util.Deadband ? value : 0;
     }
 
     public static boolean deadbandCheck(double value) {
-        return Math.abs(value) > Const.Xbox.Deadband;
+        return Math.abs(value) > Const.Util.Deadband;
     }
 
 
@@ -45,8 +45,8 @@ public class Util {
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
         sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
-        sendConsole("driveRightCM", State.driveRightFrontPositionCentimeter);
-        sendConsole("driveLeftCM", State.driveLeftFrontPositionCentimeter);
+        sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
+        sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
      
     
