@@ -1,5 +1,6 @@
 package frc.robot.subClass;
 
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 
@@ -7,11 +8,11 @@ public class Util {
 
     //不感帯処理
     public static double deadbandProcessing(double value) {
-        return Math.abs(value) > Const.Deadband ? value : 0;
+        return Math.abs(value) > Const.Xbox.Deadband ? value : 0;
     }
 
     public static boolean deadbandCheck(double value) {
-        return Math.abs(value) > Const.Deadband;
+        return Math.abs(value) > Const.Xbox.Deadband;
     }
 
 
@@ -29,14 +30,25 @@ public class Util {
         SmartDashboard.putBoolean(key, which);
     }
 
-    public static void AllsendConsole(){
+    public static void allsendConsole(){
         sendConsole( "Mode", State.mode.toString());
+        sendConsole("DriveSpeed", State.driveSpeed.toString());
+        sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyerState", State.conveyorState.toString());
-        sendConsole("is_firstSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
+        sendConsole("intakeExtendState", State.intakeExtendState.toString());
+        sendConsole("driveXSpeed", State.driveXSpeed);
+        sendConsole("driveZRotation", State.driveZRotation);
+        sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
+        sendConsole("climbArmSpeed", State.climbArmSpeed);
+        sendConsole("compressorEnable", State.is_compressorEnabled);
+        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
+        sendConsole("driveRightCM", State.driveRightFrontPositionCentimeter);
+        sendConsole("driveLeftCM", State.driveLeftFrontPositionCentimeter);
+        sendConsole("climbArmAngle", State.climbArmAngle);
+     
     
     }
 }
