@@ -52,6 +52,18 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
+  public boolean gethallSensor(){
+    return hallSensor.get();
+  }
+
+  public void resetAngle(){
+    if(gethallSensor()){
+      State.inclinationValue = 0;
+    } else{
+      return;
+    }
+  }
+
   /**
    * @param firstSolenoid falseで閉じている
    */
