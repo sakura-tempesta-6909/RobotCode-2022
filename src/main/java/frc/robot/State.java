@@ -10,8 +10,8 @@ public class State {
     public static DriveSpeed driveSpeed;
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;;
-    
+    public static ConveyorState conveyorState;
+
     public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
@@ -24,17 +24,19 @@ public class State {
     public static boolean is_firstSolenoidOpen;
     public static boolean is_secondSolenoidOpen;
     public static boolean is_climbSolenoidOpen;
-    
+
+
+    public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;
 
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
-        XboxController driveController = new XboxController(Const.DriveControllerPort);
-        XboxController operateController = new XboxController(Const.OperateControllerPort);
+        XboxController driveController = new XboxController(Const.Ports.DriveController);
+        XboxController operateController = new XboxController(Const.Ports.OperateController);
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
-        
+
         stateReset();
     }
 
@@ -46,7 +48,7 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
-        
+
     }
 
     public enum DriveSpeed {
@@ -61,6 +63,13 @@ public class State {
         s_intakeConveyor,
         s_shootConveyor,
         s_stopConveyor,
+
+        s_beltIntake,
+        s_beltOuttake,
+        s_rollerIntake,
+        s_rollerOuttake,
+        s_shooterShoot,
+        s_shooterOuttake,
     }
 
     public enum IntakeExtendState {
@@ -68,7 +77,7 @@ public class State {
         s_intakeExtendOpen,
         s_intakeExtendClose,
         s_intakeExtendNeutral,
-    
+
     }
 
     public enum ClimbArmState {
@@ -84,7 +93,7 @@ public class State {
 
         private final Mode mode;
         Modes(Mode mode) {
-           this.mode = mode;
+            this.mode = mode;
         }
 
         public void changeMode() {
@@ -95,5 +104,5 @@ public class State {
             this.mode.changeState();
         }
     }
-    
+
 }

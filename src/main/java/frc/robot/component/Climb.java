@@ -24,23 +24,23 @@ public class Climb implements Component {
    * クライムが展開したことを確認する
    * ジャイロ？かセンサー使ってクランプの傾きを把握する(MagEncoder)
    * クランプの開閉
-   * 
+   *
    */
 
-  private Compressor compressor; 
+  private Compressor compressor;
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
   private static RelativeEncoder climbArmEncoder;
 
-   
+
 
   public Climb() {
-    compressor = new Compressor(Const.CompressorPort, PneumaticsModuleType.CTREPCM);
-    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.FirstSolenoidPort);
-    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.SecondSolenoidPort);
-    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.ClimbSolenoidPort);
-    climbArm = new CANSparkMax(Const.ClimbArmPort, CANSparkMaxLowLevel.MotorType.kBrushless);
+    compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
+    firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
+    secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
+    climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
+    climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
     //climbArmEncoder = climbArm.getEncoder();
     climbArmEncoder = climbArm.getAlternateEncoder(Const.ClimbArmEncoderCount);
 
@@ -49,19 +49,19 @@ public class Climb implements Component {
   }
 
   public static double spinToAngle(double spin){
-    return spin / Const.AngleToSpin;
+    return spin / Const.Point.AngleToSpin;
   }
 
   public double angleToSpin(double angle){
-    return Const.AngleToSpin * angle;
+    return Const.Point.AngleToSpin * angle;
   }
 
   public static double getClimbArmAngle(){
     return spinToAngle(climbArmEncoder.getPosition());
   }
-  
+
   /**
-   * 
+   *
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -72,9 +72,9 @@ public class Climb implements Component {
    * @param firstSolenoid falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
-    firstSolenoid.set(firstSolenoidOpen);       
+    firstSolenoid.set(firstSolenoidOpen);
   }
-  
+
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
@@ -83,7 +83,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
    * @param secondSoenoid falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
@@ -96,7 +96,7 @@ public class Climb implements Component {
 
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
-  }   
+  }
 
   /**
    *  @param climbSolenoidOwn trueで伸びている
@@ -120,44 +120,49 @@ public class Climb implements Component {
   @Override
   public void autonomousInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void teleopInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void disabledInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void testInit() {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void readSensors() {
+<<<<<<< HEAD
     State.climbArmAngle = getClimbArmAngle();
     
+=======
+    // TODO Auto-generated method stub
+
+>>>>>>> main
   }
 
   @Override
   public void applyState() {
     switch(State.climbArmState){
       case s_fastClimbArmSpin:
-        climbControl(State.climbArmSpeed * Const.FastClimbArmSpin);
+        climbControl(State.climbArmSpeed * Const.Speeds.FastClimbArmSpin);
         break;
       case s_midClimbArmSpin:
-        climbControl(State.climbArmSpeed * Const.MidClimbArmSpin);
+        climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
       case s_climbArmNeutral:
-        climbControl(Const.Neutral);
+        climbControl(Const.Speeds.Neutral);
         break;
     }
 
@@ -175,7 +180,7 @@ public class Climb implements Component {
 
     if(State.is_climbSolenoidOpen){
       climbSolenoidExtend();
-    } 
+    }
 
     if(State.is_compressorEnabled){
       compressorEnable();
@@ -183,5 +188,5 @@ public class Climb implements Component {
       compressorDisable();
     }
   }
-  
+
 }
