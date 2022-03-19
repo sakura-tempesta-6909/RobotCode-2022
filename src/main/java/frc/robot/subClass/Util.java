@@ -17,16 +17,13 @@ public class Util {
 
 
     public static void sendConsole(String key, String text) {
-        System.out.println(key + ":" + text);
         SmartDashboard.putString(key, text);
     }
 
     public static void sendConsole(String key, double number) {
-        System.out.println(key + ":" +number);
         SmartDashboard.putNumber(key, number);
     }
     public static void sendConsole(String key, Boolean which){
-        System.out.println(key + ":" +which);
         SmartDashboard.putBoolean(key, which);
     }
 
