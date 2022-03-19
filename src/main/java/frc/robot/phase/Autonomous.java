@@ -9,6 +9,28 @@ public class Autonomous {
 		phaseTransition = new PhaseTransition();
 		PhaseTransition.Phase.PhaseInit();
 
+
+	/**
+	 * ボールの回収もしたかったら、autonomousのコードを3種類ほど書く必要がある
+	 （とれそうなボールは三つある、他のチームが同じこと考えてたらautonomous中 他のボールを取りに行かないといけない）
+	 * phase1
+	 * 	compressor起動
+	 * 	driveBase.set(forward 60cm )
+	 * phase 2
+	 *  shooter on (中に入ってるボールを発射)  1秒間
+	 * phase 3 (ここから分岐)
+	 * 	driveBase.set(forward -160cm)
+	 * 	driveBase.turn(-129 degrees)
+	 * 	driveBase.set(forward 85cm)
+	 * phase 4
+	 * 	driveBase.turn(145 又は 146 degrees)
+	 * 	driveBase.set(forward 223cm)
+	 *  driveBase.turn(-17 degrees)
+	 * phase 5
+	 * 	shooter on (中に入ってるボールを発射)  1秒間
+	 * 	
+	 */
+
 		// Phaseの登録
 		phaseTransition.registerPhase(
 			new PhaseTransition.Phase(
@@ -16,15 +38,7 @@ public class Autonomous {
 					State.is_compressorEnabled = true;
 					State.conveyorState = State.ConveyorState.s_intakeConveyor;
 					return;
-					/**phase 1
-					 * 	drivebase position(イニシャルの位置から枠の外にでる)
-					 * phase2
-					 * 	drivebase を止める
-					 * 	launchmotor.set(ゲーム前にロボットに入れたボールを入れる)
-					 * phase 3
-					 * 	？？？
-					 * 	
-					 */
+					
 				},
 				(double time) -> {
 					return time > 0.5;
