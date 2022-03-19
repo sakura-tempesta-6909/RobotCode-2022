@@ -84,9 +84,9 @@ public class Const {
         // 円の角度
         public static final double Round = 360;
         // ClimbArmのギア比
-        public static final double GearRatio = 75 * 4.5;
+        public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
-        public static final double DegreesPerRevolution = Round / GearRatio;
+        public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
         }
 
     public static final class Counts{
