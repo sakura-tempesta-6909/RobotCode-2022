@@ -45,7 +45,7 @@ public class Drive implements Component{
      * @param drivePoint PositionのPointをメートルに変換する
      */
     public double drivePointToMeter(double drivePoint){
-        return drivePoint / Const.Point.DrivePointsPerDriveLength;
+        return drivePoint / Const.Other.DrivePointsPerDriveLength;
     }
 
     public double getDriveRightMeter(){
