@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
+import edu.wpi.first.math.util.Units;
+
 public class Const {
    public static final class Ports{
         //PORTS                                          
@@ -71,13 +73,14 @@ public class Const {
     }
 
     public static final class Point{
+
         // DrivePoint
         public static final double EncoderPointsPerRevolution = 4096;
-        // DriveBaseのタイヤの直径 単位はセンチ
-        public static final double DriveWheelDiameter = 15.24; 
-        // タイヤの円周を求める
+        // タイヤの直径を求める 単位はメートル
+        public static final double DriveWheelDiameter = Units.inchesToMeters(6.0);
+        // タイヤの円周のを求める　単位はメートル
         public static final double DriveLengthPerWheelRevolution = DriveWheelDiameter * Math.PI;
-        // 1cm進むとどのくらいPointが増えるか
+        // 1m進むとどのくらいPointが増えるか
         public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution; 
         
         //ClmbPoint 

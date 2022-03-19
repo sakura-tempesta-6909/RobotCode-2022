@@ -27,7 +27,7 @@ public class State {
    
 
 
-    public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;
+    public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
     public static double gyroValue; // クランプの傾き用
 
