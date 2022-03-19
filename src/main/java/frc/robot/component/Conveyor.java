@@ -47,29 +47,21 @@ public class Conveyor implements Component {
    */
 
   public void intakeConveyor(){
-    if(!ballSensorIntake.get() && State.count < 1){
+    if(ballSensorIntake.get() && State.count == 0){
+      rollerIntake();
+    }else if(!ballSensorIntake.get() && State.count == 0){
       State.count ++ ;
-    }else if(ballSensorIntake.get() && State.count >1 && 3> State.count){
-      stopConveyor();
-    }else if(!ballSensorIntake.get() && State.count > 1){
-      State.count ++;
+      rollerIntake();
+    }else if(ballSensorIntake.get() && State.count == 1){
+      rollerIntake();
+    }else if(!ballSensorIntake.get() && State.count == 1){
       if (!ballSensorLaunch.get()) {
-        beltIntake();
+        conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
       }else if(ballSensorLaunch.get()){
         stopConveyor();
-        State.count = 0;
       }
-    }else if(ballSensorIntake.get() && State.count >2)
-      State.count ++;
-      if (!ballSensorLaunch.get()) {
-        beltIntake();
-      }else if(ballSensorLaunch.get()){
-        stopConveyor();
-        State.count = 0;
     }
-    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
-    }
-
+  }
   public void outtakeConveyor(){
     conveyorControl(-Const.Speeds.RollerOuttake, -Const.Speeds.BeltOuttake, -Const.Speeds.ShooterOuttake);
   }
