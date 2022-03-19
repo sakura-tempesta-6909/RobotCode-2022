@@ -93,7 +93,7 @@ public class Const {
     public static final class Counts{
 
         // ClimbArmEncoderの１秒あたりのカウント数
-        public static final int ClimbArmEncoderCount = 165000;
+        public static final int ClimbArmEncoderCount = 5;
     }
 
     public static final class Xbox{

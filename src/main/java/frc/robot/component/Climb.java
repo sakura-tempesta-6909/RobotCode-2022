@@ -43,9 +43,7 @@ public class Climb implements Component {
     climbArm = new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
     //climbArmEncoder = climbArm.getEncoder();
     climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
-
-  
-   
+    
   }
 
   public static double spinToAngle(double spin){
