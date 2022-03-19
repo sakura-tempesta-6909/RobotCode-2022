@@ -14,7 +14,7 @@ public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, launchMotor;
-  private DigitalInput ballSensorIntake, ballSensorLaounch;
+  private DigitalInput ballSensorIntake, ballSensorLaunch;
   private TalonSRX intakeExtend, backPlate;
 
 
@@ -31,7 +31,7 @@ public class Conveyor implements Component {
     /* バックプレート操作用のモーターのセット */
 
     ballSensorIntake = new DigitalInput(Const.Ports.BallSensorIntake);
-    ballSensorLaounch = new DigitalInput(Const.Ports.BallSensorShooter);
+    ballSensorLaunch = new DigitalInput(Const.Ports.BallSensorShooter);
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(true);
 
@@ -53,17 +53,17 @@ public class Conveyor implements Component {
       stopConveyor();
     }else if(!ballSensorIntake.get() && State.count > 1){
       State.count ++;
-      if (!ballSensorLaounch.get()) {
+      if (!ballSensorLaunch.get()) {
         beltIntake();
-      }else if(ballSensorLaounch.get()){
+      }else if(ballSensorLaunch.get()){
         stopConveyor();
         State.count = 0;
       }
     }else if(ballSensorIntake.get() && State.count >2)
       State.count ++;
-      if (!ballSensorLaounch.get()) {
+      if (!ballSensorLaunch.get()) {
         beltIntake();
-      }else if(ballSensorLaounch.get()){
+      }else if(ballSensorLaunch.get()){
         stopConveyor();
         State.count = 0;
     }

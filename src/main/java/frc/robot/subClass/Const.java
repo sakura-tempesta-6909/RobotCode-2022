@@ -27,7 +27,7 @@ public class Const {
         public static final int LimitSwitch = 9;
 
         //sensor, conveyor
-        public static final int BallSensorIntake = 0; //これはあるか分からない
+        public static final int BallSensorIntake = 0;
         public static final int BallSensorShooter = 1;
 
         //pneumatics
