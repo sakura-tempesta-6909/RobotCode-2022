@@ -56,7 +56,7 @@ public class Drive implements Component{
      * @return PositionのdrivePointをMeterにする 返り値はMeter
      */
     public double drivePointToMeter(double drivePoint){
-        return drivePoint / Const.Point.DrivePointsPerDriveLength;
+        return drivePoint / Const.Other.DrivePointsPerDriveLength;
     }
 
     public double getDriveRightMeter(){

@@ -43,9 +43,9 @@ public class DriveMode extends Mode {
             State.is_compressorEnabled = true;
         }
 
-        if(driveController.getLeftTriggerAxis() > Const.Util.TriggerValue){
+        if(driveController.getLeftTriggerAxis() > Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
-        } else if(driveController.getRightTriggerAxis() > Const.Util.TriggerValue){
+        } else if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_intakeConveyor;
         } else {
             Util.sendConsole("POV Value", driveController.getPOV());
