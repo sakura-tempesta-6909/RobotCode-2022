@@ -39,11 +39,11 @@ public class Climb implements Component {
   }
 
   public static double spinToAngle(double spin){
-    return spin / Const.Point.AngleToSpin;
+    return spin / Const.Point.DegreesPerRevolution;
   }
 
   public double angleToSpin(double angle){
-    return Const.Point.AngleToSpin * angle;
+    return Const.Point.DegreesPerRevolution * angle;
   }
 
   public static double getClimbArmAngle(){
