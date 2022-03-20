@@ -112,5 +112,9 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.readSensors();
     }
+    // for (Component component : components) {
+    //   component.applyState();
+    // }
+    // Util.allsendConsole();
   }
 }
