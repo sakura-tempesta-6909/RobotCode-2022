@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.*;
 import frc.robot.subClass.Const;
@@ -39,6 +40,8 @@ public class State {
     //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
+    public static DriverStation alliance, gameSpecificMessage;
+
     public static double gyroValue; // クランプの傾き用
 
     public static void StateInit() {
@@ -47,6 +50,10 @@ public class State {
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
+        
+        DriverStation.getAlliance();
+        DriverStation.getGameSpecificMessage();
+        
 
         stateReset();
     }
