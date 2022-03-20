@@ -172,17 +172,17 @@ public class Conveyor implements Component {
   }
 
   public double extendAngleToPoint(double extendAngle){
-    double angleDiff = extendAngle - (Const.Other.MinimumExtendAngle);
-    double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
-    double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
-    return angleDiff * (pointRange / angleRange) + Const.Other.MinimumExtendPoint;
+    double angleDiff = extendAngle - (Const.Calculation.MinimumExtendAngle);
+    double pointRange = Const.Calculation.MaxExtendPoint - Const.Calculation.MinimumExtendPoint;
+    double angleRange = Const.Calculation.MaxExtendAngle - (Const.Calculation.MinimumExtendAngle);
+    return angleDiff * (pointRange / angleRange) + Const.Calculation.MinimumExtendPoint;
   }
 
   public double extendPointToAngle(double extendPoint){
-    double pointDiff = extendPoint - Const.Other.MinimumExtendPoint;
-    double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
-    double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
-    return pointDiff * (angleRange / pointRange) + (Const.Other.MinimumExtendAngle);
+    double pointDiff = extendPoint - Const.Calculation.MinimumExtendPoint;
+    double angleRange = Const.Calculation.MaxExtendAngle - (Const.Calculation.MinimumExtendAngle);
+    double pointRange = Const.Calculation.MaxExtendPoint - Const.Calculation.MinimumExtendPoint;
+    return pointDiff * (angleRange / pointRange) + (Const.Calculation.MinimumExtendAngle);
   }
 
   public double getExtendAngle(){
