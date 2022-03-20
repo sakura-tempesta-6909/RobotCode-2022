@@ -25,6 +25,8 @@ public class State {
     public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
+    public static double intakeExtendPosition;
+    public static double intakeExtendAngle;
     public static boolean is_fedLimitSwitchClose;
     public static boolean is_revLimitSwitchClose;
 
@@ -49,6 +51,8 @@ public class State {
     public static String gameSpecificMessage;
 
     public static double gyroValue; // クランプの傾き用
+
+    public static double shooterMotorSpeed;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
