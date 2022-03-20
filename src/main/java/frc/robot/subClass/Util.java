@@ -54,6 +54,7 @@ public class Util {
         sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
         sendConsole("intakeExtendPosition", State.intakeExtendPosition);
         sendConsole("intakeExtendAnlge", State.intakeExtendAngle);
+        sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
     
     }
 }
