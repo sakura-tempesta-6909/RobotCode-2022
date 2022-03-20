@@ -52,6 +52,8 @@ public class Util {
         sendConsole("gameMessage", State.gameSpecificMessage);
         sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
         sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
+        sendConsole("intakeExtendPosition", State.intakeExtendPosition);
+        sendConsole("intakeExtendAnlge", State.intakeExtendAngle);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
     
     }
