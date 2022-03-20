@@ -1,6 +1,8 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -152,14 +154,17 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
+      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
+      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
+  
   }
 
   /**
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
+      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
+      intakeExtend.set(ControlMode.Position, -Const.Pid.IntakeExtendClosePosition);
   }
 
   /**
@@ -201,6 +206,8 @@ public class Conveyor implements Component {
   @Override
   public void readSensors() {
     State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
+    State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
+    State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
   }
 
   @Override

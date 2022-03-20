@@ -4,10 +4,13 @@ package frc.robot.component;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 import frc.robot.State;
 
 public class Climb implements Component {
@@ -44,6 +47,8 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Other.ClimbArmEncoderCount);
     }
+    Util.sendConsole("climbArmMotorNEO", is_climbArmMotorNEO);
+    
     
   }
 
@@ -166,6 +171,7 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
+    is_climbArmMotorNEO = climbArm.getMotorType() == MotorType.kBrushless;
     
   }
 

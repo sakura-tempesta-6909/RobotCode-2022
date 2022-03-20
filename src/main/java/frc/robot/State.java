@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.*;
@@ -23,6 +25,8 @@ public class State {
     public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
+    public static boolean is_fedLimitSwitchClose;
+    public static boolean is_revLimitSwitchClose;
 
     //ClimbArmのState
     public static ClimbArmState climbArmState;
