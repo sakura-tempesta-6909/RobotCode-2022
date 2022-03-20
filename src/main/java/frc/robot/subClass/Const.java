@@ -23,7 +23,7 @@ public class Const {
         //Motor, Conveyor
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
-        public static final int LaunchMotor = 6;
+        public static final int ShooterMotor = 6;
         public static final int ConveyorExtend = 7;
         public static final int BackPlate = 8;
         public static final int LimitSwitch = 9;
