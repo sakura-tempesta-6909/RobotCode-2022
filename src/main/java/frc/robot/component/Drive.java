@@ -32,8 +32,8 @@ public class Drive implements Component{
 
         differntialDrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.Configs.DriveRight);
-        driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
+        driveRightFront.configAllSettings(Const.MotorConfigs.DriveRight);
+        driveLeftFront.configAllSettings(Const.MotorConfigs.DriveLeft);
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
@@ -56,7 +56,7 @@ public class Drive implements Component{
      * @return PositionのdrivePointをMeterにする 返り値はMeter
      */
     public double drivePointToMeter(double drivePoint){
-        return drivePoint / Const.Other.DrivePointsPerDriveLength;
+        return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
 
     public double getDriveRightMeter(){

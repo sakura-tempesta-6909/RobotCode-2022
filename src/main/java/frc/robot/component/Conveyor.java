@@ -1,15 +1,12 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.subClass.Const;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 
 
@@ -29,8 +26,8 @@ public class Conveyor implements Component {
     shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
     intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
     backPlate = new TalonSRX(Const.Ports.BackPlate);
-    intakeExtend.configAllSettings(Const.Configs.intakeExtend);
-    shooterMotor.configAllSettings(Const.Configs.ShooterMotor);
+    intakeExtend.configAllSettings(Const.MotorConfigs.intakeExtend);
+    shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
 
     /* バックプレート操作用のモーターのセット */
 
@@ -154,7 +151,7 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
+      intakeExtend.selectProfileSlot(Const.MotorConfigs.ExtendPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
   
   }
@@ -163,7 +160,7 @@ public class Conveyor implements Component {
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-      intakeExtend.selectProfileSlot(Const.Configs.UpPIDslot, 0);
+      intakeExtend.selectProfileSlot(Const.MotorConfigs.UpPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendClosePosition);
   }
 
@@ -174,6 +171,23 @@ public class Conveyor implements Component {
     intakeExtendControl(Const.Speeds.Neutral);
   }
 
+  public double extendAngleToPoint(double extendAngle){
+    double angleDiff = extendAngle - (Const.Other.MinimumExtendAngle);
+    double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
+    double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
+    return angleDiff * (pointRange / angleRange) + Const.Other.MinimumExtendPoint;
+  }
+
+  public double extendPointToAngle(double extendPoint){
+    double pointDiff = extendPoint - Const.Other.MinimumExtendPoint;
+    double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
+    double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
+    return pointDiff * (angleRange / pointRange) + (Const.Other.MinimumExtendAngle);
+  }
+
+  public double getExtendAngle(){
+    return extendPointToAngle(intakeExtend.getSelectedSensorPosition());
+  }
 
   public void backPlateMove(double angle){
 
@@ -208,6 +222,8 @@ public class Conveyor implements Component {
     State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
     State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
     State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
+    State.intakeExtendPosition = intakeExtend.getSelectedSensorPosition();
+    State.intakeExtendAngle = getExtendAngle();
   }
 
   @Override

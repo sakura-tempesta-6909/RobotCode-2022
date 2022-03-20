@@ -40,7 +40,7 @@ public class Climb implements Component {
       climbArmEncoder = climbArm.getEncoder();
     } else {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-      climbArmEncoder = climbArm.getAlternateEncoder(Const.Other.ClimbArmEncoderCount);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
   }
 
@@ -49,7 +49,7 @@ public class Climb implements Component {
   }
 
   public double angleToSpin(double angle){
-    return Const.Other.DegreesPerRevolution * angle;
+    return Const.Calculation.DegreesPerRevolution * angle;
   }
 
   public double getClimbArmAngle(){
