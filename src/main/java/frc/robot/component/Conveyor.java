@@ -171,7 +171,7 @@ public class Conveyor implements Component {
     intakeExtendControl(Const.Speeds.Neutral);
   }
 
-  public double angleToPoint(double extendAngle){
+  public double extendAngleToPoint(double extendAngle){
     double angleDiff = extendAngle - (Const.Other.MinimumExtendAngle);
     double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
     double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
@@ -222,6 +222,7 @@ public class Conveyor implements Component {
     State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
     State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
     State.intakeExtendPosition = intakeExtend.getSelectedSensorPosition();
+    State.intakeExtendAngle = getExtendAngle();
   }
 
   @Override

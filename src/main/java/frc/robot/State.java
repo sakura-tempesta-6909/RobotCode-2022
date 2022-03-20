@@ -26,6 +26,7 @@ public class State {
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
     public static double intakeExtendPosition;
+    public static double intakeExtendAngle;
     public static boolean is_fedLimitSwitchClose;
     public static boolean is_revLimitSwitchClose;
 
