@@ -50,8 +50,7 @@ public class Util {
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
-        sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
+     
     
     }
 }
