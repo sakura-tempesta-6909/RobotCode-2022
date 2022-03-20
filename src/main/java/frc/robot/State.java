@@ -25,7 +25,8 @@ public class State {
     public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
-    public static boolean is_limitSwitchOn;
+    public static boolean is_fedLimitSwitchClose;
+    public static boolean is_revLimitSwitchClose;
 
     //ClimbArmのState
     public static ClimbArmState climbArmState;
