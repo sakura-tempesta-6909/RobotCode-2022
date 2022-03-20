@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.math.util.Units;
 
 public class Const {
-   public static final class Ports{
+    public static final class Ports{
         //PORTS                                          
         //ControllerPort(コントローラーのポート)
         public static final int DriveController = 0;
@@ -83,33 +83,38 @@ public class Const {
         public static final double MidClimbArmSpin = 0.5;
     }
 
-    public static final class Other{
-
+    public static final class Calculation{
         // DrivePoint
         public static final double EncoderPointsPerRevolution = 4096;
+
         // タイヤの直径を求める 単位はメートル
         public static final double DriveWheelDiameter = Units.inchesToMeters(6.0);
         // タイヤの円周のを求める　単位はメートル
         public static final double DriveLengthPerWheelRevolution = DriveWheelDiameter * Math.PI;
+
         // 1m進むとどのくらいPointが増えるか
-        public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution; 
-        
-        //ClmbPoint 
+        public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution;
+
+        //ClimbPoint
         // 円の角度
         public static final double Round = 360;
         // ClimbArmのギア比
         public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
         public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
-
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
+    }
 
+    public static final class Other{
+        //シューターのモーターの最大速度
         public static final int shooterMotorMaxOutput = 100000;
 
         //Deadband
         public static final double Deadband = 0.2;
         public static final double TriggerValue = 0.5;
+
+        //ClimbArmのモーターのAmpの制限値
         public static final int ClimbArmCurrentLimit = 60;
     }
 
@@ -119,8 +124,8 @@ public class Const {
     }
 
     public static final class Configs{
-        public static final int ExtendPIDslot = 0;
-        public static final int UpPIDslot = 1;
+        public static final int ExtendPIDSlot = 0;
+        public static final int UpPIDSlot = 1;
 
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
@@ -137,17 +142,17 @@ public class Const {
         Configs.ShooterMotor.slot0.kI = 0;
         Configs.ShooterMotor.slot0.kD = 0;
         Configs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        
+
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
         Configs.intakeExtend.slot0.kP = 0;
         Configs.intakeExtend.slot0.kI = 0;
         Configs.intakeExtend.slot0.kD = 0;
-        
+
         Configs.intakeExtend.slot1.kP = 0;
         Configs.intakeExtend.slot1.kI = 0;
         Configs.intakeExtend.slot1.kD = 0;
         Configs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
-        
+
         //LimitSwitch
         Configs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
         Configs.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;

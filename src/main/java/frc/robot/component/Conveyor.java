@@ -1,15 +1,12 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.subClass.Const;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 
 
@@ -154,7 +151,7 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
+      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
   
   }
@@ -163,7 +160,7 @@ public class Conveyor implements Component {
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-      intakeExtend.selectProfileSlot(Const.Configs.UpPIDslot, 0);
+      intakeExtend.selectProfileSlot(Const.Configs.UpPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendClosePosition);
   }
 
