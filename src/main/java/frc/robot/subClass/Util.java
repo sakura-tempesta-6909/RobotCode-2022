@@ -48,6 +48,8 @@ public class Util {
         sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
         sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
+        sendConsole("alliance", State.alliance.toString());
+        sendConsole("gameMessage", State.gameSpecificMessage);
      
     
     }
