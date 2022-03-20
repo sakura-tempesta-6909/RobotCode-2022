@@ -54,14 +54,6 @@ public class State {
         stateReset();
     }
 
-    public static DriverStation.Alliance getAlliance(){
-        return DriverStation.getAlliance();
-    }
-
-    public static String getGameSpecificMessage(){
-        return DriverStation.getGameSpecificMessage();
-    }
-
     public static void stateReset() {
         driveSpeed = DriveSpeed.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;

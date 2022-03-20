@@ -2,7 +2,6 @@ package frc.robot;
 
 import java.util.ArrayList;
 import frc.robot.subClass.Util;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.component.Component;
 import frc.robot.phase.Autonomous;
@@ -26,8 +25,6 @@ public class Robot extends TimedRobot {
     components.add(new Climb());
 
     externalSensors = new ExternalSensors();
-    DriverStation.getAlliance();
-    DriverStation.getGameSpecificMessage();
 
     State.StateInit();
   }
