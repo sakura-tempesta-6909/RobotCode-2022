@@ -16,7 +16,7 @@ import frc.robot.State;
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
-  private TalonSRX intakeBelt, launchMotor;
+  private TalonSRX intakeBelt, shooterMotor;
   private DigitalInput ballSensor;
   private TalonSRX intakeExtend, backPlate;
   
@@ -26,11 +26,11 @@ public class Conveyor implements Component {
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
-    launchMotor = new TalonSRX(Const.Ports.LaunchMotor);
+    shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
     intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
     backPlate = new TalonSRX(Const.Ports.BackPlate);
     intakeExtend.configAllSettings(Const.Configs.intakeExtend);
-    launchMotor.configAllSettings(Const.Configs.LaunchMotor);
+    shooterMotor.configAllSettings(Const.Configs.ShooterMotor);
 
     /* バックプレート操作用のモーターのセット */
 
@@ -124,12 +124,12 @@ public class Conveyor implements Component {
    * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
    * @param intakeBeltSpeed intakeを正
-   * @param launchSpeed intakeを正
+   * @param shooterSpeed intakeを正
    */
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    launchMotor.set(ControlMode.PercentOutput, shooterSpeed);
+    shooterMotor.set(ControlMode.Velocity, Const.Other.shooterMotorMaxOutput * shooterSpeed);
   }
 
   /**
@@ -205,6 +205,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
+    State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
     State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
     State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
   }

@@ -23,7 +23,7 @@ public class Const {
         //Motor, Conveyor
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
-        public static final int LaunchMotor = 6;
+        public static final int ShooterMotor = 6;
         public static final int ConveyorExtend = 7;
         public static final int BackPlate = 8;
         public static final int LimitSwitch = 9;
@@ -105,6 +105,8 @@ public class Const {
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 
+        public static final int shooterMotorMaxOutput = 100000;
+
         //Deadband
         public static final double Deadband = 0.2;
         public static final double TriggerValue = 0.5;
@@ -122,7 +124,7 @@ public class Const {
 
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration LaunchMotor = new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
     }
 
@@ -131,10 +133,10 @@ public class Const {
         Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        Configs.LaunchMotor.slot0.kP = 0;
-        Configs.LaunchMotor.slot0.kI = 0;
-        Configs.LaunchMotor.slot0.kD = 0;
-        Configs.LaunchMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Configs.ShooterMotor.slot0.kP = 0;
+        Configs.ShooterMotor.slot0.kI = 0;
+        Configs.ShooterMotor.slot0.kD = 0;
+        Configs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
         Configs.intakeExtend.slot0.kP = 0;
