@@ -55,6 +55,7 @@ public class Util {
         sendConsole("intakeExtendPosition", State.intakeExtendPosition);
         sendConsole("intakeExtendAnlge", State.intakeExtendAngle);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
+        sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
     
     }
 }
