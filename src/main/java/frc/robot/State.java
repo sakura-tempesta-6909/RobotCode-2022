@@ -50,12 +50,16 @@ public class State {
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
-        
-        DriverStation.getAlliance();
-        DriverStation.getGameSpecificMessage();
-        
 
         stateReset();
+    }
+
+    public static DriverStation.Alliance getAlliance(){
+        return DriverStation.getAlliance();
+    }
+
+    public static String getGameSpecificMessage(){
+        return DriverStation.getGameSpecificMessage();
     }
 
     public static void stateReset() {
