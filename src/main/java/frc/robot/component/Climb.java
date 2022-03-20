@@ -44,8 +44,6 @@ public class Climb implements Component {
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Other.ClimbArmEncoderCount);
     }
     Util.sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
-    
-    
   }
 
   public double spinToAngle(double spin){
@@ -72,7 +70,7 @@ public class Climb implements Component {
 
   /**
    *  firstSolenoidを動かす
-   * @param firstSolenoid falseで閉じている
+   * @param firstSolenoidOpen falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
     firstSolenoid.set(firstSolenoidOpen);
@@ -93,8 +91,8 @@ public class Climb implements Component {
   }
 
    /**
-    * secondSolnoidを動かす
-   * @param secondSoenoid falseで閉じている
+    * secondSolenoidを動かす
+   * @param secondSolenoidControl falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
@@ -116,7 +114,7 @@ public class Climb implements Component {
 
   /**
    * climbSolenoidを動かす
-   *  @param climbSolenoid trueで伸びている
+   *  @param climbSolenoidControl trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
