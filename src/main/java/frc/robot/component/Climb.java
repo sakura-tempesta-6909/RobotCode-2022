@@ -65,7 +65,7 @@ public class Climb implements Component {
   }
 
   public void setClimbArmAngle(double climbArmTaregetAngle){
-    if(getClimbArmAngle() == climbArmTaregetAngle){
+    if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <5){
       climbControl(Const.Speeds.Neutral);
     }else{
       climbControl(Const.Speeds.SlowClimbArmSpin);
