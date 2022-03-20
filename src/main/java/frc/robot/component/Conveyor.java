@@ -134,7 +134,7 @@ public class Conveyor implements Component {
 
   /**
    * intakeExtendを動かす
-   * @param intakeExtendControl 展開するときを正
+   * @param intakeExtendControl 展開するときを負
    */
   public void intakeExtendControl(double intakeExtendControl){
 
@@ -163,8 +163,8 @@ public class Conveyor implements Component {
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
-      intakeExtend.set(ControlMode.Position, -Const.Pid.IntakeExtendClosePosition);
+      intakeExtend.selectProfileSlot(Const.Configs.UpPIDslot, 0);
+      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendClosePosition);
   }
 
   /**
