@@ -64,6 +64,13 @@ public class Climb implements Component {
     return spinToAngle(climbArmEncoder.getPosition());
   }
 
+  public void setClimbArmAngle(double climbarmtaregetangle){
+    if(getClimbArmAngle() == climbarmtaregetangle){
+      climbControl(Const.Speeds.Neutral);
+    }else{
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    }
+  }
   /**
    * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
@@ -185,7 +192,7 @@ public class Climb implements Component {
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
       case s_setClimbArmAngle:
-        climbControl(Const.Speeds.Neutral);
+        setClimbArmAngle(Const.Other.ClimbArmTaregetAngle);
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
