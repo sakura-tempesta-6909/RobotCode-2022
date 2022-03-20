@@ -155,7 +155,7 @@ public class Conveyor implements Component {
    */
   public void intakeExtendOpen(){
       intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
-      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendPosition);
+      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
   
   }
 
@@ -164,7 +164,7 @@ public class Conveyor implements Component {
    */
   public void intakeExtendClose(){
       intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDslot, 0);
-      intakeExtend.set(ControlMode.Position, -Const.Pid.IntakeExtendPosition);
+      intakeExtend.set(ControlMode.Position, -Const.Pid.IntakeExtendClosePosition);
   }
 
   /**
