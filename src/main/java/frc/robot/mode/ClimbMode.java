@@ -3,6 +3,8 @@ package frc.robot.mode;
 import frc.robot.State;
 import frc.robot.State.ClimbArmState;
 import frc.robot.State.Modes;
+import frc.robot.component.Climb;
+import frc.robot.subClass.Const;
 import frc.robot.State.DriveSpeed;
 
 public class ClimbMode extends Mode {
@@ -24,8 +26,10 @@ public class ClimbMode extends Mode {
     State.driveZRotation = driveController.getRightX();
 
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
-
-    if(driveController.getAButton()){
+    
+    if(driveController.getAButton() && Climb.getClimbArmAngle() == Const.Other.ClimbArmGoalAngle){
+      State.climbArmState = ClimbArmState.s_setClimbArmAngle;
+    }else if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
       State.climbArmState = ClimbArmState.s_midClimbArmSpin;

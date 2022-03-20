@@ -101,7 +101,8 @@ public class Const {
         public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
         public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
-
+        // クライムの目標角度
+        public static final double ClimbArmGoalAngle = 0;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 

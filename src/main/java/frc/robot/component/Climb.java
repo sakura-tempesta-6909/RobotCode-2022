@@ -184,6 +184,9 @@ public class Climb implements Component {
       case s_midClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
+      case s_setClimbArmAngle:
+        climbControl(Const.Speeds.Neutral);
+        break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
         break;
