@@ -106,6 +106,11 @@ public class Const {
         public static final int ClimbArmEncoderCount = 5;
     }
 
+    public static final class Pid{
+        public static final int IntakeExtendOpenPosition = 0;
+        public static final int IntakeExtendClosePosition = 0;
+    }
+
     public static final class Other{
         //シューターのモーターの最大速度
         public static final int shooterMotorMaxOutput = 100000;
@@ -118,12 +123,7 @@ public class Const {
         public static final int ClimbArmCurrentLimit = 60;
     }
 
-    public static final class Pid{
-        public static final int IntakeExtendOpenPosition = 0;
-        public static final int IntakeExtendClosePosition = 0;
-    }
-
-    public static final class Configs{
+    public static final class MotorConfigs {
         public static final int ExtendPIDSlot = 0;
         public static final int UpPIDSlot = 1;
 
@@ -135,29 +135,29 @@ public class Const {
 
     public static void ConstInit() {
 
-        Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        Configs.ShooterMotor.slot0.kP = 0;
-        Configs.ShooterMotor.slot0.kI = 0;
-        Configs.ShooterMotor.slot0.kD = 0;
-        Configs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        MotorConfigs.ShooterMotor.slot0.kP = 0;
+        MotorConfigs.ShooterMotor.slot0.kI = 0;
+        MotorConfigs.ShooterMotor.slot0.kD = 0;
+        MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        Configs.intakeExtend.slot0.kP = 0;
-        Configs.intakeExtend.slot0.kI = 0;
-        Configs.intakeExtend.slot0.kD = 0;
+        MotorConfigs.intakeExtend.slot0.kP = 0;
+        MotorConfigs.intakeExtend.slot0.kI = 0;
+        MotorConfigs.intakeExtend.slot0.kD = 0;
 
-        Configs.intakeExtend.slot1.kP = 0;
-        Configs.intakeExtend.slot1.kI = 0;
-        Configs.intakeExtend.slot1.kD = 0;
-        Configs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
+        MotorConfigs.intakeExtend.slot1.kP = 0;
+        MotorConfigs.intakeExtend.slot1.kI = 0;
+        MotorConfigs.intakeExtend.slot1.kD = 0;
+        MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
 
         //LimitSwitch
-        Configs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        Configs.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        MotorConfigs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        MotorConfigs.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
 
-        Configs.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        Configs.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
+        MotorConfigs.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
+        MotorConfigs.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
     }
 }

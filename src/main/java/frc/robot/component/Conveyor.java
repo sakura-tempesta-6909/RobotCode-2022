@@ -26,8 +26,8 @@ public class Conveyor implements Component {
     shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
     intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
     backPlate = new TalonSRX(Const.Ports.BackPlate);
-    intakeExtend.configAllSettings(Const.Configs.intakeExtend);
-    shooterMotor.configAllSettings(Const.Configs.ShooterMotor);
+    intakeExtend.configAllSettings(Const.MotorConfigs.intakeExtend);
+    shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
 
     /* バックプレート操作用のモーターのセット */
 
@@ -151,7 +151,7 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-      intakeExtend.selectProfileSlot(Const.Configs.ExtendPIDSlot, 0);
+      intakeExtend.selectProfileSlot(Const.MotorConfigs.ExtendPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
   
   }
@@ -160,7 +160,7 @@ public class Conveyor implements Component {
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-      intakeExtend.selectProfileSlot(Const.Configs.UpPIDSlot, 0);
+      intakeExtend.selectProfileSlot(Const.MotorConfigs.UpPIDSlot, 0);
       intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendClosePosition);
   }
 
