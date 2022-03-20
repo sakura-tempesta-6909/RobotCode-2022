@@ -30,17 +30,17 @@ public class Util {
         SmartDashboard.putBoolean(key, which);
     }
 
-    public static void allsendConsole(){
+    public static void allSendConsole(){
         sendConsole( "Mode", State.mode.toString());
         sendConsole("DriveSpeed", State.driveSpeed.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
-        sendConsole("ConveyerState", State.conveyorState.toString());
+        sendConsole("ConveyorState", State.conveyorState.toString());
         sendConsole("intakeExtendState", State.intakeExtendState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
         sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
-        sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
+        sendConsole("firstSolenoidOpen", State.is_firstSolenoidOpen);
+        sendConsole("secondSolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
@@ -53,7 +53,7 @@ public class Util {
         sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
         sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
         sendConsole("intakeExtendPosition", State.intakeExtendPosition);
-        sendConsole("intakeExtendAnlge", State.intakeExtendAngle);
+        sendConsole("intakeExtendAngle", State.intakeExtendAngle);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
         sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
     
