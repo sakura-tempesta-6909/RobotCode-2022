@@ -40,7 +40,7 @@ public class Util {
         sendConsole("driveZRotation", State.driveZRotation);
         sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
         sendConsole("fristSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("secondsolenoidOpen", State.is_secondSolenoidOpen);
+        sendConsole("secondolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
