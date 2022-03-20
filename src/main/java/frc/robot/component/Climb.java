@@ -45,7 +45,7 @@ public class Climb implements Component {
   }
 
   public double spinToAngle(double spin){
-    return spin / Const.Other.DegreesPerRevolution;
+    return spin / Const.Calculation.DegreesPerRevolution;
   }
 
   public double angleToSpin(double angle){
@@ -53,7 +53,7 @@ public class Climb implements Component {
   }
 
   public double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition()) % Const.Other.Round;
+    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
   }
 
   /**
