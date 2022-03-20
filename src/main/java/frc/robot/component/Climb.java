@@ -4,14 +4,11 @@ package frc.robot.component;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.subClass.Const;
-import frc.robot.subClass.Util;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 public class Climb implements Component {
 
@@ -26,8 +23,7 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
-  private static RelativeEncoder climbArmEncoder;
-  public static boolean is_climbArmMotorNEO;
+  private RelativeEncoder climbArmEncoder;
 
 
    
@@ -39,20 +35,16 @@ public class Climb implements Component {
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    is_climbArmMotorNEO = false;
-    if(is_climbArmMotorNEO){
+    if(State.is_climbArmMotorNEO){
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
       climbArmEncoder = climbArm.getEncoder();
     } else {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
-    Util.sendConsole("climbArmMotorNEO", is_climbArmMotorNEO);
-    
-    
   }
 
-  public static double spinToAngle(double spin){
+  public double spinToAngle(double spin){
     return spin / Const.Calculation.DegreesPerRevolution;
   }
 
@@ -60,8 +52,8 @@ public class Climb implements Component {
     return Const.Calculation.DegreesPerRevolution * angle;
   }
 
-  public static double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition());
+  public double getClimbArmAngle(){
+    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
   }
 
   public void setClimbArmAngle(double climbArmTaregetAngle){
@@ -83,7 +75,7 @@ public class Climb implements Component {
 
   /**
    *  firstSolenoidを動かす
-   * @param firstSolenoid falseで閉じている
+   * @param firstSolenoidOpen falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
     firstSolenoid.set(firstSolenoidOpen);
@@ -104,8 +96,8 @@ public class Climb implements Component {
   }
 
    /**
-    * secondSolnoidを動かす
-   * @param secondSoenoid falseで閉じている
+    * secondSolenoidを動かす
+   * @param secondSolenoidControl falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
@@ -127,7 +119,7 @@ public class Climb implements Component {
 
   /**
    * climbSolenoidを動かす
-   *  @param climbSolenoid trueで伸びている
+   *  @param climbSolenoidControl trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
@@ -178,8 +170,6 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
-    is_climbArmMotorNEO = climbArm.getMotorType() == MotorType.kBrushless;
-    
   }
 
   @Override
