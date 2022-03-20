@@ -105,6 +105,8 @@ public class Const {
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 
+        public static final int shooterMotorMaxOutput = 100000;
+
         //Deadband
         public static final double Deadband = 0.2;
         public static final double TriggerValue = 0.5;

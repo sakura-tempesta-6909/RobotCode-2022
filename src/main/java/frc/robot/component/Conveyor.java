@@ -127,7 +127,7 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    launchMotor.set(ControlMode.PercentOutput, shooterSpeed);
+    launchMotor.set(ControlMode.Velocity, Const.Other.shooterMotorMaxOutput * shooterSpeed);
   }
 
   /**
