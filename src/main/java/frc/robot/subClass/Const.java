@@ -111,6 +111,11 @@ public class Const {
         public static final int ClimbArmCurrentLimit = 60;
     }
 
+    public static final class Pid{
+        public static final int IntakeExtendOpenPosition = 0;
+        public static final int IntakeExtendClosePosition = 0;
+    }
+
     public static final class Configs{
         public static final int ExtendPIDslot = 0;
         public static final int UpPIDslot = 1;
