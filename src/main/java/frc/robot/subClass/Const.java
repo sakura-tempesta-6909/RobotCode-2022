@@ -119,7 +119,7 @@ public class Const {
 
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration LaunchMotor = new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
     }
 
@@ -128,10 +128,10 @@ public class Const {
         Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        Configs.LaunchMotor.slot0.kP = 0;
-        Configs.LaunchMotor.slot0.kI = 0;
-        Configs.LaunchMotor.slot0.kD = 0;
-        Configs.LaunchMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        Configs.ShooterMotor.slot0.kP = 0;
+        Configs.ShooterMotor.slot0.kI = 0;
+        Configs.ShooterMotor.slot0.kD = 0;
+        Configs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
         Configs.intakeExtend.slot0.kP = 0;
