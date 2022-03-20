@@ -200,8 +200,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    // TODO Auto-generated method stub
-
+    State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
   }
 
   @Override

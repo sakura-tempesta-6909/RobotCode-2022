@@ -45,6 +45,8 @@ public class State {
 
     public static double gyroValue; // クランプの傾き用
 
+    public static double shooterMotorSpeed;
+
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);
