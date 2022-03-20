@@ -204,6 +204,7 @@ public class Conveyor implements Component {
   public void readSensors() {
     State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
     State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
+    State.intakeExtendPosition = intakeExtend.getSelectedSensorPosition();
   }
 
   @Override
