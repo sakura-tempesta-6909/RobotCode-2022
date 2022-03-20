@@ -40,7 +40,8 @@ public class State {
     //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
-    public static DriverStation alliance, gameSpecificMessage;
+    public static DriverStation.Alliance alliance;
+    public static String gameSpecificMessage;
 
     public static double gyroValue; // クランプの傾き用
 
@@ -51,6 +52,9 @@ public class State {
         mode = Modes.k_drive;
         is_compressorEnabled = true;
 
+        alliance = DriverStation.getAlliance();
+        gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        
         stateReset();
     }
 
