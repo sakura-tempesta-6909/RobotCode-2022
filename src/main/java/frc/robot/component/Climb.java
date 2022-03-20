@@ -64,11 +64,11 @@ public class Climb implements Component {
     return spinToAngle(climbArmEncoder.getPosition());
   }
 
-  public void setClimbArmAngle(double climbarmtaregetangle){
-    if(getClimbArmAngle() == climbarmtaregetangle){
+  public void setClimbArmAngle(double climbArmTaregetAngle){
+    if(getClimbArmAngle() == climbArmTaregetAngle){
       climbControl(Const.Speeds.Neutral);
     }else{
-      climbControl(Const.Speeds.MidClimbArmSpin);
+      climbControl(Const.Speeds.SlowClimbArmSpin);
     }
   }
   /**
@@ -192,7 +192,7 @@ public class Climb implements Component {
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
       case s_setClimbArmAngle:
-        setClimbArmAngle(Const.Other.ClimbArmTaregetAngle);
+        setClimbArmAngle(State.climbArmTaregetAngle);
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);

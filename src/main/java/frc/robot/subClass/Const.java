@@ -81,6 +81,7 @@ public class Const {
         public static final double FastClimbArmSpin = 1;
         //midClimbArmのスピード
         public static final double MidClimbArmSpin = 0.5;
+        public static final double SlowClimbArmSpin = 0.2;
     }
 
     public static final class Other{
@@ -101,8 +102,6 @@ public class Const {
         public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
         public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
-        // クライムの目標角度
-        public static final double ClimbArmTaregetAngle = 0;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 
