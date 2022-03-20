@@ -105,9 +105,9 @@ public class Const {
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 
-        public static final double MaxExtendPoint = 0;
-        public static final double MinimumExtendPoint = 0;
-        public static final double MaxExtendAngle = 0;
+        public static final double MaxExtendPoint = -335;
+        public static final double MinimumExtendPoint = -693;
+        public static final double MaxExtendAngle = -114;
         public static final double MinimumExtendAngle = 0;
 
         //Deadband

@@ -178,7 +178,7 @@ public class Conveyor implements Component {
     return angleDiff * (pointRange / angleRange) + Const.Other.MinimumExtendPoint;
   }
 
-  public double pointToAngle(double extendPoint){
+  public double extendPointToAngle(double extendPoint){
     double pointDiff = extendPoint - Const.Other.MinimumExtendPoint;
     double angleRange = Const.Other.MaxExtendAngle - (Const.Other.MinimumExtendAngle);
     double pointRange = Const.Other.MaxExtendPoint - Const.Other.MinimumExtendPoint;
@@ -186,7 +186,7 @@ public class Conveyor implements Component {
   }
 
   public double getExtendAngle(){
-    return pointToAngle(intakeExtend.getSelectedSensorPosition());
+    return extendPointToAngle(intakeExtend.getSelectedSensorPosition());
   }
 
   public void backPlateMove(double angle){
