@@ -46,21 +46,42 @@ public class Conveyor implements Component {
    * 他にもあった方がよさそうな機能
    */
 
+  /**
+   * trueの時センサーはボールを認識できていない。
+   * falseの時センサーはボールを認識している。
+  */
   public void intakeConveyor(){
-    if(ballSensorIntake.get() && State.count == 0){
+    if(ballDetectionIntakeTrue() && State.ballquantity == 0){
       rollerIntake();
-    }else if(!ballSensorIntake.get() && State.count == 0){
-      State.count ++ ;
+    }else if(ballDetectionIntakeFalse() && State.ballquantity == 0){
+      State.ballquantity ++ ;
       rollerIntake();
-    }else if(ballSensorIntake.get() && State.count == 1){
+    }else if(ballDetectionIntakeTrue() && State.ballquantity == 1){
       rollerIntake();
-    }else if(!ballSensorIntake.get() && State.count == 1){
-      if (!ballSensorLaunch.get()) {
+    }else if(ballDetectionIntakeFalse() && State.ballquantity == 1){
+      if (ballDetectionLaunchFalse()) {
         conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
-      }else if(ballSensorLaunch.get()){
+      }else if(ballDetectionLaunchTrue()){
         stopConveyor();
+      }else{
+        rollerIntake();
       }
     }
+  }
+  public boolean ballDetectionIntakeTrue(){
+    return ballSensorIntake.get();
+  }
+
+  public boolean ballDetectionIntakeFalse(){
+    return !ballSensorIntake.get();
+  }
+
+  public boolean ballDetectionLaunchTrue(){
+    return ballSensorLaunch.get();
+  }
+
+  public boolean ballDetectionLaunchFalse(){
+    return !ballSensorLaunch.get();
   }
   public void outtakeConveyor(){
     conveyorControl(-Const.Speeds.RollerOuttake, -Const.Speeds.BeltOuttake, -Const.Speeds.ShooterOuttake);
