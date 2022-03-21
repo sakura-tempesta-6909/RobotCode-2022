@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
 import frc.robot.mode.ConveyorMode;
 import frc.robot.mode.DriveMode;
+import frc.robot.mode.TestMode;
 import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 
@@ -130,7 +131,8 @@ public class State {
     public enum Modes {
         k_drive(new DriveMode()),
         k_conveyor(new ConveyorMode()),
-        k_climb(new ClimbMode());
+        k_climb(new ClimbMode()),
+        k_test(new TestMode());
 
         private final Mode mode;
         Modes(Mode mode) {
