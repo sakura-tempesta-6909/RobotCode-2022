@@ -81,6 +81,14 @@ public class Drive implements Component{
         driveRightFront.set(ControlMode.Position, rightposition);
         driveLeftFront.set(ControlMode.Position, leftposition);
     }
+
+    public void Driveaccumulatereset(){
+        driveRightFront.setSelectedSensorPosition(0);
+        driveLeftFront.setSelectedSensorPosition(0);
+        driveLeftFront.setIntegralAccumulator(0);
+        driveRightFront.setIntegralAccumulator(0);
+    }
+
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
@@ -127,10 +135,14 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                DrivePosition(State.drivePidsSetPoint,State.drivePidsSetPoint);
+                DrivePosition(State.drivePidsSetPoint,State.drivePidsSetPoint); 
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
+        }
+
+        if(State.Driveaccumulatereset){
+            Driveaccumulatereset();
         }
     }
 }

@@ -12,6 +12,7 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
     public static double drivePidsSetPoint;
+    public static boolean Driveaccumulatereset;
     //Driveのスピード
     public static DriveSpeed driveSpeed;
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
