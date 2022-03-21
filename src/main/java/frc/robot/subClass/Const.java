@@ -46,7 +46,7 @@ public class Const {
 
         //DriveSpeed
         //fastDriveの時のスピード
-        public static final double FastDrive = 0.8;
+        public static final double FastDrive = 1;
         //midDriveの時のスピード
         public static final double MidDrive = 0.5;
         //slowDriveの時のスピード
@@ -139,13 +139,16 @@ public class Const {
     }
 
     public static void ConstInit() {
-        MotorConfigs.DriveRight.slot0.kP = 0.1;
-        MotorConfigs.DriveRight.slot0.kI = 0;
-        MotorConfigs.DriveRight.slot0.kD = 0;
+     double  TMP = 0.6;
+        MotorConfigs.DriveRight.slot0.kP = 0.085*TMP;
+        MotorConfigs.DriveRight.slot0.kI = 0.00001*TMP;
+        MotorConfigs.DriveRight.slot0.kD = 0.0009*TMP;
+        MotorConfigs.DriveRight.slot0.maxIntegralAccumulator = 1023*0.014/MotorConfigs.DriveRight.slot0.kI;
         
-        MotorConfigs.DriveLeft.slot0.kP = 0.15;
-        MotorConfigs.DriveLeft.slot0.kI = 0;
-        MotorConfigs.DriveLeft.slot0.kD = 0;
+        MotorConfigs.DriveLeft.slot0.kP = 0.085*TMP;
+        MotorConfigs.DriveLeft.slot0.kI = 0.000018*TMP;
+        MotorConfigs.DriveLeft.slot0.kD = 0.0009*TMP;
+        MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;

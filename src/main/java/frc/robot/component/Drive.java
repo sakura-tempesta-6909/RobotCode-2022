@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -74,7 +75,7 @@ public class Drive implements Component{
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
-    public void DrivePosition(int leftposition,int rightposition){
+    public void DrivePosition(double leftposition,double rightposition){
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
         driveRightFront.set(ControlMode.Position, rightposition);
@@ -96,12 +97,21 @@ public class Drive implements Component{
     public void disabledInit() {}
 
     @Override
-    public void testInit() {}
+    public void testInit() {
+        driveRightFront.setSelectedSensorPosition(0);
+        driveLeftFront.setSelectedSensorPosition(0);
+        driveLeftFront.setIntegralAccumulator(0);
+        driveRightFront.setIntegralAccumulator(0);
+    }
 
     @Override
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
+        Util.sendConsole("dL point", driveLeftFront.getSelectedSensorPosition());
+        Util.sendConsole("dR point", driveRightFront.getSelectedSensorPosition());
+        Util.sendConsole("Right accu", driveRightFront.getIntegralAccumulator());
+        Util.sendConsole("Left accu", driveLeftFront.getIntegralAccumulator());
     }
 
     @Override
@@ -117,7 +127,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                DrivePosition(10000,10000);
+                DrivePosition(State.drivePidsSetPoint,State.drivePidsSetPoint);
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
