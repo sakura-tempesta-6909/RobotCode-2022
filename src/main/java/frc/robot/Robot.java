@@ -123,7 +123,6 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.applyState();
     }
-    State.mode.changeMode();
     Util.allSendConsole();
   }
 }
