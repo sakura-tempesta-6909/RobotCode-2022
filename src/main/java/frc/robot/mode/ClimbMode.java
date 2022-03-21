@@ -31,6 +31,12 @@ public class ClimbMode extends Mode {
       State.climbArmState = ClimbArmState.s_midClimbArmSpin;
     }
 
+    if(driveController.getStartButton()){
+      State.calibration = true;
+    } else{
+      State.calibration = false;
+    }
+
 
     State.is_firstSolenoidOpen = driveController.getRightBumper();
 

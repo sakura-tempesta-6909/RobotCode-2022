@@ -82,6 +82,15 @@ public class Climb implements Component {
     }
   }
 
+  public void startCalibration(){
+    if(gethallSensor()){
+      climbArm.set(0);
+      resetAngle();
+    } else{
+      climbArm.set(0.2);
+    }
+  }
+
   /**
    *  firstSolenoidを動かす
    * @param firstSolenoidOpen falseで閉じている
@@ -138,6 +147,7 @@ public class Climb implements Component {
     climbSolenoidControl(true);
   }
 
+ 
   /**
    * compressorをdisableにする
    */
@@ -215,6 +225,12 @@ public class Climb implements Component {
       compressorEnable();
     } else {
       compressorDisable();
+    }
+
+    if(State.calibration){
+      startCalibration();
+    } else{
+      return;
     }
   }
 }

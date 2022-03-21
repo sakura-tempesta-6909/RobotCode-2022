@@ -51,6 +51,7 @@ public class State {
 
     public static DriverStation.Alliance alliance;
     public static String gameSpecificMessage;
+    public static boolean calibration;
 
 
     public static double shooterMotorSpeed;
