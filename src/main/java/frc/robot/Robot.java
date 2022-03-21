@@ -105,8 +105,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
-    State.mode = State.Modes.k_drive;
-
     for (Component component : components) {
       component.testInit();
     }
@@ -121,7 +119,6 @@ public class Robot extends TimedRobot {
     }
     State.mode.changeMode();
 
-    State.mode.changeState();
   for (Component component : components) {
     component.applyState();
    }
