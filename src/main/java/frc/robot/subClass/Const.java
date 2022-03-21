@@ -149,13 +149,13 @@ public class Const {
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        MotorConfigs.intakeExtend.slot0.kP = 0.6;
+        MotorConfigs.intakeExtend.slot0.kP = 0.8;
         MotorConfigs.intakeExtend.slot0.kI = 0;
-        MotorConfigs.intakeExtend.slot0.kD = 0;
+        MotorConfigs.intakeExtend.slot0.kD = 0.8;
 
-        MotorConfigs.intakeExtend.slot1.kP = 2;
+        MotorConfigs.intakeExtend.slot1.kP = 4;
         MotorConfigs.intakeExtend.slot1.kI = 0;
-        MotorConfigs.intakeExtend.slot1.kD = 0;
+        MotorConfigs.intakeExtend.slot1.kD = 4;
         MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
 
         //LimitSwitch
