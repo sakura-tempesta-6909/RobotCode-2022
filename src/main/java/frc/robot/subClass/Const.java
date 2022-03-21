@@ -112,8 +112,8 @@ public class Const {
     }
 
     public static final class Pid{
-        public static final int IntakeExtendOpenPosition = 0;
-        public static final int IntakeExtendClosePosition = 0;
+        public static final int IntakeExtendOpenPosition = -335;
+        public static final int IntakeExtendClosePosition = -693;
     }
 
     public static final class Other{
