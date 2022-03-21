@@ -105,15 +105,15 @@ public class Const {
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
       
-        public static final double MaxExtendPoint = 335;
-        public static final double MinimumExtendPoint = 693;
+        public static final int MaxExtendPoint = 335;
+        public static final int MinimumExtendPoint = 693;
         public static final double MaxExtendAngle = -114;
         public static final double MinimumExtendAngle = 0;
     }
 
     public static final class Pid{
-        public static final int IntakeExtendOpenPosition = 335;
-        public static final int IntakeExtendClosePosition = 693;
+        public static final int IntakeExtendOpenPosition = Calculation.MaxExtendPoint;
+        public static final int IntakeExtendClosePosition = Calculation.MinimumExtendPoint;
     }
 
     public static final class Other{
