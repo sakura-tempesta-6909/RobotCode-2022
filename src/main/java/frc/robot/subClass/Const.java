@@ -133,9 +133,9 @@ public class Const {
         Configs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         Configs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        Configs.ShooterMotor.slot0.kP = 7;
-        Configs.ShooterMotor.slot0.kI = 0;
-        Configs.ShooterMotor.slot0.kD = 0;
+        Configs.ShooterMotor.slot0.kP = 0.003;
+        Configs.ShooterMotor.slot0.kI = 0.000025;
+        Configs.ShooterMotor.slot0.kD = 0.003;
         Configs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
