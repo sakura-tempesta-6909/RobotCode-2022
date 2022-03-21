@@ -1,33 +1,59 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.mode.*;
+import frc.robot.mode.ClimbMode;
+import frc.robot.mode.ConveyorMode;
+import frc.robot.mode.DriveMode;
+import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 
 public class State {
     public static Modes mode;
 
+    //Driveのスピード
     public static DriveSpeed driveSpeed;
+    //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
-    public static ConveyorState conveyorState;
-
+    //ConveyorStateの変数を作る
+    public static ConveyorState conveyorState;;
+    
+    //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
+    //intakeExtendのState
     public static IntakeExtendState intakeExtendState;
+    //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
+    public static double intakeExtendPosition;
+    public static double intakeExtendAngle;
+    public static boolean is_fedLimitSwitchClose;
+    public static boolean is_revLimitSwitchClose;
 
+    //ClimbのMotorがNEOか
+    public static final boolean is_climbArmMotorNEO = true;
+    //ClimbArmのState
     public static ClimbArmState climbArmState;
+    //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
 
+    //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
+    //secondSolenoidがopenしているか
     public static boolean is_secondSolenoidOpen;
+    //climbSolenoidがopenしてるか
     public static boolean is_climbSolenoidOpen;
+   
+    //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
+    public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
-    public static double inclinationValue; // クライムの傾き用
-    public static double driveRightFrontPositionCentimeter, driveLeftFrontPositionCentimeter;
+    public static DriverStation.Alliance alliance;
+    public static String gameSpecificMessage;
 
+
+    public static double shooterMotorSpeed;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -35,7 +61,9 @@ public class State {
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
-
+        alliance = DriverStation.getAlliance();
+        gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        
         stateReset();
     }
 
@@ -50,6 +78,9 @@ public class State {
 
     }
 
+    /**
+     * Driveの状態
+     */
     public enum DriveSpeed {
         s_stopDrive,
         s_slowDrive,
@@ -57,6 +88,10 @@ public class State {
         s_fastDrive,
 
     }
+
+    /**
+     * Conveyorの状態
+     */
     public enum ConveyorState {
         s_outtakeConveyor,
         s_intakeConveyor,
@@ -71,6 +106,9 @@ public class State {
         s_shooterOuttake,
     }
 
+    /**
+     * IntakeExtendの状態
+     */
     public enum IntakeExtendState {
         s_manual,
         s_intakeExtendOpen,
@@ -79,6 +117,9 @@ public class State {
 
     }
 
+    /**
+     * ClimbArmの状態
+     */
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
