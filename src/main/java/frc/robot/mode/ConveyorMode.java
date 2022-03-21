@@ -1,7 +1,6 @@
 package frc.robot.mode;
 
 import frc.robot.State;
-import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
@@ -11,12 +10,12 @@ public class ConveyorMode extends Mode {
 
   @Override
   public void changeMode() {
-    if(driveController.getRightTriggerAxis() > Const.Xbox.TriggerValue){
+    if(driveController.getRightBumper()){
       State.mode = Modes.k_drive;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
       State.mode = Modes.k_climb;
     }
-    
+
   }
 
   @Override
@@ -25,9 +24,9 @@ public class ConveyorMode extends Mode {
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    if(driveController.getBButton()){
+    if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
   }
-  
+
 }

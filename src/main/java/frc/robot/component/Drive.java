@@ -1,7 +1,6 @@
 package frc.robot.component;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -11,7 +10,6 @@ import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
-import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -23,6 +21,10 @@ public class Drive implements Component{
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
 
+
+    /**
+     * Motorの初期化、Motor・センサーの反転 
+     */
     public Drive() {
         driveRightFront = new WPI_TalonSRX(Const.Ports.DriveRightFront);
         driveLeftFront = new WPI_TalonSRX(Const.Ports.DriveLeftFront);
@@ -34,8 +36,8 @@ public class Drive implements Component{
 
         differntialDrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.Configs.DriveRight);
-        driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
+        driveRightFront.configAllSettings(Const.MotorConfigs.DriveRight);
+        driveLeftFront.configAllSettings(Const.MotorConfigs.DriveLeft);
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
@@ -43,24 +45,31 @@ public class Drive implements Component{
         driveRightFront.setNeutralMode(NeutralMode.Brake);
         driveLeftFront.setNeutralMode(NeutralMode.Brake);
     }
+
+    /**
+     * driveを動かす 
+     * @param xSpeed driveの縦方向の値
+     * @param zRotation　driveの回転方向の値
+     */
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
-     * 
-     * @param drivePoint PositionのPointをセンチに変換する
+     * PositionのPointをMeterに変換する、
+     * @param drivePoint Positionの値
+     * @return PositionのdrivePointをMeterにする 返り値はMeter
      */
-    public double drivePointToCm(double drivePoint){
-        return drivePoint / Const.Point.DrivePointsPerDriveLength;
+    public double drivePointToMeter(double drivePoint){
+        return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
 
-    public double getDriveRightCM(){
-        return drivePointToCm(driveRightFront.getSelectedSensorPosition());
+    public double getDriveRightMeter(){
+        return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
-    public double getDriveLeftCM(){
-        return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
+    public double getDriveLeftMeter(){
+        return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
     public void DrivePosition(int leftposition,int rightposition){
@@ -72,13 +81,13 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void teleopInit() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -89,8 +98,8 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-      State.driveRightFrontPositionCentimeter = getDriveRightCM();
-      State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
+        State.driveRightFrontPositionMeter = getDriveRightMeter();
+        State.driveLeftFrontPositionMeter = getDriveLeftMeter();
     }
 
     @Override
@@ -107,6 +116,7 @@ public class Drive implements Component{
                 break;
             case s_pidDrive:
                 DrivePosition(10000,10000);
+                break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
