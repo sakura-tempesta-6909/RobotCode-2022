@@ -143,11 +143,11 @@ public class Const {
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        MotorConfigs.ShooterMotor.slot0.kP = 0;
-        MotorConfigs.ShooterMotor.slot0.kI = 0;
-        MotorConfigs.ShooterMotor.slot0.kD = 0;
+        MotorConfigs.ShooterMotor.slot0.kP = 0.003;
+        MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
+        MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-
+        
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
         MotorConfigs.intakeExtend.slot0.kP = 0;
         MotorConfigs.intakeExtend.slot0.kI = 0;
