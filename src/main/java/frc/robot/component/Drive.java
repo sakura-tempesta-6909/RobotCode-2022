@@ -44,6 +44,8 @@ public class Drive implements Component{
         driveLeftFront.setSensorPhase(true);
         driveRightFront.setNeutralMode(NeutralMode.Brake);
         driveLeftFront.setNeutralMode(NeutralMode.Brake);
+        driveRightBack.setNeutralMode(NeutralMode.Brake);
+        driveLeftBack.setNeutralMode(NeutralMode.Brake);
     }
 
     /**
