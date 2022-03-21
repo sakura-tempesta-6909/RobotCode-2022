@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.State.Modes;
 import frc.robot.component.Climb;
 import frc.robot.component.Component;
 import frc.robot.component.Conveyor;
@@ -104,6 +105,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
+    State.mode = State.Modes.k_drive;
+
     for (Component component : components) {
       component.testInit();
     }
@@ -112,8 +115,16 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
     externalSensors.readExternalSensors();
+    State.stateReset();
     for (Component component : components) {
       component.readSensors();
     }
+    State.mode.changeMode();
+
+    State.mode.changeState();
+  for (Component component : components) {
+    component.applyState();
+   }
+   Util.allSendConsole();
   }
 }
