@@ -1,5 +1,7 @@
 package frc.robot.component;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -16,6 +18,8 @@ public class Drive implements Component{
     private WPI_TalonSRX driveRightFront, driveLeftFront;
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
+    private ADXRS450_Gyro gyro;
+    private PIDController pidController;
 
 
     /**
@@ -26,6 +30,8 @@ public class Drive implements Component{
         driveLeftFront = new WPI_TalonSRX(Const.Ports.DriveLeftFront);
         driveRightBack = new VictorSPX(Const.Ports.DriveRightBack);
         driveLeftBack = new VictorSPX(Const.Ports.DriveLeftBack);
+        gyro = new ADXRS450_Gyro();
+        pidController = new PIDController(Const.Other.PIDControllerkP, Const.Other.PIDControllerkI, Const.Other.PIDControllerkD);
 
         driveRightBack.follow(driveRightFront);
         driveLeftBack.follow(driveLeftFront);
@@ -40,6 +46,20 @@ public class Drive implements Component{
         driveLeftFront.setSensorPhase(true);
 
     }
+    
+    public double getCurrentDirection(){
+        return gyro.getAngle();
+    }
+
+    public void turnTo(double direction) {
+        differntialDrive.arcadeDrive(0, pidController.calculate(getCurrentDirection(), direction));
+    }
+
+    public void gyroInit(){
+        gyro.reset();
+        gyro.calibrate();
+    }
+    
 
     /**
      * driveを動かす 

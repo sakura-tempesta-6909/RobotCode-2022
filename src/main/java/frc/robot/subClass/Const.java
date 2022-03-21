@@ -126,6 +126,11 @@ public class Const {
 
         //ClimbArmのモーターのAmpの制限値
         public static final int ClimbArmCurrentLimit = 60;
+
+        //gyroのPID
+        public static final double PIDControllerkP = 1;
+        public static final double PIDControllerkI = 0.001;
+        public static final double PIDControllerkD = 0.6;
     }
 
     public static final class MotorConfigs {
