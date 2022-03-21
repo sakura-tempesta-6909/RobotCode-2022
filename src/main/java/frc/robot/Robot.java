@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.State.Modes;
 import frc.robot.component.Climb;
 import frc.robot.component.Component;
 import frc.robot.component.Conveyor;
