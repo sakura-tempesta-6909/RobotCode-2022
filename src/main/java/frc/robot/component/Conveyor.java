@@ -34,6 +34,7 @@ public class Conveyor implements Component {
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
     intakeExtend.setInverted(true);
+    intakeExtend.setSensorPhase(true);
     intakeExtend.setNeutralMode(NeutralMode.Brake);
 
 
