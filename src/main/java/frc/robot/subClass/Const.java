@@ -107,7 +107,7 @@ public class Const {
       
         public static final double MaxExtendPoint = 335;
         public static final double MinimumExtendPoint = 693;
-        public static final double MaxExtendAngle = 114;
+        public static final double MaxExtendAngle = -114;
         public static final double MinimumExtendAngle = 0;
     }
 
@@ -150,12 +150,12 @@ public class Const {
         
         //intakeExtendを上げるとき１、展開するとき（下げるとき）０
         MotorConfigs.intakeExtend.slot0.kP = 0.6;
-        MotorConfigs.intakeExtend.slot0.kI = 0.0006;
-        MotorConfigs.intakeExtend.slot0.kD = 0.6;
+        MotorConfigs.intakeExtend.slot0.kI = 0;
+        MotorConfigs.intakeExtend.slot0.kD = 0;
 
         MotorConfigs.intakeExtend.slot1.kP = 2;
-        MotorConfigs.intakeExtend.slot1.kI = 0.002;
-        MotorConfigs.intakeExtend.slot1.kD = 2;
+        MotorConfigs.intakeExtend.slot1.kI = 0;
+        MotorConfigs.intakeExtend.slot1.kD = 0;
         MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
 
         //LimitSwitch
