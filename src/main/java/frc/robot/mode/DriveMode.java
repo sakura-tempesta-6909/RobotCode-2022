@@ -70,9 +70,7 @@ public class DriveMode extends Mode {
             State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
         } else if(driveController.getBButton()){
             State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
-        } else {
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
-        }
+        } 
     }
 
 }
