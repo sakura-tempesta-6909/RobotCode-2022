@@ -145,8 +145,8 @@ public class Const {
         MotorConfigs.DriveRight.slot0.kD = 0.0009*TMP;
         MotorConfigs.DriveRight.slot0.maxIntegralAccumulator = 1023*0.014/MotorConfigs.DriveRight.slot0.kI;
         
-        MotorConfigs.DriveLeft.slot0.kP = 0.085*TMP;
-        MotorConfigs.DriveLeft.slot0.kI = 0.000018*TMP;
+        MotorConfigs.DriveLeft.slot0.kP = 0.08*TMP;
+        MotorConfigs.DriveLeft.slot0.kI = 0.000015*TMP;
         MotorConfigs.DriveLeft.slot0.kD = 0.0009*TMP;
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 

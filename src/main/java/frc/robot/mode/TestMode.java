@@ -14,17 +14,6 @@ public class TestMode extends Mode{
 
     @Override
     public void changeState() {
-
-        if(driveController.getAButton()){
-            State.driveSpeed = DriveSpeed.s_pidDrive;
-            State.drivePidsSetPoint = 20000;
-        }else if(driveController.getBButton()){
-            State.driveSpeed = DriveSpeed.s_pidDrive;
-            State.drivePidsSetPoint = -20000;
-        }else if(driveController.getXButton()){
-            State.driveSpeed = DriveSpeed.s_pidDrive;
-            State.drivePidsSetPoint = 0;
-        }
         
     }
     
