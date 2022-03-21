@@ -1,7 +1,7 @@
 package frc.robot.mode;
 
 import frc.robot.State;
-import frc.robot.State.DriveSpeed;
+import frc.robot.State.DriveState;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
@@ -26,9 +26,9 @@ public class DriveMode extends Mode {
         State.driveZRotation = driveController.getRightX();
 
         if(driveController.getYButton()){
-            State.driveSpeed = DriveSpeed.s_midDrive;
+            State.driveState = DriveState.s_midDrive;
         }else{
-            State.driveSpeed = DriveSpeed.s_fastDrive;
+            State.driveState = DriveState.s_fastDrive;
         }
 
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
