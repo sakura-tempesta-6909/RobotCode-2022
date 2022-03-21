@@ -1,7 +1,11 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.mode.*;
+import frc.robot.mode.ClimbMode;
+import frc.robot.mode.ConveyorMode;
+import frc.robot.mode.DriveMode;
+import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 
 public class State {
@@ -22,7 +26,13 @@ public class State {
     public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
+    public static double intakeExtendPosition;
+    public static double intakeExtendAngle;
+    public static boolean is_fedLimitSwitchClose;
+    public static boolean is_revLimitSwitchClose;
 
+    //ClimbのMotorがNEOか
+    public static final boolean is_climbArmMotorNEO = true;
     //ClimbArmのState
     public static ClimbArmState climbArmState;
     //climbArmのスピード(単位：PercentOutput)
@@ -39,7 +49,12 @@ public class State {
     //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
 
+    public static DriverStation.Alliance alliance;
+    public static String gameSpecificMessage;
+
     public static double gyroValue; // クランプの傾き用
+
+    public static double shooterMotorSpeed;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -47,7 +62,9 @@ public class State {
         Mode.addController(driveController, operateController);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
-
+        alliance = DriverStation.getAlliance();
+        gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        
         stateReset();
     }
 
