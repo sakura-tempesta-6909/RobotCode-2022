@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
 
 public class Const {
@@ -114,6 +115,13 @@ public class Const {
     public static final class Pid{
         public static final int IntakeExtendOpenPosition = 0;
         public static final int IntakeExtendClosePosition = 0;
+    }
+
+    public static final class gyroPID{
+        public static PIDController pidController;
+        gyroPID(){
+            pidController = new PIDController(Const.Other.PIDControllerkP, Const.Other.PIDControllerkI, Const.Other.PIDControllerkD);
+        }
     }
 
     public static final class Other{
