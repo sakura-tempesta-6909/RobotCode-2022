@@ -31,8 +31,6 @@ public class State {
 
     public static double gyroValue; // クランプの傾き用
 
-    public static double ballquantity = 0;
-
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);
@@ -73,6 +71,10 @@ public class State {
         s_rollerOuttake,
         s_shooterShoot,
         s_shooterOuttake,
+
+        s_ballquantity0,
+        s_ballquantity1,
+        s_ballquantity2,
     }
 
     public enum IntakeExtendState {

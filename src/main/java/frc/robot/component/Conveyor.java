@@ -51,14 +51,14 @@ public class Conveyor implements Component {
    * falseの時センサーはボールを認識している。
   */
   public void intakeConveyor(){
-    if(ballDetectionIntake() && State.ballquantity == 0){
+    if(ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity0){
       rollerIntake();
-    }else if(!ballDetectionIntake() && State.ballquantity == 0){
-      State.ballquantity ++ ;
+    }else if(!ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity0){
       rollerIntake();
-    }else if(ballDetectionIntake() && State.ballquantity == 1){
+      State.conveyorState = State.ConveyorState.s_ballquantity1;
+    }else if(ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity1){
       rollerIntake();
-    }else if(!ballDetectionIntake() && State.ballquantity == 1){
+    }else if(!ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity1){
       if (!ballDetectionLaunch()) {
         conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
       }else if(ballDetectionLaunch()){
