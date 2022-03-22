@@ -48,31 +48,30 @@ public class Conveyor implements Component {
 
   /**
    * trueの時センサーはボールを認識できていない。
-   * falseの時センサーはボールを認識している。
+   * falseの時センサーはボールを認識している。!がついている時
   */
   public void intakeConveyor(){
-    if(ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      rollerIntake();
-    }else if(!ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      rollerIntake();
+    if(ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
+      beltRollerIntake();
+    }else if(!ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
+      beltRollerIntake();
       State.conveyorState = State.ConveyorState.s_ballquantity1;
-    }else if(ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity1){
+    }else if(!ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1){
+      beltRollerIntake();
+    }else if(ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1){
       rollerIntake();
-    }else if(!ballDetectionIntake() && State.conveyorState == State.ConveyorState.s_ballquantity1){
-      if (!ballDetectionLaunch()) {
-        conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
-      }else if(ballDetectionLaunch()){
-        stopConveyor();
-      }else{
-        rollerIntake();
-      }
+    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState ==  State.ConveyorState.s_ballquantity1){
+      conveyorNutral();
+      State.conveyorState = State.ConveyorState.s_ballquantity2;
+    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity2){
+      conveyorNutral();
     }
   }
   public boolean ballDetectionIntake(){
     return ballSensorIntake.get();
   }
 
-  public boolean ballDetectionLaunch(){
+  public boolean ballDetectionShoot(){
     return ballSensorLaunch.get();
   }
 
@@ -109,6 +108,19 @@ public class Conveyor implements Component {
 
   public void shooterOuttake(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
+  }
+
+  public void beltRollerIntake(){
+    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
+  }
+
+  public void beltRollerOuttake(){
+    conveyorControl(Const.Speeds.RollerOuttake, Const.Speeds.BeltOuttake, Const.Speeds.Neutral);
+  }
+
+  public void conveyorNutral(){
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.Neutral);
+
   }
 
   /**
