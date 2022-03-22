@@ -3,7 +3,7 @@ package frc.robot.mode;
 import frc.robot.State;
 import frc.robot.State.ClimbArmState;
 import frc.robot.State.Modes;
-import frc.robot.State.DriveSpeed;
+import frc.robot.State.DriveState;
 
 public class ClimbMode extends Mode {
 
@@ -19,7 +19,7 @@ public class ClimbMode extends Mode {
 
   @Override
   public void changeState() {
-    State.driveSpeed = DriveSpeed.s_midDrive;
+    State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 

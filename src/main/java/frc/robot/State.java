@@ -12,8 +12,8 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
 
-    //Driveのスピード
-    public static DriveSpeed driveSpeed;
+    //DriveStateの変数を作る
+    public static DriveState driveState;
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
@@ -70,7 +70,7 @@ public class State {
     }
 
     public static void stateReset() {
-        driveSpeed = DriveSpeed.s_stopDrive;
+        driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         climbArmState = ClimbArmState.s_climbArmNeutral;
@@ -83,7 +83,7 @@ public class State {
     /**
      * Driveの状態
      */
-    public enum DriveSpeed {
+    public enum DriveState {
         s_stopDrive,
         s_slowDrive,
         s_midDrive,
