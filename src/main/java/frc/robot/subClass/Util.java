@@ -32,7 +32,7 @@ public class Util {
 
     public static void allSendConsole(){
         sendConsole( "Mode", State.mode.toString());
-        sendConsole("DriveSpeed", State.driveState.toString());
+        sendConsole("DriveState", State.driveState.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyorState", State.conveyorState.toString());
         sendConsole("intakeExtendState", State.intakeExtendState.toString());
