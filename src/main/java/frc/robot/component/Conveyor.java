@@ -63,6 +63,8 @@ public class Conveyor implements Component {
     }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState ==  State.ConveyorState.s_ballquantity1){
       conveyorNutral();
       State.conveyorState = State.ConveyorState.s_ballquantity2;
+    }else if(ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1) {
+      conveyorNutral();
     }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity2){
       conveyorNutral();
     }
@@ -81,6 +83,7 @@ public class Conveyor implements Component {
 
   public void shootConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
+    State.conveyorState = State.ConveyorState.s_ballquantity0;
   }
 
   public void stopConveyor(){
