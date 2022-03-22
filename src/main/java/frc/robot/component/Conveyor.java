@@ -67,6 +67,11 @@ public class Conveyor implements Component {
       conveyorNutral();
     }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity2){
       conveyorNutral();
+      //以下はボールが入った時の誤作動をなるべく防ぐためのもの
+    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
+      State.conveyorState = State.ConveyorState.s_ballquantity2;
+    }else if(ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
+      conveyorNutral();
     }
   }
   public boolean ballDetectionIntake(){
