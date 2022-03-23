@@ -22,7 +22,6 @@ public class Const {
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
         public static final int ShooterMotor = 6;
-        public static final int ConveyorExtend = 3;
         public static final int LimitSwitch = 9;
 
         //sensor, conveyor
@@ -33,6 +32,7 @@ public class Const {
         public static final int FirstSolenoid = 0;
         public static final int SecondSolenoid = 1;
         public static final int ClimbSolenoid = 2;
+        public static final int ConveyorExtend = 3;
 
         //sparkMax
         public static final int ClimbArm = 1;
