@@ -71,7 +71,7 @@ public class Climb implements Component {
   }
 
   public boolean gethallSensor(){
-    return hallSensor.get();
+    return !hallSensor.get();
   }
 
   public void resetAngle(){
