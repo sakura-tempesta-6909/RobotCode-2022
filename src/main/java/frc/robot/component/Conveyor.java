@@ -142,6 +142,7 @@ public class Conveyor implements Component {
     //   } else {
     //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
     //   }
+    intakeExtend.set(intakeExtendControl);
   }
 
   /**
