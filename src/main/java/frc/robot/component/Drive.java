@@ -75,14 +75,14 @@ public class Drive implements Component{
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
-    public void DrivePosition(double leftposition,double rightposition){
+    public void drivePosition(double pidposition){
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
-        driveRightFront.set(ControlMode.Position, rightposition);
-        driveLeftFront.set(ControlMode.Position, leftposition);
+        driveRightFront.set(ControlMode.Position, pidposition);
+        driveLeftFront.set(ControlMode.Position, pidposition);
     }
 
-    public void Driveaccumulatereset(){
+    public void driveAccumulateReset(){
         driveRightFront.setSelectedSensorPosition(0);
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
@@ -116,10 +116,7 @@ public class Drive implements Component{
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
-        Util.sendConsole("dL point", driveLeftFront.getSelectedSensorPosition());
-        Util.sendConsole("dR point", driveRightFront.getSelectedSensorPosition());
-        Util.sendConsole("Right accu", driveRightFront.getIntegralAccumulator());
-        Util.sendConsole("Left accu", driveLeftFront.getIntegralAccumulator());
+        
     }
 
     @Override
@@ -135,14 +132,14 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                DrivePosition(State.drivePidsSetPoint,State.drivePidsSetPoint); 
+                drivePosition(State.drivePidSetPoint); 
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
 
-        if(State.Driveaccumulatereset){
-            Driveaccumulatereset();
+        if(State.driveAccumulateReset){
+            driveAccumulateReset(); 
         }
     }
 }
