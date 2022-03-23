@@ -148,14 +148,14 @@ public class Conveyor implements Component {
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-    intakeExtendControl(false);
+    intakeExtendControl(true);
   }
 
   /**
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-    intakeExtendControl(true);
+    intakeExtendControl(false);
   }
 
 
