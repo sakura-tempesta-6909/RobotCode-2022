@@ -23,12 +23,9 @@ public class State {
     //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
-    //intakeExtendのState
-    public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
-    public static double intakeExtendPosition;
-    public static double intakeExtendAngle;
+    public static boolean is_intakeExtendOpen;
     public static boolean is_fedLimitSwitchClose;
     public static boolean is_revLimitSwitchClose;
 
@@ -72,7 +69,6 @@ public class State {
     public static void stateReset() {
         driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
@@ -106,17 +102,6 @@ public class State {
         s_rollerOuttake,
         s_shooterShoot,
         s_shooterOuttake,
-    }
-
-    /**
-     * IntakeExtendの状態
-     */
-    public enum IntakeExtendState {
-        s_manual,
-        s_intakeExtendOpen,
-        s_intakeExtendClose,
-        s_intakeExtendNeutral,
-
     }
 
     /**

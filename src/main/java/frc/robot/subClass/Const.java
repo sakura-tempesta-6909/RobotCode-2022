@@ -103,16 +103,6 @@ public class Const {
         public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
-      
-        public static final double MaxExtendPoint = 335;
-        public static final double MinimumExtendPoint = 693;
-        public static final double MaxExtendAngle = -114;
-        public static final double MinimumExtendAngle = 0;
-    }
-
-    public static final class Pid{
-        public static final double IntakeExtendOpenPosition = Calculation.MaxExtendPoint;
-        public static final double IntakeExtendClosePosition = Calculation.MinimumExtendPoint;
     }
 
     public static final class Other{
@@ -146,16 +136,6 @@ public class Const {
         MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
         MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        
-        //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        MotorConfigs.intakeExtend.slot0.kP = 0.8;
-        MotorConfigs.intakeExtend.slot0.kI = 0;
-        MotorConfigs.intakeExtend.slot0.kD = 0.8;
-
-        MotorConfigs.intakeExtend.slot1.kP = 4;
-        MotorConfigs.intakeExtend.slot1.kI = 0;
-        MotorConfigs.intakeExtend.slot1.kD = 4;
-        MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
 
         //LimitSwitch
         MotorConfigs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
