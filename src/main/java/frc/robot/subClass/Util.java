@@ -48,8 +48,6 @@ public class Util {
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
-        sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
         sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);

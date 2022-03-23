@@ -26,8 +26,6 @@ public class State {
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
     public static boolean is_intakeExtendOpen;
-    public static boolean is_fedLimitSwitchClose;
-    public static boolean is_revLimitSwitchClose;
 
     //ClimbのMotorがNEOか
     public static final boolean is_climbArmMotorNEO = true;
