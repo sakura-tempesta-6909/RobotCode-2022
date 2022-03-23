@@ -129,10 +129,10 @@ public class Conveyor implements Component {
 
   /**
    * intakeExtendを動かす
-   * @param intakeExtendControl 展開するときを負
+   * @param intakeExtendControl 展開するときをtrue
    */
   public void intakeExtendControl(boolean intakeExtendControl){
-    intakeExtend.set(intakeExtendControl);
+    // intakeExtend.set(intakeExtendControl);
   }
 
   /**
