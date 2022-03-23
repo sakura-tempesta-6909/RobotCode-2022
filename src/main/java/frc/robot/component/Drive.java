@@ -50,7 +50,7 @@ public class Drive implements Component{
     }
 
     public void turnTo(double direction) {
-        arcadeDrive(0, Const.pidController.calculate(getCurrentDirection(), direction));
+        arcadeDrive(0, Const.MotorConfigs.pidController.calculate(getCurrentDirection(), direction));
     }
 
     public void gyroInit(){
