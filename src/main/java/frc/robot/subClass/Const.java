@@ -72,9 +72,6 @@ public class Const {
         //intakeするときのbeltのスピード
         public static final double RollerIntake = 0.5;
 
-        //intakeExtend
-        public static final double IntakeExtendOpen = 0.2;
-
         //Climb
         //fastClimbArmのスピード
         public static final double FastClimbArmSpin = 1;
@@ -118,13 +115,9 @@ public class Const {
     }
 
     public static final class MotorConfigs {
-        public static final int ExtendPIDSlot = 0;
-        public static final int UpPIDSlot = 1;
-
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
         public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
     }
 
     public static void ConstInit() {
@@ -136,12 +129,5 @@ public class Const {
         MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
         MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-
-        //LimitSwitch
-        MotorConfigs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        MotorConfigs.intakeExtend.forwardLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
-
-        MotorConfigs.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
-        MotorConfigs.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
     }
 }
