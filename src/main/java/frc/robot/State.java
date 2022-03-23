@@ -91,6 +91,10 @@ public class State {
 
     }
 
+    public enum TurnTo {
+        
+    }
+
     /**
      * Conveyorの状態
      */
