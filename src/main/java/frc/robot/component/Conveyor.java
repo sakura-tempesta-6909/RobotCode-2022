@@ -52,7 +52,7 @@ public class Conveyor implements Component {
   */
 
   public void intakeConveyor(){
-    if(State.conveyorState == State.ConveyorState.s_ballquantity0){
+    if(State.ballQuantity == State.BallQuantity.s_ballquantity0){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           beltRollerIntake();
@@ -62,12 +62,12 @@ public class Conveyor implements Component {
       }else{
         if(ballDetectionShoot()){
           beltRollerIntake();
-          State.conveyorState = State.ConveyorState.s_ballquantity1;
+          State.ballQuantity = State.BallQuantity.s_ballquantity1;
         }else{
-          State.conveyorState = State.ConveyorState.s_ballquantity2;
+          State.ballQuantity = State.BallQuantity.s_ballquantity2;
         }
       }
-    }else if (State.conveyorState == State.ConveyorState.s_ballquantity1){
+    }else if (State.ballQuantity == State.BallQuantity.s_ballquantity1){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           rollerIntake();
@@ -79,10 +79,10 @@ public class Conveyor implements Component {
           beltRollerIntake();
         }else{
           conveyorNutral();
-          State.conveyorState = State.ConveyorState.s_ballquantity2;
+          State.ballQuantity = State.BallQuantity.s_ballquantity2;
         }
       }
-    }else if(State.conveyorState == State.ConveyorState.s_ballquantity2){
+    }else if(State.ballQuantity == State.BallQuantity.s_ballquantity2){
       if (ballDetectionIntake()){
         if(ballDetectionShoot()){
         }

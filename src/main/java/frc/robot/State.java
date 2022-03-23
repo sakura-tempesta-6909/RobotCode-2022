@@ -12,6 +12,8 @@ public class State {
 
     public static ConveyorState conveyorState;
 
+    public static BallQuantity ballQuantity;
+
     public static boolean is_compressorEnabled;
 
     public static IntakeExtendState intakeExtendState;
@@ -71,7 +73,9 @@ public class State {
         s_rollerOuttake,
         s_shooterShoot,
         s_shooterOuttake,
+    }
 
+    public enum BallQuantity {
         s_ballquantity0,
         s_ballquantity1,
         s_ballquantity2,
