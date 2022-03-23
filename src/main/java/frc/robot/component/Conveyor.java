@@ -50,30 +50,51 @@ public class Conveyor implements Component {
    * trueの時センサーはボールを認識できていない。
    * falseの時センサーはボールを認識している。!がついている時
   */
+
   public void intakeConveyor(){
-    if(ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      beltRollerIntake();
-    }else if(!ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      beltRollerIntake();
-      State.conveyorState = State.ConveyorState.s_ballquantity1;
-    }else if(!ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1){
-      beltRollerIntake();
-    }else if(ballDetectionIntake() && ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1){
-      rollerIntake();
-    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState ==  State.ConveyorState.s_ballquantity1){
-      conveyorNutral();
-      State.conveyorState = State.ConveyorState.s_ballquantity2;
-    }else if(ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity1) {
-      conveyorNutral();
-    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity2){
-      conveyorNutral();
-      //以下はボールが入った時の誤作動をなるべく防ぐためのもの
-    }else if(!ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      State.conveyorState = State.ConveyorState.s_ballquantity2;
-    }else if(ballDetectionIntake() && !ballDetectionShoot() && State.conveyorState == State.ConveyorState.s_ballquantity0){
-      conveyorNutral();
+    if(State.conveyorState == State.ConveyorState.s_ballquantity0){
+      if(ballDetectionIntake()){
+        if(ballDetectionShoot()){
+          beltRollerIntake();
+        }else{
+          conveyorNutral();
+        }
+      }else{
+        if(ballDetectionShoot()){
+          beltRollerIntake();
+          State.conveyorState = State.ConveyorState.s_ballquantity1;
+        }else{
+          State.conveyorState = State.ConveyorState.s_ballquantity2;
+        }
+      }
+    }else if (State.conveyorState == State.ConveyorState.s_ballquantity1){
+      if(ballDetectionIntake()){
+        if(ballDetectionShoot()){
+          rollerIntake();
+        }else{
+          conveyorNutral();
+        }
+      }else{
+        if(ballDetectionShoot()){
+          beltRollerIntake();
+        }else{
+          conveyorNutral();
+          State.conveyorState = State.ConveyorState.s_ballquantity2;
+        }
+      }
+    }else if(State.conveyorState == State.ConveyorState.s_ballquantity2){
+      if (ballDetectionIntake()){
+        if(ballDetectionShoot()){
+        }
+      }else{
+        if(ballDetectionShoot()){
+        }else{
+          conveyorNutral();
+        }
+      }
     }
   }
+
   public boolean ballDetectionIntake(){
     return ballSensorIntake.get();
   }
