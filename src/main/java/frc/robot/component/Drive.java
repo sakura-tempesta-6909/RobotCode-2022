@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
-import frc.robot.subClass.Const.gyroPID;
 
 public class Drive implements Component{
 
@@ -51,7 +50,7 @@ public class Drive implements Component{
     }
 
     public void turnTo(double direction) {
-        arcadeDrive(0, gyroPID.pidController.calculate(getCurrentDirection(), direction));
+        arcadeDrive(0, Const.pidController.calculate(getCurrentDirection(), direction));
     }
 
     public void gyroInit(){
