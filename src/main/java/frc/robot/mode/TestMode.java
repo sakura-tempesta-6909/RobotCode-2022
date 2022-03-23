@@ -22,7 +22,7 @@ public class TestMode extends Mode{
             State.climbArmTaregetAngle = 90;
         }else if(driveController.getXButton()){
             State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-            State.climbArmTaregetAngle = 150;
+            State.climbArmTaregetAngle = 180;
         }else if(driveController.getYButton()){
             State.climbArmState = ClimbArmState.s_setClimbArmAngle;
             State.climbArmTaregetAngle = 270;
