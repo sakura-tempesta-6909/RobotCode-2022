@@ -25,7 +25,6 @@ public class Const {
         public static final int IntakeRoller = 5;
         public static final int ShooterMotor = 6;
         public static final int ConveyorExtend = 7;
-        public static final int BackPlate = 8;
         public static final int LimitSwitch = 9;
 
         //sensor, conveyor
@@ -105,16 +104,6 @@ public class Const {
         public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
-      
-        public static final double MaxExtendPoint = -335;
-        public static final double MinimumExtendPoint = -693;
-        public static final double MaxExtendAngle = -114;
-        public static final double MinimumExtendAngle = 0;
-    }
-
-    public static final class Pid{
-        public static final int IntakeExtendOpenPosition = 0;
-        public static final int IntakeExtendClosePosition = 0;
     }
 
     public static final class Other{
@@ -144,20 +133,10 @@ public class Const {
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
 
-        MotorConfigs.ShooterMotor.slot0.kP = 0;
-        MotorConfigs.ShooterMotor.slot0.kI = 0;
-        MotorConfigs.ShooterMotor.slot0.kD = 0;
+        MotorConfigs.ShooterMotor.slot0.kP = 0.003;
+        MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
+        MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-
-        //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        MotorConfigs.intakeExtend.slot0.kP = 0;
-        MotorConfigs.intakeExtend.slot0.kI = 0;
-        MotorConfigs.intakeExtend.slot0.kD = 0;
-
-        MotorConfigs.intakeExtend.slot1.kP = 0;
-        MotorConfigs.intakeExtend.slot1.kI = 0;
-        MotorConfigs.intakeExtend.slot1.kD = 0;
-        MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
 
         //LimitSwitch
         MotorConfigs.intakeExtend.forwardLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;

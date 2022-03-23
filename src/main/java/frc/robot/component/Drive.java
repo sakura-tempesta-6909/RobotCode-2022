@@ -93,7 +93,7 @@ public class Drive implements Component{
 
     @Override
     public void applyState() {
-        switch(State.driveSpeed){
+        switch(State.driveState){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
                 break;
