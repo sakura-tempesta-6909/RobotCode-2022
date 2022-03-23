@@ -86,9 +86,6 @@ public class Conveyor implements Component {
         if(ballDetectionShoot()){
           conveyorNutral();
         }
-      }else{
-        if(ballDetectionShoot()){
-        }
       }
     }
   }  
