@@ -139,15 +139,14 @@ public class Const {
     }
 
     public static void ConstInit() {
-     double  TMP = 0.6;
-        MotorConfigs.DriveRight.slot0.kP = 0.085*TMP;
-        MotorConfigs.DriveRight.slot0.kI = 0.00001*TMP;
-        MotorConfigs.DriveRight.slot0.kD = 0.0009*TMP;
+        MotorConfigs.DriveRight.slot0.kP = 0.051;
+        MotorConfigs.DriveRight.slot0.kI = 0.000006;
+        MotorConfigs.DriveRight.slot0.kD = 0.00054;
         MotorConfigs.DriveRight.slot0.maxIntegralAccumulator = 1023*0.014/MotorConfigs.DriveRight.slot0.kI;
         
-        MotorConfigs.DriveLeft.slot0.kP = 0.08*TMP;
-        MotorConfigs.DriveLeft.slot0.kI = 0.000015*TMP;
-        MotorConfigs.DriveLeft.slot0.kD = 0.0009*TMP;
+        MotorConfigs.DriveLeft.slot0.kP = 0.048;
+        MotorConfigs.DriveLeft.slot0.kI = 0.000009;
+        MotorConfigs.DriveLeft.slot0.kD = 0.00054;
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
