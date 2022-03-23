@@ -82,7 +82,7 @@ public class Drive implements Component{
         driveLeftFront.set(ControlMode.Position, pidposition);
     }
 
-    public void driveAccumulateReset(){
+    public void drivePidAllReset(){
         driveRightFront.setSelectedSensorPosition(0);
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
@@ -122,9 +122,9 @@ public class Drive implements Component{
     @Override
     public void applyState() {
         if(State.driveAccumulateReset){
-            driveAccumulateReset(); 
+            drivePidAllReset(); 
         }
-        
+
         switch(State.driveSpeed){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
