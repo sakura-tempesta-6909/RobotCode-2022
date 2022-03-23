@@ -53,56 +53,58 @@ public class Conveyor implements Component {
    * falseの時センサーはボールを認識している。!がついている時
   */
 
+
   public void intakeConveyor(){
     if(State.ballQuantity == State.BallQuantity.s_ballquantity0){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
-          beltRollerIntake();
+          State.ballQuantity = State.BallQuantity.s_ballquantity2;
         }else{
-          conveyorNutral();
+          beltRollerIntake();
+          State.ballQuantity = State.BallQuantity.s_ballquantity1;
         }
       }else{
         if(ballDetectionShoot()){
-          beltRollerIntake();
-          State.ballQuantity = State.BallQuantity.s_ballquantity1;
+          conveyorNutral();
         }else{
-          State.ballQuantity = State.BallQuantity.s_ballquantity2;
+          beltRollerIntake();
         }
       }
     }else if (State.ballQuantity == State.BallQuantity.s_ballquantity1){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
-          rollerIntake();
-        }else{
           conveyorNutral();
+          State.ballQuantity = State.BallQuantity.s_ballquantity2;
+        }else{
+          beltRollerIntake();
         }
       }else{
         if(ballDetectionShoot()){
-          beltRollerIntake();
-        }else{
           conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballquantity2;
+        }else{
+          rollerIntake();
         }
       }
     }else if(State.ballQuantity == State.BallQuantity.s_ballquantity2){
       if (ballDetectionIntake()){
         if(ballDetectionShoot()){
+          conveyorNutral();
+        }else{
         }
       }else{
         if(ballDetectionShoot()){
-        }else{
-          conveyorNutral();
         }
       }
     }
   }
 
+    //センサーが認識しているときballDetection*** methodはtrue
   public boolean ballDetectionIntake(){
-    return ballSensorIntake.get();
+    return !ballSensorIntake.get();
   }
 
   public boolean ballDetectionShoot(){
-    return ballSensorLaunch.get();
+    return !ballSensorLaunch.get();
   }
   
   /**
