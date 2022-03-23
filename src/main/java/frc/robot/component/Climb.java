@@ -7,8 +7,8 @@ import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.subClass.Const;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 public class Climb implements Component {
 
@@ -23,41 +23,41 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
-  private static RelativeEncoder climbArmEncoder;
-  public static boolean is_climbArmMotorNEO;
+  private RelativeEncoder climbArmEncoder;
 
 
-
+   
+  /**
+   * Motorの初期化、Motor・センサーの反転
+   */
   public Climb() {
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
     climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ClimbSolenoid);
-    is_climbArmMotorNEO = false;
-    if(is_climbArmMotorNEO){
+    if(State.is_climbArmMotorNEO){
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushless);
       climbArmEncoder = climbArm.getEncoder();
     } else {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
-      climbArmEncoder = climbArm.getAlternateEncoder(Const.Counts.ClimbArmEncoderCount);
+      climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
-    
   }
 
-  public static double spinToAngle(double spin){
-    return spin / Const.Point.DegreesPerRevolution;
+  public double spinToAngle(double spin){
+    return spin / Const.Calculation.DegreesPerRevolution;
   }
 
   public double angleToSpin(double angle){
-    return Const.Point.DegreesPerRevolution * angle;
+    return Const.Calculation.DegreesPerRevolution * angle;
   }
 
-  public static double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition());
+  public double getClimbArmAngle(){
+    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
   }
 
   /**
-   *
+   * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
    */
   public void climbControl(double climbSpinSpeed){
@@ -67,37 +67,52 @@ public class Climb implements Component {
   
 
   /**
-   * @param firstSolenoid falseで閉じている
+   *  firstSolenoidを動かす
+   * @param firstSolenoidOpen falseで閉じている
    */
   public void firstSolenoidControl(boolean firstSolenoidOpen){
     firstSolenoid.set(firstSolenoidOpen);
   }
-
+  
+  /**
+   * firstSolenoidをopenする
+   */
   public void firstSolenoidOpen(){
     firstSolenoidControl(true);
   }
 
+  /**
+   * firstSolenoidをcloseする
+   */
   public void firstSolenoidClose(){
     firstSolenoidControl(false);
   }
 
-  /**
-   * @param secondSoenoid falseで閉じている
+   /**
+    * secondSolenoidを動かす
+   * @param secondSolenoidControl falseで閉じている
    */
   public void secondSolenoidControl(boolean secondSolenoidControl){
     secondSolenoid.set(secondSolenoidControl);
   }
 
+  /**
+   * secondSolenoidをopenする
+   */
   public void secondSolenoidOpen(){
     secondSolenoidControl(true);
   }
 
+  /**
+   * secondSolenoidをcloseする
+   */
   public void secondSolenoidClose(){
     secondSolenoidControl(false);
   }
 
   /**
-   *  @param climbSolenoidOwn trueで伸びている
+   * climbSolenoidを動かす
+   *  @param climbSolenoidControl trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
     climbSolenoid.set(climbSolenoidControl);
@@ -107,10 +122,16 @@ public class Climb implements Component {
     climbSolenoidControl(true);
   }
 
+  /**
+   * compressorをdisableにする
+   */
   public void compressorDisable(){
     compressor.disable();
   }
 
+  /**
+   * compressorをenableにする
+   */
   public void compressorEnable(){
     compressor.enableDigital();
   }
@@ -142,7 +163,6 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
-    
   }
 
   @Override

@@ -1,14 +1,16 @@
 package frc.robot;
 
-import java.util.ArrayList;
-import frc.robot.subClass.Util;
-
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.component.Climb;
 import frc.robot.component.Component;
+import frc.robot.component.Conveyor;
+import frc.robot.component.Drive;
 import frc.robot.phase.Autonomous;
-import frc.robot.component.*;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.ExternalSensors;
+import frc.robot.subClass.Util;
+
+import java.util.ArrayList;
 
 public class Robot extends TimedRobot {
 
@@ -81,7 +83,7 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.applyState();
     }
-    Util.allsendConsole();
+    Util.allSendConsole();
   }
 
   @Override
@@ -97,11 +99,13 @@ public class Robot extends TimedRobot {
     for (Component component : components) {
       component.readSensors();
     }
-    Util.allsendConsole();
+    Util.allSendConsole();
   }
 
   @Override
   public void testInit() {
+    State.mode = State.Modes.k_test;
+
     for (Component component : components) {
       component.testInit();
     }
@@ -110,8 +114,15 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
     externalSensors.readExternalSensors();
+    State.stateReset();
     for (Component component : components) {
       component.readSensors();
     }
+    State.mode.changeState();
+    
+    for (Component component : components) {
+      component.applyState();
+    }
+    Util.allSendConsole();
   }
 }

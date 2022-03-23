@@ -1,39 +1,41 @@
 package frc.robot.component;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.subClass.Const;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 
 
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
-  private TalonSRX intakeBelt, launchMotor;
-  private DigitalInput ballSensorIntake, ballSensorLaunch;
-  private TalonSRX intakeExtend, backPlate;
 
-
+  private TalonSRX intakeBelt, shooterMotor;
+  private DigitalInput ballSensorIntake, ballSensorLaunch;;
+  private Solenoid intakeExtend;
+  
+  /**
+   * モーターの初期化、モーター・センサーの反転
+   */
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
-    launchMotor = new TalonSRX(Const.Ports.LaunchMotor);
-    intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
-    backPlate = new TalonSRX(Const.Ports.BackPlate);
-    intakeExtend.configAllSettings(Const.Configs.intakeExtend);
-    launchMotor.configAllSettings(Const.Configs.LaunchMotor);
-    
+    shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
+    intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
+    shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
+
 
     /* バックプレート操作用のモーターのセット */
 
     ballSensorIntake = new DigitalInput(Const.Ports.BallSensorIntake);
     ballSensorLaunch = new DigitalInput(Const.Ports.BallSensorShooter);
     intakeRoller.setInverted(true);
-    intakeExtend.setInverted(true);
 
 
   }
@@ -102,39 +104,67 @@ public class Conveyor implements Component {
   public boolean ballDetectionShoot(){
     return ballSensorLaunch.get();
   }
-
+  
+  /**
+   * CARGOを出す
+   */
   public void outtakeConveyor(){
     conveyorControl(-Const.Speeds.RollerOuttake, -Const.Speeds.BeltOuttake, -Const.Speeds.ShooterOuttake);
   }
 
+  /**
+   * CARGOを発射する
+   */
   public void shootConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
-    State.conveyorState = State.ConveyorState.s_ballquantity0;
+    State.ballQuantity = State.BallQuantity.s_ballquantity0;
   }
 
+  /**
+   * conveyorを何も動かさない
+   */
   public void stopConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
+
+  /**
+   * beltだけintakeに回す
+   */
   public void beltIntake(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
   }
 
+  /**
+   * beltだけouttakeに回す
+   */
   public void beltOuttake(){
     conveyorControl(Const.Speeds.Neutral, -Const.Speeds.BeltOuttake, Const.Speeds.Neutral);
   }
 
+  /**
+   * rollerだけintakeに回す
+   */
   public void rollerIntake(){
     conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
+  /**
+   * rollerだけouttakeに回す
+   */
   public void rollerOuttake(){
     conveyorControl(-Const.Speeds.RollerOuttake, Const.Speeds.Neutral, Const.Speeds.Neutral);
   }
 
+  /**
+   * shooterだけintakeに回す
+   */
   public void shooterShoot(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
   }
 
+  /**
+   * shooterだけouttakeに回す
+   */
   public void shooterOuttake(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
@@ -153,22 +183,22 @@ public class Conveyor implements Component {
   }
 
   /**
-   *
+   * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
    * @param intakeBeltSpeed intakeを正
-   * @param launchSpeed intakeを正
+   * @param shooterSpeed intakeを正
    */
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    launchMotor.set(ControlMode.PercentOutput, shooterSpeed);
+    shooterMotor.set(ControlMode.Velocity, Const.Other.shooterMotorMaxOutput * shooterSpeed);
   }
 
   /**
-   *
+   * intakeExtendを動かす
    * @param intakeExtendControl 展開するときを負
    */
-  public void intakeExtendControl(double intakeExtendControl){
+  public void intakeExtendControl(boolean intakeExtendControl){
 
     // if (intakeExtendControl > 0) {
     //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
@@ -179,25 +209,23 @@ public class Conveyor implements Component {
     //   } else {
     //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
     //   }
-    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
+    intakeExtend.set(intakeExtendControl);
   }
 
+  /**
+   * intakeExtendをopenする
+   */
   public void intakeExtendOpen(){
-    intakeExtendControl(-Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(true);
   }
 
+  /**
+   * intakeExtendをcloseする
+   */
   public void intakeExtendClose(){
-    intakeExtendControl(Const.Speeds.IntakeExtendOpen);
+    intakeExtendControl(false);
   }
 
-  public void intakeExtendNeutral(){
-    intakeExtendControl(Const.Speeds.Neutral);
-  }
-
-
-  public void backPlateMove(double angle){
-
-  }
 
   @Override
   public void autonomousInit() {
@@ -225,8 +253,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    // TODO Auto-generated method stub
-
+    State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
   }
 
   @Override
@@ -265,20 +292,11 @@ public class Conveyor implements Component {
         break;
     }
 
-    switch(State.intakeExtendState){
-      case s_manual:
-        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.IntakeExtendOpen);
-        break;
-      case s_intakeExtendOpen:
-        intakeExtendOpen();
-        break;
-      case s_intakeExtendClose:
-        intakeExtendClose();
-        break;
-      case s_intakeExtendNeutral:
-        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.Neutral);
-        break;
-    }
+  if(State.is_intakeExtendOpen){
+    intakeExtendOpen();
+  } else {
+    intakeExtendClose();
+  }
   }
 
 }

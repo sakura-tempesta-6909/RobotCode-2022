@@ -4,7 +4,7 @@ import frc.robot.State;
 import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
-import frc.robot.State.DriveSpeed;
+import frc.robot.State.DriveState;
 
 public class ConveyorMode extends Mode {
 
@@ -20,11 +20,11 @@ public class ConveyorMode extends Mode {
 
   @Override
   public void changeState() {
-    State.driveSpeed = DriveSpeed.s_midDrive;
+    State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    if(driveController.getRightTriggerAxis() > Const.Util.TriggerValue){
+    if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
   }

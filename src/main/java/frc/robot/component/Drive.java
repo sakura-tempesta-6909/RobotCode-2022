@@ -17,6 +17,10 @@ public class Drive implements Component{
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
 
+
+    /**
+     * Motorの初期化、Motor・センサーの反転 
+     */
     public Drive() {
         driveRightFront = new WPI_TalonSRX(Const.Ports.DriveRightFront);
         driveLeftFront = new WPI_TalonSRX(Const.Ports.DriveLeftFront);
@@ -28,32 +32,39 @@ public class Drive implements Component{
 
         differntialDrive = new DifferentialDrive(driveLeftFront, driveRightFront);
 
-        driveRightFront.configAllSettings(Const.Configs.DriveRight);
-        driveLeftFront.configAllSettings(Const.Configs.DriveLeft);
+        driveRightFront.configAllSettings(Const.MotorConfigs.DriveRight);
+        driveLeftFront.configAllSettings(Const.MotorConfigs.DriveLeft);
         driveRightFront.setInverted(true);
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
 
     }
+
+    /**
+     * driveを動かす 
+     * @param xSpeed driveの縦方向の値
+     * @param zRotation　driveの回転方向の値
+     */
     public void arcadeDrive(double xSpeed, double zRotation){
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
-     *
-     * @param drivePoint PositionのPointをセンチに変換する
+     * PositionのPointをMeterに変換する、
+     * @param drivePoint Positionの値
+     * @return PositionのdrivePointをMeterにする 返り値はMeter
      */
-    public double drivePointToCm(double drivePoint){
-        return drivePoint / Const.Point.DrivePointsPerDriveLength;
+    public double drivePointToMeter(double drivePoint){
+        return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
 
-    public double getDriveRightCM(){
-        return drivePointToCm(driveRightFront.getSelectedSensorPosition());
+    public double getDriveRightMeter(){
+        return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
-    public double getDriveLeftCM(){
-        return drivePointToCm(driveLeftFront.getSelectedSensorPosition());
+    public double getDriveLeftMeter(){
+        return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
     @Override
@@ -76,13 +87,13 @@ public class Drive implements Component{
 
     @Override
     public void readSensors() {
-        State.driveRightFrontPositionCentimeter = getDriveRightCM();
-        State.driveLeftFrontPositionCentimeter = getDriveLeftCM();
+        State.driveRightFrontPositionMeter = getDriveRightMeter();
+        State.driveLeftFrontPositionMeter = getDriveLeftMeter();
     }
 
     @Override
     public void applyState() {
-        switch(State.driveSpeed){
+        switch(State.driveState){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
                 break;
