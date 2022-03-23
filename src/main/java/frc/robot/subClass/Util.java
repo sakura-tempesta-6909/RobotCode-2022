@@ -52,6 +52,7 @@ public class Util {
         sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
         sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
+        sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
     
     }
 }
