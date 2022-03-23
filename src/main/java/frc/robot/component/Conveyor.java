@@ -26,7 +26,7 @@ public class Conveyor implements Component {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
     shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
-    intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
+    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
     shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
 
     /* バックプレート操作用のモーターのセット */
