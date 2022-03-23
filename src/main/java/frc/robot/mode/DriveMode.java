@@ -1,9 +1,8 @@
 package frc.robot.mode;
 
 import frc.robot.State;
-import frc.robot.State.DriveSpeed;
+import frc.robot.State.DriveState;
 import frc.robot.State.ConveyorState;
-import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
@@ -26,15 +25,9 @@ public class DriveMode extends Mode {
         State.driveZRotation = driveController.getRightX();
 
         if(driveController.getYButton()){
-            State.driveSpeed = DriveSpeed.s_midDrive;
+            State.driveState = DriveState.s_midDrive;
         }else{
-            State.driveSpeed = DriveSpeed.s_fastDrive;
-        }
-
-        if(driveController.getXButton()){
-            State.intakeExtendSpeed = driveController.getLeftY();
-            State.intakeExtendState = IntakeExtendState.s_manual;
-            State.driveSpeed = DriveSpeed.s_stopDrive;
+            State.driveState = DriveState.s_fastDrive;
         }
 
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
@@ -67,11 +60,9 @@ public class DriveMode extends Mode {
         }
 
         if(driveController.getAButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
+            State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
-        } else {
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
+            State.is_intakeExtendOpen = false;
         }
     }
 
