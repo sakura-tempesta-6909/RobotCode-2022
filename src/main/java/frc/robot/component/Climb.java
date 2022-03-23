@@ -1,6 +1,5 @@
 package frc.robot.component;
 
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
@@ -9,6 +8,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Climb implements Component {
 
@@ -45,11 +45,11 @@ public class Climb implements Component {
   }
 
   public double spinToAngle(double spin){
-    return spin / Const.Calculation.DegreesPerRevolution;
+    return spin * Const.Calculation.DegreesPerRevolution;
   }
 
   public double angleToSpin(double angle){
-    return Const.Calculation.DegreesPerRevolution * angle;
+    return angle/Const.Calculation.DegreesPerRevolution;
   }
 
   public double getClimbArmAngle(){
@@ -57,7 +57,7 @@ public class Climb implements Component {
   }
 
   public void setClimbArmAngle(double climbArmTaregetAngle){
-    if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <5){
+    if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <3){
       climbControl(Const.Speeds.Neutral);
     }else{
       climbControl(Const.Speeds.SlowClimbArmSpin);
@@ -174,6 +174,7 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
+    Util.sendConsole("raw", climbArmEncoder.getPosition());
   }
 
   @Override
