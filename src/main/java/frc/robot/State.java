@@ -93,7 +93,7 @@ public class State {
 
     public enum TurnTo {
         turnToDirection,
-        stop,
+        stopTurn,
         
     }
 
