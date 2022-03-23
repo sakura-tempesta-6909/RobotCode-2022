@@ -48,16 +48,12 @@ public class Conveyor implements Component {
    * 他にもあった方がよさそうな機能
    */
 
-  /**
-   * trueの時センサーはボールを認識できていない。
-   * falseの時センサーはボールを認識している。!がついている時
-  */
-
 
   public void intakeConveyor(){
     if(State.ballQuantity == State.BallQuantity.s_ballquantity0){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
+          conveyorNutral();
           State.ballQuantity = State.BallQuantity.s_ballquantity2;
         }else{
           beltRollerIntake();
@@ -89,14 +85,13 @@ public class Conveyor implements Component {
       if (ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
-        }else{
         }
       }else{
         if(ballDetectionShoot()){
         }
       }
     }
-  }
+  }  
 
     //センサーが認識しているときballDetection*** methodはtrue
   public boolean ballDetectionIntake(){
