@@ -41,7 +41,7 @@ public class Const {
         public static final int ClimbArm = 1;
 
         //dio port
-        public static final int hallsensorPort = 0;
+        public static final int hallsensorPort = 1;
     }
 
     
