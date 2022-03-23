@@ -125,8 +125,12 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
-  public void climbSolenoidExtend(){
+  public void climbSolenoidOpen(){
     climbSolenoidControl(true);
+  }
+
+  public void climbSolenoidClose(){
+    climbSolenoidControl(false);
   }
 
   /**
@@ -202,7 +206,9 @@ public class Climb implements Component {
     }
 
     if(State.is_climbSolenoidOpen){
-      climbSolenoidExtend();
+      climbSolenoidOpen();
+    } else {
+      climbSolenoidClose();
     }
 
     if(State.is_compressorEnabled){
