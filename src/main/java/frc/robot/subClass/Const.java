@@ -143,8 +143,10 @@ public class Const {
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
         public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
+
+        public static PIDController pidController;
     }
-    public static PIDController pidController;
+    
     public static void ConstInit() {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
@@ -172,7 +174,7 @@ public class Const {
         MotorConfigs.intakeExtend.reverseLimitSwitchNormal = LimitSwitchNormal.NormallyOpen;
         MotorConfigs.intakeExtend.reverseLimitSwitchSource = LimitSwitchSource.FeedbackConnector;
         
-        pidController = new PIDController(Const.Other.PIDControllerkP, Const.Other.PIDControllerkI, Const.Other.PIDControllerkD);
+        MotorConfigs.pidController = new PIDController(Const.Other.PIDControllerkP, Const.Other.PIDControllerkI, Const.Other.PIDControllerkD);
         
     }
 }
