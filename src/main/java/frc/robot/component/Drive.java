@@ -121,6 +121,10 @@ public class Drive implements Component{
 
     @Override
     public void applyState() {
+        if(State.driveAccumulateReset){
+            driveAccumulateReset(); 
+        }
+        
         switch(State.driveSpeed){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
@@ -138,8 +142,6 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
 
-        if(State.driveAccumulateReset){
-            driveAccumulateReset(); 
-        }
+      
     }
 }

@@ -125,10 +125,5 @@ public class Robot extends TimedRobot {
       component.applyState();
     }
     Util.allSendConsole();
-    
-    for (Component component : components) {
-      component.applyState();
-    }
-    Util.allSendConsole();
   }
 }
