@@ -32,10 +32,9 @@ public class Util {
 
     public static void allSendConsole(){
         sendConsole( "Mode", State.mode.toString());
-        sendConsole("DriveSpeed", State.driveSpeed.toString());
+        sendConsole("DriveState", State.driveState.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyorState", State.conveyorState.toString());
-        sendConsole("intakeExtendState", State.intakeExtendState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
         sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
@@ -44,18 +43,14 @@ public class Util {
         sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
         sendConsole("compressorEnable", State.is_compressorEnabled);
-        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
         sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
         sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
-        sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
-        sendConsole("intakeExtendPosition", State.intakeExtendPosition);
-        sendConsole("intakeExtendAngle", State.intakeExtendAngle);
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
         sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
+        sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
     
     }
 }
