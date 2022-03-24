@@ -35,8 +35,15 @@ public class Const {
 
         //sparkMax
         public static final int ClimbArm = 1;
+
+        //dio port
+        public static final int hallsensorPort = 1;
     }
 
+    
+    
+         
+        
     public static final class Speeds{
         public static final double Neutral = 0;
 

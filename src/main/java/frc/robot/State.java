@@ -47,8 +47,8 @@ public class State {
 
     public static DriverStation.Alliance alliance;
     public static String gameSpecificMessage;
+    public static boolean calibration;
 
-    public static double gyroValue; // クランプの傾き用
 
     public static double shooterMotorSpeed;
 
@@ -109,6 +109,7 @@ public class State {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
         s_climbArmNeutral,
+        s_angleCalibration,
     }
 
     public enum Modes {

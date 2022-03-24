@@ -32,6 +32,7 @@ public class ClimbMode extends Mode {
     }
 
 
+
     State.is_firstSolenoidOpen = driveController.getRightBumper();
     State.is_secondSolenoidOpen = driveController.getLeftBumper();
 
