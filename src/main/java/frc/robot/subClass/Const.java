@@ -90,11 +90,11 @@ public class Const {
 
         //ClimbPoint
         // 円の角度
-        public static final double Round = 360;
+        public static final double FullTurnAngle = 360;
         // ClimbArmのギア比
         public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
-        public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
+        public static final double DegreesPerRevolution = FullTurnAngle / ClimbArmGearRatio;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
     }
