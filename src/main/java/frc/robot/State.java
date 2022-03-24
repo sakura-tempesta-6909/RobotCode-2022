@@ -5,14 +5,15 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
 import frc.robot.mode.ConveyorMode;
 import frc.robot.mode.DriveMode;
+import frc.robot.mode.TestMode;
 import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 
 public class State {
     public static Modes mode;
 
-    //Driveのスピード
-    public static DriveSpeed driveSpeed;
+    //DriveStateの変数を作る
+    public static DriveState driveState;
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
@@ -22,14 +23,9 @@ public class State {
     //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
-    //intakeExtendのState
-    public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
-    public static double intakeExtendPosition;
-    public static double intakeExtendAngle;
-    public static boolean is_fedLimitSwitchClose;
-    public static boolean is_revLimitSwitchClose;
+    public static boolean is_intakeExtendOpen;
 
     //ClimbのMotorがNEOか
     public static final boolean is_climbArmMotorNEO = true;
@@ -69,9 +65,8 @@ public class State {
     }
 
     public static void stateReset() {
-        driveSpeed = DriveSpeed.s_stopDrive;
+        driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
@@ -82,7 +77,7 @@ public class State {
     /**
      * Driveの状態
      */
-    public enum DriveSpeed {
+    public enum DriveState {
         s_stopDrive,
         s_slowDrive,
         s_midDrive,
@@ -108,17 +103,6 @@ public class State {
     }
 
     /**
-     * IntakeExtendの状態
-     */
-    public enum IntakeExtendState {
-        s_manual,
-        s_intakeExtendOpen,
-        s_intakeExtendClose,
-        s_intakeExtendNeutral,
-
-    }
-
-    /**
      * ClimbArmの状態
      */
     public enum ClimbArmState {
@@ -130,7 +114,8 @@ public class State {
     public enum Modes {
         k_drive(new DriveMode()),
         k_conveyor(new ConveyorMode()),
-        k_climb(new ClimbMode());
+        k_climb(new ClimbMode()),
+        k_test(new TestMode());
 
         private final Mode mode;
         Modes(Mode mode) {

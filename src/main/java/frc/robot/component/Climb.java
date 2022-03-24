@@ -44,16 +44,16 @@ public class Climb implements Component {
     }
   }
 
-  public double spinToAngle(double spin){
-    return spin / Const.Calculation.DegreesPerRevolution;
+  public double angleToRevolution(double angle){
+    return angle / Const.Calculation.DegreesPerRevolution;
   }
 
-  public double angleToSpin(double angle){
-    return Const.Calculation.DegreesPerRevolution * angle;
+  public double revolutionToAngle(double revolution){
+    return Const.Calculation.DegreesPerRevolution * revolution;
   }
 
   public double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
+    return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
   }
 
   /**
@@ -88,7 +88,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
     * secondSolenoidを動かす
    * @param secondSolenoidControl falseで閉じている
    */
@@ -118,8 +118,12 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
-  public void climbSolenoidExtend(){
+  public void climbSolenoidOpen(){
     climbSolenoidControl(true);
+  }
+
+  public void climbSolenoidClose(){
+    climbSolenoidControl(false);
   }
 
   /**
@@ -192,7 +196,9 @@ public class Climb implements Component {
     }
 
     if(State.is_climbSolenoidOpen){
-      climbSolenoidExtend();
+      climbSolenoidOpen();
+    } else {
+      climbSolenoidClose();
     }
 
     if(State.is_compressorEnabled){
