@@ -131,7 +131,7 @@ public class Const {
         public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
         
 
-        public static PIDController pidController;
+        public static PIDController gyroPidController;
     }
 
     public static final class AutonomousConst {
@@ -143,14 +143,9 @@ public class Const {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-
-        MotorConfigs.ShooterMotor.slot0.kP = 0.003;
-        MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
-        MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
-        
-        MotorConfigs.pidController = new PIDController(1.0, 0.001, 0.6);
+        MotorConfigs.gyroPidController = new PIDController(1.0, 0.001, 0.6);
         
     }
 }
