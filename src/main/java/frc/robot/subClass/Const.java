@@ -128,6 +128,8 @@ public class Const {
     public static final class MotorConfigs {
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
+        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
+        
 
         public static PIDController pidController;
     }
