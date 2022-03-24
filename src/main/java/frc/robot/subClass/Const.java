@@ -128,8 +128,6 @@ public class Const {
     public static final class MotorConfigs {
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration intakeExtend = new TalonSRXConfiguration();
 
         public static PIDController pidController;
     }
@@ -149,17 +147,8 @@ public class Const {
         MotorConfigs.ShooterMotor.slot0.kD = 0.003;
         MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         
-        //intakeExtendを上げるとき１、展開するとき（下げるとき）０
-        MotorConfigs.intakeExtend.slot0.kP = 0;
-        MotorConfigs.intakeExtend.slot0.kI = 0;
-        MotorConfigs.intakeExtend.slot0.kD = 0;
-
-        MotorConfigs.intakeExtend.slot1.kP = 0;
-        MotorConfigs.intakeExtend.slot1.kI = 0;
-        MotorConfigs.intakeExtend.slot1.kD = 0;
-        MotorConfigs.intakeExtend.primaryPID.selectedFeedbackSensor = FeedbackDevice.Analog;
         
-        MotorConfigs.pidController = new PIDController(Const.Other.PIDControllerkP, Const.Other.PIDControllerkI, Const.Other.PIDControllerkD);
+        MotorConfigs.pidController = new PIDController(1.0, 0.001, 0.6);
         
     }
 }
