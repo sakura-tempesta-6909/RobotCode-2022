@@ -44,11 +44,11 @@ public class Climb implements Component {
     }
   }
 
-  public double AngleToRevolution(double angle){
+  public double angleToRevolution(double angle){
     return angle / Const.Calculation.DegreesPerRevolution;
   }
 
-  public double RevolutionToAngle(double revolution){
+  public double revolutionToAngle(double revolution){
     return Const.Calculation.DegreesPerRevolution * revolution;
   }
 
