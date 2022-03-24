@@ -123,7 +123,7 @@ public class Drive implements Component{
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
             case s_turnTo:
-                turnTo(State.targetDirection); //なんらかのインプット、autonomous中、後で変える
+                turnTo(State.targetDirection); 
                 break;
         }
     }
