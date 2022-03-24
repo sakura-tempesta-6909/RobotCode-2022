@@ -50,16 +50,16 @@ public class Climb implements Component {
     }
   }
 
-  public double spinToAngle(double spin){
-    return spin / Const.Calculation.DegreesPerRevolution;
+  public double AngleToRevolution(double angle){
+    return angle / Const.Calculation.DegreesPerRevolution;
   }
 
-  public double angleToSpin(double angle){
-    return Const.Calculation.DegreesPerRevolution * angle;
+  public double RevolutionToAngle(double revolution){
+    return Const.Calculation.DegreesPerRevolution * revolution;
   }
 
   public double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
+    return RevolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
   }
 
   /**
@@ -113,7 +113,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
     * secondSolenoidを動かす
    * @param secondSolenoidControl falseで閉じている
    */
