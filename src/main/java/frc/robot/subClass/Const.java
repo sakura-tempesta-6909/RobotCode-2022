@@ -146,6 +146,11 @@ public class Const {
 
         public static PIDController pidController;
     }
+
+    public static final class AutonomousConst {
+        // angles
+        // travel distance
+    }
     
     public static void ConstInit() {
 

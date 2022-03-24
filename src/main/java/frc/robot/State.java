@@ -88,14 +88,11 @@ public class State {
         s_slowDrive,
         s_midDrive,
         s_fastDrive,
+        s_turnTo,
 
     }
 
-    public enum TurnTo {
-        turnToDirection,
-        stopTurn,
-        
-    }
+  
 
     /**
      * Conveyorの状態
