@@ -51,6 +51,7 @@ public class State {
 
 
     public static double shooterMotorSpeed;
+    public static double targetDirection;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
