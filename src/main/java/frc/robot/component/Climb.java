@@ -206,6 +206,9 @@ public class Climb implements Component {
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
         break;
+      case s_angleCalibration:
+        startCalibration();
+        break;
     }
 
     if(State.is_firstSolenoidOpen){
@@ -232,10 +235,5 @@ public class Climb implements Component {
       compressorDisable();
     }
 
-    if(State.calibration){
-      startCalibration();
-    } else{
-      return;
-    }
   }
 }

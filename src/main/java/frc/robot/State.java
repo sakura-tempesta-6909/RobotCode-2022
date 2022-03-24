@@ -109,6 +109,7 @@ public class State {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
         s_climbArmNeutral,
+        s_angleCalibration,
     }
 
     public enum Modes {

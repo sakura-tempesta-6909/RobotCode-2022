@@ -1,6 +1,7 @@
 package frc.robot.mode;
 
 import frc.robot.State;
+import frc.robot.State.ClimbArmState;
 
 public class TestMode extends Mode{
 
@@ -15,9 +16,9 @@ public class TestMode extends Mode{
         // TODO Auto-generated method stub
         
     if(driveController.getStartButton()){
-        State.calibration = true;
+        State.climbArmState = ClimbArmState.s_angleCalibration;
       } else{
-        State.calibration = false;
+        State.climbArmState = ClimbArmState.s_climbArmNeutral;
       }
         
     }
