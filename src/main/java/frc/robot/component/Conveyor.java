@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.State;
 import frc.robot.subClass.Const;
 
@@ -15,7 +17,7 @@ public class Conveyor implements Component {
   private VictorSPX intakeRoller;
   private TalonSRX intakeBelt, shooterMotor;
   private DigitalInput ballSensor;
-  private TalonSRX intakeExtend, backPlate;
+  private Solenoid intakeExtend;
   
   /**
    * モーターの初期化、モーター・センサーの反転
@@ -24,17 +26,13 @@ public class Conveyor implements Component {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
     shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
-    intakeExtend = new TalonSRX(Const.Ports.ConveyorExtend);
-    backPlate = new TalonSRX(Const.Ports.BackPlate);
-    intakeExtend.configAllSettings(Const.MotorConfigs.intakeExtend);
+    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
     shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
 
     /* バックプレート操作用のモーターのセット */
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
-    intakeExtend.setInverted(true);
-    intakeExtend.setNeutralMode(NeutralMode.Brake);
 
 
   }
@@ -131,67 +129,26 @@ public class Conveyor implements Component {
 
   /**
    * intakeExtendを動かす
-   * @param intakeExtendControl 展開するときを負
+   * @param intakeExtendControl 展開するときをtrue
    */
-  public void intakeExtendControl(double intakeExtendControl){
-
-    // if (intakeExtendControl > 0) {
-    //   intakeExtend.selectProfileSlot(Const.UpPIDslot, 0);
-    //   intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    //   } else if(intakeExtendControl < 0){
-    //     intakeExtend.selectProfileSlot(Const.ExtendPIDslot, 0);
-    //     intakeExtend.set(ControlMode.Velocity, intakeExtendControl);
-    //   } else {
-    //     intakeExtend.set(ControlMode.Velocity, Const.Neutral);
-    //   }
-    intakeExtend.set(ControlMode.PercentOutput, intakeExtendControl);
+  public void intakeExtendControl(boolean intakeExtendControl){
+    // intakeExtend.set(intakeExtendControl);
   }
 
   /**
    * intakeExtendをopenする
    */
   public void intakeExtendOpen(){
-      intakeExtend.selectProfileSlot(Const.MotorConfigs.ExtendPIDSlot, 0);
-      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendOpenPosition);
-  
+    intakeExtendControl(true);
   }
 
   /**
    * intakeExtendをcloseする
    */
   public void intakeExtendClose(){
-      intakeExtend.selectProfileSlot(Const.MotorConfigs.UpPIDSlot, 0);
-      intakeExtend.set(ControlMode.Position, Const.Pid.IntakeExtendClosePosition);
+    intakeExtendControl(false);
   }
 
-  /**
-   * intakeExtendを動かさない
-   */
-  public void intakeExtendNeutral(){
-    intakeExtendControl(Const.Speeds.Neutral);
-  }
-
-  public double extendAngleToPoint(double extendAngle){
-    double angleDiff = extendAngle - (Const.Calculation.MinimumExtendAngle);
-    double pointRange = Const.Calculation.MaxExtendPoint - Const.Calculation.MinimumExtendPoint;
-    double angleRange = Const.Calculation.MaxExtendAngle - (Const.Calculation.MinimumExtendAngle);
-    return angleDiff * (pointRange / angleRange) + Const.Calculation.MinimumExtendPoint;
-  }
-
-  public double extendPointToAngle(double extendPoint){
-    double pointDiff = extendPoint - Const.Calculation.MinimumExtendPoint;
-    double angleRange = Const.Calculation.MaxExtendAngle - (Const.Calculation.MinimumExtendAngle);
-    double pointRange = Const.Calculation.MaxExtendPoint - Const.Calculation.MinimumExtendPoint;
-    return pointDiff * (angleRange / pointRange) + (Const.Calculation.MinimumExtendAngle);
-  }
-
-  public double getExtendAngle(){
-    return extendPointToAngle(intakeExtend.getSelectedSensorPosition());
-  }
-
-  public void backPlateMove(double angle){
-
-  }
 
   @Override
   public void autonomousInit() {
@@ -220,10 +177,6 @@ public class Conveyor implements Component {
   @Override
   public void readSensors() {
     State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
-    State.is_fedLimitSwitchClose = intakeExtend.getSensorCollection().isFwdLimitSwitchClosed();
-    State.is_revLimitSwitchClose = intakeExtend.getSensorCollection().isRevLimitSwitchClosed();
-    State.intakeExtendPosition = intakeExtend.getSelectedSensorPosition();
-    State.intakeExtendAngle = getExtendAngle();
   }
 
   @Override
@@ -262,20 +215,11 @@ public class Conveyor implements Component {
         break;
     }
 
-    switch(State.intakeExtendState){
-      case s_manual:
-        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.IntakeExtendOpen);
-        break;
-      case s_intakeExtendOpen:
-        intakeExtendOpen();
-        break;
-      case s_intakeExtendClose:
-        intakeExtendClose();
-        break;
-      case s_intakeExtendNeutral:
-        intakeExtendControl(State.intakeExtendSpeed * Const.Speeds.Neutral);
-        break;
-    }
+  if(State.is_intakeExtendOpen){
+    intakeExtendOpen();
+  } else {
+    intakeExtendClose();
+  }
   }
 
 }
