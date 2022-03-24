@@ -53,7 +53,7 @@ public class Climb implements Component {
   }
 
   public double getClimbArmAngle(){
-    return RevolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
+    return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
   }
 
   /**
