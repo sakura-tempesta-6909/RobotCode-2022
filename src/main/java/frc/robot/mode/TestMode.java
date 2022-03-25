@@ -18,9 +18,10 @@ public class TestMode extends Mode{
         
     if(driveController.getStartButton()){
         State.climbArmState = ClimbArmState.s_angleCalibration;
-      } else{
-        State.climbArmState = ClimbArmState.s_climbArmNeutral;
       }
+    if(driveController.getBackButton()){
+      State.climbArmState = ClimbArmState.s_storeArm;
+    }
         
     }
     

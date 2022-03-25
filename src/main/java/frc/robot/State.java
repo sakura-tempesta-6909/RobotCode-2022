@@ -119,6 +119,7 @@ public class State {
         s_setClimbArmAngle,  
         s_climbArmNeutral,
         s_angleCalibration,
+        s_storeArm,
     }
 
     public enum Modes {

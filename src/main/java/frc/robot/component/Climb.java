@@ -110,6 +110,9 @@ public class Climb implements Component {
     }
   }
 
+  public void storeArm(){
+    setClimbArmAngle(122.3); 
+  }
   /**
    *  firstSolenoidを動かす
    * @param firstSolenoidOpen falseで閉じている
@@ -232,6 +235,9 @@ public class Climb implements Component {
         break;
       case s_angleCalibration:
         startCalibration();
+        break;
+      case s_storeArm:
+        storeArm();
         break;
     }
 
