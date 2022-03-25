@@ -72,17 +72,13 @@ public class Climb implements Component {
     if(climbArmTaregetAngle == 0){
       if(getClimbArmAngle() < 3 || 357 < getClimbArmAngle()){
         climbControl(Const.Speeds.Neutral);
-        System.out.println(0);
       }else{
-        System.out.println(1);
         climbControl(Const.Speeds.SlowClimbArmSpin);
       }
     }else if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <3){
       climbControl(Const.Speeds.Neutral);
-      System.out.println(3);
     }else{
       climbControl(Const.Speeds.SlowClimbArmSpin);
-      System.out.println(4);
     }
   }
   /**
