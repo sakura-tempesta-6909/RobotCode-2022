@@ -59,10 +59,16 @@ public class Drive implements Component{
         return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
 
+    /**
+     * @return Rightの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveRightMeter(){
         return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
+    /**
+     * @return Leftの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveLeftMeter(){
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }

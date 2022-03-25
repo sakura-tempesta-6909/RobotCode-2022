@@ -84,9 +84,9 @@ public class Const {
     }
 
     public static final class Calculation{
-        // DrivePoint
-        public static final double EncoderPointsPerRevolution = 4096;
+        // DrivePoint6;
 
+        public static final double EncoderPointsPerRevolution = 4096;
         // タイヤの直径を求める 単位はメートル
         public static final double DriveWheelDiameter = Units.inchesToMeters(6.0);
         // タイヤの円周のを求める　単位はメートル
@@ -112,6 +112,7 @@ public class Const {
 
         //Deadband
         public static final double Deadband = 0.2;
+        //Triggerの押し込み具合
         public static final double TriggerValue = 0.5;
 
         //ClimbArmのモーターのAmpの制限値
