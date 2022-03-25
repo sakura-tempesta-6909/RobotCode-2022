@@ -70,8 +70,8 @@ public class Climb implements Component {
   }
 
   /**
-   * climbArmの角度を取得する
-   * @return 回転数を使って角度を求める
+   * 回転数を使って角度を求める
+   * @return Positionを使ってclimbArmの角度を取得する
    */
   public double getClimbArmAngle(){
     return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;

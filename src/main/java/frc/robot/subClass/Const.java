@@ -84,8 +84,7 @@ public class Const {
     }
 
     public static final class Calculation{
-        // DrivePoint6;
-
+        // DrivePoint
         public static final double EncoderPointsPerRevolution = 4096;
         // タイヤの直径を求める 単位はメートル
         public static final double DriveWheelDiameter = Units.inchesToMeters(6.0);

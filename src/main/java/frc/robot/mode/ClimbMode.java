@@ -20,22 +20,16 @@ public class ClimbMode extends Mode {
   @Override
   public void changeState() {
 
-    /**
-     * climbModeはmidDrive(0.5)の速度で走る
-     * Leftを倒すと前後、Rightを倒すと左右に動く
-     */
+    // climbModeはmidDrive(0.5)の速度で走る
+    // Leftを倒すと前後、Rightを倒すと左右に動く
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    /**
-     * RightTriggerを押すと前に回り、LeftTriggerを押すと後ろに回る
-     */
+    //RightTriggerを押すと前に回り、LeftTriggerを押すと後ろに回る
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
 
-    /**
-     * どちらかのTriggerが押された状態でAButtonを押すとclimbArmが早く回る
-     */
+    //どちらかのTriggerが押された状態でAButtonを押すとclimbArmが早く回る
     if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
@@ -43,15 +37,12 @@ public class ClimbMode extends Mode {
     }
 
 
-    /**
-     * RightBumperを押すとfirstSolenoidがOpenし、LeftBumperを押すとsecondSolenoidがOpenする
-     */
+    //RightBumperを押すとfirstSolenoidがOpenし、LeftBumperを押すとsecondSolenoidがOpenする
+
     State.is_firstSolenoidOpen = driveController.getRightBumper();
     State.is_secondSolenoidOpen = driveController.getLeftBumper();
 
-    /**
-     * RightSticとkLeftStickとPOV180を押すとclimbSolenoidがOpenする
-     */
+    // RightSticとkLeftStickとPOV180を押すとclimbSolenoidがOpenする
     if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {
