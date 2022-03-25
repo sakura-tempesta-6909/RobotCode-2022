@@ -18,7 +18,7 @@ public class Autonomous {
 	 * 	driveBase.set(forward 60cm )
 	 * phase 2
 	 *  shooter on (中に入ってるボールを発射)  1秒間
-	 * phase 3 (ここから分岐)
+	 * phase 3 (option 1)
 	 * 	driveBase.set(forward -160cm)
 	 * 	driveBase.turn(-129 degrees)
 	 * 	driveBase.set(forward 85cm)
@@ -28,6 +28,9 @@ public class Autonomous {
 	 *  driveBase.turn(-17 degrees)
 	 * phase 5
 	 * 	shooter on (中に入ってるボールを発射)  1秒間
+	 * 
+	 * phase 3
+	 * 	drivebase.set
 	 * 	
 	 */
 
