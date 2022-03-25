@@ -11,8 +11,8 @@ public class ConveyorMode extends Mode {
   @Override
   public void changeMode() {
 
-    // RightBumperを押したら、driveModeになる
-    // StartButtonとBackButtonを押したら、climbModeになる
+    // RB: driveMode
+    // Start,Backn: climbModeになる
     if(driveController.getRightBumper()){
       State.mode = Modes.k_drive;
     } else if(driveController.getStartButton() && driveController.getBackButton()){
@@ -24,13 +24,13 @@ public class ConveyorMode extends Mode {
   @Override
   public void changeState() {
     // conveyorModeはmidDriveで走る
-    // LY:前後、RX:左右
+    // LY: 前後、RX: 左右
      
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    // RT:ボール発射
+    // RT: ボール発射
     if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }

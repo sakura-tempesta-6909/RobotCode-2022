@@ -12,8 +12,8 @@ public class DriveMode extends Mode {
     @Override
     public void changeMode() {
 
-        //LB:conveyorMode
-        //Start,Back:climbMode
+        //LB: conveyorMode
+        //Start,Back: climbMode
         if(driveController.getLeftBumper()){
             State.mode = Modes.k_conveyor;
         } else if(driveController.getStartButton() && driveController.getBackButton()){
@@ -27,21 +27,21 @@ public class DriveMode extends Mode {
         State.driveXSpeed =  -driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
 
-        //LY or RX,Y:midDriveで走る
+        //LYかRXを倒している状態で,Y: midDriveで走る
         if(driveController.getYButton()){
             State.driveState = DriveState.s_midDrive;
         }else{
             State.driveState = DriveState.s_fastDrive;
         }
 
-        //POV90,RS,LS:compressorをオフにする
+        //POV90,RS,LS: compressorをオフにする
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
             State.is_compressorEnabled = false;
         } else if(driveController.getPOV() == 180){
             State.is_compressorEnabled = true;
         }
 
-        //LT:outtake, RT:intake
+        //LT: outtake, RT: intake
         if(driveController.getLeftTriggerAxis() > Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
         } else if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
