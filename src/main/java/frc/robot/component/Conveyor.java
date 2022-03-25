@@ -86,12 +86,13 @@ public class Conveyor implements Component {
         if(ballDetectionShoot()){
           conveyorNutral();
         }else{
+          beltRollerIntake();
         }
       }else{
         if(ballDetectionShoot()){
-
+          conveyorNutral();
         }else{
-          
+          State.ballQuantity = State.BallQuantity.s_ballquantity0;
         }
       }
     }
