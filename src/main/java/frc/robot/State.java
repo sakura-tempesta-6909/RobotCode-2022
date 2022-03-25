@@ -107,9 +107,19 @@ public class State {
     }
 
     public enum BallQuantity {
-        s_ballquantity0,
-        s_ballquantity1,
-        s_ballquantity2,
+        s_ballQuantity0(0),
+        s_ballQuantity1(1),
+        s_ballQuantity2(2);
+
+        private final int ballQuantity;
+
+        BallQuantity(int ballQuantity){
+            this.ballQuantity = ballQuantity;
+        }
+
+        public int getBallQuantity(){
+            return ballQuantity;
+        }
     }
 
     /**

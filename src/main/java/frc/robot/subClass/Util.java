@@ -53,7 +53,7 @@ public class Util {
         sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
         sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
-        sendConsole("ballQuantity", State.ballQuantity.toString());
+        sendConsole("ballQuantity", State.ballQuantity.getBallQuantity());
     
     }
 }

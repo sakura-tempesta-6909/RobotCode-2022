@@ -50,14 +50,14 @@ public class Conveyor implements Component {
 
 
   public void intakeConveyor(){
-    if(State.ballQuantity == State.BallQuantity.s_ballquantity0){
+    if(State.ballQuantity == State.BallQuantity.s_ballQuantity0){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballquantity2;
+          State.ballQuantity = State.BallQuantity.s_ballQuantity2;
         }else{
           beltRollerIntake();
-          State.ballQuantity = State.BallQuantity.s_ballquantity1;
+          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
         }
       }else{
         if(ballDetectionShoot()){
@@ -66,11 +66,11 @@ public class Conveyor implements Component {
           beltRollerIntake();
         }
       }
-    }else if (State.ballQuantity == State.BallQuantity.s_ballquantity1){
+    }else if (State.ballQuantity == State.BallQuantity.s_ballQuantity1){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballquantity2;
+          State.ballQuantity = State.BallQuantity.s_ballQuantity2;
         }else{
           beltRollerIntake();
         }
@@ -81,7 +81,7 @@ public class Conveyor implements Component {
           rollerIntake();
         }
       }
-    }else if(State.ballQuantity == State.BallQuantity.s_ballquantity2){
+    }else if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
       if (ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
@@ -93,7 +93,7 @@ public class Conveyor implements Component {
           conveyorNutral();
         }else{
           conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballquantity0;
+          State.ballQuantity = State.BallQuantity.s_ballQuantity0;
         }
       }
     }
@@ -120,7 +120,7 @@ public class Conveyor implements Component {
    */
   public void shootConveyor(){
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
-    State.ballQuantity = State.BallQuantity.s_ballquantity0;
+    State.ballQuantity = State.BallQuantity.s_ballQuantity0;
   }
 
   /**
@@ -202,7 +202,7 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときをtrue
    */
   public void intakeExtendControl(boolean intakeExtendControl){
-    if(State.ballQuantity == State.BallQuantity.s_ballquantity2){
+    if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
       intakeExtendControl = false;
     }
     // intakeExtend.set(intakeExtendControl);
