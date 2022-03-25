@@ -35,27 +35,22 @@ public class Util {
         sendConsole("DriveState", State.driveState.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyorState", State.conveyorState.toString());
-        sendConsole("intakeExtendState", State.intakeExtendState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
-        sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
-        sendConsole("firstSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("secondSolenoidOpen", State.is_secondSolenoidOpen);
-        sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
+        sendConsole("extendSpeed", State.intakeExtendSpeed);
+        sendConsole("1stSolenoidOpen", State.is_firstSolenoidOpen);
+        sendConsole("2ndSolenoidOpen", State.is_secondSolenoidOpen);
+        sendConsole("climbSolenoidUp", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
-        sendConsole("compressorEnable", State.is_compressorEnabled);
-        sendConsole("intakeExtendOpen", State.intakeExtendState.toString());
+        sendConsole("compressorOn", State.is_compressorEnabled);
         sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
         sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("intakeExtendFwdLimitSwitch", State.is_fedLimitSwitchClose);
-        sendConsole("intakeExtendRevLimitSwitch", State.is_revLimitSwitchClose);
-        sendConsole("intakeExtendPosition", State.intakeExtendPosition);
-        sendConsole("intakeExtendAngle", State.intakeExtendAngle);
-        sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
-        sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
+        sendConsole("shooterSpeed",State.shooterMotorSpeed);
+        sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
+        sendConsole("extendOpen", State.is_intakeExtendOpen);
     
     }
 }

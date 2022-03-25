@@ -1,9 +1,10 @@
 package frc.robot.mode;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import frc.robot.State;
 import frc.robot.State.DriveState;
 import frc.robot.State.ConveyorState;
-import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
@@ -61,10 +62,10 @@ public class DriveMode extends Mode {
         }
 
         if(driveController.getAButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
+            State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
-        } 
+            State.is_intakeExtendOpen = false;
+        }
     }
 
 }
