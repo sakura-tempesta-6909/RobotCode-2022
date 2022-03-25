@@ -80,7 +80,7 @@ public class Const {
         //fastClimbArmのスピード
         public static final double FastClimbArmSpin = 1;
         //midClimbArmのスピード
-        public static final double MidClimbArmSpin = 0.5;
+        public static final double MidClimbArmSpin = 0.8;
     }
 
     public static final class Calculation{
