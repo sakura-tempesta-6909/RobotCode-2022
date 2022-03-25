@@ -198,6 +198,8 @@ public class Climb implements Component {
 
   @Override
   public void disabledInit() {
+    State.climbMotorIdleMode = IdleMode.kCoast;
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     // TODO Auto-generated method stub
 
   }
