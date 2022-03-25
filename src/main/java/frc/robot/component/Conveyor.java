@@ -32,30 +32,18 @@ public class Conveyor implements Component {
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
     shooterMotor = new CANSparkMax(Const.Ports.ShooterMotor, CANSparkMaxLowLevel.MotorType.kBrushless);
     shooterMotorPIDController = shooterMotor.getPIDController();
-    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
     /* ShooterのPIDの設定 */
-    shooterMotorPIDController.setP(Const.MotorConfigs.ShooterMotor.slot0.kP);
-    shooterMotorPIDController.setI(Const.MotorConfigs.ShooterMotor.slot0.kI);
-    shooterMotorPIDController.setD(Const.MotorConfigs.ShooterMotor.slot0.kD);
+    Const.Pid.shooterPidSet(shooterMotorPIDController);
+   
+    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
-    /* バックプレート操作用のモーターのセット */
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
 
-
   }
-  /*
-    バックプレートのそうさ
-    シューターの速さ（距離に応じて）
-    インテークベルトのそうさ（センサー類を使って詰まらないようにする）
-    シューターモーターの上下（クライム中は上がっている等）
-    シューターモーターはモードによって動きが変わるはず
-    ボールが詰まったときの対処
-    他にもあった方がよさそうな機能
-   */
-
-  /**
+  
+   /**
    * CARGOを回収する
    */
   public void intakeConveyor(){
