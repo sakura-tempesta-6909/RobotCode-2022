@@ -1,6 +1,5 @@
 package frc.robot.component;
 
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
@@ -55,18 +54,33 @@ public class Climb implements Component {
     
   }
 
+
   public double angleToRevolution(double angle){
     return angle / Const.Calculation.DegreesPerRevolution;
   }
 
   public double revolutionToAngle(double revolution){
     return Const.Calculation.DegreesPerRevolution * revolution;
+
   }
 
   public double getClimbArmAngle(){
     return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
   }
 
+  public void setClimbArmAngle(double climbArmTaregetAngle){
+    if(climbArmTaregetAngle == 0){
+      if(getClimbArmAngle() < 3 || 357 < getClimbArmAngle()){
+        climbControl(Const.Speeds.Neutral);
+      }else{
+        climbControl(Const.Speeds.SlowClimbArmSpin);
+      }
+    }else if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <3){
+      climbControl(Const.Speeds.Neutral);
+    }else{
+      climbControl(Const.Speeds.SlowClimbArmSpin);
+    }
+  }
   /**
    * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
@@ -209,6 +223,9 @@ public class Climb implements Component {
         break;
       case s_midClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
+        break;
+      case s_setClimbArmAngle:
+        setClimbArmAngle(State.climbArmTaregetAngle);
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
