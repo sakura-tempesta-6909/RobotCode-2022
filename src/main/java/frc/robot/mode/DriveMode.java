@@ -65,7 +65,7 @@ public class DriveMode extends Mode {
             }
         }
 
-        //A:intakeExtendをopen, B:intakeExtendをclose
+        //A: intakeExtendをopen, B: intakeExtendをclose
         if(driveController.getAButton()){
             State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
