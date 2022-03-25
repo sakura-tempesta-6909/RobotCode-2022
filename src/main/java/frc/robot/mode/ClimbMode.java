@@ -1,5 +1,7 @@
 package frc.robot.mode;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import frc.robot.State;
 import frc.robot.State.ClimbArmState;
 import frc.robot.State.Modes;
@@ -22,7 +24,7 @@ public class ClimbMode extends Mode {
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
-
+    State.climbMotorIdleMode = IdleMode.kBrake;
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
 
     if(driveController.getAButton()){

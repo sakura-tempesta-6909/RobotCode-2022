@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
@@ -31,6 +34,8 @@ public class State {
     public static final boolean is_climbArmMotorNEO = true;
     //ClimbArmのState
     public static ClimbArmState climbArmState;
+    // climbのidleMode
+    public static IdleMode climbMotorIdleMode;
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
@@ -49,7 +54,6 @@ public class State {
     public static String gameSpecificMessage;
     public static boolean calibration;
 
-
     public static double shooterMotorSpeed;
 
     public static void StateInit() {
@@ -60,6 +64,7 @@ public class State {
         is_compressorEnabled = true;
         alliance = DriverStation.getAlliance();
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        climbMotorIdleMode = IdleMode.kCoast;
         
         stateReset();
     }

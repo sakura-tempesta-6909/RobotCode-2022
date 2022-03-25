@@ -1,5 +1,7 @@
 package frc.robot.mode;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import frc.robot.State;
 import frc.robot.State.DriveState;
 import frc.robot.State.ConveyorState;
@@ -21,6 +23,7 @@ public class DriveMode extends Mode {
 
     @Override
     public void changeState() {
+        State.climbMotorIdleMode = IdleMode.kCoast;
         State.driveXSpeed =  -driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
 
