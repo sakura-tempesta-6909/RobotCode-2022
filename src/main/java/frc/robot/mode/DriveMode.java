@@ -13,7 +13,7 @@ public class DriveMode extends Mode {
     public void changeMode() {
 
         //LB: conveyorMode
-        //Start,Back: climbMode
+        //Start & Back: climbMode
         if(driveController.getLeftBumper()){
             State.mode = Modes.k_conveyor;
         } else if(driveController.getStartButton() && driveController.getBackButton()){
@@ -34,7 +34,7 @@ public class DriveMode extends Mode {
             State.driveState = DriveState.s_fastDrive;
         }
 
-        //POV90&RS&LS: compressorをオフにする
+        //POV90 & RS  & LS: compressorをオフにする
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
             State.is_compressorEnabled = false;
         } else if(driveController.getPOV() == 180){

@@ -11,7 +11,7 @@ public class ClimbMode extends Mode {
   public void changeMode() {
 
     //POV90: convyoerMode
-    //POV270; driveMode
+    //POV270: driveMode
     if(driveController.getPOV() == 90){
       State.mode = Modes.k_conveyor;
     } else if(driveController.getPOV() == 270){
@@ -24,12 +24,12 @@ public class ClimbMode extends Mode {
   public void changeState() {
 
     // climbModeはmidDriveで走る
-    // LY: 前後、RX: 左右
+    // LY: 前後, RX: 左右
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    //RT:前、LT:後ろ
+    //RT:前, LT:後ろ
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
 
     //A:climbArmを速くする
@@ -40,12 +40,12 @@ public class ClimbMode extends Mode {
     }
 
 
-    //RB: firstSolenoidがOpen、LB: secondSolenoidがOpen
+    //RB: firstSolenoidがOpen, LB: secondSolenoidがOpen
 
     State.is_firstSolenoidOpen = driveController.getRightBumper();
     State.is_secondSolenoidOpen = driveController.getLeftBumper();
 
-    // RS&LS&POV180: climbSolenoidがOpen
+    // RS & LS & POV180: climbSolenoidがOpen
     if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {
