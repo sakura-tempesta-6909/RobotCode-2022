@@ -32,7 +32,7 @@ public class ClimbMode extends Mode {
     //RT:前、LT:後ろ
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
 
-    //LTかRTが押された時に,A:climbArmを速くする
+    //A:climbArmを速くする
     if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
@@ -45,7 +45,7 @@ public class ClimbMode extends Mode {
     State.is_firstSolenoidOpen = driveController.getRightBumper();
     State.is_secondSolenoidOpen = driveController.getLeftBumper();
 
-    // RS,LS,POV180: climbSolenoidがOpen
+    // RS&LS&POV180: climbSolenoidがOpen
     if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {

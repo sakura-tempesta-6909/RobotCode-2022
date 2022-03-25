@@ -27,14 +27,14 @@ public class DriveMode extends Mode {
         State.driveXSpeed =  -driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
 
-        //LYかRXを倒している状態で,Y: midDriveで走る
+        //Y: midDriveで走る
         if(driveController.getYButton()){
             State.driveState = DriveState.s_midDrive;
         }else{
             State.driveState = DriveState.s_fastDrive;
         }
 
-        //POV90,RS,LS: compressorをオフにする
+        //POV90&RS&LS: compressorをオフにする
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
             State.is_compressorEnabled = false;
         } else if(driveController.getPOV() == 180){
