@@ -10,7 +10,7 @@ public class ClimbMode extends Mode {
   @Override
   public void changeMode() {
 
-    //POV90: convyoerMode
+    //POV90: conveyorMode
     //POV270: driveMode
     if(driveController.getPOV() == 90){
       State.mode = Modes.k_conveyor;
@@ -29,10 +29,10 @@ public class ClimbMode extends Mode {
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    //RT:前, LT:後ろ
+    //RT: 前, LT: 後ろ
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
 
-    //A:climbArmを速くする
+    //A: climbArmを速くする
     if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {

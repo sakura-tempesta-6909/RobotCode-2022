@@ -34,7 +34,7 @@ public class DriveMode extends Mode {
             State.driveState = DriveState.s_fastDrive;
         }
 
-        //POV90 & RS  & LS: compressorをオフにする
+        //POV90 & RS & LS: compressorをオフにする
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
             State.is_compressorEnabled = false;
         } else if(driveController.getPOV() == 180){
@@ -65,7 +65,7 @@ public class DriveMode extends Mode {
             }
         }
 
-        //A:intkaeExtendをopen, B:intakeExtendをclose
+        //A:intakeExtendをopen, B:intakeExtendをclose
         if(driveController.getAButton()){
             State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
