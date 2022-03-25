@@ -25,7 +25,7 @@ public class ClimbMode extends Mode {
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
-
+    State.climbMotorIdleMode = IdleMode.kBrake;
     if(driveController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
