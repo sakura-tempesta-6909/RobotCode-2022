@@ -2,6 +2,7 @@ package frc.robot.subClass;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import com.revrobotics.SparkMaxPIDController;
 
 import edu.wpi.first.math.util.Units;
 
@@ -107,6 +108,16 @@ public class Const {
         public static final double DegreesPerRevolution = FullTurnAngle / ClimbArmGearRatio;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
+
+    }
+
+    public static final class Pid{
+        public static void shooterPidSet(SparkMaxPIDController shooterPid){
+            shooterPid.setP(0.003);
+            shooterPid.setI(0.000025);
+            shooterPid.setD(0.003);
+        }
+        
     }
 
     public static final class Other{
@@ -124,17 +135,11 @@ public class Const {
     public static final class MotorConfigs {
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
     }
 
     public static void ConstInit() {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-
-        MotorConfigs.ShooterMotor.slot0.kP = 0.003;
-        MotorConfigs.ShooterMotor.slot0.kI = 0.000025;
-        MotorConfigs.ShooterMotor.slot0.kD = 0.003;
-        MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
+        MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative; 
     }
 }

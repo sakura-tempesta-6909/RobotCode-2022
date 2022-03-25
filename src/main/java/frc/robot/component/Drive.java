@@ -38,6 +38,7 @@ public class Drive implements Component{
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
+        
 
     }
 
