@@ -23,14 +23,14 @@ public class ConveyorMode extends Mode {
 
   @Override
   public void changeState() {
-    // conveyorModeはmidDrive(0.5)の速度で走る
-    // Leftを倒すと前後、Rightを倒すと左右に動く
+    // conveyorModeはmidDriveで走る
+    // LY:前後、RX:左右
      
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
 
-    // RightTriggerを押すとボールを発射する
+    // RT:ボール発射
     if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
