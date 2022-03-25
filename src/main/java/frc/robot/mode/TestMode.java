@@ -29,6 +29,12 @@ public class TestMode extends Mode{
         }
         // TODO Auto-generated method stub
         
+    if(driveController.getStartButton()){
+        State.climbArmState = ClimbArmState.s_angleCalibration;
+      } else{
+        State.climbArmState = ClimbArmState.s_climbArmNeutral;
+      }
+        
     }
     
 }

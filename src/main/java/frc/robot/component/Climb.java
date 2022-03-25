@@ -3,7 +3,10 @@ package frc.robot.component;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
@@ -23,7 +26,10 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
-  private RelativeEncoder climbArmEncoder;
+  private DigitalInput hallSensor;
+  
+  private static RelativeEncoder climbArmEncoder;
+
 
 
    
@@ -31,6 +37,8 @@ public class Climb implements Component {
    * Motorの初期化、Motor・センサーの反転
    */
   public Climb() {
+
+    hallSensor = new DigitalInput(Const.Ports.hallsensorPort);
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
@@ -42,18 +50,22 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
+    climbArm.setSmartCurrentLimit(Const.Other.ClimbArmCurrentLimit);
+    
   }
 
-  public double spinToAngle(double spin){
-    return spin * Const.Calculation.DegreesPerRevolution;
+
+  public double angleToRevolution(double angle){
+    return angle / Const.Calculation.DegreesPerRevolution;
   }
 
-  public double angleToSpin(double angle){
-    return angle/Const.Calculation.DegreesPerRevolution;
+  public double revolutionToAngle(double revolution){
+    return Const.Calculation.DegreesPerRevolution * revolution;
+
   }
 
   public double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
+    return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
   }
 
   public void setClimbArmAngle(double climbArmTaregetAngle){
@@ -81,7 +93,26 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
-  
+  public boolean gethallSensor(){
+    return !hallSensor.get();
+  }
+
+  public void resetAngle(){
+    if(gethallSensor()){
+      climbArmEncoder.setPosition(0);
+    } else{
+      return;
+    }
+  }
+
+  public void startCalibration(){
+    if(gethallSensor()){
+      climbArm.set(0);
+      resetAngle();
+    } else{
+      climbArm.set(0.2);
+    }
+  }
 
   /**
    *  firstSolenoidを動かす
@@ -105,7 +136,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
     * secondSolenoidを動かす
    * @param secondSolenoidControl falseで閉じている
    */
@@ -184,11 +215,12 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
-    Util.sendConsole("raw", climbArmEncoder.getPosition());
+    Util.sendConsole("ClimbCurrent", climbArm.getOutputCurrent());
   }
 
   @Override
   public void applyState() {
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     switch(State.climbArmState){
       case s_fastClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.FastClimbArmSpin);
@@ -201,6 +233,9 @@ public class Climb implements Component {
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
+        break;
+      case s_angleCalibration:
+        startCalibration();
         break;
     }
 
@@ -227,5 +262,6 @@ public class Climb implements Component {
     } else {
       compressorDisable();
     }
+
   }
 }

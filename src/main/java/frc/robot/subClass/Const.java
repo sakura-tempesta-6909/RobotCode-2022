@@ -35,8 +35,15 @@ public class Const {
 
         //sparkMax
         public static final int ClimbArm = 1;
+
+        //dio port
+        public static final int hallsensorPort = 1;
     }
 
+    
+    
+         
+        
     public static final class Speeds{
         public static final double Neutral = 0;
 
@@ -73,8 +80,10 @@ public class Const {
         //fastClimbArmのスピード
         public static final double FastClimbArmSpin = 1;
         //midClimbArmのスピード
-        public static final double MidClimbArmSpin = 0.5;
         public static final double SlowClimbArmSpin = 0.2;
+
+        public static final double MidClimbArmSpin = 0.8;
+
     }
 
     public static final class Calculation{
@@ -91,11 +100,11 @@ public class Const {
 
         //ClimbPoint
         // 円の角度
-        public static final double Round = 360;
+        public static final double FullTurnAngle = 360;
         // ClimbArmのギア比
         public static final double ClimbArmGearRatio = 75 * 4.5;
         // ギアが一回転するとどのくらい角度が増えるか
-        public static final double DegreesPerRevolution = Round / ClimbArmGearRatio;
+        public static final double DegreesPerRevolution = FullTurnAngle / ClimbArmGearRatio;
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
     }
