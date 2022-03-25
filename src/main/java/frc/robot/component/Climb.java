@@ -4,6 +4,8 @@ package frc.robot.component;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -49,6 +51,8 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
+    climbArm.setSmartCurrentLimit(Const.Other.ClimbArmCurrentLimit);
+    
   }
 
   public double angleToRevolution(double angle){
@@ -198,6 +202,7 @@ public class Climb implements Component {
 
   @Override
   public void applyState() {
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     switch(State.climbArmState){
       case s_fastClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.FastClimbArmSpin);
