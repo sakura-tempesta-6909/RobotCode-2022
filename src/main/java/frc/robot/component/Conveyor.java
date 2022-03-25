@@ -202,10 +202,10 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときをtrue
    */
   public void intakeExtendControl(boolean intakeExtendControl){
-    // intakeExtend.set(intakeExtendControl);
     if(State.ballQuantity == State.BallQuantity.s_ballquantity2){
       intakeExtendControl = false;
     }
+    // intakeExtend.set(intakeExtendControl);
   }
 
   /**
