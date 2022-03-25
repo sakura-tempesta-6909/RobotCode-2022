@@ -70,12 +70,14 @@ public class State {
     }
 
     public static void stateReset() {
+        climbMotorIdleMode = IdleMode.kCoast;
         driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+
 
     }
 

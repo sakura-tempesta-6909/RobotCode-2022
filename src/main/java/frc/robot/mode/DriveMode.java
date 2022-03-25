@@ -23,7 +23,6 @@ public class DriveMode extends Mode {
 
     @Override
     public void changeState() {
-        State.climbMotorIdleMode = IdleMode.kCoast;
         State.driveXSpeed =  -driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
 

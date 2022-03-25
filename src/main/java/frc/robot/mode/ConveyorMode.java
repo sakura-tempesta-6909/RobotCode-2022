@@ -22,7 +22,6 @@ public class ConveyorMode extends Mode {
 
   @Override
   public void changeState() {
-    State.climbMotorIdleMode = IdleMode.kCoast;
     State.driveState = DriveState.s_midDrive;
     State.driveXSpeed = -driveController.getLeftY();
     State.driveZRotation = driveController.getRightX();
