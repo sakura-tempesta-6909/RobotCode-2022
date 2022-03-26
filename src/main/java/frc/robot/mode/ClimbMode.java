@@ -56,5 +56,10 @@ public class ClimbMode extends Mode {
     } else {
       State.is_climbSolenoidOpen = false;
     }
+
+    if(operateController.getStartButton()){
+      State.climbArmState = ClimbArmState.s_setClimbArmAngle;
+      State.climbArmTargetAngle = 0;
+    }
   }
 }
