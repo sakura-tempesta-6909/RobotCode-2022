@@ -1,14 +1,17 @@
 package frc.robot.component;
 
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Climb implements Component {
 
@@ -23,7 +26,10 @@ public class Climb implements Component {
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
   private CANSparkMax climbArm;
-  private RelativeEncoder climbArmEncoder;
+  private DigitalInput hallSensor;
+  
+  private static RelativeEncoder climbArmEncoder;
+
 
 
    
@@ -31,6 +37,8 @@ public class Climb implements Component {
    * Motorの初期化、Motor・センサーの反転
    */
   public Climb() {
+
+    hallSensor = new DigitalInput(Const.Ports.hallsensorPort);
     compressor = new Compressor(Const.Ports.Compressor, PneumaticsModuleType.CTREPCM);
     firstSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.FirstSolenoid);
     secondSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.SecondSolenoid);
@@ -42,18 +50,57 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
+    climbArm.setSmartCurrentLimit(Const.Other.ClimbArmCurrentLimit);
+    
   }
 
-  public double spinToAngle(double spin){
-    return spin / Const.Calculation.DegreesPerRevolution;
+
+  /**
+   * 
+   * @param angle climbArmの角度
+   * @return
+   */
+  public double angleToRevolution(double angle){
+    return angle / Const.Calculation.DegreesPerRevolution;
   }
 
-  public double angleToSpin(double angle){
-    return Const.Calculation.DegreesPerRevolution * angle;
+  /**
+   * 
+   * @param revolution climbArmの回転数
+   * @return 回転数から角度に変換する
+   */
+  public double revolutionToAngle(double revolution){
+    return Const.Calculation.DegreesPerRevolution * revolution;
+
   }
 
+  /**
+   * 回転数を使って角度を求める
+   * @return angle 角度
+   */
   public double getClimbArmAngle(){
-    return spinToAngle(climbArmEncoder.getPosition()) % Const.Calculation.Round;
+    return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
+  }
+
+  /**
+   * climbArmを指定した角度まで動かす
+   * @param climbArmTaregetAngle 目標角度
+   */
+  public void setClimbArmAngle(double climbArmTaregetAngle){
+    double angle = getClimbArmAngle();
+    if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.Other.ClimbArmSetAngleThreshold, angle)){
+      climbControl(Const.Speeds.Neutral);
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
+      climbControl(-Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, angle)) {
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, angle)){
+      climbControl(-Const.Speeds.SlowClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
+      climbControl(Const.Speeds.SlowClimbArmSpin);
+    } else {
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    }
   }
 
   /**
@@ -64,7 +111,26 @@ public class Climb implements Component {
     climbArm.set(climbSpinSpeed);
   }
 
-  
+  public boolean gethallSensor(){
+    return !hallSensor.get();
+  }
+
+  public void resetAngle(){
+    if(gethallSensor()){
+      climbArmEncoder.setPosition(0);
+    } else{
+      return;
+    }
+  }
+
+  public void startCalibration(){
+    if(gethallSensor()){
+      climbArm.set(0);
+      resetAngle();
+    } else{
+      climbArm.set(0.2);
+    }
+  }
 
   /**
    *  firstSolenoidを動かす
@@ -88,7 +154,7 @@ public class Climb implements Component {
     firstSolenoidControl(false);
   }
 
-   /**
+  /**
     * secondSolenoidを動かす
    * @param secondSolenoidControl falseで閉じている
    */
@@ -118,8 +184,18 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
-  public void climbSolenoidExtend(){
+  /**
+   * climbSolenoidをopenする
+   */
+  public void climbSolenoidOpen(){
     climbSolenoidControl(true);
+  }
+
+  /**
+   * climbSolenoidをcloseする
+   */
+  public void climbSolenoidClose(){
+    climbSolenoidControl(false);
   }
 
   /**
@@ -150,6 +226,8 @@ public class Climb implements Component {
 
   @Override
   public void disabledInit() {
+    State.climbMotorIdleMode = IdleMode.kCoast;
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     // TODO Auto-generated method stub
 
   }
@@ -163,10 +241,12 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
+    Util.sendConsole("ClimbCurrent", climbArm.getOutputCurrent());
   }
 
   @Override
   public void applyState() {
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     switch(State.climbArmState){
       case s_fastClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.FastClimbArmSpin);
@@ -174,8 +254,14 @@ public class Climb implements Component {
       case s_midClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
+      case s_setClimbArmAngle:
+        setClimbArmAngle(State.climbArmTargetAngle);
+        break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
+        break;
+      case s_angleCalibration:
+        startCalibration();
         break;
     }
 
@@ -192,7 +278,9 @@ public class Climb implements Component {
     }
 
     if(State.is_climbSolenoidOpen){
-      climbSolenoidExtend();
+      climbSolenoidOpen();
+    } else {
+      climbSolenoidClose();
     }
 
     if(State.is_compressorEnabled){
@@ -200,5 +288,6 @@ public class Climb implements Component {
     } else {
       compressorDisable();
     }
+
   }
 }

@@ -3,9 +3,14 @@ package frc.robot.component;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Drive implements Component{
 
@@ -38,7 +43,10 @@ public class Drive implements Component{
         driveRightBack.setInverted(true);
         driveRightFront.setSensorPhase(true);
         driveLeftFront.setSensorPhase(true);
-
+        driveRightFront.setNeutralMode(NeutralMode.Brake);
+        driveLeftFront.setNeutralMode(NeutralMode.Brake);
+        driveRightBack.setNeutralMode(NeutralMode.Brake);
+        driveLeftBack.setNeutralMode(NeutralMode.Brake);
     }
 
     /**
@@ -58,13 +66,36 @@ public class Drive implements Component{
     public double drivePointToMeter(double drivePoint){
         return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
+    public double driveMeterToPoint(double driveMeter){
+        return driveMeter * Const.Calculation.DrivePointsPerDriveLength;
+    }
 
+    /**
+     * @return Rightの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveRightMeter(){
         return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
+    /**
+     * @return Leftの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveLeftMeter(){
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
+    }
+
+    public void drivePosition(double pidposition){
+        driveRightFront.selectProfileSlot(0, 0);
+        driveLeftFront.selectProfileSlot(0, 0);
+        driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
+        driveLeftFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
+    }
+
+    public void drivePidAllReset(){
+        driveRightFront.setSelectedSensorPosition(0);
+        driveLeftFront.setSelectedSensorPosition(0);
+        driveLeftFront.setIntegralAccumulator(0);
+        driveRightFront.setIntegralAccumulator(0);
     }
 
     @Override
@@ -83,16 +114,26 @@ public class Drive implements Component{
     public void disabledInit() {}
 
     @Override
-    public void testInit() {}
+    public void testInit() {
+        driveRightFront.setSelectedSensorPosition(0);
+        driveLeftFront.setSelectedSensorPosition(0);
+        driveLeftFront.setIntegralAccumulator(0);
+        driveRightFront.setIntegralAccumulator(0);
+    }
 
     @Override
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
+        
     }
 
     @Override
     public void applyState() {
+        if(State.driveAccumulateReset){
+            drivePidAllReset(); 
+        }
+        
         switch(State.driveState){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
@@ -103,8 +144,13 @@ public class Drive implements Component{
             case s_slowDrive:
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
+            case s_pidDrive:
+                drivePosition(State.drivePidSetMeter); 
+                break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
         }
+
+      
     }
 }
