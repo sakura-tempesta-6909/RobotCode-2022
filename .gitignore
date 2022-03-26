@@ -184,3 +184,8 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,java,gradle
 
 vendordeps/*
+.DS_Store
+
+simgui-ds.json
+simgui.json
+simgui-window.json
