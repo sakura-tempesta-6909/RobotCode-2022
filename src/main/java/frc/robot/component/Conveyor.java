@@ -4,6 +4,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -15,8 +18,10 @@ import frc.robot.subClass.Const;
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
-  private TalonSRX intakeBelt, shooterMotor;
+  private TalonSRX intakeBelt;
+  private CANSparkMax shooterMotor;
   private DigitalInput ballSensor;
+  private SparkMaxPIDController shooterMotorPIDController;
   private Solenoid intakeExtend;
   
   /**
@@ -25,27 +30,20 @@ public class Conveyor implements Component {
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
-    shooterMotor = new TalonSRX(Const.Ports.ShooterMotor);
-    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
-    shooterMotor.configAllSettings(Const.MotorConfigs.ShooterMotor);
+    shooterMotor = new CANSparkMax(Const.Ports.ShooterMotor, CANSparkMaxLowLevel.MotorType.kBrushless);
+    shooterMotorPIDController = shooterMotor.getPIDController();
 
-    /* バックプレート操作用のモーターのセット */
+    /* ShooterのPIDの設定 */
+    Const.Pid.shooterPidSet(shooterMotorPIDController);
+   
+    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
 
-
   }
-  /**  バックプレートのそうさ
-   * シューターの速さ（距離に応じて）
-   * インテークベルトのそうさ（センサー類を使って詰まらないようにする）
-   * シューターモーターの上下（クライム中は上がっている等）
-   * シューターモーターはモードによって動きが変わるはず
-   * ボールが詰まったときの対処
-   * 他にもあった方がよさそうな機能
-   */
-
-  /**
+  
+   /**
    * CARGOを回収する
    */
   public void intakeConveyor(){
@@ -115,6 +113,8 @@ public class Conveyor implements Component {
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
 
+  
+
   /**
    * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
@@ -124,7 +124,7 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterMotor.set(ControlMode.Velocity, Const.Other.shooterMotorMaxOutput * shooterSpeed);
+    shooterMotorPIDController.setReference(shooterSpeed * Const.Other.shooterMotorMaxOutput,CANSparkMax.ControlType.kVelocity);
   }
 
   /**
@@ -176,7 +176,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    State.shooterMotorSpeed = shooterMotor.getSelectedSensorVelocity();
+    State.shooterMotorSpeed = shooterMotor.getEncoder().getVelocity();
   }
 
   @Override

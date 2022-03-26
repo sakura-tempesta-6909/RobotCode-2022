@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
@@ -31,9 +34,12 @@ public class State {
     public static final boolean is_climbArmMotorNEO = true;
     //ClimbArmのState
     public static ClimbArmState climbArmState;
+    // climbのidleMode
+    public static IdleMode climbMotorIdleMode;
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
+    public static double climbArmTargetAngle;
 
     //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
@@ -61,17 +67,20 @@ public class State {
         is_compressorEnabled = true;
         alliance = DriverStation.getAlliance();
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        climbMotorIdleMode = IdleMode.kCoast;
         
         stateReset();
     }
 
     public static void stateReset() {
+        climbMotorIdleMode = IdleMode.kCoast;
         driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
         climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+
 
     }
 
@@ -109,6 +118,7 @@ public class State {
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
+        s_setClimbArmAngle,  
         s_climbArmNeutral,
         s_angleCalibration,
     }

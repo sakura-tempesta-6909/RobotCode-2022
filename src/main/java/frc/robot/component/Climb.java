@@ -1,15 +1,17 @@
 package frc.robot.component;
 
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
+import frc.robot.subClass.Util;
 
 public class Climb implements Component {
 
@@ -48,6 +50,8 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
+    climbArm.setSmartCurrentLimit(Const.Other.ClimbArmCurrentLimit);
+    
   }
 
 
@@ -67,6 +71,7 @@ public class Climb implements Component {
    */
   public double revolutionToAngle(double revolution){
     return Const.Calculation.DegreesPerRevolution * revolution;
+
   }
 
   /**
@@ -74,7 +79,28 @@ public class Climb implements Component {
    * @return angle 角度
    */
   public double getClimbArmAngle(){
-    return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
+    return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
+  }
+
+  /**
+   * climbArmを指定した角度まで動かす
+   * @param climbArmTaregetAngle 目標角度
+   */
+  public void setClimbArmAngle(double climbArmTaregetAngle){
+    double angle = getClimbArmAngle();
+    if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.Other.ClimbArmSetAngleThreshold, angle)){
+      climbControl(Const.Speeds.Neutral);
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
+      climbControl(-Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, angle)) {
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, angle)){
+      climbControl(-Const.Speeds.SlowClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
+      climbControl(Const.Speeds.SlowClimbArmSpin);
+    } else {
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    }
   }
 
   /**
@@ -200,6 +226,8 @@ public class Climb implements Component {
 
   @Override
   public void disabledInit() {
+    State.climbMotorIdleMode = IdleMode.kCoast;
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     // TODO Auto-generated method stub
 
   }
@@ -213,16 +241,21 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
+    Util.sendConsole("ClimbCurrent", climbArm.getOutputCurrent());
   }
 
   @Override
   public void applyState() {
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     switch(State.climbArmState){
       case s_fastClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.FastClimbArmSpin);
         break;
       case s_midClimbArmSpin:
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
+        break;
+      case s_setClimbArmAngle:
+        setClimbArmAngle(State.climbArmTargetAngle);
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);

@@ -6,21 +6,18 @@ import frc.robot.State.ClimbArmState;
 public class TestMode extends Mode{
 
     @Override
-    public void changeMode() {
-        // TODO Auto-generated method stub
-        
-    }
+    public void changeMode() {}
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
+    if(driveController.getBackButton()){
+      State.climbArmState = ClimbArmState.s_setClimbArmAngle;
+      State.climbArmTargetAngle = 122.3;
+    }
         
     if(driveController.getStartButton()){
         State.climbArmState = ClimbArmState.s_angleCalibration;
-      } else{
-        State.climbArmState = ClimbArmState.s_climbArmNeutral;
-      }
-        
+      } 
     }
     
 }
