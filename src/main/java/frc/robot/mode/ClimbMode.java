@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import frc.robot.State;
 import frc.robot.State.ClimbArmState;
 import frc.robot.State.Modes;
-
+import frc.robot.subClass.Const;
 import frc.robot.State.DriveState;
 
 
@@ -55,6 +55,11 @@ public class ClimbMode extends Mode {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
+    }
+
+    if(driveController.getBButton()){
+      State.climbArmState = ClimbArmState.s_setClimbArmAngle;
+      State.climbArmTargetAngle = Const.Other.MidRungCatchAngle;
     }
   }
 }
