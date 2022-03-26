@@ -1,9 +1,10 @@
 package frc.robot.mode;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import frc.robot.State;
-import frc.robot.State.DriveSpeed;
+import frc.robot.State.DriveState;
 import frc.robot.State.ConveyorState;
-import frc.robot.State.IntakeExtendState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
@@ -12,6 +13,9 @@ public class DriveMode extends Mode {
 
     @Override
     public void changeMode() {
+
+        // LB: conveyorMode
+        // Start & Back: climbMode
         if(driveController.getLeftBumper()){
             State.mode = Modes.k_conveyor;
         } else if(driveController.getStartButton() && driveController.getBackButton()){
@@ -25,24 +29,21 @@ public class DriveMode extends Mode {
         State.driveXSpeed =  -driveController.getLeftY();
         State.driveZRotation = driveController.getRightX();
 
+        // Y: midDriveで走る
         if(driveController.getYButton()){
-            State.driveSpeed = DriveSpeed.s_midDrive;
+            State.driveState = DriveState.s_midDrive;
         }else{
-            State.driveSpeed = DriveSpeed.s_fastDrive;
+            State.driveState = DriveState.s_fastDrive;
         }
 
-        if(driveController.getXButton()){
-            State.intakeExtendSpeed = driveController.getLeftY();
-            State.intakeExtendState = IntakeExtendState.s_manual;
-            State.driveSpeed = DriveSpeed.s_stopDrive;
-        }
-
+        // POV90 & RS & LS: compressorをオフにする
         if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
             State.is_compressorEnabled = false;
         } else if(driveController.getPOV() == 180){
             State.is_compressorEnabled = true;
         }
 
+        // LT: outtake, RT: intake
         if(driveController.getLeftTriggerAxis() > Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
         } else if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
@@ -65,12 +66,13 @@ public class DriveMode extends Mode {
                 State.conveyorState = ConveyorState.s_stopConveyor;
             }
         }
-
+ 
+        // A: intakeExtendをopen, B: intakeExtendをclose
         if(driveController.getAButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendOpen;
+            State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
-            State.intakeExtendState = IntakeExtendState.s_intakeExtendClose;
-        } 
+            State.is_intakeExtendOpen = false;
+        }
     }
 
 }

@@ -70,10 +70,16 @@ public class Drive implements Component{
         return driveMeter * Const.Calculation.DrivePointsPerDriveLength;
     }
 
+    /**
+     * @return Rightの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveRightMeter(){
         return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
+    /**
+     * @return Leftの進んだ距離を取得する(単位:Meter)
+     */
     public double getDriveLeftMeter(){
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
@@ -127,8 +133,8 @@ public class Drive implements Component{
         if(State.driveAccumulateReset){
             drivePidAllReset(); 
         }
-
-        switch(State.driveSpeed){
+        
+        switch(State.driveState){
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
                 break;

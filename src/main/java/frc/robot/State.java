@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
@@ -13,8 +16,8 @@ public class State {
     public static Modes mode;
     public static double drivePidSetPoint;
     public static boolean driveAccumulateReset;
-    //Driveのスピード
-    public static DriveSpeed driveSpeed;
+    //DriveStateの変数を作る
+    public static DriveState driveState;
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
@@ -24,22 +27,20 @@ public class State {
     //compressorがEnabledか
     public static boolean is_compressorEnabled;
 
-    //intakeExtendのState
-    public static IntakeExtendState intakeExtendState;
     //intakeExtendのスピード(単位：PercentOutput)
     public static double intakeExtendSpeed;
-    public static double intakeExtendPosition;
-    public static double intakeExtendAngle;
-    public static boolean is_fedLimitSwitchClose;
-    public static boolean is_revLimitSwitchClose;
+    public static boolean is_intakeExtendOpen;
 
     //ClimbのMotorがNEOか
     public static final boolean is_climbArmMotorNEO = true;
     //ClimbArmのState
     public static ClimbArmState climbArmState;
+    // climbのidleMode
+    public static IdleMode climbMotorIdleMode;
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
+    public static double climbArmTargetAngle;
 
     //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
@@ -50,12 +51,13 @@ public class State {
    
     //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
-
+    //DriverStationのAlliance
     public static DriverStation.Alliance alliance;
+    //StringのgameMessage
     public static String gameSpecificMessage;
+    public static boolean calibration;
 
-    public static double gyroValue; // クランプの傾き用
-
+    //shooterのspeed
     public static double shooterMotorSpeed;
 
     public static void StateInit() {
@@ -66,25 +68,27 @@ public class State {
         is_compressorEnabled = true;
         alliance = DriverStation.getAlliance();
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
+        climbMotorIdleMode = IdleMode.kCoast;
         
         stateReset();
     }
 
     public static void stateReset() {
-        driveSpeed = DriveSpeed.s_stopDrive;
+        climbMotorIdleMode = IdleMode.kCoast;
+        driveState = DriveState.s_stopDrive;
         conveyorState = ConveyorState.s_stopConveyor;
-        intakeExtendState = IntakeExtendState.s_intakeExtendNeutral;
         climbArmState = ClimbArmState.s_climbArmNeutral;
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+
 
     }
 
     /**
      * Driveの状態
      */
-    public enum DriveSpeed {
+    public enum DriveState {
         s_stopDrive,
         s_slowDrive,
         s_midDrive,
@@ -111,23 +115,14 @@ public class State {
     }
 
     /**
-     * IntakeExtendの状態
-     */
-    public enum IntakeExtendState {
-        s_manual,
-        s_intakeExtendOpen,
-        s_intakeExtendClose,
-        s_intakeExtendNeutral,
-
-    }
-
-    /**
      * ClimbArmの状態
      */
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,
+        s_setClimbArmAngle,  
         s_climbArmNeutral,
+        s_angleCalibration,
     }
 
     public enum Modes {
