@@ -1,6 +1,7 @@
 package frc.robot.mode;
 
 import frc.robot.State;
+import frc.robot.State.DriveState;
 import frc.robot.State.ClimbArmState;
 
 public class TestMode extends Mode{
