@@ -50,11 +50,13 @@ public class State {
    
     //driveRightとdriveLeftがどれだけ進んでいるか(単位：Meter)
     public static double driveRightFrontPositionMeter, driveLeftFrontPositionMeter;
-
+    //DriverStationのAlliance
     public static DriverStation.Alliance alliance;
+    //StringのgameMessage
     public static String gameSpecificMessage;
     public static boolean calibration;
 
+    //shooterのspeed
     public static double shooterMotorSpeed;
 
     public static void StateInit() {

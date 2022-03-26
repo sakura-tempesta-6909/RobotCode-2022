@@ -55,15 +55,29 @@ public class Climb implements Component {
   }
 
 
+  /**
+   * 
+   * @param angle climbArmの角度
+   * @return
+   */
   public double angleToRevolution(double angle){
     return angle / Const.Calculation.DegreesPerRevolution;
   }
 
+  /**
+   * 
+   * @param revolution climbArmの回転数
+   * @return 回転数から角度に変換する
+   */
   public double revolutionToAngle(double revolution){
     return Const.Calculation.DegreesPerRevolution * revolution;
 
   }
 
+  /**
+   * 回転数を使って角度を求める
+   * @return angle 角度
+   */
   public double getClimbArmAngle(){
     return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
   }
@@ -170,10 +184,16 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
+  /**
+   * climbSolenoidをopenする
+   */
   public void climbSolenoidOpen(){
     climbSolenoidControl(true);
   }
 
+  /**
+   * climbSolenoidをcloseする
+   */
   public void climbSolenoidClose(){
     climbSolenoidControl(false);
   }
