@@ -84,11 +84,11 @@ public class Drive implements Component{
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
-    public void drivePosition(){
+    public void drivePosition(double pidposition){
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
-        driveRightFront.set(ControlMode.Position, driveMeterToPoint(State.drivePidSetMeter));
-        driveLeftFront.set(ControlMode.Position, driveMeterToPoint(State.drivePidSetMeter));
+        driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
+        driveLeftFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
     }
 
     public void drivePidAllReset(){
@@ -145,7 +145,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                drivePosition(); 
+                drivePosition(State.drivePidSetMeter); 
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
