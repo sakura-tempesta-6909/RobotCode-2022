@@ -39,7 +39,7 @@ public class State {
     //climbArmのスピード(単位：PercentOutput)
     public static double climbArmSpeed;
     public static double climbArmAngle;
-    public static double climbArmTaregetAngle;
+    public static double climbArmTargetAngle;
 
     //firstSolenoidがopenしているか
     public static boolean is_firstSolenoidOpen;
