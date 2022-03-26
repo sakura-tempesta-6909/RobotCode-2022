@@ -134,6 +134,8 @@ public class Const {
         // ClimbArmの位置合わせ用
         public static final double ClimbArmFastThreshold = 20;
         public static final double ClimbArmSetAngleThreshold = 3;
+
+        public static final double MidRungCatchAngle = 150.8;
     }
 
     public static final class MotorConfigs {
