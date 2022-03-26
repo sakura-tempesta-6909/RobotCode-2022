@@ -53,4 +53,20 @@ public class Util {
         sendConsole("extendOpen", State.is_intakeExtendOpen);
     
     }
+
+    public static boolean is_angleInRange(double min, double max, double angle) {
+        int angle_ = mod(angle, 360);
+    
+        if(min < 0) {
+          return angle_ <= max || mod(min, 360) <= angle_; 
+        } else if(max >= 360) {
+          return min <= angle_ || angle_ <= mod(max, 360);
+        } else {
+          return min <= angle_ && angle_ <= max;
+        }
+    }
+    
+    public static int mod(double a, double b) {
+        return Math.floorMod((int) a, (int) b);
+    }
 }

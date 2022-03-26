@@ -65,42 +65,26 @@ public class Climb implements Component {
   }
 
   public double getClimbArmAngle(){
-    return mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
+    return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
   }
 
   public void setClimbArmAngle(double climbArmTaregetAngle){
     double angle = getClimbArmAngle();
     double fast_angle = 20;
-    if(is_angleInRange(climbArmTaregetAngle - 3, climbArmTaregetAngle + 3, angle)){
+    if(Util.is_angleInRange(climbArmTaregetAngle - 3, climbArmTaregetAngle + 3, angle)){
       climbControl(Const.Speeds.Neutral);
-    }else if(is_angleInRange(climbArmTaregetAngle + fast_angle, climbArmTaregetAngle + 180, angle)){
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + fast_angle, climbArmTaregetAngle + 180, angle)){
       climbControl(-Const.Speeds.MidClimbArmSpin);
-    } else if(is_angleInRange(climbArmTaregetAngle - 180, climbArmTaregetAngle - fast_angle, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - 180, climbArmTaregetAngle - fast_angle, angle)) {
       climbControl(Const.Speeds.MidClimbArmSpin);
-    } else if(is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + fast_angle, angle)){
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + fast_angle, angle)){
       climbControl(-Const.Speeds.SlowClimbArmSpin);
-    } else if(is_angleInRange(climbArmTaregetAngle - fast_angle, climbArmTaregetAngle, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - fast_angle, climbArmTaregetAngle, angle)) {
       climbControl(Const.Speeds.SlowClimbArmSpin);
     } else {
       climbControl(Const.Speeds.MidClimbArmSpin);
     }
   }
-
-  private static boolean is_angleInRange(double min, double max, double angle) {
-    int angle_ = mod(angle, 360);
-
-    if(min < 0) {
-      return angle_ <= max || mod(min, 360) <= angle_; 
-    } else if(max >= 360) {
-      return min <= angle_ || angle_ <= mod(max, 360);
-    } else {
-      return min <= angle_ && angle_ <= max;
-    }
-}
-
-private static int mod(double a, double b) {
-    return Math.floorMod((int) a, (int) b);
-}
 
   /**
    * ClimbArmを動かす
