@@ -39,6 +39,8 @@ public class PhaseTransition {
 		}
 
 		if(currentPhase.condition.test(timer.get())) {
+			currentPhase.onSuccess.run();
+			
 			timer.reset();
 			timer.start();
 			System.out.println(currentPhase.toString() + " has been finished.");
@@ -58,6 +60,7 @@ public class PhaseTransition {
 	public static class Phase {
 		Runnable action;
 		DoublePredicate condition;
+		Runnable onSuccess;
 
 		private final int phaseID;
 		private final String phaseName;
@@ -68,12 +71,17 @@ public class PhaseTransition {
 		}
 
 		public Phase(Runnable action, DoublePredicate condition) {
-			this(action, condition, "anonymous phase");
+			this(action, condition, () -> {}, "anonymous phase");
 		}
 
 		public Phase(Runnable action, DoublePredicate condition, String phaseName) {
+			this(action, condition, () -> {}, phaseName);
+		}
+
+		public Phase(Runnable action, DoublePredicate condition, Runnable onSuccess, String phaseName) {
 			this.action = action;
 			this.condition = condition;
+			this.onSuccess = onSuccess;
 			this.phaseID = phaseCounter++;
 			this.phaseName = phaseName;
 		}
