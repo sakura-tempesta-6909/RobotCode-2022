@@ -145,7 +145,7 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                drivePosition(State.drivePidSetPoint); 
+                drivePosition(driveMeterToPoint(State.drivePidSetMeter)); 
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);

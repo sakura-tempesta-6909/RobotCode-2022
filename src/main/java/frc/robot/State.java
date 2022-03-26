@@ -15,6 +15,7 @@ import frc.robot.subClass.Const;
 public class State {
     public static Modes mode;
     public static double drivePidSetPoint;
+    public static double drivePidSetMeter;
     public static boolean driveAccumulateReset;
     //DriveStateの変数を作る
     public static DriveState driveState;
