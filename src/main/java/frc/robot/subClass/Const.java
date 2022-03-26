@@ -94,8 +94,7 @@ public class Const {
 
         // 1m進むとどのくらいPointが増えるか
         public static final double DrivePointsPerDriveLength = EncoderPointsPerRevolution / DriveLengthPerWheelRevolution;
-
-        //ClimbPoint
+         // ClimbPoint
         // 円の角度
         public static final double Round = 360;
         // ClimbArmのギア比

@@ -66,6 +66,9 @@ public class Drive implements Component{
     public double drivePointToMeter(double drivePoint){
         return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
+    public double driveMeterToPoint(double driveMeter){
+        return driveMeter * Const.Calculation.DrivePointsPerDriveLength;
+    }
 
     public double getDriveRightMeter(){
         return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
