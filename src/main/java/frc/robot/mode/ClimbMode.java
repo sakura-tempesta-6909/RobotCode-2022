@@ -57,7 +57,7 @@ public class ClimbMode extends Mode {
       State.is_climbSolenoidOpen = false;
     }
 
-    if(operateController.getStartButton()){
+    if(driveController.getStartButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = 0;
     }
