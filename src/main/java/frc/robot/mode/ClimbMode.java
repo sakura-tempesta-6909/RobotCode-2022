@@ -59,7 +59,7 @@ public class ClimbMode extends Mode {
 
     if(driveController.getStartButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-      State.climbArmTargetAngle = 0;
+      State.climbArmTargetAngle = 150.8;
     }
   }
 }
