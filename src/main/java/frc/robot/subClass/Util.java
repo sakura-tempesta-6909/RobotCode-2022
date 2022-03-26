@@ -53,4 +53,23 @@ public class Util {
         sendConsole("extendOpen", State.is_intakeExtendOpen);
     
     }
+
+    public static boolean is_angleInRange(double min, double max, double angle) {
+        angle = mod(angle, Const.Calculation.FullTurnAngle);
+    
+        if(min < 0) {
+          return angle <= max || mod(min, Const.Calculation.FullTurnAngle) <= angle; 
+        } else if(max >= Const.Calculation.FullTurnAngle) {
+          return min <= angle || angle <= mod(max, Const.Calculation.FullTurnAngle);
+        } else {
+          return min <= angle && angle <= max;
+        }
+    }
+    
+    public static double mod(double a, double b) {
+        if(a < 0) {
+            a += ((int)(-a / b) + 1) * b;
+        }
+        return a % b;
+    }
 }

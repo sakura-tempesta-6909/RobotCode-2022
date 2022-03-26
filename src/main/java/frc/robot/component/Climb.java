@@ -55,32 +55,54 @@ public class Climb implements Component {
   }
 
 
+  /**
+   * 
+   * @param angle climbArmの角度
+   * @return
+   */
   public double angleToRevolution(double angle){
     return angle / Const.Calculation.DegreesPerRevolution;
   }
 
+  /**
+   * 
+   * @param revolution climbArmの回転数
+   * @return 回転数から角度に変換する
+   */
   public double revolutionToAngle(double revolution){
     return Const.Calculation.DegreesPerRevolution * revolution;
 
   }
 
+  /**
+   * 回転数を使って角度を求める
+   * @return angle 角度
+   */
   public double getClimbArmAngle(){
-    return revolutionToAngle(climbArmEncoder.getPosition()) % Const.Calculation.FullTurnAngle;
+    return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
   }
 
+  /**
+   * climbArmを指定した角度まで動かす
+   * @param climbArmTaregetAngle 目標角度
+   */
   public void setClimbArmAngle(double climbArmTaregetAngle){
-    if(climbArmTaregetAngle == 0){
-      if(getClimbArmAngle() < 3 || 357 < getClimbArmAngle()){
-        climbControl(Const.Speeds.Neutral);
-      }else{
-        climbControl(Const.Speeds.SlowClimbArmSpin);
-      }
-    }else if(Math.abs(getClimbArmAngle() - climbArmTaregetAngle) <3){
+    double angle = getClimbArmAngle();
+    if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.Other.ClimbArmSetAngleThreshold, angle)){
       climbControl(Const.Speeds.Neutral);
-    }else{
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
+      climbControl(-Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, angle)) {
+      climbControl(Const.Speeds.MidClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, angle)){
+      climbControl(-Const.Speeds.SlowClimbArmSpin);
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
       climbControl(Const.Speeds.SlowClimbArmSpin);
+    } else {
+      climbControl(Const.Speeds.MidClimbArmSpin);
     }
   }
+
   /**
    * ClimbArmを動かす
    * @param climbSpinSpeed 前回りを正
@@ -162,10 +184,16 @@ public class Climb implements Component {
     climbSolenoid.set(climbSolenoidControl);
   }
 
+  /**
+   * climbSolenoidをopenする
+   */
   public void climbSolenoidOpen(){
     climbSolenoidControl(true);
   }
 
+  /**
+   * climbSolenoidをcloseする
+   */
   public void climbSolenoidClose(){
     climbSolenoidControl(false);
   }
@@ -198,6 +226,8 @@ public class Climb implements Component {
 
   @Override
   public void disabledInit() {
+    State.climbMotorIdleMode = IdleMode.kCoast;
+    climbArm.setIdleMode(State.climbMotorIdleMode);
     // TODO Auto-generated method stub
 
   }
@@ -225,7 +255,7 @@ public class Climb implements Component {
         climbControl(State.climbArmSpeed * Const.Speeds.MidClimbArmSpin);
         break;
       case s_setClimbArmAngle:
-        setClimbArmAngle(State.climbArmTaregetAngle);
+        setClimbArmAngle(State.climbArmTargetAngle);
         break;
       case s_climbArmNeutral:
         climbControl(Const.Speeds.Neutral);
