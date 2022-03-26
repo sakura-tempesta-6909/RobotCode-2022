@@ -68,18 +68,21 @@ public class Climb implements Component {
     return Util.mod(revolutionToAngle(climbArmEncoder.getPosition()), Const.Calculation.FullTurnAngle);
   }
 
+  /**
+   * climbArmを指定した角度まで動かす
+   * @param climbArmTaregetAngle 目標角度
+   */
   public void setClimbArmAngle(double climbArmTaregetAngle){
     double angle = getClimbArmAngle();
-    double fast_angle = 20;
-    if(Util.is_angleInRange(climbArmTaregetAngle - 3, climbArmTaregetAngle + 3, angle)){
+    if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.Other.ClimbArmSetAngleThreshold, angle)){
       climbControl(Const.Speeds.Neutral);
-    }else if(Util.is_angleInRange(climbArmTaregetAngle + fast_angle, climbArmTaregetAngle + 180, angle)){
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
       climbControl(-Const.Speeds.MidClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle - 180, climbArmTaregetAngle - fast_angle, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, angle)) {
       climbControl(Const.Speeds.MidClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + fast_angle, angle)){
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, angle)){
       climbControl(-Const.Speeds.SlowClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle - fast_angle, climbArmTaregetAngle, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
       climbControl(Const.Speeds.SlowClimbArmSpin);
     } else {
       climbControl(Const.Speeds.MidClimbArmSpin);
