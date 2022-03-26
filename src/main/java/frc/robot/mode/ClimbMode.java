@@ -20,7 +20,7 @@ public class ClimbMode extends Mode {
       State.mode = Modes.k_conveyor;
     } else if(driveController.getPOV() == 270){
       State.mode = Modes.k_drive;
-    }
+    } 
   }
 
 
@@ -30,8 +30,8 @@ public class ClimbMode extends Mode {
     // climbModeはmidDriveで走る
     // LY: 前後, RX: 左右
     State.driveState = DriveState.s_midDrive;
-    State.driveXSpeed = -driveController.getLeftY();
-    State.driveZRotation = driveController.getRightX();
+    State.driveXSpeed = -operateController.getLeftY();
+    State.driveZRotation = operateController.getRightX();
 
     // RT: 前, LT: 後ろ
     State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
