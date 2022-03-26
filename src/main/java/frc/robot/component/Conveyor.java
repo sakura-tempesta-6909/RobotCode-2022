@@ -113,6 +113,8 @@ public class Conveyor implements Component {
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
 
+  
+
   /**
    * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
