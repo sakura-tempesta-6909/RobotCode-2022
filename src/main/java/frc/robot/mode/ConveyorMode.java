@@ -1,7 +1,5 @@
 package frc.robot.mode;
 
-import com.revrobotics.CANSparkMax.IdleMode;
-
 import frc.robot.State;
 import frc.robot.subClass.Const;
 import frc.robot.State.ConveyorState;
