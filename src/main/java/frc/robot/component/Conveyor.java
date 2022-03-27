@@ -35,7 +35,7 @@ public class Conveyor implements Component {
     /* ShooterのPIDの設定 */
     Const.Pid.shooterPidSet(shooterPIDController);
    
-    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
+    intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
@@ -131,7 +131,7 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときをtrue
    */
   public void intakeExtendControl(boolean intakeExtendControl){
-    // intakeExtend.set(intakeExtendControl);
+    intakeExtend.set(intakeExtendControl);
   }
 
   /**
