@@ -22,8 +22,6 @@ public class Const {
         // Motor, Conveyor
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
-        public static final int ShooterMotor = 6;
-
         // sensor, conveyor
         public static final int BallSensor = 0; //これはあるか分からない
 
@@ -36,6 +34,7 @@ public class Const {
 
         // sparkMax
         public static final int ClimbArm = 1;
+        public static final int Shooter = 2;
 
         // dio port
         public static final int hallsensorPort = 1;

@@ -29,7 +29,7 @@ public class Conveyor implements Component {
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
-    shooterMotor = new CANSparkMax(Const.Ports.ShooterMotor, CANSparkMaxLowLevel.MotorType.kBrushless);
+    shooterMotor = new CANSparkMax(Const.Ports.Shooter, CANSparkMaxLowLevel.MotorType.kBrushless);
     shooterMotorPIDController = shooterMotor.getPIDController();
 
     /* ShooterのPIDの設定 */
