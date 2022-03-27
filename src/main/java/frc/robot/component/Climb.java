@@ -27,6 +27,7 @@ public class Climb implements Component {
    * Left Bumper : LB
    * Right Trigger : RT
    * Left Trigger : LT
+   * >>> : 想定されるロボットの動き
    */
   /**クライム手順
    * Bボタンを押す
