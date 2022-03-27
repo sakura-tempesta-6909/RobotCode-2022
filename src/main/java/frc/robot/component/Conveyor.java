@@ -19,9 +19,9 @@ public class Conveyor implements Component {
   private VictorSPX intakeRoller;
   private DigitalInput ballSensorIntake, ballSensorShooter;;
   private TalonSRX intakeBelt;
-  private CANSparkMax shooterMotor;
+  private CANSparkMax shooter;
   private DigitalInput ballSensor;
-  private SparkMaxPIDController shooterMotorPIDController;
+  private SparkMaxPIDController shooterPIDController;
   private Solenoid intakeExtend;
   
   /**
@@ -30,12 +30,12 @@ public class Conveyor implements Component {
   public Conveyor() {
     intakeRoller = new VictorSPX(Const.Ports.IntakeRoller);
     intakeBelt = new TalonSRX(Const.Ports.IntakeBeltMotor);
-    shooterMotor = new CANSparkMax(Const.Ports.ShooterMotor, CANSparkMaxLowLevel.MotorType.kBrushless);
-    shooterMotorPIDController = shooterMotor.getPIDController();
+    shooter = new CANSparkMax(Const.Ports.Shooter, CANSparkMaxLowLevel.MotorType.kBrushless);
+    shooterPIDController = shooter.getPIDController();
 
 
     /* ShooterのPIDの設定 */
-    Const.Pid.shooterPidSet(shooterMotorPIDController);
+    Const.Pid.shooterPidSet(shooterPIDController);
    
     //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
@@ -194,7 +194,7 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterMotorPIDController.setReference(shooterSpeed * Const.Other.shooterMotorMaxOutput,CANSparkMax.ControlType.kVelocity);
+    shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
   }
 
   /**
@@ -249,7 +249,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    State.shooterMotorSpeed = shooterMotor.getEncoder().getVelocity();
+    State.shooterMotorSpeed = shooter.getEncoder().getVelocity();
   }
 
   @Override
