@@ -56,6 +56,10 @@ public class Drive implements Component{
         gyro.reset();
         gyro.calibrate();
     }
+
+    public void gyroReset(){
+        gyro.reset();
+    }
     
 
     /**
