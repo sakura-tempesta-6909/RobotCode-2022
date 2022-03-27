@@ -133,7 +133,7 @@ public class Climb implements Component {
   }
 
   public void storeArm(){
-    setClimbArmAngle(122.3); 
+    setClimbArmAngle(Const.Other.StoreClimbArmAngle); 
   }
   /**
    *  firstSolenoidを動かす
@@ -265,9 +265,6 @@ public class Climb implements Component {
         break;
       case s_angleCalibration:
         startCalibration();
-        break;
-      case s_storeArm:
-        storeArm();
         break;
     }
 
