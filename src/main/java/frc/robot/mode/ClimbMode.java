@@ -30,37 +30,36 @@ public class ClimbMode extends Mode {
     // climbModeはmidDriveで走る
     // LY: 前後, RX: 左右
     State.driveState = DriveState.s_midDrive;
-    State.driveXSpeed = -driveController.getLeftY();
-    State.driveZRotation = driveController.getRightX();
+    State.driveXSpeed = -operateController.getLeftY();
+    State.driveZRotation = operateController.getRightX();
 
     // RT: 前, LT: 後ろ
-    State.climbArmSpeed = driveController.getRightTriggerAxis() - driveController.getLeftTriggerAxis();
+    State.climbArmSpeed = operateController.getRightTriggerAxis() - operateController.getLeftTriggerAxis();
     State.climbMotorIdleMode = IdleMode.kBrake;
     
     // A: climbArmを速くする
-    if(driveController.getAButton()){
+    if(operateController.getAButton()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
       State.climbArmState = ClimbArmState.s_midClimbArmSpin;
     }
 
-
     // RB: firstSolenoidがOpen, LB: secondSolenoidがOpen
 
-    State.is_firstSolenoidOpen = driveController.getRightBumper();
-    State.is_secondSolenoidOpen = driveController.getLeftBumper();
+    State.is_firstSolenoidOpen = operateController.getRightBumper();
+    State.is_secondSolenoidOpen = operateController.getLeftBumper();
 
     // RS & LS & POV180: climbSolenoidがOpen
-    if(driveController.getRightStickButton() && driveController.getLeftStickButton() && driveController.getPOV() == 180) {
+    if(operateController.getRightStickButton() && operateController.getLeftStickButton() && operateController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
     }
 
-    if(driveController.getBButton()){
+    if(operateController.getBButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.Other.MidRungCatchAngle;
-    } else if(driveController.getYButton()){
+    } else if(operateController.getYButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.Other.MidRungGetUnderAngle;
     }
