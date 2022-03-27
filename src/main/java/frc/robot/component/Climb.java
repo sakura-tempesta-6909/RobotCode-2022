@@ -22,6 +22,39 @@ public class Climb implements Component {
    *
    */
 
+  /**クライム手順
+   * Bボタンを押す
+   * >>>ロボットのアームがミッドラングに合う角度まで回る
+   * バックする
+   * >>>ミッドラングに
+   * 左バンパーを押す
+   * >>>ハイラングにファーストがかかる
+   * {うまくかかっていないときは}
+   *  左バンパーを押す
+   *  
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   */
+
   private Compressor compressor;
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;
