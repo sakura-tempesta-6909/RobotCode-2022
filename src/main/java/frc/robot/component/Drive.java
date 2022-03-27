@@ -91,6 +91,7 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
+        gyroInit();
 
     }
 
