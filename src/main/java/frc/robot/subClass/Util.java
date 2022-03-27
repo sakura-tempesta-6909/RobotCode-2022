@@ -37,20 +37,39 @@ public class Util {
         sendConsole("ConveyorState", State.conveyorState.toString());
         sendConsole("driveXSpeed", State.driveXSpeed);
         sendConsole("driveZRotation", State.driveZRotation);
-        sendConsole("intakeExtendSpeed", State.intakeExtendSpeed);
-        sendConsole("firstSolenoidOpen", State.is_firstSolenoidOpen);
-        sendConsole("secondSolenoidOpen", State.is_secondSolenoidOpen);
-        sendConsole("climbSolenoidOpen", State.is_climbSolenoidOpen);
+        sendConsole("extendSpeed", State.intakeExtendSpeed);
+        sendConsole("1stSolenoidOpen", State.is_firstSolenoidOpen);
+        sendConsole("2ndSolenoidOpen", State.is_secondSolenoidOpen);
+        sendConsole("climbSolenoidUp", State.is_climbSolenoidOpen);
         sendConsole("climbArmSpeed", State.climbArmSpeed);
-        sendConsole("compressorEnable", State.is_compressorEnabled);
+        sendConsole("compressorOn", State.is_compressorEnabled);
         sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
         sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("shooterMotorSpeed",State.shooterMotorSpeed);
-        sendConsole("climbArmMotorNEO", State.is_climbArmMotorNEO);
-        sendConsole("intakeExtendOpen", State.is_intakeExtendOpen);
+        sendConsole("shooterSpeed",State.shooterMotorSpeed);
+        sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
+        sendConsole("extendOpen", State.is_intakeExtendOpen);
     
+    }
+
+    public static boolean is_angleInRange(double min, double max, double angle) {
+        angle = mod(angle, Const.Calculation.FullTurnAngle);
+    
+        if(min < 0) {
+          return angle <= max || mod(min, Const.Calculation.FullTurnAngle) <= angle; 
+        } else if(max >= Const.Calculation.FullTurnAngle) {
+          return min <= angle || angle <= mod(max, Const.Calculation.FullTurnAngle);
+        } else {
+          return min <= angle && angle <= max;
+        }
+    }
+    
+    public static double mod(double a, double b) {
+        if(a < 0) {
+            a += ((int)(-a / b) + 1) * b;
+        }
+        return a % b;
     }
 }
