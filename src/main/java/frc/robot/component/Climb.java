@@ -22,6 +22,58 @@ public class Climb implements Component {
    *
    */
 
+  /**
+   * Right Bumper : RB
+   * Left Bumper : LB
+   * Right Trigger : RT
+   * Left Trigger : LT
+   * >>> : 想定されるロボットの動き
+   */
+  /**クライム手順
+   * Bボタンを押す
+   * >>>ロボットのアームがMidRungに合う角度まで回る
+   * 
+   * バックする
+   * >>>MidRungにSecondがかかる
+   * 
+   * LTを押す
+   * >>>HighRungにFirstがかかる
+   * 
+   * {うまくかかっていないときは}
+   *    ロボットがMidRung側に少し上がるまでLTを押す
+   *    >>>ロボットがMidRung側に少し上がる
+   * 
+   *    LTの入力を少し入れながらRBを押しFirstを外す
+   *    >>>ファーストの爪が少し上がる
+   * 
+   *    RBを押していたのを離してFirstをとじる
+   * {ここでしっかりかかるはず}
+   * 
+   * LBを押すとともにRTを半押しする
+   * Secondが外れるとともにRTをゆっくり緩めていく
+   * ちょい押しまで緩める
+   * >>>Secondが外れ、ロボットが振り子のような動きをする。振り子の動きが小さいほど良し
+   * 
+   * LTをベタ押し
+   * >>>SecondがTraversalRungに引っ掛かる
+   * 
+   * {うまくかかっていないときは}
+   *    ロボットがMidRung側に少し上がるまでLTを押す
+   *    >>>ロボットがMidRung側に少し上がる
+   * 
+   *    LTの入力を少し入れながらRBを押しFirstを外す
+   *    >>>Firstの爪が少し上がる
+   * 
+   *    RBを押していたのを離してFirstをとじる
+   * {ここでしっかりかかるはず}
+   * 
+   * Firstを外すとともにRT半押し
+   * Firstが外れたらRTをちょい押しまで緩める
+   * ロボットのアームが縦になるまでRTで動かす
+   * 
+   * <<<<<クライム完了>>>>>
+   */
+
   private Compressor compressor;
   private Solenoid firstSolenoid, secondSolenoid;
   private Solenoid climbSolenoid;

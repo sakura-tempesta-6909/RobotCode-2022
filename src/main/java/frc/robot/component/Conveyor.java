@@ -7,8 +7,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
 
@@ -39,6 +39,8 @@ public class Conveyor implements Component {
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
+    shooter.setInverted(true);
+    shooter.getEncoder().setVelocityConversionFactor(-1);
 
   }
   
@@ -123,7 +125,11 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    if(shooterSpeed == Const.Speeds.Neutral){
+      shooter.stopMotor();
+    } else {
+      shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    }
   }
 
   /**

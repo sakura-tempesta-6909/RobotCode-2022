@@ -51,9 +51,34 @@ public class Util {
         sendConsole("shooterSpeed",State.shooterMotorSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
+        sendConsole("robotDirection",State.currentDirection);
+        sendConsole("isTurnFinished", State.reachTurn);
     
     }
 
+    /**
+     * 角度がその範囲にあるか。
+     * min <= max, max >= 0, min <= 360, max - min < 360を前提としている。
+     * angleには条件はない。
+     * 
+     * <ul>
+     * <li><b>例:</b>
+     *  <ul>
+     *    <li> min=0, max=225, angle=10 => true </li>
+     *    <li> min=-40, max=100, angle=350 => true </li>
+     *    <li> min=-40, max=100, angle=-60 => false </li>
+     *    <li> min=200, max=450, angle=-60 => true </li>
+     *    <li> min=200, max=450, angle=600 => true </li>
+     *    <li> min=200, max=450, angle=500 => false </li>
+     *  </ul>
+     * </li>
+     * </ul>
+     * 
+     * @param min 最小角度(degree)
+     * @param max 最大角度(degree)
+     * @param angle 対象角度(degree)
+     * @return angleがmin以上max以下か
+     */
     public static boolean is_angleInRange(double min, double max, double angle) {
         angle = mod(angle, Const.Calculation.FullTurnAngle);
     
@@ -66,10 +91,36 @@ public class Util {
         }
     }
     
+    /**
+     * aをbで割ったあまりを返す。
+     * あまりrは0 <= r < b。
+     * b > 0を仮定している。
+     *  <ul>
+     * <li><b>例:</b>
+     *  <ul>
+     *    <li> a=5, b=2 => 1 </li>
+     *    <li> a=-1000, b=360 => 80 </li>
+     *  </ul>
+     * </li>
+     * </ul>
+     * @param a
+     * @param b
+     * @return aをbで割ったあまり
+     */
     public static double mod(double a, double b) {
         if(a < 0) {
             a += ((int)(-a / b) + 1) * b;
         }
         return a % b;
+    }
+
+    // 時計回りに回るかを、反時計回りに回るかを、曲がりたい方向の大きさによって決める。
+    public static double determineDirection(double a) {
+        double k = mod(a, 360);
+        if(k>180){
+            return(k-360);
+        } else{
+            return(k);
+        }
     }
 }

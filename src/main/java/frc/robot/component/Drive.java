@@ -1,13 +1,11 @@
 package frc.robot.component;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
-
 import frc.robot.State;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
@@ -21,6 +19,7 @@ public class Drive implements Component{
     private WPI_TalonSRX driveRightFront, driveLeftFront;
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
+    private ADXRS450_Gyro gyro;
 
 
     /**
@@ -31,6 +30,7 @@ public class Drive implements Component{
         driveLeftFront = new WPI_TalonSRX(Const.Ports.DriveLeftFront);
         driveRightBack = new VictorSPX(Const.Ports.DriveRightBack);
         driveLeftBack = new VictorSPX(Const.Ports.DriveLeftBack);
+        gyro = new ADXRS450_Gyro();
 
         driveRightBack.follow(driveRightFront);
         driveLeftBack.follow(driveLeftFront);
@@ -47,7 +47,32 @@ public class Drive implements Component{
         driveLeftFront.setNeutralMode(NeutralMode.Brake);
         driveRightBack.setNeutralMode(NeutralMode.Brake);
         driveLeftBack.setNeutralMode(NeutralMode.Brake);
+        gyroInit();
     }
+    
+    public double getCurrentDirection(){
+        double c = gyro.getAngle();
+        return Util.determineDirection(c);
+    }
+
+    public void turnTo(double direction) {
+        arcadeDrive(0, Const.MotorConfigs.gyroPidController.calculate(getCurrentDirection(), direction));
+    }
+
+    public void gyroInit(){
+        gyro.reset();
+        gyro.calibrate();
+    }
+
+    public void gyroReset(){
+        gyro.reset();
+    }
+
+    public boolean isDirectionAchieived(){
+        return Const.MotorConfigs.gyroPidController.atSetpoint();
+    }
+    
+    
 
     /**
      * driveを動かす 
@@ -102,6 +127,7 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
+        
 
     }
 
@@ -126,6 +152,8 @@ public class Drive implements Component{
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
+        State.currentDirection = getCurrentDirection();
+        State.reachTurn = isDirectionAchieived();
         
     }
 
@@ -133,6 +161,9 @@ public class Drive implements Component{
     public void applyState() {
         if(State.driveAccumulateReset){
             drivePidAllReset(); 
+        }
+        if(State.gyroReset){
+            gyroReset();
         }
         
         switch(State.driveState){
@@ -150,6 +181,9 @@ public class Drive implements Component{
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
+            case s_turnTo:
+                turnTo(State.targetDirection); 
+                break;
         }
 
       
