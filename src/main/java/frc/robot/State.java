@@ -56,7 +56,7 @@ public class State {
     public static boolean calibration;
 
     //shooterのspeed
-    public static double shooterMotorSpeed;
+    public static double shooterSpeed;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);

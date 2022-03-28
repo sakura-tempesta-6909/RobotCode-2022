@@ -48,7 +48,7 @@ public class Util {
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("shooterSpeed",State.shooterMotorSpeed);
+        sendConsole("shooterSpeed",State.shooterSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
     
