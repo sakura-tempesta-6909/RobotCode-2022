@@ -7,8 +7,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
 
@@ -37,12 +37,14 @@ public class Conveyor implements Component {
     /* ShooterのPIDの設定 */
     Const.Pid.shooterPidSet(shooterPIDController);
    
-    //intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
+    intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
 
     ballSensorIntake = new DigitalInput(Const.Ports.BallSensorIntake);
     ballSensorShooter = new DigitalInput(Const.Ports.BallSensorShooter);
     intakeRoller.setInverted(true);
+    shooter.setInverted(true);
+    shooter.getEncoder().setVelocityConversionFactor(-1);
 
   }
   
@@ -194,7 +196,11 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    if(shooterSpeed == Const.Speeds.Neutral){
+      shooter.stopMotor();
+    } else {
+      shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    }
   }
 
   /**
@@ -206,6 +212,7 @@ public class Conveyor implements Component {
       intakeExtendControl = false;
     }
     // intakeExtend.set(intakeExtendControl);
+    intakeExtend.set(intakeExtendControl);
   }
 
   /**

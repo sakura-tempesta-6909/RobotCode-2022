@@ -59,6 +59,12 @@ public class State {
 
     //shooterのspeed
     public static double shooterMotorSpeed;
+    //gyro
+    public static double currentDirection;
+    public static double targetDirection;
+    public static boolean gyroReset;
+    // 
+    public static boolean reachTurn;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -81,8 +87,6 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
-
-
     }
 
     /**
@@ -93,9 +97,11 @@ public class State {
         s_slowDrive,
         s_midDrive,
         s_fastDrive,
+        s_turnTo,
         s_pidDrive,
-
     }
+
+  
 
     /**
      * Conveyorの状態

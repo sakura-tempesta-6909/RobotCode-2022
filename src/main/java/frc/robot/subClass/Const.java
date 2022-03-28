@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import com.revrobotics.SparkMaxPIDController;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
 
 public class Const {
@@ -116,16 +117,17 @@ public class Const {
 
     public static final class Pid{
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
-            shooterPid.setP(0.003);
-            shooterPid.setI(0.000025);
-            shooterPid.setD(0.003);
+            shooterPid.setP(0.0008);
+            shooterPid.setI(6e-7);
+            shooterPid.setD(0);
         }
         
     }
 
+    
     public static final class Other{
         // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 100000;
+        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
@@ -135,19 +137,33 @@ public class Const {
         // ClimbArmのモーターのAmpの制限値
         public static final int ClimbArmCurrentLimit = 60;
 
+        //gyroのPID
+        public static final double PIDControllerkP = 1;
+        public static final double PIDControllerkI = 0.001;
+        public static final double PIDControllerkD = 0.6;
+
+        public static final double TestTurnDirection = 90;
         // ClimbArmの位置合わせ用
         public static final double ClimbArmFastThreshold = 20;
         public static final double ClimbArmSetAngleThreshold = 3;
 
         public static final double MidRungCatchAngle = 150.8;
         public static final double MidRungGetUnderAngle = 90;
+
+        public static final double StoreClimbArmAngle = 122.3;
     }
 
     public static final class MotorConfigs {
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
+        public static PIDController gyroPidController;
     }
 
+    public static final class AutonomousConst {
+        // angles
+        // travel distance
+    }
+    
     public static void ConstInit() {
         MotorConfigs.DriveRight.slot0.kP = 0.051;
         MotorConfigs.DriveRight.slot0.kI = 0.000006;
@@ -160,6 +176,9 @@ public class Const {
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
-        MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative; 
+        MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
+        MotorConfigs.gyroPidController = new PIDController(0.01, 0.00218, 0);
+        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/0.00218, 0.1/0.00218);
+        MotorConfigs.gyroPidController.setTolerance(3);
     }
 }
