@@ -39,6 +39,8 @@ public class Conveyor implements Component {
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
+    shooter.setInverted(true);
+    shooter.getEncoder().setVelocityConversionFactor(-1);
 
   }
   
@@ -123,7 +125,11 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    if(shooterSpeed == Const.Speeds.Neutral){
+      shooter.stopMotor();
+    } else {
+      shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    }
   }
 
   /**
