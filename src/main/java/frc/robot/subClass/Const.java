@@ -111,9 +111,9 @@ public class Const {
 
     public static final class Pid{
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
-            shooterPid.setP(0.003);
-            shooterPid.setI(0.000025);
-            shooterPid.setD(0.003);
+            shooterPid.setP(0.0008);
+            shooterPid.setI(6e-7);
+            shooterPid.setD(0);
         }
         
     }
@@ -143,7 +143,6 @@ public class Const {
     public static final class MotorConfigs {
         public static final TalonSRXConfiguration DriveRight = new TalonSRXConfiguration();
         public static final TalonSRXConfiguration DriveLeft= new TalonSRXConfiguration();
-        public static final TalonSRXConfiguration ShooterMotor = new TalonSRXConfiguration();
     }
 
     public static void ConstInit() {
@@ -157,11 +156,6 @@ public class Const {
         MotorConfigs.DriveLeft.slot0.kD = 0.00054;
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
-        MotorConfigs.ShooterMotor.slot0.kP = 0;
-        MotorConfigs.ShooterMotor.slot0.kI = 0;
-        MotorConfigs.ShooterMotor.slot0.kD = 0;
-
-        MotorConfigs.ShooterMotor.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative; 
 
