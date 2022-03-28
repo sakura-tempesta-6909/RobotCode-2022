@@ -62,12 +62,12 @@ public class Util {
      * <ul>
      * <li><b>例:</b>
      *  <ul>
-     *  	<li> min=0, max=225, angle=10 => true </li>
-		 * 		<li> min=-40, max=100, angle=350 => true </li>
-		 * 		<li> min=-40, max=100, angle=-60 => false </li>
-		 * 		<li> min=200, max=450, angle=-60 => true </li>
-		 * 		<li> min=200, max=450, angle=600 => true </li>
-		 * 		<li> min=200, max=450, angle=500 => false </li>
+     *    <li> min=0, max=225, angle=10 => true </li>
+     *    <li> min=-40, max=100, angle=350 => true </li>
+     *    <li> min=-40, max=100, angle=-60 => false </li>
+     *    <li> min=200, max=450, angle=-60 => true </li>
+     *    <li> min=200, max=450, angle=600 => true </li>
+     *    <li> min=200, max=450, angle=500 => false </li>
      *  </ul>
      * </li>
      * </ul>
@@ -89,22 +89,22 @@ public class Util {
         }
     }
     
-		/**
-		 * aをbで割ったあまりを返す。
-		 * あまりrは0 <= r < b。
-		 * b > 0を仮定している。
-		 *  <ul>
+    /**
+     * aをbで割ったあまりを返す。
+     * あまりrは0 <= r < b。
+     * b > 0を仮定している。
+     *  <ul>
      * <li><b>例:</b>
      *  <ul>
-     *  	<li> a=5, b=2 => 1 </li>
-		 * 		<li> a=-1000, b=360 => 80 </li>
+     *    <li> a=5, b=2 => 1 </li>
+     *    <li> a=-1000, b=360 => 80 </li>
      *  </ul>
      * </li>
      * </ul>
-		 * @param a
-		 * @param b
-		 * @return aをbで割ったあまり
-		 */
+     * @param a
+     * @param b
+     * @return aをbで割ったあまり
+     */
     public static double mod(double a, double b) {
         if(a < 0) {
             a += ((int)(-a / b) + 1) * b;
