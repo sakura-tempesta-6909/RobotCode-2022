@@ -22,8 +22,13 @@ public class TestMode extends Mode{
       } 
 
     if(driveController.getAButton()){
-      State.driveState = DriveState.s_turnTo;
-      State.targetDirection = Const.Other.TestTurnDirection;
+      State.driveState = DriveState.s_pidDrive;
+      State.drivePidSetMeter = -0.4;
+      
+    }
+
+    if(driveController.getXButton()){
+      State.driveAccumulateReset = true;
       
     }
   }

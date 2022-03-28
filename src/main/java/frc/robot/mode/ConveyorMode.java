@@ -36,6 +36,17 @@ public class ConveyorMode extends Mode {
     if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
+
+    if(driveController.getAButton()){
+      State.driveState = DriveState.s_pidDrive;
+      State.drivePidSetMeter = -0.3;
+      
+    }
+
+    if(driveController.getXButton()){
+      State.driveAccumulateReset = true;
+      
+    }
   }
 
 }
