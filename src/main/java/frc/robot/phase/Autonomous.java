@@ -35,7 +35,7 @@ public class Autonomous {
 					return;
 				},
 				(double time) -> {
-					return (State.driveLeftFrontPositionMeter == 2) && (State.driveRightFrontPositionMeter == 2);
+					return (State.driveLeftFrontPositionMeter == 2) && (State.driveRightFrontPositionMeter == 2); //これは多分岩井君がやってるのと被るからそのままにしておく
 				},
 				() -> {
 					System.out.println("out of tarmac");
@@ -44,14 +44,13 @@ public class Autonomous {
 			),
 			new PhaseTransition.Phase(
 				() -> {
-					State.is_compressorEnabled = false;
-					State.conveyorState = State.ConveyorState.s_shootConveyor;
+					
 					return;
 				},
 				(double time) -> {
 					return (true);
 				},
-				"shoot"
+				""
 			)
 		);
 	}
