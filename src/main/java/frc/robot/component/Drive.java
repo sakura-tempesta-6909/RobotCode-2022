@@ -55,6 +55,7 @@ public class Drive implements Component{
      * @param zRotation　driveの回転方向の値
      */
     public void arcadeDrive(double xSpeed, double zRotation){
+        differntialDrive.feed();
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
