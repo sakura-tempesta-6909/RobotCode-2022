@@ -85,6 +85,10 @@ public class Const {
         // midClimbArmのスピード
         public static final double MidClimbArmSpin = 0.8;
 
+        // シューターのモーターの最大速度
+        public static final int shooterMaxOutput = 5300;
+
+
     }
 
     public static final class Calculation{
@@ -143,8 +147,6 @@ public class Const {
     }
     
     public static final class Other{
-        // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
