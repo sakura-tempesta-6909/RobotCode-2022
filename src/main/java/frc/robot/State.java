@@ -60,6 +60,7 @@ public class State {
     //gyro
     public static double currentDirection;
     public static double targetDirection;
+    public static boolean gyroReset;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);

@@ -50,11 +50,11 @@ public class Drive implements Component{
         driveLeftFront.setNeutralMode(NeutralMode.Brake);
         driveRightBack.setNeutralMode(NeutralMode.Brake);
         driveLeftBack.setNeutralMode(NeutralMode.Brake);
+        gyroInit();
     }
     
     public double getCurrentDirection(){
-        State.currentDirection = gyro.getAngle();
-        return State.currentDirection;
+        return gyro.getAngle();
     }
 
     public void turnTo(double direction) {
@@ -126,7 +126,7 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
-        gyroInit();
+        
 
     }
 
@@ -151,6 +151,7 @@ public class Drive implements Component{
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
+        State.currentDirection = gyro.getAngle();
         
     }
 
@@ -158,6 +159,9 @@ public class Drive implements Component{
     public void applyState() {
         if(State.driveAccumulateReset){
             drivePidAllReset(); 
+        }
+        if(State.gyroReset){
+            gyroReset();
         }
         
         switch(State.driveState){
