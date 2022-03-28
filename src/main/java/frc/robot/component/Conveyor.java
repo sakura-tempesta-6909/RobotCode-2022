@@ -131,7 +131,7 @@ public class Conveyor implements Component {
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
     if(shooterSpeed == Const.Speeds.Neutral){
       shooter.stopMotor();
-    } else if(shooterSpeed >= Const.Speeds.ShooterOuttake){
+    } else if(shooterSpeed <= Const.Speeds.ShooterOuttake){
       shooter.set(shooterSpeed);
     } else {
       shooterPIDController.setReference(shooterSpeed * Const.Other.ShooterMaxOutput,CANSparkMax.ControlType.kVelocity);
