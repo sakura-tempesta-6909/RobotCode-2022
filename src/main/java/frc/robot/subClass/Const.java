@@ -87,6 +87,7 @@ public class Const {
 
         // シューターのモーターの最大速度
         public static final int shooterMaxOutput = 5300;
+        public static final int ShooterShootThresholdSpeed = 4900;
 
 
     }
