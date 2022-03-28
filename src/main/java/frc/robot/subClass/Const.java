@@ -59,13 +59,13 @@ public class Const {
         // ConveyorSpeed
         // ボールの発射(Shoot)
         // CARGOを発射するときのbeltのスピード
-        public static final double BeltShoot = 0.3;
+        public static final double BeltShoot = 0.5;
         // CARGOを発射するときのshooterのスピード
         public static final double ShooterShoot = 1.0;
 
         // ボールを出す(outtake)
         // outtakeするときのbeltのスピード
-        public static final double BeltOuttake = 0.3;
+        public static final double BeltOuttake = 0.5;
         // outtakeするときのrollerのスピード
         public static final double RollerOuttake = 0.5;
         // outtakeするときのshooterのスピード
@@ -73,7 +73,7 @@ public class Const {
 
         // ボールの回収(intake)
         // intakeするときのbeltのスピード
-        public static final double BeltIntake = 0.3;
+        public static final double BeltIntake = 0.5;
         //intakeするときのbeltのスピード
         public static final double RollerIntake = 0.5;
 
