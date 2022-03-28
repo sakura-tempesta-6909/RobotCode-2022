@@ -136,6 +136,8 @@ public class Const {
         public static final double PIDControllerkP = 1;
         public static final double PIDControllerkI = 0.001;
         public static final double PIDControllerkD = 0.6;
+
+        public static final double TestTurnDirection = 90;
         // ClimbArmの位置合わせ用
         public static final double ClimbArmFastThreshold = 20;
         public static final double ClimbArmSetAngleThreshold = 3;

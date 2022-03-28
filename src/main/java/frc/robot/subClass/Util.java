@@ -51,6 +51,7 @@ public class Util {
         sendConsole("shooterSpeed",State.shooterMotorSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
+        sendConsole("robotDirection",State.currentDirection);
     
     }
 

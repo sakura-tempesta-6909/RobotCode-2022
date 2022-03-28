@@ -57,6 +57,8 @@ public class State {
 
     //shooterのspeed
     public static double shooterMotorSpeed;
+    //gyro
+    public static double currentDirection;
     public static double targetDirection;
 
     public static void StateInit() {
@@ -94,6 +96,7 @@ public class State {
         s_fastDrive,
         s_turnTo,
         s_pidDrive,
+        
 
     }
 

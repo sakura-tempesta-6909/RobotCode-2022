@@ -53,7 +53,8 @@ public class Drive implements Component{
     }
     
     public double getCurrentDirection(){
-        return gyro.getAngle();
+        State.currentDirection = gyro.getAngle();
+        return State.currentDirection;
     }
 
     public void turnTo(double direction) {
@@ -68,6 +69,8 @@ public class Drive implements Component{
     public void gyroReset(){
         gyro.reset();
     }
+
+    
     
 
     /**
