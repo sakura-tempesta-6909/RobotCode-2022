@@ -123,6 +123,10 @@ public class State {
         s_angleCalibration,
     }
 
+    public enum JudgePIDDrive{
+        
+    }
+
     public enum Modes {
         k_drive(new DriveMode()),
         k_conveyor(new ConveyorMode()),
