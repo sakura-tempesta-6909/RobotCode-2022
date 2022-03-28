@@ -73,4 +73,13 @@ public class Util {
         }
         return a % b;
     }
+
+    public static double determineDirection(double a) {
+        double k = mod(a, 360);
+        if(k>180){
+            return(k-180);
+        } else{
+            return(k);
+        }
+    }
 }
