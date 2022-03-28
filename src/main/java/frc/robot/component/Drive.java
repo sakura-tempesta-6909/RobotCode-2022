@@ -76,7 +76,15 @@ public class Drive implements Component{
     }
 
     public boolean is_judgePIDPosition(){
-        return Math.abs(Math.subtractExact((Math.round(getDriveRightMeter())), Math.round(drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)))) < 0.1;
+        return is_judgePIDRightPosition() && is_judgePIDLeftPosition();
+    }
+
+    public boolean is_judgePIDRightPosition(){
+        return Util.mathDiffNowPointToGoalPoint(driveMeterToPoint(getDriveRightMeter()), Const.Calculation.EncoderPointsPerRevolution) < driveMeterToPoint(0.1);
+    }
+
+    public boolean is_judgePIDLeftPosition(){
+        return Util.mathDiffNowPointToGoalPoint(driveMeterToPoint(getDriveLeftMeter()), Const.Calculation.EncoderPointsPerRevolution) < driveMeterToPoint(0.1);
     }
     
     
@@ -162,6 +170,7 @@ public class Drive implements Component{
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
         State.is_judgePIDPosition = is_judgePIDPosition();
+        
     }
 
     @Override

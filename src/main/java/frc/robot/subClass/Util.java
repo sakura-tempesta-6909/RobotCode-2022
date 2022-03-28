@@ -3,6 +3,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.component.Drive;
 
 public class Util {
 
@@ -114,8 +115,6 @@ public class Util {
         return a % b;
     }
 
-
-
     // 時計回りに回るかを、反時計回りに回るかを、曲がりたい方向の大きさによって決める。
     public static double determineDirection(double a) {
         double k = mod(a, 360);
@@ -124,5 +123,9 @@ public class Util {
         } else{
             return(k);
         }
+    }
+
+    public static double mathDiffNowPointToGoalPoint(double driveNowPosition , double targetPosition){
+        return Math.abs(Math.subtractExact(Math.round(driveNowPosition), Math.round(targetPosition)));
     }
 }
