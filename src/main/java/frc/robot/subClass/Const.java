@@ -112,9 +112,9 @@ public class Const {
 
     public static final class Pid{
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
-            shooterPid.setP(0.003);
-            shooterPid.setI(0.000025);
-            shooterPid.setD(0.003);
+            shooterPid.setP(0.0008);
+            shooterPid.setI(6e-7);
+            shooterPid.setD(0);
         }
         
     }
@@ -122,7 +122,7 @@ public class Const {
     
     public static final class Other{
         // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 100000;
+        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
