@@ -1,6 +1,9 @@
 package frc.robot.phase;
 
 import frc.robot.State;
+import frc.robot.State.ConveyorState;
+import frc.robot.State.DriveState;
+import frc.robot.component.Drive;
 
 public class Autonomous {
 	private static PhaseTransition phaseTransition;
@@ -15,6 +18,7 @@ public class Autonomous {
 				() -> {
 					State.is_compressorEnabled = true;
 					State.conveyorState = State.ConveyorState.s_intakeConveyor;
+					State.conveyorState = ConveyorState.s_shooterShoot;
 					return;
 				},
 				(double time) -> {
@@ -22,6 +26,8 @@ public class Autonomous {
 				},
 				() -> {
 					System.out.println("on success");
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = 2;
 				},
 				"intake"
 			),
