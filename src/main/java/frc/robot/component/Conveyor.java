@@ -128,7 +128,7 @@ public class Conveyor implements Component {
     if(shooterSpeed == Const.Speeds.Neutral){
       shooter.stopMotor();
     } else {
-      shooterPIDController.setReference(shooterSpeed * Const.Other.ShooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+      shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
     }
   }
 

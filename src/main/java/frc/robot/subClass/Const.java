@@ -59,7 +59,7 @@ public class Const {
         // ConveyorSpeed
         // ボールの発射(Shoot)
         // CARGOを発射するときのbeltのスピード
-        public static final double BeltShoot = 0.5;
+        public static final double BeltShoot = 0.3;
         // CARGOを発射するときのshooterのスピード
         public static final double ShooterShoot = 1.0;
 
@@ -122,9 +122,7 @@ public class Const {
     
     public static final class Other{
         // シューターのモーターの最大速度
-        public static final int ShooterMaxOutput = 5300;
-        //CARGOを発射するときの目標速度
-        public static final int ShooterShootThresholdSpeed= 4900;
+        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
@@ -170,7 +168,7 @@ public class Const {
         MotorConfigs.DriveLeft.slot0.kP = 0.048;
         MotorConfigs.DriveLeft.slot0.kI = 0.000009;
         MotorConfigs.DriveLeft.slot0.kD = 0.00054;
-        MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.1/MotorConfigs.DriveLeft.slot0.kI;
+        MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
         MotorConfigs.DriveRight.slot1.kP = 0.2;
         MotorConfigs.DriveRight.slot1.kI = 0.004;
@@ -180,7 +178,7 @@ public class Const {
         MotorConfigs.DriveLeft.slot1.kP = 0.2;
         MotorConfigs.DriveLeft.slot1.kI = 0.0004;
         MotorConfigs.DriveLeft.slot1.kD = 0.000;
-        MotorConfigs.DriveLeft.slot1.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot1.kI;
+        MotorConfigs.DriveLeft.slot1.maxIntegralAccumulator =  1023*0.1/MotorConfigs.DriveLeft.slot1.kI;
 
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;

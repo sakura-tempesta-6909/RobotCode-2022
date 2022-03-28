@@ -20,16 +20,5 @@ public class TestMode extends Mode{
     if(driveController.getStartButton()){
         State.climbArmState = ClimbArmState.s_angleCalibration;
       } 
-
-    if(driveController.getAButton()){
-      State.driveState = DriveState.s_pidDrive;
-      State.drivePidSetMeter = -0.4;
-      
-    }
-
-    if(driveController.getXButton()){
-      State.driveAccumulateReset = true;
-      
-    }
   }
 }
