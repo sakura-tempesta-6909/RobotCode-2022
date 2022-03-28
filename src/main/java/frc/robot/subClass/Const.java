@@ -145,6 +145,8 @@ public class Const {
         public static final double MidRungCatchAngle = 150.8;
         public static final double MidRungGetUnderAngle = 90;
 
+        public static final double StoreClimbArmAngle = 122.3;
+
         //DrivePIDの目標値と現在の値の誤差の許容範囲(単位メートル)
         public static final double DrivePIDMeasurmentError = 0.1;
     }
