@@ -54,7 +54,6 @@ public class Drive implements Component{
     }
     
     public double getCurrentDirection(){
-        
         double c = gyro.getAngle();
         return Util.determineDirection(c);
     }
@@ -72,6 +71,9 @@ public class Drive implements Component{
         gyro.reset();
     }
 
+    public boolean isDirectionAchieived(){
+        return Const.MotorConfigs.gyroPidController.atSetpoint();
+    }
     
     
 
@@ -154,6 +156,7 @@ public class Drive implements Component{
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
         State.currentDirection = getCurrentDirection();
+        State.reachTurn = isDirectionAchieived();
         
     }
 
