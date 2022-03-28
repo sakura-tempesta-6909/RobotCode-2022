@@ -111,6 +111,11 @@ public class Const {
     }
 
     public static final class Pid{
+        //gyroのPID
+        public static final double PIDControllerkP = 1;
+        public static final double PIDControllerkI = 0.001;
+        public static final double PIDControllerkD = 0.6;
+
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
             shooterPid.setP(0.0008);
             shooterPid.setI(6e-7);
@@ -119,6 +124,23 @@ public class Const {
         
     }
 
+    public static final class ClimbArm{
+        // ClimbArmのモーターのArmの制限値
+        public static final int ClimbArmCurrentLimit = 60;
+
+        public static final double TestTurnDirection = 90;
+        // ClimbArmの位置合わせ用
+        public static final double ClimbArmFastThreshold = 20;
+        public static final double ClimbArmSetAngleThreshold = 3;
+
+        //MidRungを掴む角度
+        public static final double MidRungCatchAngle = 150.8;
+        //MidRungをの下を通るようにする
+        public static final double MidRungGetUnderAngle = 90;
+
+        
+        public static final double StoreClimbArmAngle = 122.3;
+    }
     
     public static final class Other{
         // シューターのモーターの最大速度
@@ -129,23 +151,6 @@ public class Const {
         // Triggerの押し込み具合
         public static final double TriggerValue = 0.5;
 
-        // ClimbArmのモーターのAmpの制限値
-        public static final int ClimbArmCurrentLimit = 60;
-
-        //gyroのPID
-        public static final double PIDControllerkP = 1;
-        public static final double PIDControllerkI = 0.001;
-        public static final double PIDControllerkD = 0.6;
-
-        public static final double TestTurnDirection = 90;
-        // ClimbArmの位置合わせ用
-        public static final double ClimbArmFastThreshold = 20;
-        public static final double ClimbArmSetAngleThreshold = 3;
-
-        public static final double MidRungCatchAngle = 150.8;
-        public static final double MidRungGetUnderAngle = 90;
-
-        public static final double StoreClimbArmAngle = 122.3;
     }
 
     public static final class MotorConfigs {

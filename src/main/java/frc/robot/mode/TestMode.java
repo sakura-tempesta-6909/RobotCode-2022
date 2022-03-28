@@ -14,7 +14,7 @@ public class TestMode extends Mode{
   public void changeState() {
     if(driveController.getBackButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-      State.climbArmTargetAngle = Const.Other.StoreClimbArmAngle;
+      State.climbArmTargetAngle = Const.ClimbArm.StoreClimbArmAngle;
     }
         
     if(driveController.getStartButton()){
@@ -23,7 +23,7 @@ public class TestMode extends Mode{
 
     if(driveController.getAButton()){
       State.driveState = DriveState.s_turnTo;
-      State.targetDirection = Const.Other.TestTurnDirection;
+      State.targetDirection = Const.ClimbArm.TestTurnDirection;
       
     }
   }
