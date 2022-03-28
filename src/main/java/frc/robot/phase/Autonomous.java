@@ -46,6 +46,9 @@ public class Autonomous {
 				(double time) -> {
 					return time > 0.5;
 				},
+				() -> {
+					System.out.println("on success");
+				},
 				"intake"
 			),
 			new PhaseTransition.Phase(
