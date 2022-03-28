@@ -18,7 +18,6 @@ public class Autonomous {
 				() -> {
 					State.is_compressorEnabled = true;
 					State.conveyorState = State.ConveyorState.s_intakeConveyor;
-					State.conveyorState = ConveyorState.s_shooterShoot;
 					return;
 				},
 				(double time) -> {
@@ -26,14 +25,16 @@ public class Autonomous {
 				},
 				() -> {
 					System.out.println("on success");
-					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = 2;
+					State.conveyorState = State.ConveyorState.s_shooterShoot;
 				},
 				"intake"
 			),
 			new PhaseTransition.Phase(
 				() -> {
 					State.is_compressorEnabled = false;
+					State.conveyorState = State.ConveyorState.s_intakeConveyor;
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = 2;
 					return;
 				},
 				(double time) -> {
