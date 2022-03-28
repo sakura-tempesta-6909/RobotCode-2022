@@ -78,7 +78,7 @@ public class Util {
     public static double determineDirection(double a) {
         double k = mod(a, 360);
         if(k>180){
-            return(k-180);
+            return(k-360);
         } else{
             return(k);
         }
