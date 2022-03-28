@@ -152,7 +152,7 @@ public class Drive implements Component{
     public void readSensors() {
         State.driveRightFrontPositionMeter = getDriveRightMeter();
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
-        State.currentDirection = gyro.getAngle();
+        State.currentDirection = getCurrentDirection();
         
     }
 
