@@ -121,6 +121,8 @@ public class Const {
     public static final class Other{
         // シューターのモーターの最大速度
         public static final int ShooterMaxOutput = 5300;
+        //CARGOを発射するときの目標速度
+        public static final int ShooterTargetSpeed = 5000;
 
         // Deadband
         public static final double Deadband = 0.2;

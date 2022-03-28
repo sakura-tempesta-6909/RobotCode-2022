@@ -62,7 +62,7 @@ public class Conveyor implements Component {
    * CARGOを発射する
    */
   public void shootConveyor(){
-    if(State.shooterSpeed > Const.Other.ShooterMaxOutput){
+    if(State.shooterSpeed > Const.Other.ShooterTargetSpeed){
       conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
     } else {
       conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
