@@ -52,7 +52,7 @@ public class Util {
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
         sendConsole("robotDirection",State.currentDirection);
-        sendConsole("isTurningFinished?", State.reachTurn);
+        sendConsole("isTurnFinished", State.reachTurn);
     
     }
 

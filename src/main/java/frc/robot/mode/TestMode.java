@@ -4,7 +4,6 @@ import frc.robot.State;
 import frc.robot.State.DriveState;
 import frc.robot.subClass.Const;
 import frc.robot.State.ClimbArmState;
-import frc.robot.subClass.Const;
 
 public class TestMode extends Mode{
 
