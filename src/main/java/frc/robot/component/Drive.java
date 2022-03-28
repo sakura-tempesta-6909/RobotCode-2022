@@ -55,7 +55,8 @@ public class Drive implements Component{
     
     public double getCurrentDirection(){
         
-        return gyro.getAngle();
+        double c = gyro.getAngle();
+        return Util.determineDirection(c);
     }
 
     public void turnTo(double direction) {
