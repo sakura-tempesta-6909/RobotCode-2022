@@ -12,26 +12,44 @@ public class Autonomous {
 
 	/**
 	 * ボールの回収もしたかったら、autonomousのコードを3種類ほど書く必要がある
-	 （とれそうなボールは三つある、他のチームが同じこと考えてたらautonomous中 他のボールを取りに行かないといけない）
-	 * phase1
-	 * 	compressor起動
-	 * 	driveBase.set(forward 60cm )
-	 * phase 2
-	 *  shooter on (中に入ってるボールを発射)  1秒間
-	 * phase 3 (option 1)
-	 * 	driveBase.set(forward -160cm)
-	 * 	driveBase.turn(-129 degrees)
-	 * 	driveBase.set(forward 85cm)
-	 * phase 4
-	 * 	driveBase.turn(145 又は 146 degrees)
-	 * 	driveBase.set(forward 223cm)
-	 *  driveBase.turn(-17 degrees)
-	 * phase 5
-	 * 	shooter on (中に入ってるボールを発射)  1秒間
-	 * 
+	 * (とれそうなボールは三つある、他のチームが同じこと考えてたらautonomous中 他のボールを取りに行かないといけない）
+	 *  option 1
+	 * phase 1
+	 * 	shooter on
+	 * phase 2 
+	 * 	shooter off
+	 * 	set(-34.07inch)
 	 * phase 3
-	 * 	drivebase.set
-	 * 	
+	 * 	turnto(157.5degrees)
+	 * phase 4
+	 *  set(80)
+	 * phase 5 
+	 * 	turnto(180)
+	 * phase 6
+	 * 	set(79.81)
+	 * phase 7
+	 * 	turnto(22.5)
+	 * phase 8 
+	 * 	set(34.07)
+	 *
+	 * 	option 2
+	 * phase 1 
+	 * 	shooter on 
+	 * phase 2
+	 *  shooter off
+	 * 	set(-34.07inch)
+	 * 	phase 3
+	 * 	turnto(-157.5degrees)
+	 * phase 4
+	 *  set(80)
+	 * phase 5 
+	 * 	turnto(-180)
+	 * phase 6
+	 * 	set(79.81)
+	 * phase 7
+	 * 	turnto(-22.5)
+	 * phase 8 
+	 * 	set(34.07)
 	 */
 
 		// Phaseの登録
