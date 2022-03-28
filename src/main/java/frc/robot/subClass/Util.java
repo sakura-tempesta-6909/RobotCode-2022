@@ -53,7 +53,7 @@ public class Util {
         sendConsole("extendOpen", State.is_intakeExtendOpen);
         sendConsole("robotDirection",State.currentDirection);
         sendConsole("isTurnFinished", State.reachTurn);
-    
+        sendConsole("isMoveFinished", State.is_judgePIDPosition);
     }
 
     /**
@@ -113,6 +113,8 @@ public class Util {
         }
         return a % b;
     }
+
+
 
     // 時計回りに回るかを、反時計回りに回るかを、曲がりたい方向の大きさによって決める。
     public static double determineDirection(double a) {

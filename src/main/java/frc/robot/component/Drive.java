@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import java.util.function.ToIntFunction;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.State;
@@ -70,6 +73,10 @@ public class Drive implements Component{
 
     public boolean isDirectionAchieived(){
         return Const.MotorConfigs.gyroPidController.atSetpoint();
+    }
+
+    public boolean is_judgePIDPosition(){
+        return Math.abs(Math.subtractExact((Math.round(getDriveRightMeter())), Math.round(drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)))) < 0.1;
     }
     
     
@@ -154,7 +161,7 @@ public class Drive implements Component{
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
-        
+        State.is_judgePIDPosition = is_judgePIDPosition();
     }
 
     @Override

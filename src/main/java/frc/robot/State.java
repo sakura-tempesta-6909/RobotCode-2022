@@ -64,6 +64,8 @@ public class State {
     // 
     public static boolean reachTurn;
 
+    public static boolean is_judgePIDPosition;
+
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);
@@ -127,10 +129,6 @@ public class State {
         s_setClimbArmAngle,  
         s_climbArmNeutral,
         s_angleCalibration,
-    }
-
-    public enum JudgePIDDrive{
-        
     }
 
     public enum Modes {
