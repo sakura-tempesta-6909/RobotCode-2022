@@ -144,6 +144,8 @@ public class Const {
 
         public static final double MidRungCatchAngle = 150.8;
         public static final double MidRungGetUnderAngle = 90;
+
+        public static final double StoreClimbArmAngle = 122.3;
     }
 
     public static final class MotorConfigs {

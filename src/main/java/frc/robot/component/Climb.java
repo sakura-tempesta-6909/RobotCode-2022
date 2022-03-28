@@ -132,6 +132,9 @@ public class Climb implements Component {
     }
   }
 
+  public void storeArm(){
+    setClimbArmAngle(Const.Other.StoreClimbArmAngle); 
+  }
   /**
    *  firstSolenoidを動かす
    * @param firstSolenoidOpen falseで閉じている

@@ -4,6 +4,7 @@ import frc.robot.State;
 import frc.robot.State.DriveState;
 import frc.robot.subClass.Const;
 import frc.robot.State.ClimbArmState;
+import frc.robot.subClass.Const;
 
 public class TestMode extends Mode{
 
@@ -14,7 +15,7 @@ public class TestMode extends Mode{
   public void changeState() {
     if(driveController.getBackButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-      State.climbArmTargetAngle = 122.3;
+      State.climbArmTargetAngle = Const.Other.StoreClimbArmAngle;
     }
         
     if(driveController.getStartButton()){
