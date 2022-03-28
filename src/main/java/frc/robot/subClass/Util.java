@@ -51,6 +51,8 @@ public class Util {
         sendConsole("shooterSpeed",State.shooterSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
+        sendConsole("robotDirection",State.currentDirection);
+        sendConsole("isTurnFinished", State.reachTurn);
     
     }
 
@@ -110,5 +112,15 @@ public class Util {
             a += ((int)(-a / b) + 1) * b;
         }
         return a % b;
+    }
+
+    // 時計回りに回るかを、反時計回りに回るかを、曲がりたい方向の大きさによって決める。
+    public static double determineDirection(double a) {
+        double k = mod(a, 360);
+        if(k>180){
+            return(k-360);
+        } else{
+            return(k);
+        }
     }
 }
