@@ -172,7 +172,7 @@ public class Const {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
-        MotorConfigs.gyroPidController = new PIDController(1.0, 0.001, 0.6);
-        
+        MotorConfigs.gyroPidController = new PIDController(0.01, 0.00218, 0);
+        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/0.00218, 0.1/0.00218);
     }
 }
