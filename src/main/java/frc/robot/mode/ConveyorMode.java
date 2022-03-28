@@ -39,7 +39,7 @@ public class ConveyorMode extends Mode {
 
     if(driveController.getAButton()){
       State.driveState = DriveState.s_pidDrive;
-      State.drivePidSetMeter = -0.3;
+      State.drivePidSetMeter = -Const.AutonomousConst.ShootLengthFromFender;
       
     }
 

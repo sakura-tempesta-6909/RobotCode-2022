@@ -111,12 +111,12 @@ public class Drive implements Component{
     }
 
     public void drivePosition(double pidposition){
-        if(Math.abs(pidposition) < 0.5) {
-            driveRightFront.selectProfileSlot(1, 0);
-            driveLeftFront.selectProfileSlot(1, 0);
+        if(Math.abs(pidposition) < Const.Pid.DrivePidShortThreshold) {
+            driveRightFront.selectProfileSlot(Const.Pid.DrivePidShortSlot, 0);
+            driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
         } else {
-        driveRightFront.selectProfileSlot(0, 0);
-        driveLeftFront.selectProfileSlot(0, 0);
+        driveRightFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+        driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
         }
         driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
         driveLeftFront.set(ControlMode.Position, driveMeterToPoint(pidposition));

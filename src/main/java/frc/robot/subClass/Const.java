@@ -111,6 +111,14 @@ public class Const {
     }
 
     public static final class Pid{
+
+        /** drivePID 長距離用のSlot */
+        public static final int DrivePidLongSlot = 0;
+        /** drivePID 短距離用のSlot */
+        public static final int DrivePidShortSlot = 1;
+        /** drivePID 長短距離の判定のしきい値 */
+        public static final double DrivePidShortThreshold = 0.5;
+
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
             shooterPid.setP(0.0008);
             shooterPid.setI(6e-7);
@@ -155,6 +163,9 @@ public class Const {
     }
 
     public static final class AutonomousConst {
+        /** shoot時に下がるときの距離 */
+        public static final double ShootLengthFromFender = 0.3;
+
         // angles
         // travel distance
     }
