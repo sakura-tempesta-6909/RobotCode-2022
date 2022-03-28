@@ -23,7 +23,7 @@ public class TestMode extends Mode{
 
     if(driveController.getAButton()){
       State.driveState = DriveState.s_turnTo;
-      State.targetDirection = Const.ClimbArm.TestTurnDirection;
+      State.targetDirection = Const.Other.TestTurnDirection;
       
     }
   }
