@@ -120,7 +120,7 @@ public class Const {
 
     public static final class Other{
         // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 100000;
+        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
