@@ -64,6 +64,8 @@ public class State {
     // 
     public static boolean reachTurn;
 
+    public static boolean isDrivePidFinished;
+
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);

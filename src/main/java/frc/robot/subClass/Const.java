@@ -145,6 +145,9 @@ public class Const {
 
         
         public static final double StoreClimbArmAngle = 122.3;
+
+        //DrivePIDの目標値と現在の値の誤差の許容範囲(単位メートル)
+        public static final double DrivePidTolerance = 0.1;
     }
     
     public static final class Other{

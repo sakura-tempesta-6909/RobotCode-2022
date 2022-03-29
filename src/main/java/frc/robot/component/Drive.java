@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import java.util.function.ToIntFunction;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.robot.State;
@@ -72,8 +75,20 @@ public class Drive implements Component{
     public boolean isDirectionAchieived(){
         return Const.MotorConfigs.gyroPidController.atSetpoint();
     }
-    
-    
+
+    public boolean is_judgePIDPosition(){
+        return is_judgePIDRightPosition() && is_judgePIDLeftPosition();
+    }
+
+    public boolean is_judgePIDRightPosition(){
+        return Math.abs(getDriveRightMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
+    }
+
+    public boolean is_judgePIDLeftPosition(){
+        return Math.abs(getDriveLeftMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
+    }
+
+
 
     /**
      * driveを動かす 
@@ -123,6 +138,7 @@ public class Drive implements Component{
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
         driveRightFront.setIntegralAccumulator(0);
+        State.isDrivePidFinished = false;
     }
 
     @Override
@@ -155,6 +171,7 @@ public class Drive implements Component{
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
+        State.isDrivePidFinished = is_judgePIDPosition();
         
     }
 
