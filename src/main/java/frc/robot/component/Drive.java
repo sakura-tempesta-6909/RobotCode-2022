@@ -80,11 +80,11 @@ public class Drive implements Component{
     }
 
     public boolean is_judgePIDRightPosition(){
-        return Math.abs(getDriveRightMeter() - drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) < Const.Other.DrivePIDMeasurmentError;
+        return Math.abs(getDriveRightMeter() - State.drivePidSetMeter) < Const.Other.DrivePIDMeasurmentError;
     }
 
     public boolean is_judgePIDLeftPosition(){
-        return Math.abs(getDriveLeftMeter() - drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) < Const.Other.DrivePIDMeasurmentError;
+        return Math.abs(getDriveLeftMeter() - State.drivePidSetMeter) < Const.Other.DrivePIDMeasurmentError;
     }
 
 
