@@ -3,6 +3,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.component.Conveyor;
 
 public class Util {
 
@@ -54,6 +55,8 @@ public class Util {
         sendConsole("extendOpen", State.is_intakeExtendOpen);
         sendConsole("robotDirection",State.currentDirection);
         sendConsole("isTurnFinished", State.reachTurn);
+        sendConsole("IntakeSensor", State.intakeSensorJudge);
+        sendConsole("ShooterSensor", State.shooterSensorJudge);
     }
 
     /**

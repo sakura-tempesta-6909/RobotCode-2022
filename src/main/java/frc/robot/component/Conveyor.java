@@ -65,6 +65,7 @@ public class Conveyor implements Component {
       }else{
         if(ballDetectionShoot()){
           conveyorNutral();
+          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
         }else{
           beltRollerIntake();
         }
@@ -265,6 +266,8 @@ public class Conveyor implements Component {
   @Override
   public void readSensors() {
     State.shooterSpeed = shooter.getEncoder().getVelocity();
+    State.intakeSensorJudge = ballDetectionIntake();
+    State.shooterSensorJudge = ballDetectionShoot();
   }
 
   @Override
