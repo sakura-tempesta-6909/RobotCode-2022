@@ -186,7 +186,7 @@ public class Drive implements Component{
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
-                return;
+                break;
             case s_turnTo:
                 turnTo(State.targetDirection); 
                 break;
