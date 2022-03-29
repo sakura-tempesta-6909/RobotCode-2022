@@ -112,6 +112,7 @@ public class Drive implements Component{
     }
 
     public void drivePosition(double pidposition){
+        drivePidAllReset();
         driveRightFront.selectProfileSlot(0, 0);
         driveLeftFront.selectProfileSlot(0, 0);
         driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));

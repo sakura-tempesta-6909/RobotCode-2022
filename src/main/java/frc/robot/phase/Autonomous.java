@@ -91,14 +91,35 @@ public class Autonomous {
 			),
 			new PhaseTransition.Phase(
 				() -> {
-					State.driveState = DriveState.s_
-					
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = 157.5;
 					return;
 				},
 				(double time) -> {
-					return (true);
+					return State.reachTurn;
 				},
-				""
+				"finish 1st turn"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(80);
+					return;
+				}, 
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1));
+				},
+				"reach ball"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = 180;
+					return;
+				},
+				(double time) -> {
+					return State.reachTurn;
+				}
 			)
 		);
 	}
