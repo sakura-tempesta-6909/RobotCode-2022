@@ -34,15 +34,10 @@ public class Autonomous {
 	private static PhaseTransition.Phase stationary(double period, String phaseName) {
 		return new PhaseTransition.Phase(
 			() -> {
-				State.driveState = DriveState.s_stopDrive;
 				return;
 			},
 			(double time) -> {
 				return time > period;
-			},
-			() -> {
-				State.driveState = DriveState.s_pidDrive;
-				return;
 			},
 			phaseName
 		);
@@ -224,8 +219,6 @@ public class Autonomous {
 
 			conveyorMode(5.0, ConveyorState.s_shootConveyor, "initialShot"),
 
-			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stop conveyor"),
-
 			straightPidDrive(-34.1, "out of tarmac")
 		);
 	}
@@ -235,7 +228,7 @@ public class Autonomous {
 			phaseTransitionA.run();
 		} else if(State.gameSpecificMessage == "B"){
 			phaseTransitionB.run();
-		} else if(State.gameSpecificMessage == "C"){
+		} else{
 			phaseTransitionC.run();
 		}
 	}
