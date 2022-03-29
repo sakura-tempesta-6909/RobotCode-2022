@@ -7,8 +7,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.State;
 import frc.robot.subClass.Const;
 
@@ -62,7 +62,11 @@ public class Conveyor implements Component {
    * CARGOを発射する
    */
   public void shootConveyor(){
-    conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
+    if(State.shooterSpeed > Const.Speeds.ShooterShootThresholdSpeed){
+      conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
+    } else {
+      conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
+    }
   }
 
   /**
@@ -127,8 +131,10 @@ public class Conveyor implements Component {
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
     if(shooterSpeed == Const.Speeds.Neutral){
       shooter.stopMotor();
+    } else if(shooterSpeed <= Const.Speeds.ShooterOuttake){
+      shooter.set(shooterSpeed);
     } else {
-      shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+      shooterPIDController.setReference(shooterSpeed * Const.Speeds.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
     }
   }
 
@@ -181,7 +187,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    State.shooterMotorSpeed = shooter.getEncoder().getVelocity();
+    State.shooterSpeed = shooter.getEncoder().getVelocity();
   }
 
   @Override
