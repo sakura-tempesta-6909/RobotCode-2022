@@ -188,6 +188,14 @@ public class Autonomous {
 
 			conveyorMode(1.0, ConveyorState.s_shooterShoot, "end of autonomous")
 		);
+
+		// Phaseの登録C
+		phaseTransitionC.registerPhase(
+
+			conveyorMode(5.0, ConveyorState.s_shootConveyor, "initialShot"),
+
+			straightPidDrive(-34.1, "out of tarmac")
+		);
 	}
 
 	public static void run() {
