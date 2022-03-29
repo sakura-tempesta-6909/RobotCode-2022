@@ -4,6 +4,7 @@ package frc.robot.subClass;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 import frc.robot.component.Conveyor;
+import frc.robot.component.Drive;
 
 public class Util {
 
@@ -57,6 +58,8 @@ public class Util {
         sendConsole("isTurnFinished", State.reachTurn);
         sendConsole("IntakeSensor", State.intakeSensorJudge);
         sendConsole("ShooterSensor", State.shooterSensorJudge);
+        sendConsole("DrivePidFinish", State.isDrivePidFinished);
+
     }
 
     /**

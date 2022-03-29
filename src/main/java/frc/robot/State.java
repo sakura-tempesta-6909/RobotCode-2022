@@ -68,6 +68,7 @@ public class State {
 
     public static boolean intakeSensorJudge;
     public static boolean shooterSensorJudge;
+    public static boolean isDrivePidFinished;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
