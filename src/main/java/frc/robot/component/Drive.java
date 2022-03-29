@@ -89,8 +89,8 @@ public class Drive implements Component{
         return Util.mathDiffNowPointToGoalPoint(getDriveLeftMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) < Const.Other.DrivePIDMeasurmentError
         && Util.mathDiffNowPointToGoalPoint(getDriveLeftMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) > -Const.Other.DrivePIDMeasurmentError;
     }
-    
-    
+
+
 
     /**
      * driveを動かす 
@@ -140,6 +140,7 @@ public class Drive implements Component{
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
         driveRightFront.setIntegralAccumulator(0);
+        State.is_judgePIDPosition = false;
     }
 
     @Override

@@ -125,6 +125,7 @@ public class Util {
         }
     }
 
+    //目標値よりもいきすぎると正が出る
     public static double mathDiffNowPointToGoalPoint(double driveNowPosition , double targetPosition){
         return driveNowPosition - targetPosition;
     }
