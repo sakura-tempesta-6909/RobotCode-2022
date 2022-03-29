@@ -30,6 +30,23 @@ public class Autonomous {
 		);
 	}
 
+	private static PhaseTransition.Phase stationary(double period, String phaseName) {
+		return new PhaseTransition.Phase(
+			() -> {
+				State.driveState = DriveState.s_stopDrive;
+				return;
+			},
+			(double time) -> {
+				return time > period;
+			},
+			() -> {
+				State.driveState = DriveState.s_pidDrive;
+				return;
+			},
+			phaseName
+		);
+	}
+
 	private static PhaseTransition.Phase turnTo(double angle, String phaseName) {
 		return new PhaseTransition.Phase(
 			() -> {
@@ -141,6 +158,8 @@ public class Autonomous {
 
 			straightPidDrive(80, "reach ball"),
 
+			stationary(3, "wait for ball to enter"), //これはいるか分からん
+
 			turnTo(180, "u-turn"),
 
 			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stopConveyor"),
@@ -193,6 +212,8 @@ public class Autonomous {
 		phaseTransitionC.registerPhase(
 
 			conveyorMode(5.0, ConveyorState.s_shootConveyor, "initialShot"),
+
+			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stop conveyor"),
 
 			straightPidDrive(-34.1, "out of tarmac")
 		);
