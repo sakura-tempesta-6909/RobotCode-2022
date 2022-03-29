@@ -55,6 +55,7 @@ public class Autonomous {
 			},
 			() -> {
 				State.gyroReset = true;
+				State.driveAccumulateReset =true;
 			},
 			phaseName
 		);
@@ -163,9 +164,9 @@ public class Autonomous {
 
 			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
-			turnTo(180, "u-turn"),
-
 			straightPidDrive(10, "stepBack"),
+			
+			turnTo(180, "u-turn"),
 
 			intakeExtend(0.3, false, "close intake"),
 
@@ -205,9 +206,9 @@ public class Autonomous {
 
 			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
-			turnTo(-180, "u-turn"),
-
 			straightPidDrive(10, "stepBack"),
+
+			turnTo(-180, "u-turn"),
 
 			intakeExtend(0.3, false, "close intake"),
 
