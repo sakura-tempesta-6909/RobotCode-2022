@@ -102,7 +102,7 @@ public class Climb implements Component {
       climbArm =  new CANSparkMax(Const.Ports.ClimbArm, CANSparkMaxLowLevel.MotorType.kBrushed);
       climbArmEncoder = climbArm.getAlternateEncoder(Const.Calculation.ClimbArmEncoderCount);
     }
-    climbArm.setSmartCurrentLimit(Const.Other.ClimbArmCurrentLimit);
+    climbArm.setSmartCurrentLimit(Const.ClimbArm.ClimbArmCurrentLimit);
     
   }
 
@@ -140,15 +140,15 @@ public class Climb implements Component {
    */
   public void setClimbArmAngle(double climbArmTaregetAngle){
     double angle = getClimbArmAngle();
-    if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.Other.ClimbArmSetAngleThreshold, angle)){
+    if(Util.is_angleInRange(climbArmTaregetAngle - Const.ClimbArm.ClimbArmSetAngleThreshold, climbArmTaregetAngle + Const.ClimbArm.ClimbArmSetAngleThreshold, angle)){
       climbControl(Const.Speeds.Neutral);
-    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
+    }else if(Util.is_angleInRange(climbArmTaregetAngle + Const.ClimbArm.ClimbArmFastThreshold, climbArmTaregetAngle + Const.Calculation.FullTurnAngle/2, angle)){
       climbControl(-Const.Speeds.MidClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Calculation.FullTurnAngle/2, climbArmTaregetAngle - Const.ClimbArm.ClimbArmFastThreshold, angle)) {
       climbControl(Const.Speeds.MidClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.Other.ClimbArmFastThreshold, angle)){
+    } else if(Util.is_angleInRange(climbArmTaregetAngle, climbArmTaregetAngle + Const.ClimbArm.ClimbArmFastThreshold, angle)){
       climbControl(-Const.Speeds.SlowClimbArmSpin);
-    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.Other.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
+    } else if(Util.is_angleInRange(climbArmTaregetAngle - Const.ClimbArm.ClimbArmFastThreshold, climbArmTaregetAngle, angle)) {
       climbControl(Const.Speeds.SlowClimbArmSpin);
     } else {
       climbControl(Const.Speeds.MidClimbArmSpin);
@@ -185,7 +185,7 @@ public class Climb implements Component {
   }
 
   public void storeArm(){
-    setClimbArmAngle(Const.Other.StoreClimbArmAngle); 
+    setClimbArmAngle(Const.ClimbArm.StoreClimbArmAngle); 
   }
   /**
    *  firstSolenoidを動かす
