@@ -4,9 +4,11 @@ import frc.robot.State;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.DriveState;
 import frc.robot.component.Drive;
+import edu.wpi.first.math.util.Units;
 
 public class Autonomous {
 	private static PhaseTransition phaseTransitionA;
+	private static PhaseTransition phaseTransitionB;
 
 	public static void autonomousInit() {
 		phaseTransitionA = new PhaseTransition();
@@ -76,11 +78,11 @@ public class Autonomous {
 				() -> {
 					State.conveyorState = ConveyorState.s_intakeConveyor;
 					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = 2;
+					State.drivePidSetMeter = Units.inchesToMeters(-34.1);
 					return;
 				},
 				(double time) -> {
-					return (State.driveLeftFrontPositionMeter == 2) && (State.driveRightFrontPositionMeter == 2); //これは多分岩井君がやってるのと被るからそのままにしておく
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1)); //これは多分岩井君がやってるのと被るからそのままにしておく
 				},
 				() -> {
 					System.out.println("out of tarmac");
@@ -89,6 +91,7 @@ public class Autonomous {
 			),
 			new PhaseTransition.Phase(
 				() -> {
+					State.driveState = DriveState.s_
 					
 					return;
 				},
