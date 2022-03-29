@@ -85,6 +85,9 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+        gyroReset = false;
+        driveAccumulateReset = false;
+
     }
 
     /**
