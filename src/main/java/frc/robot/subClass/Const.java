@@ -59,13 +59,13 @@ public class Const {
         // ConveyorSpeed
         // ボールの発射(Shoot)
         // CARGOを発射するときのbeltのスピード
-        public static final double BeltShoot = 0.3;
+        public static final double BeltShoot = 0.5;
         // CARGOを発射するときのshooterのスピード
         public static final double ShooterShoot = 1.0;
 
         // ボールを出す(outtake)
         // outtakeするときのbeltのスピード
-        public static final double BeltOuttake = 0.3;
+        public static final double BeltOuttake = 0.5;
         // outtakeするときのrollerのスピード
         public static final double RollerOuttake = 0.5;
         // outtakeするときのshooterのスピード
@@ -73,7 +73,7 @@ public class Const {
 
         // ボールの回収(intake)
         // intakeするときのbeltのスピード
-        public static final double BeltIntake = 0.3;
+        public static final double BeltIntake = 0.5;
         //intakeするときのbeltのスピード
         public static final double RollerIntake = 0.5;
 
@@ -84,6 +84,11 @@ public class Const {
         public static final double SlowClimbArmSpin = 0.2;
         // midClimbArmのスピード
         public static final double MidClimbArmSpin = 0.8;
+
+        // シューターのモーターの最大速度
+        public static final int shooterMaxOutput = 5300;
+        public static final int ShooterShootThresholdSpeed = 4900;
+
 
     }
 
@@ -111,13 +116,17 @@ public class Const {
     }
 
     public static final class Pid{
-
         /** drivePID 長距離用のSlot */
         public static final int DrivePidLongSlot = 0;
         /** drivePID 短距離用のSlot */
         public static final int DrivePidShortSlot = 1;
         /** drivePID 長短距離の判定のしきい値 */
         public static final double DrivePidShortThreshold = 0.5;
+      
+        //gyroのPID
+        public static final double PIDControllerkP = 1;
+        public static final double PIDControllerkI = 0.001;
+        public static final double PIDControllerkD = 0.6;
 
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
             shooterPid.setP(0.0008);
@@ -127,33 +136,33 @@ public class Const {
         
     }
 
+    public static final class ClimbArm{
+        // ClimbArmのモーターのArmの制限値
+        public static final int ClimbArmCurrentLimit = 60;
+
+        
+        // ClimbArmの位置合わせ用
+        public static final double ClimbArmFastThreshold = 20;
+        public static final double ClimbArmSetAngleThreshold = 3;
+
+        //MidRungを掴む角度
+        public static final double MidRungCatchAngle = 150.8;
+        //MidRungをの下を通るようにする
+        public static final double MidRungGetUnderAngle = 90;
+
+        
+        public static final double StoreClimbArmAngle = 122.3;
+    }
     
     public static final class Other{
-        // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 5300;
 
         // Deadband
         public static final double Deadband = 0.2;
         // Triggerの押し込み具合
         public static final double TriggerValue = 0.5;
 
-        // ClimbArmのモーターのAmpの制限値
-        public static final int ClimbArmCurrentLimit = 60;
-
-        //gyroのPID
-        public static final double PIDControllerkP = 1;
-        public static final double PIDControllerkI = 0.001;
-        public static final double PIDControllerkD = 0.6;
-
         public static final double TestTurnDirection = 90;
-        // ClimbArmの位置合わせ用
-        public static final double ClimbArmFastThreshold = 20;
-        public static final double ClimbArmSetAngleThreshold = 3;
 
-        public static final double MidRungCatchAngle = 150.8;
-        public static final double MidRungGetUnderAngle = 90;
-
-        public static final double StoreClimbArmAngle = 122.3;
     }
 
     public static final class MotorConfigs {
