@@ -66,7 +66,6 @@ public class Drive implements Component{
 
     public void gyroReset(){
         gyro.reset();
-        State.reachTurn = false;
     }
 
     public boolean isDirectionAchieived(){
