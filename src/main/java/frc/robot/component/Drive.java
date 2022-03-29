@@ -80,11 +80,11 @@ public class Drive implements Component{
     }
 
     public boolean is_judgePIDRightPosition(){
-        return Math.abs(getDriveRightMeter() - State.drivePidSetMeter) < Const.Other.DrivePIDMeasurmentError;
+        return Math.abs(getDriveRightMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
     }
 
     public boolean is_judgePIDLeftPosition(){
-        return Math.abs(getDriveLeftMeter() - State.drivePidSetMeter) < Const.Other.DrivePIDMeasurmentError;
+        return Math.abs(getDriveLeftMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
     }
 
 
@@ -137,7 +137,7 @@ public class Drive implements Component{
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
         driveRightFront.setIntegralAccumulator(0);
-        State.is_judgePIDPosition = false;
+        State.isDrivePidFinished = false;
     }
 
     @Override
@@ -170,7 +170,7 @@ public class Drive implements Component{
         State.driveLeftFrontPositionMeter = getDriveLeftMeter();
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
-        State.is_judgePIDPosition = is_judgePIDPosition();
+        State.isDrivePidFinished = is_judgePIDPosition();
         
     }
 
