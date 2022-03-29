@@ -56,11 +56,15 @@ public class State {
     public static boolean calibration;
 
     //shooterのspeed
-    public static double shooterMotorSpeed;
+    public static double shooterSpeed;
     //gyro
     public static double currentDirection;
     public static double targetDirection;
     public static boolean gyroReset;
+    // 
+    public static boolean reachTurn;
+
+    public static boolean isDrivePidFinished;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -83,7 +87,8 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
-
+        gyroReset = false;
+        driveAccumulateReset = false;
 
     }
 
@@ -97,8 +102,6 @@ public class State {
         s_fastDrive,
         s_turnTo,
         s_pidDrive,
-        
-
     }
 
   

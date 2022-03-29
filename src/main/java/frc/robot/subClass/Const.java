@@ -59,13 +59,13 @@ public class Const {
         // ConveyorSpeed
         // ボールの発射(Shoot)
         // CARGOを発射するときのbeltのスピード
-        public static final double BeltShoot = 0.3;
+        public static final double BeltShoot = 0.5;
         // CARGOを発射するときのshooterのスピード
         public static final double ShooterShoot = 1.0;
 
         // ボールを出す(outtake)
         // outtakeするときのbeltのスピード
-        public static final double BeltOuttake = 0.3;
+        public static final double BeltOuttake = 0.5;
         // outtakeするときのrollerのスピード
         public static final double RollerOuttake = 0.5;
         // outtakeするときのshooterのスピード
@@ -73,7 +73,7 @@ public class Const {
 
         // ボールの回収(intake)
         // intakeするときのbeltのスピード
-        public static final double BeltIntake = 0.3;
+        public static final double BeltIntake = 0.5;
         //intakeするときのbeltのスピード
         public static final double RollerIntake = 0.5;
 
@@ -84,6 +84,11 @@ public class Const {
         public static final double SlowClimbArmSpin = 0.2;
         // midClimbArmのスピード
         public static final double MidClimbArmSpin = 0.8;
+
+        // シューターのモーターの最大速度
+        public static final int shooterMaxOutput = 5300;
+        public static final int ShooterShootThresholdSpeed = 4900;
+
 
     }
 
@@ -111,39 +116,56 @@ public class Const {
     }
 
     public static final class Pid{
+        /** drivePID 長距離用のSlot */
+        public static final int DrivePidLongSlot = 0;
+        /** drivePID 短距離用のSlot */
+        public static final int DrivePidShortSlot = 1;
+        /** drivePID 長短距離の判定のしきい値 */
+        public static final double DrivePidShortThreshold = 0.5;
+      
+        //gyroのPID
+        public static final double PIDControllerkP = 1;
+        public static final double PIDControllerkI = 0.001;
+        public static final double PIDControllerkD = 0.6;
+
         public static void shooterPidSet(SparkMaxPIDController shooterPid){
-            shooterPid.setP(0.003);
-            shooterPid.setI(0.000025);
-            shooterPid.setD(0.003);
+            shooterPid.setP(0.0008);
+            shooterPid.setI(6e-7);
+            shooterPid.setD(0);
         }
         
     }
 
+    public static final class ClimbArm{
+        // ClimbArmのモーターのArmの制限値
+        public static final int ClimbArmCurrentLimit = 60;
+
+        
+        // ClimbArmの位置合わせ用
+        public static final double ClimbArmFastThreshold = 20;
+        public static final double ClimbArmSetAngleThreshold = 3;
+
+        //MidRungを掴む角度
+        public static final double MidRungCatchAngle = 150.8;
+        //MidRungをの下を通るようにする
+        public static final double MidRungGetUnderAngle = 90;
+
+        
+        public static final double StoreClimbArmAngle = 122.3;
+    }
     
     public static final class Other{
-        // シューターのモーターの最大速度
-        public static final int shooterMaxOutput = 100000;
 
         // Deadband
         public static final double Deadband = 0.2;
         // Triggerの押し込み具合
         public static final double TriggerValue = 0.5;
 
-        // ClimbArmのモーターのAmpの制限値
-        public static final int ClimbArmCurrentLimit = 60;
-
-        //gyroのPID
-        public static final double PIDControllerkP = 1;
-        public static final double PIDControllerkI = 0.001;
-        public static final double PIDControllerkD = 0.6;
-
         public static final double TestTurnDirection = 90;
-        // ClimbArmの位置合わせ用
-        public static final double ClimbArmFastThreshold = 20;
-        public static final double ClimbArmSetAngleThreshold = 3;
+        
+        //DrivePIDの目標値と現在の値の誤差の許容範囲(単位メートル)
+        public static final double DrivePidTolerance = 0.1;
 
-        public static final double MidRungCatchAngle = 150.8;
-        public static final double MidRungGetUnderAngle = 90;
     }
 
     public static final class MotorConfigs {
@@ -153,6 +175,9 @@ public class Const {
     }
 
     public static final class AutonomousConst {
+        /** shoot時に下がるときの距離 */
+        public static final double ShootLengthFromFender = 0.3;
+
         // angles
         // travel distance
     }
@@ -168,9 +193,22 @@ public class Const {
         MotorConfigs.DriveLeft.slot0.kD = 0.00054;
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
 
+        MotorConfigs.DriveRight.slot1.kP = 0.2;
+        MotorConfigs.DriveRight.slot1.kI = 0.004;
+        MotorConfigs.DriveRight.slot1.kD = 0.000;
+        MotorConfigs.DriveRight.slot1.maxIntegralAccumulator = 1023*0.1/MotorConfigs.DriveRight.slot1.kI;
+        
+        MotorConfigs.DriveLeft.slot1.kP = 0.2;
+        MotorConfigs.DriveLeft.slot1.kI = 0.0004;
+        MotorConfigs.DriveLeft.slot1.kD = 0.000;
+        MotorConfigs.DriveLeft.slot1.maxIntegralAccumulator =  1023*0.1/MotorConfigs.DriveLeft.slot1.kI;
+
+
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
-        MotorConfigs.gyroPidController = new PIDController(1.0, 0.001, 0.6);
-        
+        MotorConfigs.gyroPidController = new PIDController(0.01, gyrokI, 0);
+        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/gyrokI, 0.1/gyrokI);
+        MotorConfigs.gyroPidController.setTolerance(3);
     }
+    public static final double gyrokI = 0.00218;
 }

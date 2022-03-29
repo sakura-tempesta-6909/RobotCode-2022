@@ -39,6 +39,8 @@ public class Conveyor implements Component {
 
     ballSensor = new DigitalInput(Const.Ports.BallSensor);
     intakeRoller.setInverted(true);
+    shooter.setInverted(true);
+    shooter.getEncoder().setVelocityConversionFactor(-1);
 
   }
   
@@ -60,7 +62,11 @@ public class Conveyor implements Component {
    * CARGOを発射する
    */
   public void shootConveyor(){
-    conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
+    if(State.shooterSpeed > Const.Speeds.ShooterShootThresholdSpeed){
+      conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
+    } else {
+      conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
+    }
   }
 
   /**
@@ -123,7 +129,13 @@ public class Conveyor implements Component {
   public void conveyorControl(double intakeRollerSpeed, double intakeBeltSpeed, double shooterSpeed){
     intakeRoller.set(ControlMode.PercentOutput, intakeRollerSpeed);
     intakeBelt.set(ControlMode.PercentOutput, intakeBeltSpeed);
-    shooterPIDController.setReference(shooterSpeed * Const.Other.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    if(shooterSpeed == Const.Speeds.Neutral){
+      shooter.stopMotor();
+    } else if(shooterSpeed <= Const.Speeds.ShooterOuttake){
+      shooter.set(shooterSpeed);
+    } else {
+      shooterPIDController.setReference(shooterSpeed * Const.Speeds.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+    }
   }
 
   /**
@@ -175,7 +187,7 @@ public class Conveyor implements Component {
 
   @Override
   public void readSensors() {
-    State.shooterMotorSpeed = shooter.getEncoder().getVelocity();
+    State.shooterSpeed = shooter.getEncoder().getVelocity();
   }
 
   @Override
