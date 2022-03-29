@@ -57,45 +57,57 @@ public class Conveyor implements Component {
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutrul");
           State.ballQuantity = State.BallQuantity.s_ballQuantity2;
         }else{
           beltRollerIntake();
+          System.out.println("BeltRollerIntake swich 1");
           State.ballQuantity = State.BallQuantity.s_ballQuantity1;
         }
       }else{
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutrul");
         }else{
           beltRollerIntake();
+          System.out.println("BeltRollerIntake");
         }
       }
     }else if (State.ballQuantity == State.BallQuantity.s_ballQuantity1){
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutral swich 2");
           State.ballQuantity = State.BallQuantity.s_ballQuantity2;
         }else{
           beltRollerIntake();
+          System.out.println("BeltRollerIntake");
         }
       }else{
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutral");
         }else{
           rollerIntake();
+          System.out.println("Roller");
         }
       }
     }else if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
       if (ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutral");
         }else{
           beltRollerIntake();
+          System.out.println("BeltRoller");
         }
       }else{
         if(ballDetectionShoot()){
           conveyorNutral();
+          System.out.println("Nutral");
         }else{
           conveyorNutral();
+          System.out.println("Nutral swich 0");
           State.ballQuantity = State.BallQuantity.s_ballQuantity0;
         }
       }
