@@ -14,7 +14,7 @@ public class Autonomous {
 		phaseTransitionA = new PhaseTransition();
 		phaseTransitionB = new PhaseTransition();
 		PhaseTransition.Phase.PhaseInit();
-
+	
 
 	/**
 	 * ボールの回収もしたかったら、autonomousのコードを3種類ほど書く必要がある
@@ -58,7 +58,7 @@ public class Autonomous {
 	 * 	set(34.07)
 	 */
 
-		// Phaseの登録
+		// Phaseの登録A
 		phaseTransitionA.registerPhase(
 			new PhaseTransition.Phase(
 				() -> {
@@ -107,7 +107,7 @@ public class Autonomous {
 					return;
 				}, 
 				(double time) -> {
-					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1));
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(80)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(80));
 				},
 				"reach ball"
 			),
@@ -129,7 +129,7 @@ public class Autonomous {
 					return;
 				},
 				(double time) -> {
-					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1));
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(79.8)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(79.8));
 				},
 				"f"
 			),
@@ -141,9 +141,142 @@ public class Autonomous {
 				}, 
 				(double time) -> {
 					return State.reachTurn;
-				}
-			)
-			
+				},
+				"ff"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = 34.1;
+					return;
+				},
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(34.1));
+				},
+				"fff"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_stopDrive;
+					State.conveyorState = ConveyorState.s_shooterShoot;
+					return;
+				},
+				(double time) -> {
+					return (time > 1);
+				},
+				"finish autonomous"
+			)	
+		);
+
+
+		//  Phaseの登録B
+		phaseTransitionB.registerPhase(
+			new PhaseTransition.Phase(
+				() -> {
+					State.conveyorState = ConveyorState.s_shooterShoot;
+					return;
+					
+				},
+				(double time) -> {
+					return time > 1.0; //ここは調整
+				},
+				() -> {
+					System.out.println("initial shot fired");
+				},
+				"initial shot"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.conveyorState = ConveyorState.s_intakeConveyor;
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(-34.1);
+					return;
+				},
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1)); //これは多分岩井君がやってるのと被るからそのままにしておく
+				},
+				() -> {
+					System.out.println("out of tarmac");
+				},
+				"out of tarmac"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = -157.5;
+					return;
+				},
+				(double time) -> {
+					return State.reachTurn;
+				},
+				"finish 1st turn"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(80);
+					return;
+				}, 
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(80)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(80));
+				},
+				"reach ball"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = -180;
+					return;
+				},
+				(double time) -> {
+					return State.reachTurn;
+				},
+				"turn to hub"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(79.8);
+					return;
+				},
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(79.8)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(79.8));
+				},
+				"f"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = -22.5;
+					return;
+				}, 
+				(double time) -> {
+					return State.reachTurn;
+				},
+				"ff"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = 34;
+					return;
+				},
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(34.1));
+				},
+				"fff"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_stopDrive;
+					State.conveyorState = ConveyorState.s_shooterShoot;
+					return;
+				},
+				(double time) -> {
+					return (time > 1);
+				},
+				"finish autonomous"
+			)	
 		);
 	}
 
