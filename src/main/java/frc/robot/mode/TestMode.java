@@ -20,11 +20,5 @@ public class TestMode extends Mode{
     if(driveController.getStartButton()){
         State.climbArmState = ClimbArmState.s_angleCalibration;
       } 
-
-    if(driveController.getAButton()){
-      State.driveState = DriveState.s_turnTo;
-      State.targetDirection = Const.Other.TestTurnDirection;
-      
-    }
   }
 }

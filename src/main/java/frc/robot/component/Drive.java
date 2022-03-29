@@ -127,8 +127,13 @@ public class Drive implements Component{
     }
 
     public void drivePosition(double pidposition){
-        driveRightFront.selectProfileSlot(0, 0);
-        driveLeftFront.selectProfileSlot(0, 0);
+        if(Math.abs(pidposition) < Const.Pid.DrivePidShortThreshold) {
+            driveRightFront.selectProfileSlot(Const.Pid.DrivePidShortSlot, 0);
+            driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+        } else {
+        driveRightFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+        driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+        }
         driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
         driveLeftFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
     }
@@ -199,6 +204,7 @@ public class Drive implements Component{
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
+                break;
             case s_turnTo:
                 turnTo(State.targetDirection); 
                 break;

@@ -116,6 +116,13 @@ public class Const {
     }
 
     public static final class Pid{
+        /** drivePID 長距離用のSlot */
+        public static final int DrivePidLongSlot = 0;
+        /** drivePID 短距離用のSlot */
+        public static final int DrivePidShortSlot = 1;
+        /** drivePID 長短距離の判定のしきい値 */
+        public static final double DrivePidShortThreshold = 0.5;
+      
         //gyroのPID
         public static final double PIDControllerkP = 1;
         public static final double PIDControllerkI = 0.001;
@@ -168,6 +175,9 @@ public class Const {
     }
 
     public static final class AutonomousConst {
+        /** shoot時に下がるときの距離 */
+        public static final double ShootLengthFromFender = 0.3;
+
         // angles
         // travel distance
     }
@@ -182,6 +192,17 @@ public class Const {
         MotorConfigs.DriveLeft.slot0.kI = 0.000009;
         MotorConfigs.DriveLeft.slot0.kD = 0.00054;
         MotorConfigs.DriveLeft.slot0.maxIntegralAccumulator =  1023*0.014/MotorConfigs.DriveLeft.slot0.kI;
+
+        MotorConfigs.DriveRight.slot1.kP = 0.2;
+        MotorConfigs.DriveRight.slot1.kI = 0.004;
+        MotorConfigs.DriveRight.slot1.kD = 0.000;
+        MotorConfigs.DriveRight.slot1.maxIntegralAccumulator = 1023*0.1/MotorConfigs.DriveRight.slot1.kI;
+        
+        MotorConfigs.DriveLeft.slot1.kP = 0.2;
+        MotorConfigs.DriveLeft.slot1.kI = 0.0004;
+        MotorConfigs.DriveLeft.slot1.kD = 0.000;
+        MotorConfigs.DriveLeft.slot1.maxIntegralAccumulator =  1023*0.1/MotorConfigs.DriveLeft.slot1.kI;
+
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
