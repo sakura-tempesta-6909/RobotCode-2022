@@ -57,7 +57,7 @@ public class Conveyor implements Component {
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
-          System.out.println("Nutrul");
+          System.out.println("Nutrul swich 2");
           State.ballQuantity = State.BallQuantity.s_ballQuantity2;
         }else{
           beltRollerIntake();
