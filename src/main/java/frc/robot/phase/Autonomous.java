@@ -6,6 +6,7 @@ import frc.robot.State.DriveState;
 import frc.robot.component.Drive;
 import frc.robot.mode.ConveyorMode;
 import frc.robot.phase.PhaseTransition.Phase;
+
 import edu.wpi.first.math.util.Units;
 
 public class Autonomous {
@@ -17,7 +18,7 @@ public class Autonomous {
 		return new PhaseTransition.Phase(
 			() -> {
 				State.driveState = DriveState.s_pidDrive;
-				State.drivePidSetMeter = inch;
+				State.drivePidSetMeter = Units.inchesToMeters(inch);
 				return;
 			},
 			(double time) -> {
@@ -146,23 +147,28 @@ public class Autonomous {
 
 			conveyorMode(1.0, ConveyorState.s_shootConveyor, "initialShot"),
 
-			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stopConveyor"),
-
 			straightPidDrive(-34.1, "out of tarmac"),
 
 			turnTo(157.5, "first turn"),
 
 			intakeExtend(0.3, true, "open intake"),
 
-			conveyorMode(0.1, ConveyorState.s_intakeConveyor, "startConveyor"),
+			new PhaseTransition.Phase(
+				() -> {
+					State.conveyorState = ConveyorState.s_intakeConveyor;
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(80);
+					return;
+				}, 
+				(double time) -> {
+					return State.isDrivePidFinished;
+				},
+				"move towards ball"
+			),
 
-			straightPidDrive(80, "reach ball"),
-
-			stationary(3, "wait for ball to enter"), //これはいるか分からん
+			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
 			turnTo(180, "u-turn"),
-
-			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stopConveyor"),
 
 			intakeExtend(0.3, false, "close intake"),
 
@@ -181,21 +187,26 @@ public class Autonomous {
 
 			conveyorMode(1.0, ConveyorState.s_shootConveyor, "initialShot"),
 
-			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stopConveyor"),
-
 			straightPidDrive(-34.1, "out of tarmac"),
 
 			turnTo(-157.5, "first turn"),
 
 			intakeExtend(0.3, true, "open intake"),
 
-			conveyorMode(0.1, ConveyorState.s_intakeConveyor, "startConveyor"),
-
-			straightPidDrive(80, "reach ball"),
+			new PhaseTransition.Phase(
+				() -> {
+					State.conveyorState = ConveyorState.s_intakeConveyor;
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(80);
+					return;
+				}, 
+				(double time) -> {
+					return State.isDrivePidFinished;
+				},
+				"move towards ball"
+			),
 
 			turnTo(-180, "u-turn"),
-
-			conveyorMode(0.1, ConveyorState.s_stopConveyor, "stopConveyor"),
 
 			intakeExtend(0.3, false, "close intake"),
 
