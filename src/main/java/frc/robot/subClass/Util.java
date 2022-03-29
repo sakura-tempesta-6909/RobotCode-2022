@@ -126,6 +126,6 @@ public class Util {
     }
 
     public static double mathDiffNowPointToGoalPoint(double driveNowPosition , double targetPosition){
-        return Math.abs(Math.subtractExact(Math.round(driveNowPosition), Math.round(targetPosition)));
+        return driveNowPosition - targetPosition;
     }
 }

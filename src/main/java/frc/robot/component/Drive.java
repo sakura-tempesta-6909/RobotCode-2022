@@ -79,12 +79,15 @@ public class Drive implements Component{
         return is_judgePIDRightPosition() && is_judgePIDLeftPosition();
     }
 
+    //mででる
     public boolean is_judgePIDRightPosition(){
-        return Util.mathDiffNowPointToGoalPoint(driveMeterToPoint(getDriveRightMeter()), Const.Calculation.EncoderPointsPerRevolution) < driveMeterToPoint(Const.Other.DrivePIDMeasurmentError);
+        return Util.mathDiffNowPointToGoalPoint(getDriveRightMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) < Const.Other.DrivePIDMeasurmentError
+        && Util.mathDiffNowPointToGoalPoint(getDriveRightMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) > -Const.Other.DrivePIDMeasurmentError;
     }
 
     public boolean is_judgePIDLeftPosition(){
-        return Util.mathDiffNowPointToGoalPoint(driveMeterToPoint(getDriveLeftMeter()), Const.Calculation.EncoderPointsPerRevolution) < driveMeterToPoint(Const.Other.DrivePIDMeasurmentError);
+        return Util.mathDiffNowPointToGoalPoint(getDriveLeftMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) < Const.Other.DrivePIDMeasurmentError
+        && Util.mathDiffNowPointToGoalPoint(getDriveLeftMeter(),drivePointToMeter(Const.Calculation.EncoderPointsPerRevolution)) > -Const.Other.DrivePIDMeasurmentError;
     }
     
     
