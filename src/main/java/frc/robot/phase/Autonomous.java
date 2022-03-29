@@ -6,14 +6,15 @@ import frc.robot.State.DriveState;
 import frc.robot.component.Drive;
 
 public class Autonomous {
-	private static PhaseTransition phaseTransition;
+	private static PhaseTransition phaseTransitionA;
 
 	public static void autonomousInit() {
-		phaseTransition = new PhaseTransition();
+		phaseTransitionA = new PhaseTransition();
+		phaseTransitionB = new PhaseTransition();
 		PhaseTransition.Phase.PhaseInit();
 
 		// Phaseの登録
-		phaseTransition.registerPhase(
+		phaseTransitionA.registerPhase(
 			new PhaseTransition.Phase(
 				() -> {
 					State.conveyorState = ConveyorState.s_shooterShoot;
@@ -56,6 +57,6 @@ public class Autonomous {
 	}
 
 	public static void run() {
-		phaseTransition.run();
+		phaseTransitionA.run();
 	}
 }
