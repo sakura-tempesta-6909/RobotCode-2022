@@ -21,7 +21,7 @@ public class Autonomous {
 				return;
 			},
 			(double time) -> {
-				return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(inch)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(inch));
+				return State.isDrivePidFinished;
 			},
 			() -> {
 				State.driveAccumulateReset = true;
