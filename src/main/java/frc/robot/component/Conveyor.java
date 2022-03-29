@@ -53,7 +53,8 @@ public class Conveyor implements Component {
    */
 
   public void intakeConveyor(){
-    if(State.ballQuantity == State.BallQuantity.s_ballQuantity0){
+    switch(State.ballQuantity){
+      case s_ballQuantity0:
       if(ballDetectionIntake()){
         if(ballDetectionShoot()){
           conveyorNutral();
@@ -70,38 +71,45 @@ public class Conveyor implements Component {
           beltRollerIntake();
         }
       }
-    }else if (State.ballQuantity == State.BallQuantity.s_ballQuantity1){
-      if(ballDetectionIntake()){
-        if(ballDetectionShoot()){
-          conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+      break;
+      case s_ballQuantity1:
+      if (State.ballQuantity == State.BallQuantity.s_ballQuantity1){
+        if(ballDetectionIntake()){
+          if(ballDetectionShoot()){
+            conveyorNutral();
+            State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+          }else{
+            beltRollerIntake();
+          }
         }else{
-          beltRollerIntake();
-        }
-      }else{
-        if(ballDetectionShoot()){
-          conveyorNutral();
-        }else{
-          rollerIntake();
-        }
-      }
-    }else if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
-      if (ballDetectionIntake()){
-        if(ballDetectionShoot()){
-          conveyorNutral();
-        }else{
-          beltRollerIntake();
-        }
-      }else{
-        if(ballDetectionShoot()){
-          conveyorNutral();
-        }else{
-          conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            rollerIntake();
+          }
         }
       }
+      break;
+      case s_ballQuantity2:
+      if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
+        if (ballDetectionIntake()){
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            beltRollerIntake();
+          }
+        }else{
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            conveyorNutral();
+            State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+          }
+        }
+      }
+      break;
     }
-  }  
+  } 
 
     //センサーが認識しているときballDetection*** methodはtrue
   public boolean ballDetectionIntake(){
