@@ -131,7 +131,7 @@ public class Autonomous {
 				(double time) -> {
 					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(79.8)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(79.8));
 				},
-				"f"
+				"towards the hub"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -142,7 +142,7 @@ public class Autonomous {
 				(double time) -> {
 					return State.reachTurn;
 				},
-				"ff"
+				"final turn"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -153,7 +153,7 @@ public class Autonomous {
 				(double time) -> {
 					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(34.1));
 				},
-				"fff"
+				"bump into hub"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -209,7 +209,7 @@ public class Autonomous {
 				(double time) -> {
 					return State.reachTurn;
 				},
-				"finish 1st turn"
+				"first turn"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -242,7 +242,7 @@ public class Autonomous {
 				(double time) -> {
 					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(79.8)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(79.8));
 				},
-				"f"
+				"towards the hub"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -253,7 +253,7 @@ public class Autonomous {
 				(double time) -> {
 					return State.reachTurn;
 				},
-				"ff"
+				"final turn"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -264,7 +264,7 @@ public class Autonomous {
 				(double time) -> {
 					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(34.1));
 				},
-				"fff"
+				"bump into hub"
 			),
 			new PhaseTransition.Phase(
 				() -> {
@@ -281,7 +281,10 @@ public class Autonomous {
 	}
 
 	public static void run() {
-		phaseTransitionA.run();
-		phaseTransitionB.run();
+		if(State.gameSpecificMessage == "1"){
+			phaseTransitionA.run();
+		} else if(State.gameSpecificMessage == "2"){
+			phaseTransitionB.run();
+		}
 	}
 }
