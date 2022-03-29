@@ -58,7 +58,7 @@ public class State {
     public static boolean calibration;
 
     //shooterのspeed
-    public static double shooterMotorSpeed;
+    public static double shooterSpeed;
     //gyro
     public static double currentDirection;
     public static double targetDirection;
@@ -87,6 +87,9 @@ public class State {
         is_firstSolenoidOpen = false;
         is_secondSolenoidOpen = false;
         is_climbSolenoidOpen = false;
+        gyroReset = false;
+        driveAccumulateReset = false;
+
     }
 
     /**

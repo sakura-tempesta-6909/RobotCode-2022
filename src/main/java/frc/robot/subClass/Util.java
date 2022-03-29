@@ -49,7 +49,7 @@ public class Util {
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
         sendConsole("ballQuantity", State.ballQuantity.getBallQuantity());
-        sendConsole("shooterSpeed",State.shooterMotorSpeed);
+        sendConsole("shooterSpeed",State.shooterSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
         sendConsole("robotDirection",State.currentDirection);

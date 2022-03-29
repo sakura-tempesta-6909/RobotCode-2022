@@ -58,10 +58,10 @@ public class ClimbMode extends Mode {
 
     if(operateController.getBButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-      State.climbArmTargetAngle = Const.Other.MidRungCatchAngle;
+      State.climbArmTargetAngle = Const.ClimbArm.MidRungCatchAngle;
     } else if(operateController.getYButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
-      State.climbArmTargetAngle = Const.Other.MidRungGetUnderAngle;
+      State.climbArmTargetAngle = Const.ClimbArm.MidRungGetUnderAngle;
     }
   }
 }
