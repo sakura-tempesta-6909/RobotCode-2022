@@ -28,9 +28,6 @@ public class Const {
         public static final int BallSensorIntake = 0;
         public static final int BallSensorShooter = 1;
 
-        // sensor, conveyor
-        public static final int BallSensor = 0; //これはあるか分からない
-
         // pneumatics
         public static final int Compressor = 0;
         public static final int FirstSolenoid = 0;

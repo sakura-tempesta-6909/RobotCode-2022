@@ -211,7 +211,6 @@ public class Conveyor implements Component {
     if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
       intakeExtendControl = false;
     }
-    // intakeExtend.set(intakeExtendControl);
     intakeExtend.set(intakeExtendControl);
   }
 
