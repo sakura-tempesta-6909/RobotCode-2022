@@ -119,12 +119,36 @@ public class Autonomous {
 				},
 				(double time) -> {
 					return State.reachTurn;
+				},
+				"turn to hub"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_pidDrive;
+					State.drivePidSetMeter = Units.inchesToMeters(79.8);
+					return;
+				},
+				(double time) -> {
+					return (State.driveLeftFrontPositionMeter == Units.inchesToMeters(-34.1)) && (State.driveRightFrontPositionMeter == Units.inchesToMeters(-34.1));
+				},
+				"f"
+			),
+			new PhaseTransition.Phase(
+				() -> {
+					State.driveState = DriveState.s_turnTo;
+					State.targetDirection = 22.5;
+					return;
+				}, 
+				(double time) -> {
+					return State.reachTurn;
 				}
 			)
+			
 		);
 	}
 
 	public static void run() {
 		phaseTransitionA.run();
+		phaseTransitionB.run();
 	}
 }

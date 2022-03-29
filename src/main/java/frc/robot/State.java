@@ -87,6 +87,7 @@ public class State {
         is_climbSolenoidOpen = false;
         gyroReset = false;
         driveAccumulateReset = false;
+        reachTurn = false;
 
     }
 
