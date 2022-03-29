@@ -152,7 +152,7 @@ public class Autonomous {
 				() -> {
 					State.conveyorState = ConveyorState.s_intakeConveyor;
 					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = Units.inchesToMeters(85);
+					State.drivePidSetMeter = Units.inchesToMeters(90);
 					return;
 				}, 
 				(double time) -> {
@@ -164,6 +164,8 @@ public class Autonomous {
 			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
 			turnTo(180, "u-turn"),
+
+			straightPidDrive(10, "stepBack"),
 
 			intakeExtend(0.3, false, "close intake"),
 
@@ -192,7 +194,7 @@ public class Autonomous {
 				() -> {
 					State.conveyorState = ConveyorState.s_intakeConveyor;
 					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = Units.inchesToMeters(85);
+					State.drivePidSetMeter = Units.inchesToMeters(90);
 					return;
 				}, 
 				(double time) -> {
@@ -201,7 +203,11 @@ public class Autonomous {
 				"move towards ball"
 			),
 
+			//stationary(3, "wait for ball to enter"), //これはいるか分からん
+
 			turnTo(-180, "u-turn"),
+
+			straightPidDrive(10, "stepBack"),
 
 			intakeExtend(0.3, false, "close intake"),
 
