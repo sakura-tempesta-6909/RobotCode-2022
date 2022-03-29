@@ -152,7 +152,7 @@ public class Autonomous {
 				() -> {
 					State.conveyorState = ConveyorState.s_intakeConveyor;
 					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = Units.inchesToMeters(80);
+					State.drivePidSetMeter = Units.inchesToMeters(85);
 					return;
 				}, 
 				(double time) -> {
@@ -192,7 +192,7 @@ public class Autonomous {
 				() -> {
 					State.conveyorState = ConveyorState.s_intakeConveyor;
 					State.driveState = DriveState.s_pidDrive;
-					State.drivePidSetMeter = Units.inchesToMeters(80);
+					State.drivePidSetMeter = Units.inchesToMeters(85);
 					return;
 				}, 
 				(double time) -> {
