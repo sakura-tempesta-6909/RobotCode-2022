@@ -62,7 +62,7 @@ public class Conveyor implements Component {
    * CARGOを発射する
    */
   public void shootConveyor(){
-    if(State.shooterSpeed > Const.Other.ShooterShootThresholdSpeed){
+    if(State.shooterSpeed > Const.Speeds.ShooterShootThresholdSpeed){
       conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
     } else {
       conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
@@ -134,7 +134,7 @@ public class Conveyor implements Component {
     } else if(shooterSpeed <= Const.Speeds.ShooterOuttake){
       shooter.set(shooterSpeed);
     } else {
-      shooterPIDController.setReference(shooterSpeed * Const.Other.ShooterMaxOutput,CANSparkMax.ControlType.kVelocity);
+      shooterPIDController.setReference(shooterSpeed * Const.Speeds.shooterMaxOutput,CANSparkMax.ControlType.kVelocity);
     }
   }
 
