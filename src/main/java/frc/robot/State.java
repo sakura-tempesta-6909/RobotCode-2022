@@ -79,7 +79,8 @@ public class State {
         alliance = DriverStation.getAlliance();
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
         climbMotorIdleMode = IdleMode.kCoast;
-        
+        State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+
         stateReset();
     }
 
