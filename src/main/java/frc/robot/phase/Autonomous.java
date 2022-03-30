@@ -164,7 +164,7 @@ public class Autonomous {
 
 			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
-			straightPidDrive(10, "stepBack"),
+			straightPidDrive(-10, "stepBack"),
 			
 			turnTo(180, "u-turn"),
 
@@ -206,7 +206,7 @@ public class Autonomous {
 
 			//stationary(3, "wait for ball to enter"), //これはいるか分からん
 
-			straightPidDrive(10, "stepBack"),
+			straightPidDrive(-10, "stepBack"),
 
 			turnTo(-180, "u-turn"),
 
