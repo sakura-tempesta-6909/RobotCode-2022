@@ -73,7 +73,6 @@ public class Conveyor implements Component {
       }
       break;
       case s_ballQuantity1:
-      if (State.ballQuantity == State.BallQuantity.s_ballQuantity1){
         if(ballDetectionIntake()){
           if(ballDetectionShoot()){
             conveyorNutral();
@@ -88,10 +87,8 @@ public class Conveyor implements Component {
             rollerIntake();
           }
         }
-      }
       break;
       case s_ballQuantity2:
-      if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
         if (ballDetectionIntake()){
           if(ballDetectionShoot()){
             conveyorNutral();
@@ -106,7 +103,6 @@ public class Conveyor implements Component {
             State.ballQuantity = State.BallQuantity.s_ballQuantity0;
           }
         }
-      }
       break;
     }
   } 
