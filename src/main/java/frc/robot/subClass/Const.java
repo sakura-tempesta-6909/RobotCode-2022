@@ -152,7 +152,6 @@ public class Const {
 
         
         public static final double StoreClimbArmAngle = 122.3;
-
         
     }
     
