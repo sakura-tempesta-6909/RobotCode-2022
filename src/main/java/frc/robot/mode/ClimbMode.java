@@ -34,7 +34,7 @@ public class ClimbMode extends Mode {
     State.driveZRotation = operateController.getRightX();
 
     // RT: 前, LT: 後ろ
-    State.climbArmSpeed = operateController.getRightTriggerAxis() - operateController.getLeftTriggerAxis();
+    State.climbArmSpeed = operateController.getRightTriggerAxis() * 0.8 - operateController.getLeftTriggerAxis();
     State.climbMotorIdleMode = IdleMode.kBrake;
     
     // A: climbArmを速くする
