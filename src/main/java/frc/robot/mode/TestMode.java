@@ -26,5 +26,9 @@ public class TestMode extends Mode{
       State.driveState = DriveState.s_turnTo;
       State.targetDirection = 90;
     }
+
+    if(driveController.getBButton()){
+      State.gyroReset = true;
+    }
   }
 }

@@ -211,5 +211,5 @@ public class Const {
         MotorConfigs.gyroPidController.setIntegratorRange(-0.1/gyrokI, 0.1/gyrokI);
         MotorConfigs.gyroPidController.setTolerance(3);
     }
-    public static final double gyrokI = 0.00218;
+    public static final double gyrokI = 0.0021;
 }
