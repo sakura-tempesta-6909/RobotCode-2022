@@ -3,6 +3,7 @@ package frc.robot.subClass;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.component.Conveyor;
 import frc.robot.component.Drive;
 
 public class Util {
@@ -49,12 +50,16 @@ public class Util {
         sendConsole("climbArmAngle", State.climbArmAngle);
         sendConsole("alliance", State.alliance.toString());
         sendConsole("gameMessage", State.gameSpecificMessage);
+        sendConsole("ballQuantity", State.ballQuantity.getBallQuantity());
         sendConsole("shooterSpeed",State.shooterSpeed);
         sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
         sendConsole("robotDirection",State.currentDirection);
         sendConsole("isTurnFinished", State.reachTurn);
+        sendConsole("IntakeSensor", State.intakeSensorJudge);
+        sendConsole("ShooterSensor", State.shooterSensorJudge);
         sendConsole("DrivePidFinish", State.isDrivePidFinished);
+
     }
 
     /**

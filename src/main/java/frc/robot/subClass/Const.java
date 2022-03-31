@@ -23,8 +23,10 @@ public class Const {
         // Motor, Conveyor
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
-        // sensor, conveyor
-        public static final int BallSensor = 0; //これはあるか分からない
+
+        //sensor, conveyor
+        public static final int BallSensorIntake = 0;
+        public static final int BallSensorShooter = 1;
 
         // pneumatics
         public static final int Compressor = 0;
