@@ -19,6 +19,8 @@ public class State {
     //xSpeedとzRotationのスピード(単位：：PerecntOutput)
     public static double driveXSpeed, driveZRotation;
 
+    public static BallQuantity ballQuantity;
+
     //ConveyorStateの変数を作る
     public static ConveyorState conveyorState;;
     
@@ -64,6 +66,8 @@ public class State {
     // 
     public static boolean reachTurn;
 
+    public static boolean intakeSensorJudge;
+    public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
 
     public static void StateInit() {
@@ -75,7 +79,8 @@ public class State {
         alliance = DriverStation.getAlliance();
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
         climbMotorIdleMode = IdleMode.kCoast;
-        
+        State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+
         stateReset();
     }
 
@@ -124,9 +129,26 @@ public class State {
         s_shooterOuttake,
     }
 
+    public enum BallQuantity {
+        s_ballQuantity0(0),
+        s_ballQuantity1(1),
+        s_ballQuantity2(2);
+
+        private final int ballQuantity;
+
+        BallQuantity(int ballQuantity){
+            this.ballQuantity = ballQuantity;
+        }
+
+        public int getBallQuantity(){
+            return ballQuantity;
+        }
+    }
+
     /**
      * ClimbArmの状態
      */
+
     public enum ClimbArmState {
         s_fastClimbArmSpin,
         s_midClimbArmSpin,

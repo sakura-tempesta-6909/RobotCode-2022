@@ -17,6 +17,7 @@ import frc.robot.subClass.Const;
 public class Conveyor implements Component {
 
   private VictorSPX intakeRoller;
+  private DigitalInput ballSensorIntake, ballSensorShooter;;
   private TalonSRX intakeBelt;
   private CANSparkMax shooter;
   private DigitalInput ballSensor;
@@ -32,12 +33,15 @@ public class Conveyor implements Component {
     shooter = new CANSparkMax(Const.Ports.Shooter, CANSparkMaxLowLevel.MotorType.kBrushless);
     shooterPIDController = shooter.getPIDController();
 
+
     /* ShooterのPIDの設定 */
     Const.Pid.shooterPidSet(shooterPIDController);
    
     intakeExtend = new Solenoid(PneumaticsModuleType.CTREPCM, Const.Ports.ConveyorExtend);
 
-    ballSensor = new DigitalInput(Const.Ports.BallSensor);
+
+    ballSensorIntake = new DigitalInput(Const.Ports.BallSensorIntake);
+    ballSensorShooter = new DigitalInput(Const.Ports.BallSensorShooter);
     intakeRoller.setInverted(true);
     shooter.setInverted(true);
     shooter.getEncoder().setVelocityConversionFactor(-1);
@@ -47,8 +51,69 @@ public class Conveyor implements Component {
    /**
    * CARGOを回収する
    */
+
   public void intakeConveyor(){
-    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
+    switch(State.ballQuantity){
+      case s_ballQuantity0:
+      if(ballDetectionIntake()){
+        if(ballDetectionShoot()){
+          conveyorNutral();
+          State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+        }else{
+          beltRollerIntake();
+          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
+        }
+      }else{
+        if(ballDetectionShoot()){
+          conveyorNutral();
+          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
+        }else{
+          beltRollerIntake();
+        }
+      }
+      break;
+      case s_ballQuantity1:
+        if(ballDetectionIntake()){
+          if(ballDetectionShoot()){
+            conveyorNutral();
+            State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+          }else{
+            beltRollerIntake();
+          }
+        }else{
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            rollerIntake();
+          }
+        }
+      break;
+      case s_ballQuantity2:
+        if (ballDetectionIntake()){
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            beltRollerIntake();
+          }
+        }else{
+          if(ballDetectionShoot()){
+            conveyorNutral();
+          }else{
+            conveyorNutral();
+            State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+          }
+        }
+      break;
+    }
+  } 
+
+    //センサーが認識しているときballDetection*** methodはtrue
+  public boolean ballDetectionIntake(){
+    return !ballSensorIntake.get();
+  }
+
+  public boolean ballDetectionShoot(){
+    return !ballSensorShooter.get();
   }
   
   /**
@@ -62,6 +127,10 @@ public class Conveyor implements Component {
    * CARGOを発射する
    */
   public void shootConveyor(){
+
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.BeltIntake, Const.Speeds.ShooterShoot);
+    State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+
     if(State.shooterSpeed > Const.Speeds.ShooterShootThresholdSpeed){
       conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.ShooterShoot);
     } else {
@@ -118,8 +187,18 @@ public class Conveyor implements Component {
     conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, -Const.Speeds.ShooterOuttake);
   }
 
-  
+  public void beltRollerIntake(){
+    conveyorControl(Const.Speeds.RollerIntake, Const.Speeds.BeltIntake, Const.Speeds.Neutral);
+  }
 
+  public void beltRollerOuttake(){
+    conveyorControl(Const.Speeds.RollerOuttake, Const.Speeds.BeltOuttake, Const.Speeds.Neutral);
+  }
+
+  public void conveyorNutral(){
+    conveyorControl(Const.Speeds.Neutral, Const.Speeds.Neutral, Const.Speeds.Neutral);
+
+  }
   /**
    * conveyor関係のモーターを動かす
    * @param intakeRollerSpeed intakeを正
@@ -143,6 +222,9 @@ public class Conveyor implements Component {
    * @param intakeExtendControl 展開するときをtrue
    */
   public void intakeExtendControl(boolean intakeExtendControl){
+    if(State.ballQuantity == State.BallQuantity.s_ballQuantity2){
+      intakeExtendControl = false;
+    }
     intakeExtend.set(intakeExtendControl);
   }
 
@@ -188,6 +270,8 @@ public class Conveyor implements Component {
   @Override
   public void readSensors() {
     State.shooterSpeed = shooter.getEncoder().getVelocity();
+    State.intakeSensorJudge = ballDetectionIntake();
+    State.shooterSensorJudge = ballDetectionShoot();
   }
 
   @Override
