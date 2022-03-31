@@ -31,32 +31,32 @@ public class Util {
     }
 
     public static void allSendConsole(){
+        sendConsole("gameMessage", State.gameSpecificMessage);
+        sendConsole("alliance", State.alliance.toString());
         sendConsole( "Mode", State.mode.toString());
         sendConsole("DriveState", State.driveState.toString());
         sendConsole("ClimbState", State.climbArmState.toString());
         sendConsole("ConveyorState", State.conveyorState.toString());
-        sendConsole("driveXSpeed", State.driveXSpeed);
-        sendConsole("driveZRotation", State.driveZRotation);
-        sendConsole("extendSpeed", State.intakeExtendSpeed);
+        sendConsole("isTurnFinished", State.reachTurn);
+        sendConsole("DrivePidFinish", State.isDrivePidFinished);
+        sendConsole("compressorOn", State.is_compressorEnabled);
         sendConsole("1stSolenoidOpen", State.is_firstSolenoidOpen);
         sendConsole("2ndSolenoidOpen", State.is_secondSolenoidOpen);
         sendConsole("climbSolenoidUp", State.is_climbSolenoidOpen);
-        sendConsole("climbArmSpeed", State.climbArmSpeed);
-        sendConsole("compressorOn", State.is_compressorEnabled);
-        sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
-        sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
-        sendConsole("climbArmAngle", State.climbArmAngle);
-        sendConsole("alliance", State.alliance.toString());
-        sendConsole("gameMessage", State.gameSpecificMessage);
-        sendConsole("ballQuantity", State.ballQuantity.getBallQuantity());
-        sendConsole("shooterSpeed",State.shooterSpeed);
-        sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
         sendConsole("extendOpen", State.is_intakeExtendOpen);
-        sendConsole("robotDirection",State.currentDirection);
-        sendConsole("isTurnFinished", State.reachTurn);
         sendConsole("IntakeSensor", State.intakeSensorJudge);
         sendConsole("ShooterSensor", State.shooterSensorJudge);
-        sendConsole("DrivePidFinish", State.isDrivePidFinished);
+        sendConsole("driveXSpeed", State.driveXSpeed);
+        sendConsole("driveZRotation", State.driveZRotation);
+        sendConsole("driveRightMeter", State.driveRightFrontPositionMeter);
+        sendConsole("driveLeftMeter", State.driveLeftFrontPositionMeter);
+        sendConsole("robotDirection",State.currentDirection);
+        sendConsole("extendSpeed", State.intakeExtendSpeed);
+        sendConsole("climbArmSpeed", State.climbArmSpeed);
+        sendConsole("climbArmAngle", State.climbArmAngle);
+        sendConsole("shooterSpeed",State.shooterSpeed);
+        sendConsole("ballQuantity", State.ballQuantity.getBallQuantity());
+        sendConsole("climbMotorNEO", State.is_climbArmMotorNEO);
 
     }
 
