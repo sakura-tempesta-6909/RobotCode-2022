@@ -12,6 +12,7 @@ public class TestMode extends Mode{
 
   @Override
   public void changeState() {
+    State.is_compressorEnabled = false;
     if(driveController.getBackButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.ClimbArm.StoreClimbArmAngle;
@@ -20,5 +21,14 @@ public class TestMode extends Mode{
     if(driveController.getStartButton()){
         State.climbArmState = ClimbArmState.s_angleCalibration;
       } 
+
+    if(driveController.getAButton()){
+      State.driveState = DriveState.s_turnTo;
+      State.targetDirection = 90;
+    }
+
+    if(driveController.getBButton()){
+      State.gyroReset = true;
+    }
   }
 }

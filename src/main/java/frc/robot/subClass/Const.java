@@ -152,7 +152,6 @@ public class Const {
 
         
         public static final double StoreClimbArmAngle = 122.3;
-
         
     }
     
@@ -164,10 +163,9 @@ public class Const {
         public static final double TriggerValue = 0.5;
 
         public static final double TestTurnDirection = 90;
-
+        
         //DrivePIDの目標値と現在の値の誤差の許容範囲(単位メートル)
         public static final double DrivePidTolerance = 0.1;
-
     }
 
     public static final class MotorConfigs {
@@ -208,8 +206,9 @@ public class Const {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
-        MotorConfigs.gyroPidController = new PIDController(0.01, 0.00218, 0);
-        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/0.00218, 0.1/0.00218);
+        MotorConfigs.gyroPidController = new PIDController(0.01, gyrokI, 0);
+        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/gyrokI, 0.1/gyrokI);
         MotorConfigs.gyroPidController.setTolerance(3);
     }
+    public static final double gyrokI = 0.0021;
 }
