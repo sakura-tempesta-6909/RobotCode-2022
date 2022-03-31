@@ -20,7 +20,6 @@ public class Conveyor implements Component {
   private DigitalInput ballSensorIntake, ballSensorShooter;;
   private TalonSRX intakeBelt;
   private CANSparkMax shooter;
-  private DigitalInput ballSensor;
   private SparkMaxPIDController shooterPIDController;
   private Solenoid intakeExtend;
   
