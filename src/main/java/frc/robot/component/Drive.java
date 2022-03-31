@@ -1,5 +1,6 @@
 package frc.robot.component;
 
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -21,7 +22,6 @@ public class Drive implements Component{
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
     private ADXRS450_Gyro gyro;
-
 
     /**
      * Motorの初期化、Motor・センサーの反転 

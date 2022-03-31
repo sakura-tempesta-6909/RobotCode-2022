@@ -1,6 +1,7 @@
 package frc.robot.subClass;
 
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 
@@ -57,8 +58,11 @@ public class Util {
         sendConsole("IntakeSensor", State.intakeSensorJudge);
         sendConsole("ShooterSensor", State.shooterSensorJudge);
         sendConsole("DrivePidFinish", State.isDrivePidFinished);
+        CameraServer.startAutomaticCapture();
 
     }
+
+
 
     /**
      * 角度がその範囲にあるか。
