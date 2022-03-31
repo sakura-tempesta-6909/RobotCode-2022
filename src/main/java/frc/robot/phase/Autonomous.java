@@ -3,10 +3,6 @@ package frc.robot.phase;
 import frc.robot.State;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.DriveState;
-import frc.robot.component.Drive;
-import frc.robot.mode.ConveyorMode;
-import frc.robot.phase.PhaseTransition.Phase;
-
 import edu.wpi.first.math.util.Units;
 
 public class Autonomous {
