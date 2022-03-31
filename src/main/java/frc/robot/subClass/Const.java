@@ -25,8 +25,8 @@ public class Const {
         public static final int IntakeRoller = 5;
 
         //sensor, conveyor
-        public static final int BallSensorIntake = 0;
-        public static final int BallSensorShooter = 1;
+        public static final int BallSensorIntake = 1;
+        public static final int BallSensorShooter = 2;
 
         // pneumatics
         public static final int Compressor = 0;
@@ -40,7 +40,7 @@ public class Const {
         public static final int Shooter = 2;
 
         // dio port
-        public static final int hallsensorPort = 1;
+        public static final int hallsensorPort = 0;
     }
 
     
