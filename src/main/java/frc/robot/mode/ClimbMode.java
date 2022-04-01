@@ -52,6 +52,7 @@ public class ClimbMode extends Mode {
     // RS & LS & POV180: climbSolenoidがOpen
     if(operateController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
+      State.hasClimbDeployed = true;
     } else {
       State.is_climbSolenoidOpen = false;
     }
@@ -62,6 +63,7 @@ public class ClimbMode extends Mode {
     } else if(operateController.getYButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.ClimbArm.MidRungGetUnderAngle;
+     
     }
   }
 }

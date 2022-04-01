@@ -13,6 +13,7 @@ public class TestMode extends Mode{
   @Override
   public void changeState() {
     State.is_compressorEnabled = false;
+    State.hasClimbDeployed = true;
     if(driveController.getBackButton()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.ClimbArm.StoreClimbArmAngle;
