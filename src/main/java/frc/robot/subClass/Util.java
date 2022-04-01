@@ -60,6 +60,8 @@ public class Util {
 
     }
 
+
+
     /**
      * 角度がその範囲にあるか。
      * min <= max, max >= 0, min <= 360, max - min < 360を前提としている。
