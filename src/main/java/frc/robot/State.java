@@ -35,6 +35,7 @@ public class State {
     public static final boolean is_climbArmMotorNEO = true;
     //ClimbArmのState
     public static ClimbArmState climbArmState;
+    public static boolean hasClimbDeployed;
     // climbのidleMode
     public static IdleMode climbMotorIdleMode;
     //climbArmのスピード(単位：PercentOutput)
@@ -80,6 +81,7 @@ public class State {
         gameSpecificMessage = DriverStation.getGameSpecificMessage();
         climbMotorIdleMode = IdleMode.kCoast;
         State.ballQuantity = State.BallQuantity.s_ballQuantity0;
+        State.hasClimbDeployed = false;
 
         stateReset();
     }
