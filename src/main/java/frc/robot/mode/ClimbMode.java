@@ -50,7 +50,7 @@ public class ClimbMode extends Mode {
     State.is_secondSolenoidOpen = operateController.getLeftBumper();
 
     // RS & LS & POV180: climbSolenoidがOpen
-    if(operateController.getRightStickButton() && operateController.getLeftStickButton() && operateController.getPOV() == 180) {
+    if(operateController.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
