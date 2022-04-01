@@ -20,6 +20,8 @@ public class State {
     public static double driveXSpeed, driveZRotation;
 
     public static BallQuantity ballQuantity;
+    public static ShooterSensor shooterSensor;
+    public static IntakeSensor intakeSensor;
 
     //ConveyorStateの変数を作る
     public static ConveyorState conveyorState;;
@@ -143,6 +145,16 @@ public class State {
         public int getBallQuantity(){
             return ballQuantity;
         }
+    }
+
+    public enum ShooterSensor{
+        s_shooterTure,
+        s_shooterFalse
+    }
+
+    public enum IntakeSensor{
+        s_intakeTrue,
+        s_intakeFalse
     }
 
     /**

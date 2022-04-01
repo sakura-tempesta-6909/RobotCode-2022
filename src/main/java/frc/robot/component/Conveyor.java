@@ -55,57 +55,90 @@ public class Conveyor implements Component {
   public void intakeConveyor(){
     switch(State.ballQuantity){
       case s_ballQuantity0:
-      if(ballDetectionIntake()){
-        if(ballDetectionShoot()){
-          conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballQuantity2;
-        }else{
-          beltRollerIntake();
-          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
+        switch(State.intakeSensor){
+          case s_intakeTrue:
+            switch(State.shooterSensor){
+              case s_shooterTure:
+                conveyorNutral();
+                State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+                break;
+              case s_shooterFalse:
+                beltRollerIntake();
+                State.ballQuantity = State.BallQuantity.s_ballQuantity1;
+                break;
+            }
+            break;
+          case s_intakeFalse:
+            switch(State.shooterSensor){
+            case s_shooterTure:
+              conveyorNutral();
+              State.ballQuantity = State.BallQuantity.s_ballQuantity1;
+              break;
+            case s_shooterFalse:
+              beltRollerIntake();
+              break;
+            }
+            break;
         }
-      }else{
-        if(ballDetectionShoot()){
-          conveyorNutral();
-          State.ballQuantity = State.BallQuantity.s_ballQuantity1;
-        }else{
-          beltRollerIntake();
-        }
-      }
-      break;
+        break;
       case s_ballQuantity1:
-        if(ballDetectionIntake()){
-          if(ballDetectionShoot()){
-            conveyorNutral();
-            State.ballQuantity = State.BallQuantity.s_ballQuantity2;
-          }else{
-            beltRollerIntake();
-          }
-        }else{
-          if(ballDetectionShoot()){
-            conveyorNutral();
-          }else{
-            rollerIntake();
-          }
+        switch(State.intakeSensor){
+          case s_intakeTrue:
+            switch(State.shooterSensor){
+              case s_shooterTure:
+                conveyorNutral();
+                State.ballQuantity = State.BallQuantity.s_ballQuantity2;
+                break;
+              case s_shooterFalse:
+                beltRollerIntake();
+                break;
+            }
+            break;
+          case s_intakeFalse:
+            switch(State.shooterSensor){
+              case s_shooterTure:
+                conveyorNutral();
+                break;
+              case s_shooterFalse:
+                rollerIntake();
+                break;
+            }
+            break;
         }
-      break;
+        break;
       case s_ballQuantity2:
-        if (ballDetectionIntake()){
-          if(ballDetectionShoot()){
-            conveyorNutral();
-          }else{
-            beltRollerIntake();
-          }
-        }else{
-          if(ballDetectionShoot()){
-            conveyorNutral();
-          }else{
-            conveyorNutral();
-            State.ballQuantity = State.BallQuantity.s_ballQuantity0;
-          }
+        switch(State.intakeSensor){
+          case s_intakeTrue:
+            switch(State.shooterSensor){
+              case s_shooterTure:
+                conveyorNutral();
+                break;
+              case s_shooterFalse:
+                beltRollerIntake();
+                break;
+            }
+            break;
+          case s_intakeFalse:
+            switch(State.shooterSensor){
+              case s_shooterTure:
+                conveyorNutral();
+                break;
+              case s_shooterFalse:
+                conveyorNutral();
+                break;
+            }
+            break;
         }
-      break;
+        break;
     }
   } 
+
+
+
+
+
+
+
 
     //センサーが認識しているときballDetection*** methodはtrue
   public boolean ballDetectionIntake(){
@@ -114,6 +147,22 @@ public class Conveyor implements Component {
 
   public boolean ballDetectionShoot(){
     return !ballSensorShooter.get();
+  }
+
+  public void ballSensorIntake(){
+   if(ballDetectionIntake()){
+      State.intakeSensor = State.IntakeSensor.s_intakeTrue;
+   }else{
+      State.intakeSensor = State.IntakeSensor.s_intakeFalse;
+   }
+  }
+
+  public void ballSensorShooter(){
+    if(ballDetectionShoot()){
+      State.shooterSensor = State.ShooterSensor.s_shooterTure;
+  }else{
+       State.shooterSensor = State.ShooterSensor.s_shooterFalse;
+    }
   }
   
   /**
