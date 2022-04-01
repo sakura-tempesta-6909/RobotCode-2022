@@ -214,7 +214,7 @@ public class Autonomous {
 
 			straightPidDrive(34.1, "bump into hub"),
 
-			conveyorMode(1.0, ConveyorState.s_shooterShoot, "end of autonomous")
+			conveyorMode(5.0, ConveyorState.s_shooterShoot, "end of autonomous")
 		);
 
 		// Phaseの登録C
