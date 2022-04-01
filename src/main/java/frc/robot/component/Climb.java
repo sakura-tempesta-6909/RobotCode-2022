@@ -236,7 +236,11 @@ public class Climb implements Component {
    *  @param climbSolenoidControl trueで伸びている
    */
   public void climbSolenoidControl(boolean climbSolenoidControl){
-    climbSolenoid.set(climbSolenoidControl);
+    if(State.hasClimbDeployed){
+      climbSolenoid.set(climbSolenoidControl);
+    } else{
+      return;
+    }
   }
 
   /**
