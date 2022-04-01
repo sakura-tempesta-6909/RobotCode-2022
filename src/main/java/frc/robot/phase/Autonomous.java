@@ -137,7 +137,7 @@ public class Autonomous {
 		// Phaseの登録A
 		phaseTransitionA.registerPhase(
 
-			conveyorMode(1.0, ConveyorState.s_shootConveyor, "initialShot"),
+			conveyorMode(3.5, ConveyorState.s_shootConveyor, "initialShot"),
 
 			straightPidDrive(-34.1, "out of tarmac"),
 
@@ -172,14 +172,14 @@ public class Autonomous {
 
 			straightPidDrive(34.1, "bump into hub"),
 
-			conveyorMode(1.0, ConveyorState.s_shooterShoot, "end of autonomous")
+			conveyorMode(5.0, ConveyorState.s_shooterShoot, "end of autonomous")
 		);
 
 
 		//  Phaseの登録B
 		phaseTransitionB.registerPhase(
 
-			conveyorMode(1.0, ConveyorState.s_shootConveyor, "initialShot"),
+			conveyorMode(3.5, ConveyorState.s_shootConveyor, "initialShot"),
 
 			straightPidDrive(-34.1, "out of tarmac"),
 
@@ -214,7 +214,7 @@ public class Autonomous {
 
 			straightPidDrive(34.1, "bump into hub"),
 
-			conveyorMode(1.0, ConveyorState.s_shooterShoot, "end of autonomous")
+			conveyorMode(5.0, ConveyorState.s_shooterShoot, "end of autonomous")
 		);
 
 		// Phaseの登録C
