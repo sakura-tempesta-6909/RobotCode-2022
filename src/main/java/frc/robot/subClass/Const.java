@@ -23,8 +23,10 @@ public class Const {
         // Motor, Conveyor
         public static final int IntakeBeltMotor = 4;
         public static final int IntakeRoller = 5;
-        // sensor, conveyor
-        public static final int BallSensor = 0; //これはあるか分からない
+
+        //sensor, conveyor
+        public static final int BallSensorIntake = 1;
+        public static final int BallSensorShooter = 2;
 
         // pneumatics
         public static final int Compressor = 0;
@@ -38,7 +40,7 @@ public class Const {
         public static final int Shooter = 2;
 
         // dio port
-        public static final int hallsensorPort = 1;
+        public static final int hallsensorPort = 0;
     }
 
     
@@ -163,10 +165,9 @@ public class Const {
         public static final double TriggerValue = 0.5;
 
         public static final double TestTurnDirection = 90;
-
+        
         //DrivePIDの目標値と現在の値の誤差の許容範囲(単位メートル)
         public static final double DrivePidTolerance = 0.1;
-
     }
 
     public static final class MotorConfigs {
@@ -207,8 +208,9 @@ public class Const {
 
         MotorConfigs.DriveRight.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;
         MotorConfigs.DriveLeft.primaryPID.selectedFeedbackSensor = FeedbackDevice.CTRE_MagEncoder_Relative;   
-        MotorConfigs.gyroPidController = new PIDController(0.01, 0.00218, 0);
-        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/0.00218, 0.1/0.00218);
+        MotorConfigs.gyroPidController = new PIDController(0.01, gyrokI, 0);
+        MotorConfigs.gyroPidController.setIntegratorRange(-0.1/gyrokI, 0.1/gyrokI);
         MotorConfigs.gyroPidController.setTolerance(3);
     }
+    public static final double gyrokI = 0.0021;
 }
