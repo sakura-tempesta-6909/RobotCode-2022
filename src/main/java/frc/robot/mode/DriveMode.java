@@ -46,7 +46,7 @@ public class DriveMode extends Mode {
         // LT: outtake, RT: intake
         if(driveJoyStick.getZ() > Const.Other.JoyStickRight){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
-        } else if(driveJoyStick.getZ() > -Const.Other.JoyStickLeft){
+        } else if(driveJoyStick.getZ() < Const.Other.JoyStickLeft){
             State.conveyorState = ConveyorState.s_intakeConveyor;
         } else {
             Util.sendConsole("POV Value", driveController.getPOV());

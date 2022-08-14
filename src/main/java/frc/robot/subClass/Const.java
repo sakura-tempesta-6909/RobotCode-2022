@@ -166,7 +166,7 @@ public class Const {
         public static final double Deadband = 0.2;
         // Triggerの押し込み具合
         public static final double JoyStickRight = 0.8;
-        public static final double JoyStickLeft = 0.2;
+        public static final double JoyStickLeft = -0.8;
 
         public static final double TestTurnDirection = 90;
         
