@@ -33,7 +33,7 @@ public class ConveyorMode extends Mode {
     State.driveZRotation = driveJoyStick.getX();
 
     // RT: ボール発射
-    if(driveJoyStick.getZ() > Const.Other.TriggerValue){
+    if(driveJoyStick.getZ() > Const.Other.JoyStickRight){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
 
