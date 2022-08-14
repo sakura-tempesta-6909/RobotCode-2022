@@ -132,6 +132,7 @@ public class State {
         s_shooterOuttake,
     }
 
+
     public enum BallQuantity {
         s_ballQuantity0(0),
         s_ballQuantity1(1),

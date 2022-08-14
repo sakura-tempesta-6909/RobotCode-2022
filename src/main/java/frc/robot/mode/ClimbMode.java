@@ -30,15 +30,15 @@ public class ClimbMode extends Mode {
     // climbModeはmidDriveで走る
     // LY: 前後, RX: 左右
     State.driveState = DriveState.s_midDrive;
-    State.driveXSpeed = -operateController.getLeftY();
-    State.driveZRotation = operateController.getRightX();
+    State.driveXSpeed = -driveJoyStick.getY();
+    State.driveZRotation = driveJoyStick.getX();
 
     // RT: 前, LT: 後ろ
-    State.climbArmSpeed = operateController.getRightTriggerAxis() * 0.8 - operateController.getLeftTriggerAxis();
+    State.climbArmSpeed = driveJoyStick.getZ() * 0.8 - driveJoyStick.getZ();
     State.climbMotorIdleMode = IdleMode.kBrake;
     
     // A: climbArmを速くする
-    if(operateController.getAButton()){
+    if(Mode.Button2.get()){
       State.climbArmState = ClimbArmState.s_fastClimbArmSpin;
     } else {
       State.climbArmState = ClimbArmState.s_midClimbArmSpin;
@@ -46,20 +46,20 @@ public class ClimbMode extends Mode {
 
     // RB: firstSolenoidがOpen, LB: secondSolenoidがOpen
 
-    State.is_firstSolenoidOpen = operateController.getRightBumper();
-    State.is_secondSolenoidOpen = operateController.getLeftBumper();
+    State.is_firstSolenoidOpen = Mode.Button3.get();
+    State.is_secondSolenoidOpen = Mode.Button4.get();
 
     // RS & LS & POV180: climbSolenoidがOpen
-    if(operateController.getPOV() == 180) {
+    if(driveJoyStick.getPOV() == 180) {
       State.is_climbSolenoidOpen = true;
     } else {
       State.is_climbSolenoidOpen = false;
     }
 
-    if(operateController.getBButton()){
+    if(Mode.Button5.get()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.ClimbArm.MidRungCatchAngle;
-    } else if(operateController.getYButton()){
+    } else if(Mode.Button6.get()){
       State.climbArmState = ClimbArmState.s_setClimbArmAngle;
       State.climbArmTargetAngle = Const.ClimbArm.MidRungGetUnderAngle;
     }

@@ -14,11 +14,11 @@ public class DriveMode extends Mode {
 
         // LB: conveyorMode
         // Start & Back: climbMode
-        if(driveController.getLeftBumper()){
+        if(Mode.Button1.get()){
             State.mode = Modes.k_conveyor;
-        } else if(driveController.getStartButton() && driveController.getBackButton()){
+        } else if(Mode.Button7.get() && Mode.Button8.get()){
             State.mode = Modes.k_climb;
-        } else if(operateController.getStartButton() && operateController.getBackButton()){
+        } else if(Mode.Button11.get() && Mode.Button12.get()){
             State.mode = Modes.k_climb;
         }
 
@@ -30,37 +30,37 @@ public class DriveMode extends Mode {
         State.driveZRotation = driveJoyStick.getX();
 
         // Y: midDriveで走る
-        if(driveController.getYButton()){
+        if(Mode.Button5.get()){
             State.driveState = DriveState.s_midDrive;
         }else{
             State.driveState = DriveState.s_fastDrive;
         }
 
         // POV90 & RS & LS: compressorをオフにする
-        if(driveController.getPOV() == 90 && driveController.getRightStickButton() && driveController.getLeftStickButton()){
+        if(Mode.Button3.get() && Mode.Button4.get()){
             State.is_compressorEnabled = false;
-        } else if(driveController.getPOV() == 180){
+        } else if(driveJoyStick.getPOV() == 180){
             State.is_compressorEnabled = true;
         }
 
         // LT: outtake, RT: intake
-        if(driveController.getLeftTriggerAxis() > Const.Other.TriggerValue){
+        if(driveJoyStick.getZ() > Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_outtakeConveyor;
-        } else if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
+        } else if(driveJoyStick.getZ() > -Const.Other.TriggerValue){
             State.conveyorState = ConveyorState.s_intakeConveyor;
         } else {
             Util.sendConsole("POV Value", driveController.getPOV());
-            if(driveController.getPOV() == 45){
+            if(driveJoyStick.getPOV() == 45){
                 State.conveyorState = ConveyorState.s_shooterOuttake;
-            } else if(driveController.getPOV() == 90){
+            } else if(driveJoyStick.getPOV() == 90){
                 State.conveyorState = ConveyorState.s_rollerOuttake;
-            } else if(driveController.getPOV() == 135){
+            } else if(driveJoyStick.getPOV() == 135){
                 State.conveyorState = ConveyorState.s_beltOuttake;
-            } else if(driveController.getPOV() == 225){
+            } else if(driveJoyStick.getPOV() == 225){
                 State.conveyorState = ConveyorState.s_shooterShoot;
-            } else if(driveController.getPOV() == 270){
+            } else if(driveJoyStick.getPOV() == 270){
                 State.conveyorState = ConveyorState.s_beltIntake;
-            } else if(driveController.getPOV() == 315){
+            } else if(driveJoyStick.getPOV() == 315){
                 State.conveyorState = ConveyorState.s_rollerIntake;
             } else {
                 State.conveyorState = ConveyorState.s_stopConveyor;
@@ -68,9 +68,9 @@ public class DriveMode extends Mode {
         }
  
         // A: intakeExtendをopen, B: intakeExtendをclose
-        if(driveController.getAButton()){
+        if(Mode.Button5.get()){
             State.is_intakeExtendOpen = true;
-        } else if(driveController.getBButton()){
+        } else if(Mode.Button6.get()){
             State.is_intakeExtendOpen = false;
         }
     }
