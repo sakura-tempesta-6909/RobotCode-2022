@@ -1,5 +1,6 @@
 package frc.robot.mode;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
 public abstract class Mode {
@@ -8,6 +9,12 @@ public abstract class Mode {
         Mode.driveController = driveController;
         Mode.operateController = operateController;
 
+    }
+
+    static Joystick driveJoystick, operateJoystick;
+    public static void addJoyStick(Joystick driveJoystick, Joystick operateJoystick) {
+        Mode.driveJoystick = driveJoystick;
+        Mode.operateJoystick = operateJoystick;
     }
 
     /**

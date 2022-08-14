@@ -26,8 +26,8 @@ public class DriveMode extends Mode {
 
     @Override
     public void changeState() {
-        State.driveXSpeed =  -driveController.getLeftY();
-        State.driveZRotation = driveController.getRightX();
+        State.driveXSpeed =  -driveJoystick.getY();
+        State.driveZRotation = driveJoystick.getX();
 
         // Y: midDriveで走る
         if(driveController.getYButton()){
