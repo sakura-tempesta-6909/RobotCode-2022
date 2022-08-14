@@ -14,6 +14,9 @@ public class Const {
         public static final int DriveController = 0;
         public static final int OperateController = 1;
 
+        //JoyStickPort(JoyStickのポート)
+        public static final int DriveJoyStick = 0;
+
         // Motor, drive
         public static final int DriveRightFront = 0;
         public static final int DriveRightBack= 1;

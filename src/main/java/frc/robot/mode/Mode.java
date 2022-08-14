@@ -11,10 +11,9 @@ public abstract class Mode {
 
     }
 
-    static Joystick driveJoystick, operateJoystick;
-    public static void addJoyStick(Joystick driveJoystick, Joystick operateJoystick) {
-        Mode.driveJoystick = driveJoystick;
-        Mode.operateJoystick = operateJoystick;
+    static Joystick driveJoyStick;
+    public static void addJoyStick(Joystick driveJoyStick) {
+        Mode.driveJoyStick = driveJoyStick;
     }
 
     /**
