@@ -2,6 +2,7 @@ package frc.robot.mode;
 
 import frc.robot.State;
 import frc.robot.State.DriveState;
+import frc.robot.State.LimelightState;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
@@ -72,6 +73,10 @@ public class DriveMode extends Mode {
             State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
             State.is_intakeExtendOpen = false;
+        }
+
+        if(driveController.getLeftStickButton()){
+            State.limelightState = LimelightState.s_target;
         }
     }
 

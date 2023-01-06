@@ -3,16 +3,29 @@ package frc.robot.component;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.State;
 
-public class Limelight implements Component{
+public class Limelight implements Component {
 
     private NetworkTable table;
     private NetworkTableEntry entry;
+    private double tx;
+    private double Kp;
 
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
         entry = table.getEntry("ty");
+        Kp = -0.1;
+        double min_command = 0.05;
+        entry = table.getEntry("tx");
+        tx = entry.getDouble(3.0);
     }
+
+    public void target(){
+       double heading_error = tx;
+       double steering_adjust = Kp * tx;
+    }
+
     public void autonomousInit(){
 
     }
@@ -47,10 +60,15 @@ public class Limelight implements Component{
         // ターゲットまでの距離
         double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
         System.out.println(distanceFromLimelightToGoalInches);
-    }
-    @Override
-    public void applyState() {
+
        
+    }
+    public void applyState() {
+       switch(State.limelightState) {
+           case s_target:
+           target();
+
+       }
     }
     
 }

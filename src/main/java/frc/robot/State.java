@@ -70,6 +70,8 @@ public class State {
     public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
 
+    public static LimelightState limelightState;
+
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);
@@ -155,6 +157,10 @@ public class State {
         s_setClimbArmAngle,  
         s_climbArmNeutral,
         s_angleCalibration,
+    }
+
+    public enum LimelightState {
+        s_target,
     }
 
     public enum Modes {
