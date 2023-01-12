@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class MQTT extends Thread {
     private MqttClient mqttClient;
-    final String broker = "tcp://localhost:1883";
+    final String broker = "tcp://raspberrypi.local:1883";
     final String topic = "robot/data/main";
     final int qos = 1;
     final String clientId = "robot/test";
