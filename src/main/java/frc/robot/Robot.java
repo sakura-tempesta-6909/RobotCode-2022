@@ -23,7 +23,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     Const.ConstInit();
-
     Thread thread = new Thread(() -> {
       mqtt.connect();
     });

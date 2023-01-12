@@ -1,5 +1,6 @@
 package frc.robot.subClass;
 
+import frc.robot.State;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -11,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MQTT extends Thread {
+public class MQTT{
     private MqttClient mqttClient;
     final String broker = "tcp://raspberrypi.local:1883";
     final String topic = "robot/data/main";
@@ -21,10 +22,6 @@ public class MQTT extends Thread {
     MqttConnectOptions connOpts = new MqttConnectOptions();
     int retryCount = 0;
 
-    @Override
-    public void run() {
-        this.connect();
-    }
 
     public void connect(){
         if (connectStatus == ConnectStatus.notYet) {
