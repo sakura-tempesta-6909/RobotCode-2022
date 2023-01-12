@@ -8,6 +8,7 @@ import frc.robot.component.Drive;
 import frc.robot.phase.Autonomous;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.ExternalSensors;
+import frc.robot.subClass.MQTT;
 import frc.robot.subClass.Util;
 
 import java.util.ArrayList;
@@ -17,11 +18,16 @@ public class Robot extends TimedRobot {
   ArrayList<Component> components;
 
   ExternalSensors externalSensors;
+  MQTT mqtt = new MQTT();
 
   @Override
   public void robotInit() {
     Const.ConstInit();
 
+    Thread thread = new Thread(() -> {
+      mqtt.connect();
+    });
+    thread.start();
     components = new ArrayList<>();
     components.add(new Drive());
     components.add(new Conveyor());
@@ -33,7 +39,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    mqtt.publishState();
+  }
 
   @Override
   public void autonomousInit() {
@@ -119,7 +127,7 @@ public class Robot extends TimedRobot {
       component.readSensors();
     }
     State.mode.changeState();
-     
+
     for (Component component : components) {
       component.applyState();
     }
