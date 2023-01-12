@@ -1,6 +1,9 @@
 package frc.robot.component;
 
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -22,6 +25,11 @@ public class Drive implements Component{
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
     private ADXRS450_Gyro gyro;
+    private NetworkTable table;
+    private NetworkTableEntry entry;
+    private double tx;
+    private double Kp;
+    private double steering_adjust;
 
     /**
      * Motorの初期化、Motor・センサーの反転 
@@ -49,6 +57,12 @@ public class Drive implements Component{
         driveRightBack.setNeutralMode(NeutralMode.Brake);
         driveLeftBack.setNeutralMode(NeutralMode.Brake);
         gyroInit();
+
+        table =  NetworkTableInstance.getDefault().getTable("limelight");
+        entry = table.getEntry("ty");
+        Kp = -0.1;
+        entry = table.getEntry("tx");
+        tx = entry.getDouble(3.0);
     }
     
     public double getCurrentDirection(){
@@ -143,6 +157,16 @@ public class Drive implements Component{
         driveRightFront.setIntegralAccumulator(0);
         State.isDrivePidFinished = false;
     }
+    
+
+
+    public void target() {
+       double heading_error = tx;
+       steering_adjust = Kp * heading_error;
+
+       State.driveZRotation = steering_adjust;
+       
+    }
 
     @Override
     public void autonomousInit() {
@@ -206,6 +230,8 @@ public class Drive implements Component{
             case s_turnTo:
                 turnTo(State.targetDirection); 
                 break;
+            case s_target:
+                target();
         }
 
       

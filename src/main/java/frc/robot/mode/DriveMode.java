@@ -2,14 +2,12 @@ package frc.robot.mode;
 
 import frc.robot.State;
 import frc.robot.State.DriveState;
-import frc.robot.State.LimelightState;
 import frc.robot.State.ConveyorState;
 import frc.robot.State.Modes;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
 
 public class DriveMode extends Mode {
-
     @Override
     public void changeMode() {
 
@@ -75,8 +73,8 @@ public class DriveMode extends Mode {
             State.is_intakeExtendOpen = false;
         }
 
-        if(driveController.getLeftStickButton()){
-            State.limelightState = LimelightState.s_target;
+        if(driveController.getLeftStickButton()) {
+            State.driveState = DriveState.s_target;
         }
     }
 
