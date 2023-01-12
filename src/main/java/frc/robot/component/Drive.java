@@ -160,13 +160,13 @@ public class Drive implements Component{
     
 
 
-    public void target(double limelightXSpeed, double limelightZRotation) {
+    public void target() {
        double heading_error = tx;
        steering_adjust = Kp * heading_error;
 
        State.driveZRotation = steering_adjust;
 
-       differntialDrive.arcadeDrive(limelightXSpeed,limelightZRotation);
+       differntialDrive.arcadeDrive(0, steering_adjust);
        
     }
 
@@ -233,7 +233,7 @@ public class Drive implements Component{
                 turnTo(State.targetDirection); 
                 break;
             case s_target:
-                target(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
+                target();
         }
 
       
