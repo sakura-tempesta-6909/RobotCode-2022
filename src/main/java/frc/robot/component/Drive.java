@@ -29,7 +29,7 @@ public class Drive implements Component{
     private NetworkTableEntry entry;
     private double tx;
     private double Kp;
-    private double steering_adjust;
+    
 
     /**
      * Motorの初期化、Motor・センサーの反転 
@@ -160,13 +160,8 @@ public class Drive implements Component{
     
 
 
-    public void target() {
-       double heading_error = tx;
-       steering_adjust = Kp * heading_error;
-
-       State.driveZRotation = steering_adjust;
-
-       differntialDrive.arcadeDrive(0, steering_adjust);
+    public void target() {      
+        differntialDrive.arcadeDrive(0, State.steering_adjust);
        
     }
 
@@ -202,6 +197,10 @@ public class Drive implements Component{
         State.reachTurn = isDirectionAchieived();
         State.isDrivePidFinished = is_judgePIDPosition();
         
+        State.heading_error = State.tx;
+        State.steering_adjust = Kp * State.heading_error;
+        State.driveZRotation = State.steering_adjust;
+
     }
 
     @Override

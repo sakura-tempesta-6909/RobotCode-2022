@@ -1,6 +1,7 @@
 package frc.robot;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
@@ -70,6 +71,10 @@ public class State {
     public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
 
+    public static double tx;
+    public static double ty;
+    public static double steering_adjust;
+    public static double heading_error;
 
 
     public static void StateInit() {
@@ -158,6 +163,10 @@ public class State {
         s_setClimbArmAngle,  
         s_climbArmNeutral,
         s_angleCalibration,
+    }
+
+    public enum LimeLightState {
+        s_target,
     }
 
 
