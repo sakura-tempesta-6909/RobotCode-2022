@@ -18,7 +18,7 @@ public class Limelight implements Component {
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
         entry = table.getEntry("ty");
-        Kp = -0.1;
+        Kp = -0.01;
         entry = table.getEntry("tx");
 
     }
