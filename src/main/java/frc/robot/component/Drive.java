@@ -27,7 +27,6 @@ public class Drive implements Component{
     private ADXRS450_Gyro gyro;
     private NetworkTable table;
     private NetworkTableEntry entry;
-    private double tx;
     private double Kp;
     
 
@@ -62,7 +61,7 @@ public class Drive implements Component{
         entry = table.getEntry("ty");
         Kp = -0.1;
         entry = table.getEntry("tx");
-        tx = entry.getDouble(3.0);
+        
     }
     
     public double getCurrentDirection(){
@@ -197,9 +196,8 @@ public class Drive implements Component{
         State.reachTurn = isDirectionAchieived();
         State.isDrivePidFinished = is_judgePIDPosition();
         
-        State.heading_error = State.tx;
-        State.steering_adjust = Kp * State.heading_error;
-        State.driveZRotation = State.steering_adjust;
+      
+        
 
     }
 

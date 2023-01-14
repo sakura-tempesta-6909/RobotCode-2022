@@ -3,6 +3,7 @@ package frc.robot.component;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.State;
 
 
 public class Limelight implements Component {
@@ -56,7 +57,8 @@ public class Limelight implements Component {
         double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
         System.out.println(distanceFromLimelightToGoalInches);
 
-       
+        State.heading_error = tx;
+        State.steering_adjust = Kp * tx;
     }
     public void applyState() {
 
