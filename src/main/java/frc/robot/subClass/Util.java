@@ -57,6 +57,8 @@ public class Util {
         sendConsole("IntakeSensor", State.intakeSensorJudge);
         sendConsole("ShooterSensor", State.shooterSensorJudge);
         sendConsole("DrivePidFinish", State.isDrivePidFinished);
+        sendConsole("steering_adjust", State.steering_adjust);
+        sendConsole("heading_error", State.heading_error);
 
     }
 
