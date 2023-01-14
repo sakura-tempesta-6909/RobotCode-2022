@@ -195,10 +195,6 @@ public class Drive implements Component{
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
         State.isDrivePidFinished = is_judgePIDPosition();
-        
-      
-        
-
     }
 
     @Override
