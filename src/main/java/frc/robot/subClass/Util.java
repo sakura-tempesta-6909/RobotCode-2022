@@ -4,6 +4,9 @@ package frc.robot.subClass;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Util {
 
     //不感帯処理
@@ -60,7 +63,9 @@ public class Util {
 
     }
 
-
+    public static void sendSystemOut(PrintStream defaultConsole, ByteArrayOutputStream newConsole){
+        defaultConsole.print(newConsole);
+    }
 
     /**
      * 角度がその範囲にあるか。
