@@ -70,7 +70,11 @@ public class Limelight implements Component {
             State.steering_adjust += -0.2;
         }
         
-        
+        State.limelight.put("tx", txEntry.getDouble(0));
+        State.limelight.put("ty", tyEntry.getDouble(0));
+        State.limelight.put("limelightdistance", distanceFromLimelightToGoalInches);
+        State.limelight.put("heading", State.heading_error);
+        State.limelight.put("steering_adjust", State.steering_adjust);
         
         
     }

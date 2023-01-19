@@ -73,6 +73,7 @@ public class State {
     public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
     public static Map<String ,Double> voltage = new HashMap<>();
+    public static Map<String ,Double> limelight = new HashMap<>();
 
     
     public static double steering_adjust;
