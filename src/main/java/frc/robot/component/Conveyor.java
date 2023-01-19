@@ -271,6 +271,8 @@ public class Conveyor implements Component {
     State.shooterSpeed = shooter.getEncoder().getVelocity();
     State.intakeSensorJudge = ballDetectionIntake();
     State.shooterSensorJudge = ballDetectionShoot();
+    State.voltage.put("Intake",intakeRoller.getBusVoltage());
+    State.voltage.put("IntakeBelt",intakeBelt.getBusVoltage());
   }
 
   @Override

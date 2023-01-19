@@ -15,9 +15,10 @@ import frc.robot.State;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
 
-public class Drive implements Component{
+public class Drive implements Component {
 
-    /**モードごとにドライブのスピードを変える
+    /**
+     * モードごとにドライブのスピードを変える
      * differential driveの設定
      * センサー類の読み取り
      */
@@ -31,7 +32,7 @@ public class Drive implements Component{
     
 
     /**
-     * Motorの初期化、Motor・センサーの反転 
+     * Motorの初期化、Motor・センサーの反転
      */
     public Drive() {
         driveRightFront = new WPI_TalonSRX(Const.Ports.DriveRightFront);
@@ -63,8 +64,8 @@ public class Drive implements Component{
         entry = table.getEntry("tx");
         
     }
-    
-    public double getCurrentDirection(){
+
+    public double getCurrentDirection() {
         double c = gyro.getAngle();
         return Util.determineDirection(c);
     }
@@ -73,83 +74,85 @@ public class Drive implements Component{
         arcadeDrive(0, Const.MotorConfigs.gyroPidController.calculate(getCurrentDirection(), direction));
     }
 
-    public void gyroInit(){
+    public void gyroInit() {
         gyro.reset();
         gyro.calibrate();
     }
 
-    public void gyroReset(){
+    public void gyroReset() {
         gyro.reset();
         State.reachTurn = false;
     }
 
-    public boolean isDirectionAchieived(){
+    public boolean isDirectionAchieived() {
         return Const.MotorConfigs.gyroPidController.atSetpoint();
     }
 
-    public boolean is_judgePIDPosition(){
+    public boolean is_judgePIDPosition() {
         return is_judgePIDRightPosition() && is_judgePIDLeftPosition();
     }
 
-    public boolean is_judgePIDRightPosition(){
+    public boolean is_judgePIDRightPosition() {
         return Math.abs(getDriveRightMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
     }
 
-    public boolean is_judgePIDLeftPosition(){
+    public boolean is_judgePIDLeftPosition() {
         return Math.abs(getDriveLeftMeter() - State.drivePidSetMeter) < Const.Other.DrivePidTolerance;
     }
 
 
-
     /**
-     * driveを動かす 
-     * @param xSpeed driveの縦方向の値
-     * @param zRotation　driveの回転方向の値
+     * driveを動かす
+     *
+     * @param xSpeed    driveの縦方向の値
+     * @param zRotation 　driveの回転方向の値
      */
-    public void arcadeDrive(double xSpeed, double zRotation){
+    public void arcadeDrive(double xSpeed, double zRotation) {
         differntialDrive.feed();
         differntialDrive.arcadeDrive(xSpeed, zRotation);
     }
 
     /**
      * PositionのPointをMeterに変換する、
+     *
      * @param drivePoint Positionの値
      * @return PositionのdrivePointをMeterにする 返り値はMeter
      */
-    public double drivePointToMeter(double drivePoint){
+    public double drivePointToMeter(double drivePoint) {
         return drivePoint / Const.Calculation.DrivePointsPerDriveLength;
     }
-    public double driveMeterToPoint(double driveMeter){
+
+    public double driveMeterToPoint(double driveMeter) {
         return driveMeter * Const.Calculation.DrivePointsPerDriveLength;
     }
 
     /**
-     * @return Rightの進んだ距離を取得する(単位:Meter)
+     * @return Rightの進んだ距離を取得する(単位 : Meter)
      */
-    public double getDriveRightMeter(){
+    public double getDriveRightMeter() {
         return drivePointToMeter(driveRightFront.getSelectedSensorPosition());
     }
 
     /**
-     * @return Leftの進んだ距離を取得する(単位:Meter)
+     * @return Leftの進んだ距離を取得する(単位 : Meter)
      */
-    public double getDriveLeftMeter(){
+    public double getDriveLeftMeter() {
         return drivePointToMeter(driveLeftFront.getSelectedSensorPosition());
     }
 
-    public void drivePosition(double pidposition){
-        if(Math.abs(pidposition) < Const.Pid.DrivePidShortThreshold) {
+    public void drivePosition(double pidposition) {
+        if (Math.abs(pidposition) < Const.Pid.DrivePidShortThreshold) {
             driveRightFront.selectProfileSlot(Const.Pid.DrivePidShortSlot, 0);
             driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
         } else {
-        driveRightFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
-        driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+            driveRightFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
+            driveLeftFront.selectProfileSlot(Const.Pid.DrivePidLongSlot, 0);
         }
         driveRightFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
         driveLeftFront.set(ControlMode.Position, driveMeterToPoint(pidposition));
     }
 
-    public void drivePidAllReset(){
+    public void drivePidAllReset() {
         driveRightFront.setSelectedSensorPosition(0);
         driveLeftFront.setSelectedSensorPosition(0);
         driveLeftFront.setIntegralAccumulator(0);
@@ -167,7 +170,7 @@ public class Drive implements Component{
     @Override
     public void autonomousInit() {
         // TODO Auto-generated method stub
-        
+
 
     }
 
@@ -178,7 +181,8 @@ public class Drive implements Component{
     }
 
     @Override
-    public void disabledInit() {}
+    public void disabledInit() {
+    }
 
     @Override
     public void testInit() {
@@ -195,18 +199,22 @@ public class Drive implements Component{
         State.currentDirection = getCurrentDirection();
         State.reachTurn = isDirectionAchieived();
         State.isDrivePidFinished = is_judgePIDPosition();
+        State.voltage.put("Drive_RF", driveRightFront.getBusVoltage());
+        State.voltage.put("Drive_RB", driveRightBack.getBusVoltage());
+        State.voltage.put("Drive_LF", driveLeftFront.getBusVoltage());
+        State.voltage.put("Drive_LB", driveLeftBack.getBusVoltage());
     }
 
     @Override
     public void applyState() {
-        if(State.driveAccumulateReset){
-            drivePidAllReset(); 
+        if (State.driveAccumulateReset) {
+            drivePidAllReset();
         }
-        if(State.gyroReset){
+        if (State.gyroReset) {
             gyroReset();
         }
-        
-        switch(State.driveState){
+
+        switch (State.driveState) {
             case s_fastDrive:
                 arcadeDrive(Const.Speeds.FastDrive * State.driveXSpeed, Const.Speeds.FastDrive * State.driveZRotation);
                 break;
@@ -217,18 +225,18 @@ public class Drive implements Component{
                 arcadeDrive(Const.Speeds.SlowDrive * State.driveXSpeed, Const.Speeds.SlowDrive * State.driveZRotation);
                 break;
             case s_pidDrive:
-                drivePosition(State.drivePidSetMeter); 
+                drivePosition(State.drivePidSetMeter);
                 break;
             case s_stopDrive:
                 arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, Const.Speeds.Neutral * State.driveZRotation);
                 break;
             case s_turnTo:
-                turnTo(State.targetDirection); 
+                turnTo(State.targetDirection);
                 break;
             case s_target:
                 target();
         }
 
-      
+
     }
 }

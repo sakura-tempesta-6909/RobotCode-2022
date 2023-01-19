@@ -10,6 +10,9 @@ import frc.robot.mode.TestMode;
 import frc.robot.mode.Mode;
 import frc.robot.subClass.Const;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class State {
     public static Modes mode;
     public static double drivePidSetMeter;
@@ -69,6 +72,7 @@ public class State {
     public static boolean intakeSensorJudge;
     public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
+    public static Map<String ,Double> voltage = new HashMap<>();
 
     
     public static double steering_adjust;
@@ -101,7 +105,7 @@ public class State {
         gyroReset = false;
         driveAccumulateReset = false;
         reachTurn = false;
-
+        voltage = new HashMap<>();
     }
 
     /**

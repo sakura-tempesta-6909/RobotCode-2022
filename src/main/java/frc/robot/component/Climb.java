@@ -296,6 +296,7 @@ public class Climb implements Component {
   @Override
   public void readSensors() {
     State.climbArmAngle = getClimbArmAngle();
+    State.voltage.put("ClimbArm",climbArm.getBusVoltage());
     Util.sendConsole("ClimbCurrent", climbArm.getOutputCurrent());
   }
 
