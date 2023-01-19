@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
         components.add(new Drive());
         components.add(new Conveyor());
         components.add(new Climb());
+        components.add(new Limelight());
 
         externalSensors = new ExternalSensors();
 
