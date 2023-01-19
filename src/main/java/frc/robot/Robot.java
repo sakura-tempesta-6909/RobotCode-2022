@@ -71,6 +71,7 @@ public class Robot extends TimedRobot {
         for (Component component : components) {
             component.applyState();
         }
+        mqtt.publishState();
     }
 
     @Override
@@ -98,7 +99,11 @@ public class Robot extends TimedRobot {
             component.applyState();
         }
         Util.allSendConsole();
+        
+        mqtt.publishState();
     }
+
+    
 
     @Override
     public void disabledInit() {
@@ -137,5 +142,6 @@ public class Robot extends TimedRobot {
         for (Component component : components) {
             component.applyState();
         }
+        mqtt.publishState();
     }
 }
