@@ -35,7 +35,7 @@ public class Limelight implements Component {
     }
     public void readSensors(){
         // ターゲットの角度
-        double targetOffsetAngle_Vertical = 45 - txEntry.getDouble(0.0);  
+        double targetOffsetAngle_Vertical = -txEntry.getDouble(0.0);  
         // how many degrees back is your limelight rotated from perfectly vertical?
         // limelightの角度
         double limelightMountAngleDegrees = 36.0;
