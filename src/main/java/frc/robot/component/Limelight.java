@@ -3,6 +3,7 @@ package frc.robot.component;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
 
 
@@ -53,8 +54,8 @@ public class Limelight implements Component {
         
         // calculate distance
         // ターゲットまでの距離
-        double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
-        System.out.println(distanceFromLimelightToGoalInches);
+        State.distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
+        System.out.println(State.distanceFromLimelightToGoalInches);
 
         double tx;
         double ty;
@@ -72,11 +73,11 @@ public class Limelight implements Component {
         
         State.limelight.put("tx", txEntry.getDouble(0));
         State.limelight.put("ty", tyEntry.getDouble(0));
-        State.limelight.put("limelightdistance",distanceFromLimelightToGoalInches);
+        State.limelight.put("limelightdistance",State.distanceFromLimelightToGoalInches);
         State.limelight.put("heading", State.heading_error);
         State.limelight.put("steering_adjust", State.steering_adjust);
         System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
-        
+        SmartDashboard.putNumber("distanceDifference", State.distanceFromLimelightToGoalInches - State.driveRightFrontPositionMeter);
 
         
         
