@@ -1,7 +1,5 @@
 package frc.robot.component;
 
-import javax.swing.DefaultCellEditor;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -48,7 +46,7 @@ public class Limelight implements Component {
         
         // distance from the target to the floor
         // ターゲットの高さ
-        double goalHeightInches = 105.0;
+        double goalHeightInches = 106 + 56 / 2;
         
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
@@ -59,7 +57,10 @@ public class Limelight implements Component {
         System.out.println(distanceFromLimelightToGoalInches);
 
         double tx;
+        double ty;
         tx = entry.getDouble(0);
+        ty = entry.getDouble(0);
+        
         State.heading_error = tx;
         State.steering_adjust = Kp * tx;
 
@@ -68,6 +69,9 @@ public class Limelight implements Component {
         } else if(Math.signum(State.steering_adjust) < 0) {
             State.steering_adjust += -0.2;
         }
+        
+        
+        
     }
     public void applyState() {
 
