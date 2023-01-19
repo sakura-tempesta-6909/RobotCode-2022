@@ -75,6 +75,10 @@ public class Limelight implements Component {
         State.limelight.put("limelightdistance",distanceFromLimelightToGoalInches);
         State.limelight.put("heading", State.heading_error);
         State.limelight.put("steering_adjust", State.steering_adjust);
+        System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)););
+        
+
+        
         
         
     }
