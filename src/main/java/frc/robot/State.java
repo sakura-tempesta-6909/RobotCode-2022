@@ -107,6 +107,7 @@ public class State {
         driveAccumulateReset = false;
         reachTurn = false;
         voltage = new HashMap<>();
+        limelight = new HashMap<>();
     }
 
     /**
