@@ -9,15 +9,15 @@ import frc.robot.State;
 public class Limelight implements Component {
 
     private NetworkTable table;
-    private NetworkTableEntry entry;
+    private NetworkTableEntry txEntry, tyEntry;
 
     private double Kp;
 
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
-        entry = table.getEntry("ty");
+        txEntry = table.getEntry("ty");
         Kp = -0.01;
-        entry = table.getEntry("tx");
+        tyEntry = table.getEntry("tx");
 
     }
 
@@ -35,7 +35,7 @@ public class Limelight implements Component {
     }
     public void readSensors(){
         // ターゲットの角度
-        double targetOffsetAngle_Vertical = 45 - entry.getDouble(0.0);  
+        double targetOffsetAngle_Vertical = 45 - txEntry.getDouble(0.0);  
         // how many degrees back is your limelight rotated from perfectly vertical?
         // limelightの角度
         double limelightMountAngleDegrees = 36.0;
@@ -46,7 +46,7 @@ public class Limelight implements Component {
         
         // distance from the target to the floor
         // ターゲットの高さ
-        double goalHeightInches = 106 + 56 / 2;
+        double goalHeightInches = 170;
         
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
@@ -58,8 +58,8 @@ public class Limelight implements Component {
 
         double tx;
         double ty;
-        tx = entry.getDouble(0);
-        ty = entry.getDouble(0);
+        tx = txEntry.getDouble(0);
+        ty = tyEntry.getDouble(0);
         
         State.heading_error = tx;
         State.steering_adjust = Kp * tx;
@@ -69,6 +69,7 @@ public class Limelight implements Component {
         } else if(Math.signum(State.steering_adjust) < 0) {
             State.steering_adjust += -0.2;
         }
+        
         
         
         
