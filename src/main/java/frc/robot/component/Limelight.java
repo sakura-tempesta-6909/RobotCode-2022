@@ -57,6 +57,9 @@ public class Limelight implements Component {
         State.distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
         System.out.println(State.distanceFromLimelightToGoalInches);
 
+        double targetAngle = (goalHeightInches - limelightLensHeightInches/100) - Math.tan(limelightMountAngleDegrees);
+        System.out.println(Math.tan(targetAngle));
+
         double tx;
         double ty;
         tx = txEntry.getDouble(0);
@@ -70,6 +73,7 @@ public class Limelight implements Component {
         } else if(Math.signum(State.steering_adjust) < 0) {
             State.steering_adjust += -0.2;
         }
+
         
         State.limelight.put("tx", txEntry.getDouble(0));
         State.limelight.put("ty", tyEntry.getDouble(0));
@@ -78,10 +82,7 @@ public class Limelight implements Component {
         State.limelight.put("steering_adjust", State.steering_adjust);
         System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
         SmartDashboard.putNumber("distanceDifference", State.distanceFromLimelightToGoalInches - State.driveRightFrontPositionMeter);
-
-        
-        
-        
+        SmartDashboard.putNumber("targetAngle", Math.tan(targetAngle));
     }
     public void applyState() {
 
