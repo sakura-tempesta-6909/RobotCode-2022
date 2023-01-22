@@ -60,13 +60,11 @@ public class Limelight implements Component {
         double targetAngle = (goalHeightCentis - limelightLensHeightCentis/100) - Math.tan(limelightMountAngleDegrees);
         System.out.println(Math.tan(targetAngle));
 
-        double tx;
-        double ty;
-        tx = txEntry.getDouble(0);
-        ty = tyEntry.getDouble(0);
+        State.tx = txEntry.getDouble(0);
+        State.ty = tyEntry.getDouble(0);
         
-        State.heading_error = tx;
-        State.steering_adjust = Kp * tx;
+        State.heading_error = State.tx;
+        State.steering_adjust = Kp * State.tx;
 
         if(Math.signum(State.steering_adjust) > 0) {
             State.steering_adjust += 0.2;
