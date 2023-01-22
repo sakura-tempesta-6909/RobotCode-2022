@@ -79,7 +79,7 @@ public class State {
     public static double steering_adjust;
     public static double heading_error;
     public static double limelightZRotation;
-    public static double distanceFromLimelightToGoalInches;
+    public static double distanceFromLimelightToGoalCentis;
 
 
     public static void StateInit() {

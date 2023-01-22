@@ -43,21 +43,21 @@ public class Limelight implements Component {
         
         // distance from the center of the Limelight lens to the floor
         // limelightの高さ
-        double limelightLensHeightInches = 80.0;
+        double limelightLensHeightCentis = 80.0;
         
         // distance from the target to the floor
         // ターゲットの高さ
-        double goalHeightInches = 170;
+        double goalHeightCentis = 162;
         
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
         
         // calculate distance
         // ターゲットまでの距離
-        State.distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches)/Math.tan(angleToGoalRadians);
-        System.out.println(State.distanceFromLimelightToGoalInches);
+        State.distanceFromLimelightToGoalCentis = (goalHeightCentis - limelightLensHeightCentis)/Math.tan(angleToGoalRadians);
+        System.out.println(State.distanceFromLimelightToGoalCentis);
 
-        double targetAngle = (goalHeightInches - limelightLensHeightInches/100) - Math.tan(limelightMountAngleDegrees);
+        double targetAngle = (goalHeightCentis - limelightLensHeightCentis/100) - Math.tan(limelightMountAngleDegrees);
         System.out.println(Math.tan(targetAngle));
 
         double tx;
@@ -77,12 +77,13 @@ public class Limelight implements Component {
         
         State.limelight.put("tx", txEntry.getDouble(0));
         State.limelight.put("ty", tyEntry.getDouble(0));
-        State.limelight.put("limelightdistance",State.distanceFromLimelightToGoalInches);
+        State.limelight.put("limelightdistance",State.distanceFromLimelightToGoalCentis);
         State.limelight.put("heading", State.heading_error);
         State.limelight.put("steering_adjust", State.steering_adjust);
         System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
-        SmartDashboard.putNumber("distanceDifference", State.distanceFromLimelightToGoalInches - State.driveRightFrontPositionMeter);
+        SmartDashboard.putNumber("distanceDifference", State.distanceFromLimelightToGoalCentis - State.driveRightFrontPositionMeter);
         SmartDashboard.putNumber("targetAngle", Math.tan(targetAngle));
+        State.limelight.put("distanceDifference", State.distanceFromLimelightToGoalCentis - State.driveRightFrontPositionMeter);
     }
     public void applyState() {
 
