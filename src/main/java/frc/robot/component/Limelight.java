@@ -36,18 +36,18 @@ public class Limelight implements Component {
     }
     public void readSensors(){
         // ターゲットの角度
-        double targetOffsetAngle_Vertical = -txEntry.getDouble(0.0);  
+        double targetOffsetAngle_Vertical = -tyEntry.getDouble(0.0);  
         // how many degrees back is your limelight rotated from perfectly vertical?
         // limelightの角度
         double limelightMountAngleDegrees = 36.0;
         
         // distance from the center of the Limelight lens to the floor
         // limelightの高さ
-        double limelightLensHeightCentis = 80.0;
+        double limelightLensHeightCentis = 83;
         
         // distance from the target to the floor
         // ターゲットの高さ
-        double goalHeightCentis = 162;
+        double goalHeightCentis = 164;
         
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
@@ -80,10 +80,11 @@ public class Limelight implements Component {
         State.limelight.put("limelightdistance",State.distanceFromLimelightToGoalCentis);
         State.limelight.put("heading", State.heading_error);
         State.limelight.put("steering_adjust", State.steering_adjust);
+        State.limelight.put("distance", State.distanceFromLimelightToGoalCentis);
         System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
-        SmartDashboard.putNumber("distanceDifference", State.distanceFromLimelightToGoalCentis - State.driveRightFrontPositionMeter);
-        SmartDashboard.putNumber("targetAngle", Math.tan(targetAngle));
-        State.limelight.put("distanceDifference", State.distanceFromLimelightToGoalCentis - State.driveRightFrontPositionMeter);
+        SmartDashboard.putNumber("distance", State.distanceFromLimelightToGoalCentis);
+        SmartDashboard.putNumber("ty", tyEntry.getDouble(0));
+        
     }
     public void applyState() {
 
