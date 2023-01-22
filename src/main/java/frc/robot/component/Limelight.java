@@ -66,7 +66,9 @@ public class Limelight implements Component {
             State.heading_error= State.tx;
             State.steering_adjust = Kp * State.tx;
         }
-        
+        State.steering_adjust += 0.2;
+        State.steering_adjust -= 0.2;
+
 
         
         State.limelight.put("tx", txEntry.getDouble(0));
