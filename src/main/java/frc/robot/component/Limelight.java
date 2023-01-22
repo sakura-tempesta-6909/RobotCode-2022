@@ -5,12 +5,13 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.State;
+import frc.robot.subClass.Const;
 
 
 public class Limelight implements Component {
 
     private NetworkTable table;
-    private NetworkTableEntry txEntry, tyEntry;
+    private NetworkTableEntry txEntry, tyEntry, tvEntry;
 
     private double Kp;
 
@@ -19,6 +20,7 @@ public class Limelight implements Component {
         txEntry = table.getEntry("tx");
         Kp = -0.01;
         tyEntry = table.getEntry("ty");
+        tvEntry = table.getEntry("tv");
 
     }
 
@@ -37,28 +39,14 @@ public class Limelight implements Component {
     public void readSensors(){
         // ターゲットの角度
         double targetOffsetAngle_Vertical = -tyEntry.getDouble(0.0);  
-        // how many degrees back is your limelight rotated from perfectly vertical?
-        // limelightの角度
-        double limelightMountAngleDegrees = 34.5;
         
-        // distance from the center of the Limelight lens to the floor
-        // limelightの高さ
-        double limelightLensHeightCentis = 81.5;
-        
-        // distance from the target to the floor
-        // ターゲットの高さ
-        double goalHeightCentis = 166;
-        
-        double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
-        double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+        double angleToGoalDegrees = Const.Calculation.LimelightMountAngleDegrees + targetOffsetAngle_Vertical;
+        double angleToGoalRadians = angleToGoalDegrees * (Math.PI / 180.0);
         
         // calculate distance
         // ターゲットまでの距離
-        State.distanceFromLimelightToGoalCentis = (goalHeightCentis - limelightLensHeightCentis)/Math.tan(angleToGoalRadians);
+        State.distanceFromLimelightToGoalCentis = (Const.Calculation.GoalHeightCentis - Const.Calculation.LImelightLensHeightCentis)/Math.tan(angleToGoalRadians);
         System.out.println(State.distanceFromLimelightToGoalCentis);
-
-        double targetAngle = (goalHeightCentis - limelightLensHeightCentis/100) - Math.tan(limelightMountAngleDegrees);
-        System.out.println(Math.tan(targetAngle));
 
         State.tx = txEntry.getDouble(0);
         State.ty = tyEntry.getDouble(0);
@@ -71,6 +59,14 @@ public class Limelight implements Component {
         } else if(Math.signum(State.steering_adjust) < 0) {
             State.steering_adjust += -0.2;
         }
+
+        if(State.tv == 0.0) {
+            State.steering_adjust = 0.3;
+        } else {
+            State.heading_error= State.tx;
+            State.steering_adjust = Kp * State.tx;
+        }
+        
 
         
         State.limelight.put("tx", txEntry.getDouble(0));

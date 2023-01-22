@@ -82,6 +82,7 @@ public class State {
     public static double distanceFromLimelightToGoalCentis;
     public static double tx;
     public static double ty;
+    public static double tv;
 
 
     public static void StateInit() {
