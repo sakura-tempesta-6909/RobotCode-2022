@@ -16,9 +16,9 @@ public class Limelight implements Component {
 
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
-        txEntry = table.getEntry("ty");
+        txEntry = table.getEntry("tx");
         Kp = -0.01;
-        tyEntry = table.getEntry("tx");
+        tyEntry = table.getEntry("ty");
 
     }
 
@@ -39,15 +39,15 @@ public class Limelight implements Component {
         double targetOffsetAngle_Vertical = -tyEntry.getDouble(0.0);  
         // how many degrees back is your limelight rotated from perfectly vertical?
         // limelightの角度
-        double limelightMountAngleDegrees = 36.0;
+        double limelightMountAngleDegrees = 34.5;
         
         // distance from the center of the Limelight lens to the floor
         // limelightの高さ
-        double limelightLensHeightCentis = 83;
+        double limelightLensHeightCentis = 81.5;
         
         // distance from the target to the floor
         // ターゲットの高さ
-        double goalHeightCentis = 164;
+        double goalHeightCentis = 166;
         
         double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
