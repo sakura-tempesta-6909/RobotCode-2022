@@ -123,8 +123,9 @@ public class State {
         s_fastDrive,
         s_turnTo,
         s_pidDrive,
-        s_target,
-        s_range
+        // targetに照準を合わせる
+        s_targetTracking,
+        s_targetApproaching
     }
 
   

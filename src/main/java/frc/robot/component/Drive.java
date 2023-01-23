@@ -26,10 +26,6 @@ public class Drive implements Component {
     private VictorSPX driveRightBack, driveLeftBack;
     private DifferentialDrive differntialDrive;
     private ADXRS450_Gyro gyro;
-    private NetworkTable table;
-    private NetworkTableEntry entry;
-    private double Kp;
-    
 
     /**
      * Motorの初期化、Motor・センサーの反転
@@ -58,10 +54,6 @@ public class Drive implements Component {
         driveLeftBack.setNeutralMode(NeutralMode.Brake);
         gyroInit();
 
-        table =  NetworkTableInstance.getDefault().getTable("limelight");
-        entry = table.getEntry("ty");
-        Kp = -0.1;
-        entry = table.getEntry("tx");
         
     }
 
@@ -226,9 +218,9 @@ public class Drive implements Component {
             case s_turnTo:
                 turnTo(State.targetDirection);
                 break;
-            case s_target:
+            case s_targetTracking:
                 arcadeDrive(0, State.steering_adjust);
-            case s_range:
+            case s_targetApproaching:
                 arcadeDrive(State.steering_adjust, 0);
         }
 

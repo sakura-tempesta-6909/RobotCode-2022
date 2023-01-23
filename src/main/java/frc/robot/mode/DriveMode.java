@@ -74,11 +74,11 @@ public class DriveMode extends Mode {
         }
 
         if(driveController.getXButton()) {
-            State.driveState = DriveState.s_target;
+            State.driveState = DriveState.s_targetTracking;
         }
 
         if(driveController.getYButton()) {
-            State.driveState = DriveState.s_range;
+            State.driveState = DriveState.s_targetApproaching;
         }
     }
 
