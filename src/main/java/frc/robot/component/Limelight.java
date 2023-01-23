@@ -13,7 +13,7 @@ public class Limelight implements Component {
     private NetworkTable table;
     private NetworkTableEntry txEntry, tyEntry, tvEntry;
 
-    private double Kp, distance_error;
+    private double Kp;
 
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
@@ -53,6 +53,7 @@ public class Limelight implements Component {
         State.tv = tvEntry.getDouble(0);
         State.distance_error = tyEntry.getDouble(0);
         
+        //ターゲットを追いかける
         State.heading_error = State.tx;
         State.steering_adjust = Kp * State.tx;
 
@@ -62,16 +63,18 @@ public class Limelight implements Component {
             State.steering_adjust += -0.2;
         }
 
+        //シーク
         if(State.tv == 0.0) {
             State.steering_adjust = 0.3;
         } else {
-            State.heading_error= State.tx;
+            State.heading_error = State.tx;
             State.steering_adjust = Kp * State.tx;
         }
         State.steering_adjust += 0.2;
         State.steering_adjust -= 0.2;
 
-        State.driving_adjust = Kp * distance_error;
+        //ターゲットに近づく
+        State.driving_adjust = Kp *  State.distance_error;
         if(Math.signum(State.driving_adjust) > 0) {
             State.driving_adjust += 0.2;
         } else if (Math.signum(State.driving_adjust) < 0) {
