@@ -80,9 +80,6 @@ public class State {
     public static double heading_error;
     public static double limelightZRotation;
     public static double distanceFromLimelightToGoalCentis;
-    public static double tx;
-    public static double ty;
-    public static double tv;
     public static double driving_adjust;
     public static double distance_error;
 

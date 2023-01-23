@@ -159,16 +159,6 @@ public class Drive implements Component {
         driveRightFront.setIntegralAccumulator(0);
         State.isDrivePidFinished = false;
     }
-    
-
-
-    public void target() {      
-        differntialDrive.arcadeDrive(0, State.steering_adjust);
-    }
-
-    public void range() {
-        differntialDrive.arcadeDrive(State.driving_adjust, 0);
-    }
 
     @Override
     public void autonomousInit() {
@@ -237,9 +227,9 @@ public class Drive implements Component {
                 turnTo(State.targetDirection);
                 break;
             case s_target:
-                target();
+                arcadeDrive(0, State.steering_adjust);
             case s_range:
-                range();
+                arcadeDrive(State.steering_adjust, 0);
         }
 
 

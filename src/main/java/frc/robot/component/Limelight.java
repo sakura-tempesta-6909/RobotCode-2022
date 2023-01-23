@@ -13,7 +13,7 @@ public class Limelight implements Component {
     private NetworkTable table;
     private NetworkTableEntry txEntry, tyEntry, tvEntry;
 
-    private double Kp;
+    private double Kp, tx, ty, tv;
 
     public Limelight(){
         table =  NetworkTableInstance.getDefault().getTable("limelight");
@@ -37,25 +37,24 @@ public class Limelight implements Component {
 
     }
     public void readSensors(){
-        // ターゲットの角度
+        // limelightから見たターゲットの角度
         double targetOffsetAngle_Vertical = -tyEntry.getDouble(0.0);  
         
         double angleToGoalDegrees = Const.Calculation.LimelightMountAngleDegrees + targetOffsetAngle_Vertical;
-        double angleToGoalRadians = angleToGoalDegrees * (Math.PI / 180.0);
+        double angleToGoalRadians = angleToGoalDegrees * (Math.toRadians(180.0));
         
         // calculate distance
         // ターゲットまでの距離
         State.distanceFromLimelightToGoalCentis = (Const.Calculation.GoalHeightCentis - Const.Calculation.LImelightLensHeightCentis)/Math.tan(angleToGoalRadians);
         System.out.println(State.distanceFromLimelightToGoalCentis);
 
-        State.tx = txEntry.getDouble(0);
-        State.ty = tyEntry.getDouble(0);
-        State.tv = tvEntry.getDouble(0);
-        State.distance_error = tyEntry.getDouble(0);
-        
+        tx = txEntry.getDouble(0);
+        ty = tyEntry.getDouble(0);
+        tv = tvEntry.getDouble(0);
+
         //ターゲットを追いかける
-        State.heading_error = State.tx;
-        State.steering_adjust = Kp * State.tx;
+        State.heading_error = tx;
+        State.steering_adjust = Kp * tx;
 
         if(Math.signum(State.steering_adjust) > 0) {
             State.steering_adjust += 0.2;
@@ -64,15 +63,15 @@ public class Limelight implements Component {
         }
 
         //シーク
-        if(State.tv == 0.0) {
+        if(tv == 0.0) {
             State.steering_adjust = 0.3;
+            State.steering_adjust += 0.2;
         } else {
-            State.heading_error = State.tx;
-            State.steering_adjust = Kp * State.tx;
+            State.heading_error = tx;
+            State.steering_adjust = Kp * tx;
+            State.steering_adjust += -0.2;
         }
-        State.steering_adjust += 0.2;
-        State.steering_adjust -= 0.2;
-
+       
         //ターゲットに近づく
         State.driving_adjust = Kp *  State.distance_error;
         if(Math.signum(State.driving_adjust) > 0) {
