@@ -164,7 +164,10 @@ public class Drive implements Component {
 
     public void target() {      
         differntialDrive.arcadeDrive(0, State.steering_adjust);
-       
+    }
+
+    public void range() {
+        differntialDrive.arcadeDrive(State.driving_adjust, 0);
     }
 
     @Override
@@ -235,6 +238,8 @@ public class Drive implements Component {
                 break;
             case s_target:
                 target();
+            case s_range:
+                range();
         }
 
 

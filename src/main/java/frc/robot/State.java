@@ -83,6 +83,7 @@ public class State {
     public static double tx;
     public static double ty;
     public static double tv;
+    public static double driving_adjust;
 
 
     public static void StateInit() {
@@ -125,6 +126,7 @@ public class State {
         s_turnTo,
         s_pidDrive,
         s_target,
+        s_range
     }
 
   
