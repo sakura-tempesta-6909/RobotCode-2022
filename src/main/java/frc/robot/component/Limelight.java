@@ -21,8 +21,7 @@ public class Limelight implements Component {
         Kp = -0.01;
         tyEntry = table.getEntry("ty");
         tvEntry = table.getEntry("tv");
-        distance_error = tyEntry.getDouble(0);
-
+        
     }
 
     public void autonomousInit(){
@@ -52,6 +51,7 @@ public class Limelight implements Component {
         State.tx = txEntry.getDouble(0);
         State.ty = tyEntry.getDouble(0);
         State.tv = tvEntry.getDouble(0);
+        State.distance_error = tyEntry.getDouble(0);
         
         State.heading_error = State.tx;
         State.steering_adjust = Kp * State.tx;

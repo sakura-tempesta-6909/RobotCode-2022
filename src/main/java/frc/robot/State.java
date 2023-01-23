@@ -84,6 +84,7 @@ public class State {
     public static double ty;
     public static double tv;
     public static double driving_adjust;
+    public static double distance_error;
 
 
     public static void StateInit() {
