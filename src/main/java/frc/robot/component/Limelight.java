@@ -63,7 +63,7 @@ public class Limelight implements Component {
             }
         } else if(Math.signum(tx) < 0) {
             State.limelightZRotation = tx / -27 * 0.8;
-            if(tx < -9) {
+            if(tx > -9) {
                 State.limelightZRotation = 0.5;
             }
         }
