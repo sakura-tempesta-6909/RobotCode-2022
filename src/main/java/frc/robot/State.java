@@ -112,6 +112,7 @@ public class State {
         reachTurn = false;
         voltage = new HashMap<>();
         limelight = new HashMap<>();
+        limelightZRotation = 0;
     }
 
     /**
