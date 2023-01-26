@@ -56,11 +56,12 @@ public class Limelight implements Component {
         State.heading_error = tx;
         State.steering_adjust = Kp * tx;
 
-        if(Math.signum(State.steering_adjust) > 0) {
-            State.steering_adjust += 0.2;
-        } else if(Math.signum(State.steering_adjust) < 0) {
-            State.steering_adjust += -0.2;
+        if(Math.signum(tx) > 0) {
+            State.limelightZRotation = 0.2;
+        } else if(Math.signum(tx) < 0) {
+            State.limelightZRotation = -0.2;
         }
+        
 
         //シーク
         if(tv == 0.0) {

@@ -97,7 +97,7 @@ public class Drive implements Component {
      * driveを動かす
      *
      * @param xSpeed    driveの縦方向の値
-     * @param zRotation 　driveの回転方向の値
+     * @param zRotation 　driveの回転方向の値 右が正 左が負
      */
     public void arcadeDrive(double xSpeed, double zRotation) {
         differntialDrive.feed();
@@ -219,7 +219,7 @@ public class Drive implements Component {
                 turnTo(State.targetDirection);
                 break;
             case s_targetTracking:
-                arcadeDrive(0, State.steering_adjust);
+                arcadeDrive(0, State.limelightZRotation);
             case s_targetApproaching:
                 arcadeDrive(State.steering_adjust, 0);
         }
