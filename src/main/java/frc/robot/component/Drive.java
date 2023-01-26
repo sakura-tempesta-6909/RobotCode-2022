@@ -220,8 +220,10 @@ public class Drive implements Component {
                 break;
             case s_targetTracking:
                 arcadeDrive(0, State.limelightZRotation);
+                break;
             case s_targetApproaching:
-                arcadeDrive(State.steering_adjust, 0);
+                arcadeDrive(State.limelightXSpeed, 0);
+                break;
         }
 
 

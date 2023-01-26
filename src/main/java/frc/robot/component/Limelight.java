@@ -75,10 +75,10 @@ public class Limelight implements Component {
        
         //ターゲットに近づく
         State.driving_adjust = Kp *  State.distance_error;
-        if(Math.signum(State.driving_adjust) > 0) {
-            State.driving_adjust += 0.2;
-        } else if (Math.signum(State.driving_adjust) < 0) {
-            State.driving_adjust -= 0.2;
+        if(Math.signum(ty) > 0) {
+            State.limelightXSpeed += 0.2;
+        } else if (Math.signum(ty) < 0) {
+            State.limelightXSpeed -= 0.2;
         }
 
         

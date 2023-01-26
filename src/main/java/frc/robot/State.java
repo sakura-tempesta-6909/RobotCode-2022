@@ -79,6 +79,7 @@ public class State {
     public static double steering_adjust;
     public static double heading_error;
     public static double limelightZRotation;
+    public static double limelightXSpeed;
     public static double distanceFromLimelightToGoalCentis;
     public static double driving_adjust;
     public static double distance_error;
