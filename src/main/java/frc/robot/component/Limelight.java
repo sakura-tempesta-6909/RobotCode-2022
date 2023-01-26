@@ -58,12 +58,12 @@ public class Limelight implements Component {
 
         if(Math.signum(tx) > 0) {
             State.limelightZRotation = tx / -27;
-            if(State.limelightZRotation > 0.3){
+            if(tx < 9){
                 State.limelightZRotation = -0.3;
             }
         } else if(Math.signum(tx) < 0) {
             State.limelightZRotation = tx / 27;
-            if(State.limelightZRotation > -0.3) {
+            if(tx < -9) {
                 State.limelightZRotation = 0.3;
             }
         }
