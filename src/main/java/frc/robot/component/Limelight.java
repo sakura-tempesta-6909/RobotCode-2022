@@ -71,12 +71,9 @@ public class Limelight implements Component {
 
         //シーク
         if(tv == 0.0) {
-            State.steering_adjust = 0.3;
-            State.steering_adjust += 0.2;
+            State.limelightZRotation = 0.3;
         } else {
-            State.heading_error = tx;
-            State.steering_adjust = Kp * tx;
-            State.steering_adjust += -0.2;
+            State.limelightZRotation = tx / 27 * 0.5 + -0.2;
         }
        
         //ターゲットに近づく
