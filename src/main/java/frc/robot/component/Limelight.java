@@ -57,13 +57,13 @@ public class Limelight implements Component {
         State.steering_adjust = Kp * tx;
 
         if(Math.signum(tx) > 0) {
-            State.limelightZRotation = tx / -27 * 0.8;
-            if(tx < 9){
+            State.limelightZRotation = tx / -27 * 0.5 + 0.2;
+            if(tx < 9 && tx > 3){
                 State.limelightZRotation = -0.5;
             }
         } else if(Math.signum(tx) < 0) {
-            State.limelightZRotation = tx / -27 * 0.8;
-            if(tx > -9) {
+            State.limelightZRotation = tx / -27 * 0.5 + 0.2;
+            if(tx > -9 && tx < -3) {
                 State.limelightZRotation = 0.5;
             }
         }
