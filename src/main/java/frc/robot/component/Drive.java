@@ -1,9 +1,5 @@
 package frc.robot.component;
 
-
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -219,10 +215,10 @@ public class Drive implements Component {
                 turnTo(State.targetDirection);
                 break;
             case s_targetTracking:
-                arcadeDrive(0, State.limelightZRotation);
+                arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, State.limelightZRotation);
                 break;
             case s_targetApproaching:
-                arcadeDrive(State.limelightXSpeed, 0);
+                arcadeDrive(State.limelightXSpeed, Const.Speeds.Neutral * State.driveZRotation);
                 break;
         }
 

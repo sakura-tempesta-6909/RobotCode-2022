@@ -46,7 +46,7 @@ public class Limelight implements Component {
         // calculate distance
         // ターゲットまでの距離
         State.distanceFromLimelightToGoalCentis = (Const.Calculation.GoalHeightCentis - Const.Calculation.LImelightLensHeightCentis)/Math.tan(angleToGoalRadians);
-        System.out.println(State.distanceFromLimelightToGoalCentis);
+        //System.out.println(State.distanceFromLimelightToGoalCentis);
 
         tx = txEntry.getDouble(0);
         ty = tyEntry.getDouble(0);
@@ -96,7 +96,7 @@ public class Limelight implements Component {
         State.limelight.put("heading", State.heading_error);
         State.limelight.put("steering_adjust", State.steering_adjust);
         State.limelight.put("distance", State.distanceFromLimelightToGoalCentis);
-        System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
+        //System.out.println("limelight" + State.limelight.getOrDefault("tx", txEntry.getDouble(0)));
         SmartDashboard.putNumber("distance", State.distanceFromLimelightToGoalCentis);
         SmartDashboard.putNumber("ty", tyEntry.getDouble(0));
         
