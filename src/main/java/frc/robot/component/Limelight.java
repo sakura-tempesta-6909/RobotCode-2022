@@ -57,23 +57,23 @@ public class Limelight implements Component {
         State.steering_adjust = Kp * tx;
 
         if(Math.signum(tx) > 0) {
-            State.limelightZRotation = tx / -27 * 0.5 + -0.2;
+            State.limelightTrackingZRotation = tx / -27 * 0.5 + -0.2;
             if(tx < 9 && tx > 3){
-                State.limelightZRotation = -0.5;
+                State.limelightTrackingZRotation = -0.5;
             }
         } else if(Math.signum(tx) < 0) {
-            State.limelightZRotation = tx / -27 * 0.5 + 0.2;
+            State.limelightTrackingZRotation = tx / -27 * 0.5 + 0.2;
             if(tx > -9 && tx < -3) {
-                State.limelightZRotation = 0.5;
+                State.limelightTrackingZRotation = 0.5;
             }
         }
         
 
         //シーク
         if(tv == 0.0) {
-            State.limelightZRotation = 0.3;
+            State.limelightSeekingZRotation = 0.3;
         } else {
-            State.limelightZRotation = tx / 27 * 0.5 + -0.2;
+            State.limelightSeekingZRotation = tx / 27 * 0.5 + -0.2;
         }
        
         //ターゲットに近づく

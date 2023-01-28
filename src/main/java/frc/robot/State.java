@@ -78,12 +78,12 @@ public class State {
     
     public static double steering_adjust;
     public static double heading_error;
-    public static double limelightZRotation;
+    public static double limelightTrackingZRotation;
     public static double limelightXSpeed;
     public static double distanceFromLimelightToGoalCentis;
     public static double driving_adjust;
     public static double distance_error;
-
+    public static double limelightSeekingZRotation;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -112,7 +112,7 @@ public class State {
         reachTurn = false;
         voltage = new HashMap<>();
         limelight = new HashMap<>();
-        limelightZRotation = 0;
+        limelightTrackingZRotation = 0;
     }
 
     /**
@@ -127,7 +127,9 @@ public class State {
         s_pidDrive,
         // targetに照準を合わせる
         s_targetTracking,
-        s_targetApproaching
+        s_targetApproaching,
+        s_targetSeeking,
+
     }
 
   

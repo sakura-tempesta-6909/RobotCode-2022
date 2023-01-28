@@ -215,11 +215,13 @@ public class Drive implements Component {
                 turnTo(State.targetDirection);
                 break;
             case s_targetTracking:
-                arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, State.limelightZRotation);
+                arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, State.limelightTrackingZRotation);
                 break;
             case s_targetApproaching:
                 arcadeDrive(State.limelightXSpeed, Const.Speeds.Neutral * State.driveZRotation);
                 break;
+            case s_targetSeeking:
+                
         }
 
 
