@@ -77,7 +77,7 @@ public class DriveMode extends Mode {
             State.driveState = DriveState.s_targetTracking;
         }
 
-        if(driveController.getYButton()) {
+        if(driveController.getRightBumper()) {
             State.driveState = DriveState.s_targetApproaching;
         }
     }
