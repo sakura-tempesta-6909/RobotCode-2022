@@ -80,6 +80,10 @@ public class DriveMode extends Mode {
         if(driveController.getRightBumper()) {
             State.driveState = DriveState.s_targetApproaching;
         }
+
+        if(driveController.getLeftStickButton()) {
+            State.driveState = DriveState.s_targetSeeking;
+        }
     }
 
 }

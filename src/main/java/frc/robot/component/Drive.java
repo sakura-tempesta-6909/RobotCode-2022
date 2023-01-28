@@ -221,7 +221,7 @@ public class Drive implements Component {
                 arcadeDrive(State.limelightXSpeed, Const.Speeds.Neutral * State.driveZRotation);
                 break;
             case s_targetSeeking:
-                
+                arcadeDrive(Const.Speeds.Neutral, State.limelightSeekingZRotation);
         }
 
 
