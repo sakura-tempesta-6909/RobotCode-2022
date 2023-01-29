@@ -71,9 +71,9 @@ public class Limelight implements Component {
 
         //シーク
         if(tv == 0.0) {
-            State.limelightSeekingZRotation = 0.3;
+            State.limelightSeekingZRotation = 0.5;
         } else {
-            State.limelightSeekingZRotation = tx / 27 * 0.5 + -0.2;
+            State.limelightSeekingZRotation = 0.0;
         }
        
         //ターゲットに近づく
