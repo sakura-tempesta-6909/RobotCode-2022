@@ -42,11 +42,15 @@ public class Robot extends TimedRobot {
 
         State.StateInit();
         Util.sendSystemOut(defaultConsole, newConsole);
+        defaultConsole.print(newConsole);
+        newConsole = new ByteArrayOutputStream();
     }
 
     @Override
     public void robotPeriodic() {
         Util.sendSystemOut(defaultConsole, newConsole);
+        defaultConsole.print(newConsole);
+        newConsole = new ByteArrayOutputStream();
     }
 
     @Override
