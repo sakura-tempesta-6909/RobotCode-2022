@@ -115,6 +115,15 @@ public class Const {
         // ClimbArmEncoderの１秒あたりのカウント数
         public static final int ClimbArmEncoderCount = 5;
 
+        //LimelightPoint
+        // Limelightの角度
+        public static final double LimelightMountAngleDegrees = 34.5;
+        //Limelightの高さ
+        public static final double LImelightLensHeightCentis = 81.5;
+        //ターゲットの高さ
+        public static final double GoalHeightCentis = 166;
+      
+
     }
 
     public static final class Pid{

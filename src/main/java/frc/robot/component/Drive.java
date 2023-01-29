@@ -1,6 +1,5 @@
 package frc.robot.component;
 
-
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -50,6 +49,8 @@ public class Drive implements Component {
         driveRightBack.setNeutralMode(NeutralMode.Brake);
         driveLeftBack.setNeutralMode(NeutralMode.Brake);
         gyroInit();
+
+        
     }
 
     public double getCurrentDirection() {
@@ -92,7 +93,7 @@ public class Drive implements Component {
      * driveを動かす
      *
      * @param xSpeed    driveの縦方向の値
-     * @param zRotation 　driveの回転方向の値
+     * @param zRotation 　driveの回転方向の値 右が正 左が負
      */
     public void arcadeDrive(double xSpeed, double zRotation) {
         differntialDrive.feed();
@@ -213,6 +214,14 @@ public class Drive implements Component {
             case s_turnTo:
                 turnTo(State.targetDirection);
                 break;
+            case s_targetTracking:
+                arcadeDrive(Const.Speeds.Neutral * State.driveXSpeed, State.limelightTrackingZRotation);
+                break;
+            case s_targetApproaching:
+                arcadeDrive(State.limelightXSpeed, Const.Speeds.Neutral * State.driveZRotation);
+                break;
+            case s_targetSeeking:
+                arcadeDrive(Const.Speeds.Neutral, State.limelightSeekingZRotation);
         }
 
 

@@ -5,6 +5,7 @@ import frc.robot.component.Climb;
 import frc.robot.component.Component;
 import frc.robot.component.Conveyor;
 import frc.robot.component.Drive;
+import frc.robot.component.Limelight;
 import frc.robot.phase.Autonomous;
 import frc.robot.subClass.Const;
 import frc.robot.subClass.ExternalSensors;
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
         components.add(new Drive());
         components.add(new Conveyor());
         components.add(new Climb());
+        components.add(new Limelight());
 
         externalSensors = new ExternalSensors();
 
@@ -74,6 +76,7 @@ public class Robot extends TimedRobot {
         for (Component component : components) {
             component.applyState();
         }
+        mqtt.publishState();
     }
 
     @Override
@@ -101,7 +104,11 @@ public class Robot extends TimedRobot {
             component.applyState();
         }
         Util.allSendConsole();
+        
+        mqtt.publishState();
     }
+
+    
 
     @Override
     public void disabledInit() {
@@ -140,5 +147,6 @@ public class Robot extends TimedRobot {
         for (Component component : components) {
             component.applyState();
         }
+        mqtt.publishState();
     }
 }

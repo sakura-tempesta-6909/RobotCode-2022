@@ -8,7 +8,6 @@ import frc.robot.subClass.Const;
 import frc.robot.subClass.Util;
 
 public class DriveMode extends Mode {
-
     @Override
     public void changeMode() {
 
@@ -72,6 +71,18 @@ public class DriveMode extends Mode {
             State.is_intakeExtendOpen = true;
         } else if(driveController.getBButton()){
             State.is_intakeExtendOpen = false;
+        }
+
+        if(driveController.getXButton()) {
+            State.driveState = DriveState.s_targetTracking;
+        }
+
+        if(driveController.getRightBumper()) {
+            State.driveState = DriveState.s_targetApproaching;
+        }
+
+        if(driveController.getLeftStickButton()) {
+            State.driveState = DriveState.s_targetSeeking;
         }
     }
 

@@ -73,6 +73,17 @@ public class State {
     public static boolean shooterSensorJudge;
     public static boolean isDrivePidFinished;
     public static Map<String ,Double> voltage = new HashMap<>();
+    public static Map<String ,Double> limelight = new HashMap<>();
+
+    
+    public static double steering_adjust;
+    public static double heading_error;
+    public static double limelightTrackingZRotation;
+    public static double limelightXSpeed;
+    public static double distanceFromLimelightToGoalCentis;
+    public static double driving_adjust;
+    public static double distance_error;
+    public static double limelightSeekingZRotation;
 
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
@@ -100,6 +111,8 @@ public class State {
         driveAccumulateReset = false;
         reachTurn = false;
         voltage = new HashMap<>();
+        limelight = new HashMap<>();
+        limelightTrackingZRotation = 0;
     }
 
     /**
@@ -112,6 +125,11 @@ public class State {
         s_fastDrive,
         s_turnTo,
         s_pidDrive,
+        // targetに照準を合わせる
+        s_targetTracking,
+        s_targetApproaching,
+        s_targetSeeking,
+
     }
 
   
@@ -160,6 +178,11 @@ public class State {
         s_climbArmNeutral,
         s_angleCalibration,
     }
+
+    public enum LimeLightState {
+        s_target,
+    }
+
 
     public enum Modes {
         k_drive(new DriveMode()),
