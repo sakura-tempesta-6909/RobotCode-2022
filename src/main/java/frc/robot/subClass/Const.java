@@ -14,6 +14,9 @@ public class Const {
         public static final int DriveController = 0;
         public static final int OperateController = 1;
 
+        //JoyStickPort(JoyStickのポート)
+        public static final int DriveJoyStick = 0;
+
         // Motor, drive
         public static final int DriveRightFront = 0;
         public static final int DriveRightBack= 1;
@@ -162,7 +165,8 @@ public class Const {
         // Deadband
         public static final double Deadband = 0.2;
         // Triggerの押し込み具合
-        public static final double TriggerValue = 0.5;
+        public static final double JoyStickRight = 0.8;
+        public static final double JoyStickLeft = -0.8;
 
         public static final double TestTurnDirection = 90;
         

@@ -13,11 +13,11 @@ public class ConveyorMode extends Mode {
 
     // RB: driveMode
     // Start & Back: climbModeになる
-    if(driveController.getRightBumper()){
+    if(Mode.Button2.get()){
       State.mode = Modes.k_drive;
-    } else if(driveController.getStartButton() && driveController.getBackButton()){
+    } else if(Mode.Button7.get() && Mode.Button8.get()){
       State.mode = Modes.k_climb;
-    } else if(operateController.getStartButton() && operateController.getBackButton()){
+    } else if(Mode.Button11.get() && Mode.Button12.get()){
       State.mode = Modes.k_climb;
   }
 
@@ -29,21 +29,21 @@ public class ConveyorMode extends Mode {
     // LY: 前後、RX: 左右
      
     State.driveState = DriveState.s_midDrive;
-    State.driveXSpeed = -driveController.getLeftY();
-    State.driveZRotation = driveController.getRightX();
+    State.driveXSpeed = -driveJoyStick.getY();
+    State.driveZRotation = driveJoyStick.getX();
 
     // RT: ボール発射
-    if(driveController.getRightTriggerAxis() > Const.Other.TriggerValue){
+    if(driveJoyStick.getZ() > Const.Other.JoyStickRight){
       State.conveyorState = ConveyorState.s_shootConveyor;
     }
 
-    if(driveController.getAButton()){
+    if(Mode.Button3.get()){
       State.driveState = DriveState.s_pidDrive;
       State.drivePidSetMeter = -Const.AutonomousConst.ShootLengthFromFender;
       
     }
 
-    if(driveController.getXButton()){
+    if(Mode.Button4.get()){
       State.driveAccumulateReset = true;
       
     }

@@ -2,6 +2,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.mode.ClimbMode;
 import frc.robot.mode.ConveyorMode;
@@ -77,7 +78,9 @@ public class State {
     public static void StateInit() {
         XboxController driveController = new XboxController(Const.Ports.DriveController);
         XboxController operateController = new XboxController(Const.Ports.OperateController);
+        Joystick driveJoystick = new Joystick(Const.Ports.DriveJoyStick);
         Mode.addController(driveController, operateController);
+        Mode.addJoyStick(driveJoystick);
         mode = Modes.k_drive;
         is_compressorEnabled = true;
         alliance = DriverStation.getAlliance();
@@ -132,6 +135,7 @@ public class State {
         s_shooterShoot,
         s_shooterOuttake,
     }
+
 
     public enum BallQuantity {
         s_ballQuantity0(0),
